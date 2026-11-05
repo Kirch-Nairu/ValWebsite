@@ -1,16 +1,26 @@
-# ValWebsite — Valencia, Bohol
+# BEHOLD VALENCIA — Valencia, Bohol website
 
-Public-information-first website project for **Valencia, Bohol, Philippines**. This repository is in **discovery and architecture planning**. It is **not yet an official municipal website**, nor is it deployed or endorsed by an LGU merely by virtue of this repo's existence.
+**Destination-led, image-rich creative website and municipal information platform** for Valencia, Bohol, Philippines. Official government publishing status is **not yet authorized**, and all language, seals, photos and municipal content require source and rights review before release.
 
-## Planning baseline
-- [M00 discovery, facts, official-source register, media permissions](docs/00-discovery-source-register.md)
-- [Product, site map, content governance, technical architecture and milestone gates](docs/01-product-architecture-roadmap.md)
-- [M01 Antigravity capability evaluation and visual test mission](docs/02-antigravity-evaluation-mission.md)
+## Current project decisions
+- **Experience first:** gorgeous genuine Valencia photography, place and community stories, Sang-at, heritage, attractions, people, municipal progress.
+- **Useful government layer:** announcements, current officials (only when verified), service requirements, documents and contact.
+- **Technology:** Astro + strict TypeScript, static content collections, Pagefind, optimized media, accessible responsive pages, Playwright.
+- **Agent model policy:** **Low effort only.** Opus Low first for source/photography research; Argon Low later for visual/coding spike. Agents use isolated branches and draft PRs; no auto merges.
+- **Assets:** Facebook/public images are **research leads**, not republication licenses; seal/flag use is gated by verified municipal authority and rights.
+- **Hosting:** authorized static production infrastructure only after domain approval; no release yet.
 
-## Engineering direction (proposed)
-Astro + strict TypeScript + structured Markdown/MDX + responsive styles + native static output. Search by Pagefind, Playwright browser testing and accountable editorial review. No database or resident auth for initial informational release. No production implementation until M00 scope and identity decision.
+## Source-controlled planning and missions
+1. [M00 discovery and publication controls](docs/00-discovery-source-register.md)
+2. [Product information architecture, static engineering and release roadmap](docs/01-product-architecture-roadmap.md)
+3. [M01-B Argon Low frontend/browser evaluation](docs/02-antigravity-evaluation-mission.md)
+4. [**BEHOLD VALENCIA creative vision and executive-demo storyboard**](docs/03-behold-valencia-creative-brief.md)
+5. [**Research batch 01: tourism attractions, 2026 events, Facebook and photo rights leads**](docs/04-research-media-source-register.md)
+6. [**M01-A Opus Low exact Antigravity research mission**](docs/05-antigravity-opus-low-research-mission.md)
 
-## Controls
-Antigravity agents work on isolated branches and return PRs with exact SHA, command logs and browser screenshots. Do not publish unapproved government information, services, logos, contact information or third-party photographs. Production release needs domain ownership, publication authority and independent acceptance.
+## Acceptance structure
+M00 proof and authority -> M01-A Opus Low research -> M01-B Argon Low visual prototype -> M02 foundation -> M03 flagship homepage -> M04 culture/discover/progress -> M05 government utility -> M06 full QA -> M07 controlled authorized launch.
 
-Repo: https://github.com/Kirch-Nairu/ValWebsite
+Tracking: https://github.com/Kirch-Nairu/ValWebsite/issues/1
+
+**No frontend implementation or Antigravity execution claimed from the planning branch.**
