@@ -1,132 +1,97 @@
-# Valencia Website — Product, information architecture, engineering, and release blueprint v0.1
-Date: 2026-11-06. Status: **proposal, not approved for production**. Parent discovery: [M00](./00-discovery-source-register.md).
+# Valencia Website — Destination-led product and static-first architecture v0.2
+Date: 2026-11-06. Status: PROPOSAL; no publication authority or production approval. Canonical creative direction: [Behold Valencia](./03-behold-valencia-creative-brief.md). Research ledger: [M00 sources/media](./04-research-media-source-register.md). Agent missions: [Opus Low research](./05-antigravity-opus-low-research-mission.md), [Argon Low visual evaluation](./02-antigravity-evaluation-mission.md).
 
-## 1. Product positioning
-Build a **fast, trustworthy, mobile-first Valencia, Bohol public information website**, giving residents a path to services, documents, and advisories, while presenting authentic local identity to visitors. Prioritize functional public value over web-app complexity. It must not pretend to be an official government website until authorized by the municipality.
+## 1. Vision and audiences
+A high-end **place-brand + municipal presence** for Valencia, Bohol: extraordinary visual and editorial presentation of the town's identity, culture, people, places, opportunities and real municipal progress, with fast, reliable government services in a clearly accessible secondary section. **Not** a citizen helpdesk homepage.
 
-**Audience / priority**
-1. Residents: service requirements, where to go, office hours, contact, important notices.
-2. Business owners: permits, requirements, responsible office, verified government links.
-3. Residents researching accountability: ordinances, budgets, FDP, procurement and plans.
-4. Visitors / diaspora: heritage, local culture, places, how to visit, community.
-5. Municipal editors: safe, reproducible content updating, no developer intervention for every article after handover.
+Approval audiences: mayor's office / municipal decision-makers (if formally authorized), council and partners, residents/diaspora, travelers, investors and local businesses. An excellent executive-demo must still serve a resident trying to find a notice.
 
-**Success journeys:** find a common service in ≤3 navigation steps; locate relevant office and validated contact; find the date/effectivity of a PDF; distinguish current notices from archives; learn one real heritage story from an attributed source. No user login required to browse.
+### Five success journeys
+- **Visitor:** visually recognize Valencia Bohol, explore Sang-at and a location-specific story, understand how to plan a visit from current verified material.
+- **Mayor/decision-maker:** open strong home hero, cultural assets, sourced progress, quiet civic functions, and full mobile-quality demo in ~2 minutes.
+- **Resident:** find current advisory, office or valid service requirements within no more than 2–3 interactions from an obvious Government/Services link.
+- **Partner/investor:** read factually supported opportunities and actual projects, identify responsible contact only when confirmed.
+- **Editor/PIO:** update a story, event or document with source/rights/approval trails, without technical debt or invented information.
 
-## 2. Recommended primary navigation and routes
-| Top-level | Routes and purpose |
-| --- | --- |
-| Home | `/` — town identity, alert band, search, service shortcuts, recent notices, heritage |
-| Municipality | `/municipality`, `/municipality/history`, `/municipality/barangays`, `/municipality/offices` — verified profile, 35 barangays, organizational office directory |
-| Services | `/services`, `/services/[slug]` — category filters and current Citizen's Charter facts; PDF links and office owner |
-| News & Advisories | `/updates`, `/updates/[slug]` — dated notices, events and public advisories; archive and expiry |
-| Transparency | `/transparency`, `/documents`, `/documents/[slug]` — FDP links, ordinances, resolutions, plans, procurement and searchable records with supersession |
-| Discover Valencia | `/discover`, `/discover/[slug]` — authentic photo-led heritage, community and visitor guide |
-| Contact | `/contact` — verified directory, hours, map and emergency links; no collection of PII until explicitly commissioned |
+## 2. Site navigation and routes
+Top-level nav:
+1. Discover — `/discover` and `/discover/[slug]` destination stories, conditions and imagery.
+2. Culture & Heritage — `/culture`, `/culture/sang-at`, `/stories`, `/stories/[slug]`, `/people/[slug]`.
+3. Our Valencia — `/valencia`, `/valencia/history`, `/valencia/barangays`, `/valencia/leadership` (once current role approved).
+4. Progress — `/progress`, `/progress/[slug]`: evidence-backed development, civic initiatives, projects with current status.
+5. Updates — `/updates`, `/updates/[slug]`, `/events`: dated, expiring advisories and events.
+6. Government — `/government`, `/government/services`, `/government/services/[slug]`, `/government/offices`, `/government/documents`, `/government/transparency`, `/contact`.
 
-Footer: accessibility, privacy, site status/ownership, last reviewed/published, archives, source/attribution, government links, website feedback option (no unsecured personal data).
+Visible utility shortcuts: Search, Services, Contact. Important/current emergency advisories may appear in a discreet high-priority strip but never as decorative content. Strong footer with provenance, media credits, publication status and privacy/accessibility.
 
-**Mobile navigation:** 6 clear labels, sticky compact header, keyboard-compatible menu, visible search and CTA to services. Do not hide critical advisories below giant images. Provide source dates and location labels.
+Homepage section order: (1) **BEHOLD VALENCIA** photographic hero; (2) one-paragraph identity editorial; (3) curated place/heritage/people picture essay; (4) Sang-at and cultural calendar; (5) community and livelihoods; (6) real, documented municipal progress; (7) official quick facts and travel context; (8) recent updates and a practical government gateway; (9) approved leadership/contact/footer. See creative brief for more.
 
-## 3. Homepage information hierarchy
-1. Utility strip: municipality identity (qualified if unofficial), language choice as available, accessibility link, search.
-2. Alert strip: only when approved, active and not expired; emergency vs ordinary notices visually distinct.
-3. Editorial hero: authentic licensed Valencia imagery, legible concise headline (working line: “Valencia, Bohol — Our Community, Within Reach”), two actions: **Find a Service** and **Discover Valencia**. Slogan is not an official municipal tagline.
-4. “What do you need today?” direct service cards (e.g. business permits, civil registry, building/zoning, social services) only as categories pending signed/current instructions.
-5. Latest Advisories: date, source/issuing office, clear archive link, never fake recency.
-6. Discover Valencia: heritage/landscape/people tiles with approved images and source credit.
-7. Quick facts: official PSA 2024 data with label **2024 census**; link to source, not fake live counters.
-8. Official public documents / transparency: strong link to searchable archive and FDP where approved.
-9. Contact/footer: validated directory and content update date.
+## 3. Design constraints
+- Distinct local identity from first viewport; avoid generic Bohol photography masquerading as Valencia, templated card UI, municipal-desk dashboards or fake cinematic overlays.
+- Three design studies: cinematic editorial, curated heritage, contemporary destination-government. One coherent system chosen after actual screenshots and human review.
+- Real photography with licenses; no image from Facebook just because publicly viewable; no AI-generated fake Valencia views.
+- Photographs get metadata, alt, accurate captions, photographer credit and verified location/date.
+- Cultural narrative authentic to Valencia, where Sang-at Festival and place-name histories are anchors. Aerial/video is optional and rights/performance-gated.
+- Typography expressive display and readable body; 390px is first-class; no excessive JS, mandatory motion or scroll-hijacking.
+- Municipal seal only in official use after authorization; independently owned project must not impersonate LGU.
+- All factual/effective service info must be current and approved. 'Behold Valencia' is a **working creative headline**, not the government-approved tagline.
 
-**Visual strategy:** professional civic editorial, generous whitespace, precise typography, restrained movement, documentary photography, not generic government-template clutter or a travel-agency hero full of empty claims. Suggested visual exploration: warm off-white, deep coastal blue/green, stone gray, restrained terracotta/sunlight accent. **All branding provisional** until actual municipal seal and visual authority are received. Avoid AI-generated representative people or landmarks.
+## 4. Technology — intentionally simple
+**Astro + strict TypeScript**, static pre-rendering, content collections (Markdown/MDX), schemas (Zod), Tailwind CSS 4 or scoped CSS design tokens, responsive Astro/Sharp images, Pagefind static search. Use JS islands only where needed for navigation, gallery or lightweight filters. No React app runtime, database, server API, login or live-admin backend in V1. A React island is possible only with a genuine component need and performance review.
 
-## 4. Technical decision: static-first architecture
-- **Astro + TypeScript (strict)**: HTML produced at build time, content-driven routes and minimal client JS. This is a better first fit than a client-rendered React SPA for mostly public information.
-- **Tailwind CSS 4** or maintainable scoped CSS variables for design tokens; choose one convention in M01.
-- **Astro content collections** with schema validation: services, advisories, documents, destinations, offices and barangays. Markdown/MDX as appropriate; Zod rules and required provenance fields.
-- Astro image pipeline + Sharp for local optimized image derivatives; serve responsive `srcset`, lazy-load below fold, explicit dimensions.
-- **Pagefind** for build-time local search; no search service, server or DB.
-- Static generated sitemap, canonical URLs, robots, Open Graph, JSON-LD (`GovernmentOrganization` ONLY if official authorization is established; otherwise safe `WebSite`/`Place` content), accessible semantic HTML.
-- Optional lightweight client islands only for menu/search filters, never hydration of the whole site.
-- ESLint, Prettier, typecheck, content-schema validation, Playwright, axe-core, Lighthouse CI. Add unit tests around content transformations where valuable.
-- No server-side auth, payments, personal-data forms, chatbots, resident accounts, or admin database in V1.
-- Language architecture: English first with valid local language review; do not auto-machine-translate service requirements or pretend all locales exist. Future translation key routes after editorial signoff.
+Content types and required metadata:
+- `Destination`: canonical slug, exact barangay, GPS or location accuracy, photo IDs, access state, sensitivity, safety, transport, original sourced copy, review date; current hours/fees only if verified.
+- `Story`: headline, category, author/editor, event date, source refs, image rights IDs, people consent and approvals, publish/review dates.
+- `FestivalEdition`: festival name, year, historic program vs upcoming event, organizer, official schedule URL, permission-cleared media and archive reference.
+- `Project/Progress`: status (planned/in progress/completed), exact date, implementing agency, partner/donor, source URLs, facts and image rights, approved public copy.
+- `Official`: role, effective-from/through, current acting/appointment basis, verified official source, approved portrait; never derive current role only from election results.
+- `Service`: published Citizen's Charter edition and revision, office, requirements, processing time, fee, complaints, source/approval, last reviewed.
+- `Advisory`: issuing entity, verified issued and expiry dates, priority, archived state, official link.
+- `Document`: title, effective date, authority, signed/publication date, pdf/source link, supersedes reference, accessibility and status.
+- `MediaAsset`: photographer, original page/file, place, date, owner, rights evidence, credit, subject release, crop and aspect, approval date.
 
-## 5. Content-management strategy
-**V1:** Git-backed Markdown/MDX with PR-driven editorial approval. This is deliberately less fragile than operating an exposed CMS for mostly static material. One content file is one auditable published item; images and signed documents have source identifiers. Scheduled removal can be enforced at build time using `published_at / expires_at` but does not replace required republishing; urgent alerts require an emergency publishing owner.
+All published records fail CI if necessary source/approval fields are missing; draft-only items never appear in static output. Historical content cannot masquerade as live.
 
-**V1.1 only if nontechnical staff need editing:** evaluate a Git-based editorial UI (e.g. Pages CMS / equivalent) with GitHub permission boundaries and actual staff UAT. This is a candidate, not a decided dependency. **Do not add public WordPress, SQL, headless GraphQL or bespoke admin infrastructure without a demonstrated requirement.**
-
-Conceptual content contracts:
-```ts
-type Provenance = {
-  sourceTitle: string;
-  sourceUrl?: string;
-  sourceFileId?: string;
-  publisher: string;
-  checkedAt: string;        // ISO date
-  status: 'verified' | 'awaiting-approval';
-  approvedBy?: string;
-  approvedAt?: string;
-};
-type Service = {
-  slug: string; title: string; category: string; officeId: string;
-  audience: string[]; requirements: string[]; steps: string[];
-  fees: { label: string; amountPhp?: number }[];
-  processingTime: string; complaintChannel: string;
-  validFrom: string; reviewedAt: string; source: Provenance;
-  published: boolean;
-};
-type PublicDocument = {
-  id: string; title: string; category: string; issuingOffice: string;
-  signedAt?: string; effectiveAt?: string; version: string;
-  supersedesId?: string; source: Provenance; approvedPdfPath: string;
-  accessibilityChecked: boolean; published: boolean;
-};
-type Advisory = {
-  slug: string; title: string; severity: 'info'|'important'|'emergency';
-  publishedAt: string; expiresAt?: string; issuingOffice: string;
-  source: Provenance; published: boolean;
-};
-type MediaAsset = {
-  id: string; originalOwner: string; licenseEvidence: string;
-  subjectLocation: string; capturedAt?: string;
-  alt: string; credit: string; approved: boolean;
-};
+## 5. Content and administration
+**V1 Git-backed content** with PR reviews, static build and traceable edits. Use conventional directory structure:
 ```
-Production build must reject published service/advisory/document records lacking required provenance/approval or required dates. Dated items must not appear “current” after expiry. Do not expose unpublished draft content in prerender output.
+src/content/{destinations,stories,events,progress,officials,services,advisories,documents}/
+src/data/{barangays,source-register,media-approvals}/
+public/media/approved/
+research/   # text-only discovery leads
+research-local/  # gitignored research cache, screenshots and unlicensed images
+```
+Editors do not need a custom DB. Evaluate a Git-based CMS UI later only after interviewing staff who will maintain the published site. If staff cannot use PR workflows, plan permissioned editorial interface and staged approval, not unsupervised public editing.
 
-## 6. Static production hosting on authorized infrastructure
-Use a dedicated site hostname and deploy target **only after domain ownership and publishing authority are confirmed**. Do not assume any existing company domain or VPS automatically belongs to the municipality.
-- GitHub `main` -> verified build artifact -> deploy immutable `dist` to an authorized Linux host -> atomically swap active release symlink -> HTTPS via Caddy or Nginx + ACME, whichever operations team approves.
-- Use scoped deploy credentials, verified host key, protected environments, no secrets in git. Prefer CI build and server static serving; do not run a long-lived Node service for public pages.
-- Cache fingerprinted assets long; HTML short/controlled; Brotli/Gzip; HSTS after TLS proven; strict CSP tested against actual assets; HTTP security headers; no third-party trackers by default.
-- Health: uptime check, cert-expiry alert, broken-link crawl, log volume, rollback to prior immutable release. Store at least two releases. Separate staging preview from production.
-- Production release requires human approval and documented DNS owner; do not set up DNS or deploy automatically in M00/M01.
+Publication workflow: discover -> primary-source verified -> copyright/consent check -> draft -> editorial review -> appointed municipal approver (when official) -> PR visual/code check -> staging preview -> authorized publish -> review/expiry/archive. Emergency advisories require a real assigned publisher and quick safe deployment process.
 
-## 7. Quality targets & acceptance
-- CWV lab targets: LCP ≤2.5 s, INP ≤200 ms (field if available), CLS ≤0.1. Measure on representative mobile conditions; do not invent field INP without RUM.
-- WCAG 2.2 AA goal; keyboard navigation, meaningful focus, accessible forms and PDFs, text contrast, reduced motion, usable 320px.
-- Lighthouse CI and browser-based real-device-style breakpoints: 360, 390, 768, 1024, 1440. Test Chrome/Firefox/WebKit, keyboard and screen reader spot checks.
-- Zero published fictional services, unverified numbers, unapproved seal, fabricated photo, or dead-end official CTA.
-- Every critical journey must pass Playwright screenshot, semantic, keyboard, link and content-verification tests. Artifact URLs and exact git SHA stored with review.
+## 6. Deployment
+Static `dist/` artifact on **authorized** Linux infrastructure after domain/municipal permission established, not automatically assumed on any existing Kirjane VPS or domain. CI builds from protected main; staging preview; manual production approval; atomic release swap; TLS; rollback; scoped credentials and pinned host fingerprint. No long-running Node SSR needed. Cache immutable images/JS, short HTML. Do not change DNS or publish until approved.
 
-## 8. Milestones, ownership and exit gates
-| Gate | Deliverable | Exit criteria |
+SEO: unique metadata/canonical/sitemap per route; social cards with genuine licensed images; use Place/WebSite/Article schema as appropriate, GovernmentOrganization only when verified official. Accessible metadata for local history and locations, no fake review or rating schema.
+
+## 7. Quality acceptance
+- 1440px/390px actual full-page screenshots; tablet 768px and 1024px; browser console/network and keyboard/screen-reader checks.
+- WCAG 2.2 AA target, color contrast, focus, semantic headings, accessible mobile nav, reduced motion and photo alt text.
+- Core Web Vitals goal: LCP <= 2.5s, INP <=200ms (only assert from field evidence when available), CLS <= 0.1, image/video restraint.
+- Playwright mobile/desktop flows: homepage -> festival story; story -> discover -> place details; homepage -> progress; homepage -> government services; urgent advisory; document search/version; official status and source attribution.
+- Broken-link/expired-content scans, indexed content verification, `astro check`, build, lint; accessibility and Lighthouse automated checks with raw reports.
+- Hard fail: wrong Valencia, unrelated location image portrayed as local, unlicensed photo/seal, invented achievements, fake mayor position, inaccessible hero, broken mobile menu, undocumented tests, premature deploy.
+
+## 8. Sequence and ownership
+| Gate | Result | Required acceptance |
 | --- | --- | --- |
-| M00 discovery | evidence register, scope, official-status determination, content matrix, shot brief, sitemap | approved authority/scope classification and documented blockers |
-| M01 Antigravity capability evaluation + visual direction | three bounded design spikes / artifacts, tested against same task | reproducible artifacts and accepted design direction; no production changes |
-| M02 foundation | Astro repo, content collections, routing, design tokens, CI checks, testing harness | clean build, validation gates and six primary route shells |
-| M03 homepage | real hero and key utility sections | mobile/desktop visual review, real photo license, source provenance |
-| M04 public information | municipality, services, updates, documents and transparency | actual user journeys + editorial ownership verified |
-| M05 discover/media | destination stories, licensed gallery, responsive assets | rights/credits/alt, photo QA, locality checked |
-| M06 acceptance | exhaustive role-free navigation, content and SEO audits | WCAG, screenshot, broken-link and performance gates pass |
-| M07 controlled launch | dedicated domain, SSL, backups/rollback, editorial runbook | publication authority + DNS owner signoff + monitored smoke test |
+| M00 source discovery | confirmed tourism/municipal facts, brand authority, shot list, rights plan | creative focus approved; uncertain claims clearly marked |
+| M01-A Opus Low | original source and FB/social links, media candidates, story briefs | evidence-checked research-only PR, no unsupported assets |
+| M01-B Argon Low | visual designs/prototypes and true Playwright captures | executive and mobile storyboard accepted; exact diff/logs |
+| M02 foundation | Astro structure, collections, CI, theme, routes | clean build and schema checks |
+| M03 flagship homepage | licensed immersive hero and editorial stories | actual photograph + rights and 390/1440 acceptance |
+| M04 culture/discover/progress | story/visitor/project libraries | original Valencia content and functional journeys |
+| M05 practical government | services, verified directory, documents, updates | current official source and review process |
+| M06 content/design/QA | exhaustive browser, accessibility, SEO, perf, copyright | blockers closed |
+| M07 controlled launch | authorized domain, static host, TLS, rollback | municipal/owner approval, release audit and monitoring |
 
-**Parallelism:** avoid agents editing the same route/layout simultaneously. One writer per bounded branch; maintainers review before merge. No `main` writes from Antigravity, no automatic merge, no production deploy unless explicitly approved.
+One agent/writer per isolated branch and bounded task; maintainer reviews code/claims/media evidence; no auto merge or source owner overlap. Model effort for Antigravity: **Low always** per project instruction. Opus Low handles source collection, Argon Low handles visual frontend once research/assets are ready; compare only with evidence, not hearsay.
 
-## 9. Scope discipline
-Deferred: e-services login, payment gateway, citizen records, online application workflow, AI chatbot, personalized dashboards, GIS portal, custom CMS backend, native app, visitor booking. These may become separate procurement/product requirements, not M01 conveniences.
-
-**Immediate next action:** run [Antigravity M01 bounded mission](./02-antigravity-evaluation-mission.md) only after reading this document. Capture results in its own draft PR; do not merge until the maintainer evaluates evidence.
+## 9. Deferred
+No residence database, login, online permit application, payment gateway, tourist booking, proprietary CMS server, AI chatbot, user accounts, heavy GIS/3D stack or mandatory video player. Add only after validated demand and security/privacy review.
