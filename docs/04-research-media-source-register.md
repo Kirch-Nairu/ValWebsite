@@ -2,6 +2,15 @@
 Date checked: 2026-11-06. **Research references only**; nothing here is approved public site copy or licensed website media.
 Primary source: [Bohol PPDO Tourism Profile CY2025, tourist-attractions inventory, printed pages 192–196](https://ppdo.bohol.gov.ph/ppdofiles/Profile/SocioEconomicProfile/EconomicDevelopment/TourismProfile2025.pdf). This is an unusually rich local research anchor. It lists both established and **potential** attractions; it does not establish that all sites are visitable, safe, managed, or open today.
 
+## 0. Priority original Facebook URLs supplied by the project owner (2026-11-06)
+**Brand correction:** municipality catchphrase **BARUG VALENCIA**; “behold Valencia” is the narrative lens only, not a new official slogan. See [brand/source audit task](./06-barug-valencia-brand-and-social-sources.md).
+
+1. **LGU Valencia** — https://www.facebook.com/lguvalofficialpage — municipal identity, approved brand graphics, local initiatives, current photos, official posts and verified announcements.
+2. **Sang-at Festival** — https://www.facebook.com/profile.php?id=61595179684543 — user-provided page description: “Celebrating the rich culture, vibrant traditions, and enduring pride of Valencianhons through the Sang-at Festival of Valencia. A celebration of heritage, unity, and community spirit.”
+3. **SK Federation Valencia, Bohol** — https://www.facebook.com/skfederationvalenciabohol — youth stories, civic activities, cultural events and community photographs.
+
+All three are **direct URL targets supplied by the user**, not directly verified feeds. On 2026-11-06 Facebook direct browser requests were throttled or blocked; no recent post list, original media ownership or page administrators were independently inspected. Antigravity Opus Low must attempt accessible public browser inspection before attributing specific posts or using photos. Do not substitute mirrors silently.
+
 ## 1. Real Valencia destinations and story candidates
 | Story / asset subject | Barangay from PPDO 2025 | Editorial direction | Publication gates |
 | --- | --- | --- | --- |
