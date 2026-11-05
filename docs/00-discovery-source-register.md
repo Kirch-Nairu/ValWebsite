@@ -2,7 +2,7 @@
 Status: **working discovery baseline**, 2026-11-06. Owner: Kirch-Nairu. No municipal endorsement, official designation, branding authority, domain, or release approval has been established by this repository.
 
 ## 1. The central product decision
-**Working product hypothesis:** a **public-information-first municipal website** with an additional culture/visitor guide. This is not merely a tourism landing page. The homepage must allow a resident to find a government service or an advisory faster than they can find an attractive destination photo.
+**Approved working creative direction for exploration:** **BEHOLD VALENCIA** — a photography-led, destination-promotion and cultural-identity website for Valencia, Bohol, with sourced municipal progress and reliable government utilities as supporting functions. A beautiful, locally authentic executive presentation is a core outcome; public services must remain easy to find but must NOT visually dominate the homepage. See [creative brief](./03-behold-valencia-creative-brief.md) and [tourism/media research](./04-research-media-source-register.md).
 
 Two possible identities must remain distinct until authorization is documented:
 - **Official LGU website:** requires written designation/approval, authorized logo/seal, approved offices, current service charter, municipal publication owner, official domain policy, and applicable government requirements.
@@ -42,12 +42,12 @@ For each claim record: `claim_id, exact_claim, source_url/file, publisher, date_
 **Public documents:** signed/issued date, effective date, document class, issuing office, official source/URL, PDF accessibility, supersession and retention/version history. Avoid releasing internal documents or personal data.
 
 ## 5. Photography and media shot list (to commission / request rights for)
-Priority A: wide establishing view of Valencia's coastal landscape; recognizable municipal hall or town-center streetscape; Sto. Niño church exterior (and interior only with permission); everyday municipal market; resident-focused service desk (no identifiable citizens without permission).
+Priority A: high-resolution dramatic location-verified Valencia coastal/aerial/landscape hero; 2026 Sang-at dance, people and portraits with rights; Sto. Niño church and authentic community/cultural imagery. Secondary: municipal town center/market, approved progress/project photography and service facilities.
 Priority B: barangay life, farms, fishing and coastal livelihoods, community gatherings/approved festivals, local crafts/food, municipal facilities, historically important architecture. Potential spring sites mentioned in travel media need local confirmation before labeling or geotagging.
 
 For every asset capture: `asset_id, photographer, owner, signed_license_or_consent, capture_date, location, subject, allowed_uses, credit, alt_text, people_consent, publication_approval, source_original, focal_point, derivatives`. EXIF/GPS should be stripped from web derivatives unless explicitly authorized. Generate AVIF/WebP responsive derivatives; original archive stays in access-controlled storage. Search-result photographs are research references only, not approved site assets.
 
-**Initial field target:** 1 approved hero, 8–12 high-quality context photos, 12–20 supporting images, plus a verified seal/logo if authorized. Prefer authentic documentary photography over AI-generated 'real Valencia' scenes.
+**Initial field target:** 2 outstanding Valencia hero photo candidates, 8–12 high-quality local culture/place photos, 12–20 support images and documented rights/consent; actual municipal seal only when authorized. Facebook leads are for identification and contact, not automatic web publication. Prefer authentic documentary photography over AI-generated 'real Valencia' scenes.
 
 ## 6. Editorial/publication roles
 - **Project technical authority:** architecture, code quality, publication gate and source provenance enforcement.
@@ -68,3 +68,6 @@ Mandatory workflow: source submitted -> claim and license checked -> content aut
 
 ## M00 exit
 Repo inventory + reference register; written site classification; content inventories with status; prioritized shot/consent plan; signed-off sitemap and homepage content hierarchy; approved visual direction; Antigravity evaluation prompt and acceptance rubric. **No production publication or unverified placeholder claims.**
+
+## M00 creative correction (2026-11-06)
+This source register is subordinate to the [destination-led architecture V0.2](./01-product-architecture-roadmap.md). **Opus Low** is the initial Antigravity research executor; **Argon Low** is the subsequent frontend design experiment. The PPDO CY2025 Tourism Profile printed pages 192–196 identifies 14 strong local-place/story candidates including springs, hills, caves, ancestral house, Sang-at and Sto. Niño Parish. Distinguish *potential attractions* from verified open, safe visitor destinations. See [research batch 01](./04-research-media-source-register.md). Never use a publication claim that current officials/officeholder status is proven by a historical election source alone.
