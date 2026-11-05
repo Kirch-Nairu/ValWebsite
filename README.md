@@ -18,7 +18,7 @@
 1. [M00 discovery and publication controls](docs/00-discovery-source-register.md)
 2. [Product information architecture, static engineering and release roadmap](docs/01-product-architecture-roadmap.md)
 3. [M01-B Argon Low frontend/browser evaluation](docs/02-antigravity-evaluation-mission.md)
-4. [**BEHOLD VALENCIA creative vision and executive-demo storyboard**](docs/03-behold-valencia-creative-brief.md)
+4. [**BARUG VALENCIA creative vision and executive-demo storyboard**](docs/03-behold-valencia-creative-brief.md)
 5. [**Research batch 01: tourism attractions, 2026 events, Facebook and photo rights leads**](docs/04-research-media-source-register.md)
 6. [**M01-A Opus Low exact Antigravity research mission**](docs/05-antigravity-opus-low-research-mission.md)
 
