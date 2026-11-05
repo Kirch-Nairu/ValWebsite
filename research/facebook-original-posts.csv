@@ -1,0 +1,4 @@
+source_page_id,post_permalink,post_date,content_topic,media_type,place,author_or_owner,originality_verified,permission_status,license_evidence,story_candidate_id,notes
+FB-001,NONE_ACCESSIBLE,,page_metadata_only,,Valencia Bohol,Municipal Government of Valencia Bohol,page_identity_only,not_requested,,,"2026-11-06 unauthenticated fetch returned page shell + OG metadata only; zero post permalinks or timestamps in HTML. No login used. 0 posts inspected"
+FB-002,NONE_ACCESSIBLE,,page_metadata_only,,Valencia Bohol,SANG - AT Festival,page_identity_only,not_requested,,,"Same result; canonical https://www.facebook.com/p/SANG-AT-Festival-61595179684543/. 0 posts inspected"
+FB-003,NONE_ACCESSIBLE,,page_metadata_only,,Valencia Bohol,SK Federation of Valencia Bohol,page_identity_only,not_requested,,,"Same result. 0 posts inspected"
