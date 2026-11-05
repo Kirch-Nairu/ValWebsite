@@ -1,5 +1,5 @@
-# V02 — BEHOLD VALENCIA: destination-led creative direction
-Status: **working concept**, 2026-11-06. Not an approved LGU campaign, official slogan, trademark clearance, or publishing authorization.
+# V02.1 — BARUG VALENCIA: destination-led creative direction
+Status: **working concept**, 2026-11-06. The user has identified **BARUG VALENCIA** as the municipality's actual catchphrase. The phrase **“behold Valencia” is only a narrative/design intention**, not a proposed municipal slogan or brand title. Live publication, municipal seal and photography rights still require authorization. Read [brand and Facebook source priorities](./06-barug-valencia-brand-and-social-sources.md).
 Supersedes the civic-portal-first visual hierarchy in earlier planning. Public information remains essential, but **promotion, identity and visual impact lead**.
 
 ## 1. Product brief and approval audience
@@ -18,7 +18,7 @@ Supersedes the civic-portal-first visual hierarchy in earlier planning. Public i
 6. **Behold Our Future** — credible investment and tourism potential, opportunities and a forward-looking editorial message grounded in approved sources.
 
 ## 2. Homepage: film-like opening, then story
-1. **Immersive hero**: full-bleed *licensed* exceptional Valencia aerial/ground photograph; large expressive editorial type “BEHOLD VALENCIA.” with quiet “BOHOL, PHILIPPINES” context, subtle scroll cue, two clear actions “Explore Valencia” and “Discover Our Story”. A still image must be strong enough without video. Consider <15-second muted looping hero video only when authentic, licensed, captioned, adaptive and proven not to break mobile LCP/accessibility. No auto-audio.
+1. **Immersive hero**: full-bleed *licensed* exceptional Valencia aerial/ground photograph; large expressive place-identity type with **BARUG VALENCIA** as an authentic catchphrase (not an invented “Behold Valencia” slogan), plus quiet “BOHOL, PHILIPPINES” context, subtle scroll cue, two clear actions “Explore Valencia” and “Discover Our Story”. A still image must be strong enough without video. Consider <15-second muted looping hero video only when authentic, licensed, captioned, adaptive and proven not to break mobile LCP/accessibility. No auto-audio.
 2. **A short visual manifesto**: “A place shaped by people, heritage and possibilities” (draft, not factual municipal slogan). One clean paragraph, no hollow marketing superlatives.
 3. **The Valencia edit**: large asymmetric photographs telling 3–4 stories (Heritage, Festival, Nature, Everyday Life); editorial image-caption patterns, not identical card grids.
 4. **Sang-at / cultural calendar**: cultural feature, archive of dated editions and verified upcoming events; visually rich, never imply a past event is upcoming.
@@ -88,7 +88,7 @@ For each project: fiscal period, donor/partner, implementing body, published evi
 - Every hero/editorial photo is legitimately reusable, correctly credited and geolocated. No misleading unrelated Bohol scenery.
 
 ## 6. Brand and authority boundaries
-“Behold Valencia” is the creative working line, inspired by the existing provincial destination language “Behold Bohol”, not proof of endorsement or mark clearance. Confirm municipal and provincial brand usage before release; keep a replaceable text lockup. Never use an altered official municipal seal as a novelty logo. Obtain municipal original vector art and guidance.
+BARUG VALENCIA is the user-supplied municipal catchphrase; cross-check exact approved official usage, logo treatment and any existing brand system. “Behold Valencia” must remain an **internal shorthand for the storytelling approach** and must not be displayed as a new slogan, logo or campaign. Confirm municipal brand approval and keep text assets replaceable. Never use an altered official municipal seal as a novelty logo. Obtain municipal original vector art and guidance.
 
 ## 7. Next gates
 - M00-A: consolidate living town/festival/place/government sources and references.
