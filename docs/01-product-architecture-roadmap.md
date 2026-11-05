@@ -2,7 +2,7 @@
 Date: 2026-11-06. Status: PROPOSAL; no publication authority or production approval. Canonical creative direction: [Behold Valencia](./03-behold-valencia-creative-brief.md). Research ledger: [M00 sources/media](./04-research-media-source-register.md). Agent missions: [Opus Low research](./05-antigravity-opus-low-research-mission.md), [Argon Low visual evaluation](./02-antigravity-evaluation-mission.md).
 
 ## 1. Vision and audiences
-A high-end **place-brand + municipal presence** for Valencia, Bohol: extraordinary visual and editorial presentation of the town's identity, culture, people, places, opportunities and real municipal progress, with fast, reliable government services in a clearly accessible secondary section. **Not** a citizen helpdesk homepage.
+A high-end **place-brand + municipal presence** for Valencia, Bohol, faithful to the local catchphrase **BARUG VALENCIA** (user supplied; authoritative style assets pending): extraordinary visual and editorial presentation of the town's identity, culture, people, places, opportunities and real municipal progress, with fast, reliable government services in a clearly accessible secondary section. **Not** a citizen helpdesk homepage.
 
 Approval audiences: mayor's office / municipal decision-makers (if formally authorized), council and partners, residents/diaspora, travelers, investors and local businesses. An excellent executive-demo must still serve a resident trying to find a notice.
 
@@ -24,7 +24,7 @@ Top-level nav:
 
 Visible utility shortcuts: Search, Services, Contact. Important/current emergency advisories may appear in a discreet high-priority strip but never as decorative content. Strong footer with provenance, media credits, publication status and privacy/accessibility.
 
-Homepage section order: (1) **BEHOLD VALENCIA** photographic hero; (2) one-paragraph identity editorial; (3) curated place/heritage/people picture essay; (4) Sang-at and cultural calendar; (5) community and livelihoods; (6) real, documented municipal progress; (7) official quick facts and travel context; (8) recent updates and a practical government gateway; (9) approved leadership/contact/footer. See creative brief for more.
+Homepage section order: (1) **BARUG VALENCIA** identity and photographic hero (the *behold Valencia* feeling is a storytelling brief, not a new slogan); (2) one-paragraph identity editorial; (3) curated place/heritage/people picture essay; (4) Sang-at and cultural calendar; (5) community and livelihoods; (6) real, documented municipal progress; (7) official quick facts and travel context; (8) recent updates and a practical government gateway; (9) approved leadership/contact/footer. See creative brief for more.
 
 ## 3. Design constraints
 - Distinct local identity from first viewport; avoid generic Bohol photography masquerading as Valencia, templated card UI, municipal-desk dashboards or fake cinematic overlays.
@@ -34,7 +34,7 @@ Homepage section order: (1) **BEHOLD VALENCIA** photographic hero; (2) one-parag
 - Cultural narrative authentic to Valencia, where Sang-at Festival and place-name histories are anchors. Aerial/video is optional and rights/performance-gated.
 - Typography expressive display and readable body; 390px is first-class; no excessive JS, mandatory motion or scroll-hijacking.
 - Municipal seal only in official use after authorization; independently owned project must not impersonate LGU.
-- All factual/effective service info must be current and approved. 'Behold Valencia' is a **working creative headline**, not the government-approved tagline.
+- All factual/effective service info must be current and approved. 'Behold Valencia' is **only the internal storytelling intent**, never a proposed tagline. The user identifies 'Barug Valencia' as the actual catchphrase; confirm official brand artwork and usage before publishing.
 
 ## 4. Technology — intentionally simple
 **Astro + strict TypeScript**, static pre-rendering, content collections (Markdown/MDX), schemas (Zod), Tailwind CSS 4 or scoped CSS design tokens, responsive Astro/Sharp images, Pagefind static search. Use JS islands only where needed for navigation, gallery or lightweight filters. No React app runtime, database, server API, login or live-admin backend in V1. A React island is possible only with a genuine component need and performance review.
