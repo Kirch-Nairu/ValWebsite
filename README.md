@@ -1,6 +1,10 @@
-# BEHOLD VALENCIA — Valencia, Bohol website
+# Valencia, Bohol Website — BARUG VALENCIA
 
-**Destination-led, image-rich creative website and municipal information platform** for Valencia, Bohol, Philippines. Official government publishing status is **not yet authorized**, and all language, seals, photos and municipal content require source and rights review before release.
+**BARUG VALENCIA** is the municipality's catchphrase; **“behold Valencia” describes our image-led storytelling approach, not a new slogan or website title.** This is a destination-led, image-rich creative website and municipal information platform for Valencia, Bohol, Philippines. Official government publishing status is **not yet authorized**, and all language, seals, photos and municipal content require source and rights review before release.
+
+## Source priorities
+- User-supplied original Facebook research targets: [LGU Valencia](https://www.facebook.com/lguvalofficialpage), [Sang-at Festival](https://www.facebook.com/profile.php?id=61595179684543), and [SK Federation Valencia Bohol](https://www.facebook.com/skfederationvalenciabohol). Direct content access remains unverified and photos are not licensed by virtue of being public.
+- [Brand and social research instructions](docs/06-barug-valencia-brand-and-social-sources.md)
 
 ## Current project decisions
 - **Experience first:** gorgeous genuine Valencia photography, place and community stories, Sang-at, heritage, attractions, people, municipal progress.
