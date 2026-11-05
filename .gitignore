@@ -1,0 +1,18 @@
+# Project local environments and build outputs
+node_modules/
+dist/
+.astro/
+.cache/
+.env
+.env.*
+!.env.example
+*.log
+playwright-report/
+test-results/
+
+# Local-only research cache: do not commit third-party photos, social screenshots,
+# raw Facebook image downloads, identifiable-person images or licensed assets.
+research-local/
+research/_private/
+media-local/
+assets-unapproved/
