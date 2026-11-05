@@ -1,5 +1,5 @@
 # Valencia Website — Destination-led product and static-first architecture v0.2
-Date: 2026-11-06. Status: PROPOSAL; no publication authority or production approval. Canonical creative direction: [Behold Valencia](./03-behold-valencia-creative-brief.md). Research ledger: [M00 sources/media](./04-research-media-source-register.md). Agent missions: [Opus Low research](./05-antigravity-opus-low-research-mission.md), [Argon Low visual evaluation](./02-antigravity-evaluation-mission.md).
+Date: 2026-11-06. Status: PROPOSAL; no publication authority or production approval. Canonical creative direction: [BARUG VALENCIA](./03-behold-valencia-creative-brief.md). Research ledger: [M00 sources/media](./04-research-media-source-register.md). Agent missions: [Opus Low research](./05-antigravity-opus-low-research-mission.md), [Argon Low visual evaluation](./02-antigravity-evaluation-mission.md).
 
 ## 1. Vision and audiences
 A high-end **place-brand + municipal presence** for Valencia, Bohol, faithful to the local catchphrase **BARUG VALENCIA** (user supplied; authoritative style assets pending): extraordinary visual and editorial presentation of the town's identity, culture, people, places, opportunities and real municipal progress, with fast, reliable government services in a clearly accessible secondary section. **Not** a citizen helpdesk homepage.
