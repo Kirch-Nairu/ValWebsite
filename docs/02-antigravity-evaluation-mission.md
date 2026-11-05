@@ -1,76 +1,56 @@
-# M01 — Antigravity frontend capability evaluation and bounded design spike
-Mission: `VAL-M01-ANTIGRAVITY-FRONTEND-BAKEOFF`
-Status: **NOT EXECUTED**. This document is a task order for the Antigravity app on the user's machine. Any claim of success requires actual captured evidence. Read [discovery](./00-discovery-source-register.md) and [architecture](./01-product-architecture-roadmap.md) first.
+# M01-B — Antigravity Argon Low visual-engineering evaluation
+Mission: `VAL-M01B-ARGON-LOW-VISUAL-SPIKE`. Status: **NOT RUN**.
+Read [creative brief](./03-behold-valencia-creative-brief.md), [destination-first architecture](./01-product-architecture-roadmap.md), [research/media register](./04-research-media-source-register.md) and [Opus Low research mission](./05-antigravity-opus-low-research-mission.md) before any frontend work.
 
-## Roles and safety boundaries
-- Technical authority / reviewer: Kirch-Nairu with ChatGPT as the external review/architecture assistant; ChatGPT cannot infer it controls the installed desktop app from screenshots.
-- Agent executor: Google Antigravity in the local `ValWebsite` workspace, operating on an explicitly named isolated branch.
-- Ground truth: Git history and code; test logs and actual screenshots; reliable cited public records.
-- Forbidden: direct `main` edits, merging, production deployments, DNS, arbitrary third-party dependencies without reason, scraping/embedding unlicensed imagery, fake municipal endorsement, fabricated contacts/office names/service fees, active external forms, secrets or API tokens in files, force pushes, claiming tests without artifacts.
+## Workflow
+1. **First Opus Low discovery** collects verified sources and traceable photo candidate URLs. Only launch frontend spike after those are reviewed or a strictly temporary demo with labeled photo placeholders is explicitly authorized.
+2. **Then Argon Low** (if actually available in Antigravity model selector) is the preferred frontend design/coding evaluation, not because proven best but to test the user's hypothesis. All project models use **Low effort**. Optional second model at Low may implement the identical prompt on a separate branch for comparison.
+3. Choose a common frozen exact base SHA from planning PR (or merged main), never a moving target; no inherited feature code or cherry-picks between candidates. Branch `spike/val-m01b-argon-low`.
+4. No `main` changes, no deployment/DNS/official branding, no source claims without explicit evidence; create a draft PR with screenshot and build artifacts, exactly tagged with model, selected effort and SHA.
 
-## Capability-probe stages
-### A. Workspace and shell (read-only)
-1. Confirm local directory is the Git checkout for `Kirch-Nairu/ValWebsite`; report working tree, remotes, local SHA and `main` HEAD.
-2. Report `node --version`, `npm --version`, `git --version`, and shell platform from actual outputs.
-3. Read `README.md` and planning documents. Detect clean state, never silently discard edits.
-4. Confirm whether editor agent, terminal commands, preview browser, screenshot capture, and artifact attachments are operational. Report unavailable capabilities as unavailable.
-**Gate:** reproducible environment, truthful capability matrix, no source changes.
+## Prompt for Argon Low once Opus research returns
+> Execute `VAL-M01B-ARGON-LOW-VISUAL-SPIKE` in `Kirch-Nairu/ValWebsite`. Use **Gemini Argon — Low effort** if the UI offers that model. Read docs/00–05; the core direction is a **premium destination-promotion municipal website**, “BEHOLD VALENCIA,” not a government help portal. Implement one extraordinary accessible, static-first Astro + TypeScript homepage prototype on its own branch. Its immersive responsive hero and image-led editorial hierarchy must prioritize Valencia's identity, culture, Sang-at Festival, people, verified progress and discovery. Government services and announcements should remain accessible but secondary. Use only images from a permission-cleared manifest; otherwise employ clearly marked accurate placeholders, not random Bohol stock or invented Valencia footage. Design must look editorial, locally specific, sophisticated, and beautiful at 1440 and 390px, with no heavy unneeded JS. No official seal unless authorized. Run dev server, Playwright screenshots, build/typecheck and actual browser tests with logs. Return an isolated draft PR, screenshots and exact SHAs; no merge/deploy/DNS changes. Report issues instead of claiming imaginary evidence.
 
-### B. Controlled visual spike (one branch per candidate)
-Create isolated branches from the same **frozen planning-branch commit** (the M00 planning PR head), so these documents are present. Do not use the bare `main` commit while the docs still live only on a planning PR:
-- `spike/val-m01-gpt-oss`
-- `spike/val-m01-gemini`
-- `spike/val-m01-claude`
+## Compare 3 creative treatments (not necessarily 3 models)
+A. Cinematic Place Editorial — dramatic full-bleed real town imagery, typographic scale and distinctive rhythm.
+B. Heritage Museum Editorial — archival/local storytelling with photograph captions and historical details.
+C. Modern Municipal Destination — clean institutional coherence, refined photography and compact utility.
 
-Candidate models visible in the supplied screenshot: GPT-OSS 120B (Medium), Gemini 4 Argon Medium, Claude Sonnet 5.5 Medium. These are **UI options**, not performance claims or verified runtime configurations. The operator selects each model manually. Use the **identical specification** for each candidate and keep branches independent; never copy another candidate's generated code into the new candidate. The exact available models, costs and tool entitlements may change.
+Recommended to create **one production-quality design direction first** and supply two compact alternate design explorations or clearly described variants, rather than three competing full apps. Never publish a mockup with fake local facts.
 
-### C. Identical implementation benchmark prompt
-> You are executing VAL-M01-ANTIGRAVITY-FRONTEND-BAKEOFF for the Valencia, Bohol public-information website. Read docs/00-discovery-source-register.md, docs/01-product-architecture-roadmap.md and docs/02-antigravity-evaluation-mission.md. Implement a bounded, static-first, mobile-responsive homepage prototype using Astro, TypeScript and maintainable styles. The homepage must show (1) qualified Valencia Bohol identity without claiming official LGU endorsement, (2) a photo-ready editorial hero with an openly labeled asset placeholder, (3) primary paths for Services, News/Advisories, Municipality, Transparency, Discover and Contact, (4) service navigation cards with no invented service details, (5) dated/advisory placeholder clearly marked DEMO, (6) verified PSA quick facts: 28,535 population in the 2024 census and 35 barangays, with visible PSA source, (7) a heritage teaser for Sto. Niño Parish Church grounded to the Bohol Provincial Tourism Office, and (8) accessible footer. Use authentic-content placeholders instead of fake images, fabricated services or contacts. Use semantic HTML, visible focus, responsive typography, reduced-motion handling, and no unnecessary animation library or backend. The prototype must never be presented or indexed as an official live website. Run actual build, typecheck and relevant test commands. Use browser testing to capture 390px and 1440px full-page screenshots; check console errors, navigation, keyboard focus and overflow. Submit evidence and a draft PR targeting the planning branch (or `main` only if the planning PR has already merged) ONLY. Do not deploy, merge, change DNS or write to main. If tools fail, report failure explicitly and preserve logs.
+## Browser evidence
+- Report repo/branch/base SHA/head SHA, exact model name and Low effort selection, tool versions, actual dev URL and test command exit codes.
+- 1440 x 900 and 390 x 844 full-page screenshots of running local preview; show 390 mobile menu, scrolled picture essay, festival section, progress section and utility entry.
+- Test actual nav, keyboard tab/focus, 390 horizontal overflow, offscreen text, click targets, contrast/alt, console errors, broken links, reduced-motion behavior.
+- Auto aXe check if available (automated tool is not complete WCAG proof); PageSpeed/Lighthouse lab only when actually executed; preserve reports.
+- Keep screenshot evidence `artifacts/antigravity/argon-low/` on isolated branch or attach in GitHub; do not commit third-party copyrighted content inadvertently.
 
-### D. Real browser verification
-Capture on an actual running local dev server or production preview with a traceable port and git SHA:
-- Desktop **1440 × 900** and mobile **390 × 844** full-page screenshots; optional tablet 768px.
-- At least one open mobile navigation screenshot and one focused keyboard element.
-- Browser console errors and failed network requests; screenshot generation method and exact command/tool.
-- Playwright smoke test: homepage loads, nav links resolve, service CTA works, no horizontal scroll at 390, no `img` lacking alt, no dead-end buttons.
-- Run aXe automated scan if available; report it as partial accessibility evidence, not a complete WCAG guarantee.
-- Build output, generated output structure, and honest dependency audit (including any installation advisories).
-Do not assert “browser tested” or Lighthouse PASS on source inspection alone.
+## 100-point acceptance rubric
+| Dimension | Weight |
+| --- | ---: |
+| Immediate Valencia identity + breathtaking visual hierarchy | 25 |
+| Quality of visual storytelling / cultural authenticity | 20 |
+| Mobile layout, touch UX and image art direction | 20 |
+| Accessibility, usability and utility findability | 15 |
+| Source and photo rights discipline | 10 |
+| Code quality, performance restraint, reproduction and test evidence | 10 |
 
-### E. Artifacts and review report
-Each draft PR description must include:
+**Hard rejection:** confusing municipalities, fabricated current official status, stolen Facebook photo, unauthorized official seal, production deploy, main mutation or fake tests. Only a measured design with legitimate local visual assets can be accepted.
+
+## Return report format
 ```
 Mission:
-Model UI selection:
-Repo / branch / base SHA / head SHA:
-Changed files:
-Commands + exit codes:
-Dev server URL or origin:
-Screenshots (desktop/mobile/focus):
-Browser logs/errors:
-Accessibility automated findings:
-Performance measurements (only if actually run):
-Known issues/limitations:
-Unverified or placeholder content:
-Dependencies added with reasons:
-Explicit declaration: not deployed, not merged, no municipal endorsement claimed
+Exact Antigravity model / effort selector:
+Repo / branch / baseline SHA / head SHA:
+Architecture and creative direction:
+Original local media used + permission IDs:
+Placeholder media and unresolved location:
+Commands and exit codes:
+Local preview and screen sizes:
+Screenshot paths and comparison notes:
+Playwright/keyboard/aXe/Lighthouse evidence:
+Console/failed requests:
+Bugs, limits and improvement priorities:
+Draft PR link:
+No merge / no deployment declaration:
 ```
-Put appropriately compressed screenshot evidence in `artifacts/antigravity/<model>/` on the candidate branch or attach it to the PR via normal GitHub UI; no sensitive or unrelated user data.
-
-## Comparison rubric — 100 points
-| Category | Weight | Pass/fail evidence |
-| --- | ---: | --- |
-| Visual hierarchy / tasteful civic design | 20 | independently examined 1440px screenshot, useful hierarchy |
-| Mobile usability / information finding | 20 | 390px screenshot, nav and tap target smoke tests |
-| Accessibility / semantics | 15 | keyboard, focus, alt/labels and automated findings |
-| Source discipline / content correctness | 15 | PSA and tourism reference, no fake civic authority |
-| Code quality / static-first architecture | 15 | diff, dependency review, Astro build outputs |
-| Reproducibility / artifacts | 10 | complete commands, SHAs, screenshots, logs |
-| Performance restraint | 5 | JS/image budget and actual Lighthouse if run |
-**Hard reject independent of score:** fabricated official status, unlicensed images presented as owned, secrets, `main` mutation, fake verification, or deployment without authorization.
-
-## Maintainer verdict requirements
-I will only accept an execution candidate after inspecting the exact branch/diff and evidence. Benchmarked model score must not become a claim of universal model superiority. If only one agent test is completed, label the result “single-model pilot”, not “comparison accepted”. Rework defects require a follow-up commit and recheck; no merge during capability evaluation without an explicit architecture decision.
-
-## Local operator first instruction
-Open Antigravity's `ValWebsite` project; ensure it corresponds to the GitHub checkout; select an available candidate model. **First run stage A only**, return shell outputs and capability evidence; then use the same document to authorize the isolated visual spike. Fetch the planning branch and record its exact HEAD; branch every candidate from this SAME frozen commit. If it later changes, pause and explicitly reset the evaluation baseline rather than mixing results. Do not work from an out-of-date or detached repository silently.
