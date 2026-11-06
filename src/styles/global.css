@@ -441,16 +441,17 @@ strong {
 
 .section-kicker,
 .eyebrow {
-  color: var(--forest-2);
+  color: var(--valencia-orange-dark);
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   margin-bottom: 8px;
 }
 
 .section-kicker.light,
 .eyebrow.light {
-  color: var(--gold-light);
+  color: var(--valencia-orange-light);
 }
 
 .section-heading {
@@ -474,20 +475,27 @@ strong {
 
 .text-link {
   font-weight: 700;
-  color: var(--forest);
+  color: var(--valencia-orange-dark);
   font-size: 0.88rem;
   white-space: nowrap;
   padding-bottom: 4px;
-  border-bottom: 1.5px solid var(--forest);
+  border-bottom: 2px solid var(--valencia-orange);
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .text-link:hover {
-  color: var(--forest-2);
+  color: var(--valencia-orange);
+  border-color: var(--valencia-orange-light);
 }
 
 .text-link.light {
+  color: var(--valencia-orange-light);
+  border-color: var(--valencia-orange);
+}
+
+.text-link.light:hover {
   color: #ffffff;
-  border-color: var(--gold-light);
+  border-color: #ffffff;
 }
 
 /* Buttons */
@@ -1287,7 +1295,7 @@ strong {
 
 /* Projects & Progress Table */
 .project-table {
-  border-top: 2px solid var(--forest);
+  border-top: 3px solid var(--valencia-orange);
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1322,7 +1330,7 @@ strong {
 }
 
 .project-row:hover {
-  background: #f8fbf9;
+  background: #fff9f6;
 }
 
 .project-name {
@@ -1357,14 +1365,15 @@ strong {
 }
 
 .status-pending {
-  background: #f4efe2;
-  color: #6e531d;
+  background: #fdf2ec;
+  color: var(--valencia-orange-dark);
+  border: 1px solid var(--valencia-orange-border);
 }
 
 .project-view-label {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--forest);
+  color: var(--valencia-orange-dark);
 }
 
 /* Real Media Frame Component (MediaPanel.astro) */
@@ -1504,8 +1513,9 @@ strong {
 }
 
 .destination-card:hover {
-  border-color: var(--forest-2);
-  box-shadow: 0 12px 28px rgba(15, 53, 46, 0.12);
+  border-color: var(--valencia-orange-border);
+  box-shadow: 0 12px 28px rgba(223, 91, 30, 0.12);
+  transform: translateY(-2px);
 }
 
 .destination-card-body {
@@ -1517,8 +1527,10 @@ strong {
 
 .destination-card-body small {
   font-size: 0.75rem;
-  color: var(--forest-2);
+  color: var(--valencia-orange-dark);
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .destination-card-body h3 {
@@ -1536,9 +1548,9 @@ strong {
 }
 
 .destination-link-text {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: var(--forest);
+  color: var(--valencia-orange-dark);
 }
 
 /* Profile & Locator Map Section */
@@ -1563,7 +1575,7 @@ strong {
 }
 
 .stat {
-  border-top: 2px solid var(--forest);
+  border-top: 3px solid var(--valencia-orange);
   padding-top: 12px;
 }
 
@@ -1571,7 +1583,7 @@ strong {
   font-size: 1.65rem;
   letter-spacing: -0.04em;
   display: block;
-  color: var(--forest);
+  color: var(--valencia-orange-dark);
 }
 
 .stat span {
@@ -2112,7 +2124,7 @@ strong {
 .site-footer {
   background: var(--forest-3);
   color: #ffffff;
-  border-top: 3px solid var(--gold);
+  border-top: 3px solid var(--valencia-orange);
 }
 
 .footer-main {
@@ -2135,7 +2147,7 @@ strong {
   width: 40px;
   height: 40px;
   background: var(--forest);
-  border: 1px solid var(--gold);
+  border: 1px solid var(--valencia-orange);
   border-radius: 7px;
   color: #ffffff;
 }
@@ -2150,7 +2162,7 @@ strong {
   display: block;
   font-size: 0.76rem;
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--valencia-orange-light);
   letter-spacing: 0.04em;
 }
 
@@ -2185,7 +2197,7 @@ strong {
 .footer-column h3 {
   font-size: 0.84rem;
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--valencia-orange-light);
   margin: 4px 0 16px;
 }
 
@@ -2208,7 +2220,7 @@ strong {
 
 .footer-official {
   display: inline-block;
-  color: var(--gold-light);
+  color: var(--valencia-orange-light);
   font-weight: 700;
   margin-top: 14px;
 }
