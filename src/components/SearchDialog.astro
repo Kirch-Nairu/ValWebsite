@@ -1,0 +1,42 @@
+---
+import { SEARCH_INDEX } from '../data/search';
+const basicPages=[
+{id:'municipality',title:'Municipality & Barangays',url:'/municipality',summary:'Profile and barangay directory',section:'Page'},
+{id:'services',title:'Municipal Services',url:'/services',summary:'Service categories and office guidance',section:'Page'},
+{id:'news',title:'News & Advisories',url:'/news',summary:'Dated, attributed public records',section:'Page'},
+{id:'projects',title:'Projects & Progress',url:'/projects',summary:'Project and program source records',section:'Page'},
+{id:'tourism',title:'Tourism & Culture',url:'/tourism',summary:'Destinations and Sang-at heritage',section:'Page'},
+{id:'transparency',title:'Transparency & Documents',url:'/transparency',summary:'Authoritative disclosure gateways',section:'Page'},
+{id:'contact',title:'Contact & Public Channels',url:'/contact',summary:'Channels to verify information',section:'Page'}];
+const records=[...basicPages,...SEARCH_INDEX.map(x=>({id:x.id,title:x.title,url:x.url.replace('/progress#','/projects/').replace('/updates#','/news/').replace('/government#','/services/').replace(/^\/discover\//,'/tourism/'),summary:x.summary,section:x.section}))];
+---
+<dialog id="site-search-dialog" class="search-dialog" data-records={JSON.stringify(records)} aria-label="Site search">
+ <div class="search-top"><label for="global-search-input">Search Valencia information</label><button id="search-close" type="button" aria-label="Close search">Close ×</button></div>
+ <div class="search-field"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="global-search-input" type="search" placeholder="Services, barangays, projects, news..." autocomplete="off"/></div>
+ <p class="search-help">Results are from this prototype's research index. This is not a search of live government records.</p>
+ <div id="search-results" aria-live="polite" class="search-results"></div>
+ <div class="search-bottom"><span>ESC to close</span><a href="/search">Open full search page →</a></div>
+</dialog>
+<script>
+  const dlg=document.querySelector<HTMLDialogElement>('#site-search-dialog');
+  const field=document.querySelector<HTMLInputElement>('#global-search-input');
+  const results=document.querySelector<HTMLElement>('#search-results');
+  const closer=document.querySelector<HTMLButtonElement>('#search-close');
+  if(dlg&&field&&results&&closer){
+    const data=JSON.parse(dlg.dataset.records||'[]') as Array<{id:string,title:string,url:string,summary:string,section:string}>;
+    let previous:HTMLElement|null=null;
+    const render=()=>{
+      results.replaceChildren();
+      const q=field.value.trim().toLocaleLowerCase();
+      const found=(q?data.filter(x=>[x.title,x.summary,x.section].join(' ').toLocaleLowerCase().includes(q)):data.slice(0,7)).slice(0,16);
+      const count=document.createElement('p');count.className='search-count';count.textContent=q?`${found.length} matching results`:'Popular links';results.append(count);
+      if(!found.length){const none=document.createElement('p');none.textContent='No matching prototype records. Try a broader term.';results.append(none);}
+      for(const item of found){const a=document.createElement('a');a.href=item.url;const cat=document.createElement('span');cat.textContent=item.section;const title=document.createElement('strong');title.textContent=item.title;const small=document.createElement('small');small.textContent=item.summary;a.append(cat,title,small);results.append(a);}
+    };
+    document.querySelectorAll<HTMLElement>('[data-open-search]').forEach(btn=>btn.addEventListener('click',()=>{previous=btn;field.value='';render();dlg.showModal();field.focus();}));
+    field.addEventListener('input',render);
+    closer.addEventListener('click',()=>dlg.close());
+    dlg.addEventListener('click',event=>{if(event.target===dlg)dlg.close();});
+    dlg.addEventListener('close',()=>previous?.focus());
+  }
+</script>

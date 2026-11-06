@@ -1,0 +1,5 @@
+---
+interface Props {label:string;variant?:'main'|'tile'|'small';caption?:string;}
+const {label,variant='tile',caption='Municipal photo awaiting reuse approval'}=Astro.props;
+---
+<div class={`media-panel media-${variant}`} aria-label={caption}><div class="media-corner"><span class="media-square" aria-hidden="true"></span><span>VALENCIA / BOHOL</span></div><div class="media-bottom"><strong>{label}</strong><span>{caption}</span></div></div>
