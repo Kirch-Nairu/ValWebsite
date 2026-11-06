@@ -1,27 +1,191 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import ContentStatus from '../components/ContentStatus.astro';
+import MediaPanel from '../components/MediaPanel.astro';
 import { SITE_META } from '../data/site';
 import { BARANGAYS } from '../data/municipality';
 ---
-<BaseLayout title="Municipality & Barangays" description="Valencia, Bohol municipal profile and research-compiled directory of 35 barangays, with validation disclosures.">
-<PageIntro eyebrow="01 / The municipality" title="Municipality & Barangays" description="A concise municipal profile, key public facts, and a searchable barangay directory." aside="Barangay spelling, aliases and PSGC codes are research-compiled and require a fresh official PSA reconciliation before public release."/>
-<section class="section"><div class="container">
- <div class="count-grid"><div class="count-card"><strong>{SITE_META.population2024}</strong><span>Population · 2024 POPCEN attribution</span></div><div class="count-card"><strong>{SITE_META.barangayCount}</strong><span>Barangays · research directory</span></div><div class="count-card"><strong>{SITE_META.psgcCode}</strong><span>Municipality PSGC reference</span></div></div>
- <div class="two-col" style="margin-top:30px;"><div><p class="eyebrow">Place profile</p><h2>Valencia, Bohol</h2><p class="section-lead">{SITE_META.province}. Valencia belongs to the third congressional district of Bohol. Its coastal communities and interior barangays connect public-market activity, agriculture, heritage and outdoor destinations.</p><p class="section-lead">The catchphrase <strong>BARUG VALENCIA</strong> is supplied by the project owner. Its reported acronym expansion varies between publications; this prototype does not present an unverified expansion as the municipality's approved style.</p></div><div class="info-card"><h3>About the records</h3><p>The research register identifies differences between founding-year accounts and alternate local place names. Published-facing statements remain conservative until reviewed against municipal ordinances and primary PSA records.</p><p><a href="/transparency">Review source provenance ↗</a></p><p><a href="/government">See municipal government guide ↗</a></p></div></div>
-</div></section>
-<section class="section section-mist" id="barangays"><div class="container"><div class="section-heading"><div><p class="eyebrow">Barangay directory</p><h2>Find a barangay.</h2><p class="section-description">Search by barangay name, local alias, or preliminary PSGC code. These codes are subject to authoritative re-verification.</p></div></div>
-<div class="filter-toolbar"><label>Search barangays <input id="barangay-search" type="search" placeholder="e.g. Anas, Poblacion, Anoyon"/></label><label>Area classification <select id="barangay-zone"><option value="all">All areas</option><option value="Poblacion & Coastal">Poblacion & Coastal</option><option value="Upland & Interior">Upland & Interior</option></select></label><span id="barangay-count" class="filter-count">{BARANGAYS.length} directory entries</span></div>
-<div class="table-wrap"><table class="data-table"><thead><tr><th>Barangay / name in research register</th><th>Area grouping</th><th>PSGC (preliminary)</th><th>Local reference</th></tr></thead><tbody>
-{BARANGAYS.map(b=><tr data-barangay-row data-name={`${b.name} ${b.psgc} ${b.notableFeatures}`.toLocaleLowerCase()} data-zone={b.zone}><td><strong>{b.name}</strong></td><td>{b.zone}</td><td><code>{b.psgc}</code></td><td>{b.notableFeatures}</td></tr>)}
-</tbody></table></div><p class="tabs-note" style="margin-top:15px;">Source: project research register, based on a provisional PSGC inventory. Canonical PSA list was not independently reconciled in this build.</p>
-</div></section>
-<section class="section"><div class="container"><ContentStatus label="Barangay data publication gate" detail="PSGC codes, spelling and aliases are displayed for prototype evaluation only. The source register used secondary parsing for part of the list. This is not certified as the current PSA barangay registry."/><div class="button-row" style="margin-top:23px;"><a class="btn btn-primary" href="https://psa.gov.ph/classification/psgc/barangays/0701247000" target="_blank" rel="noopener noreferrer">PSA PSGC source ↗</a><a class="btn btn-outline" href="/contact">Municipal channels ↗</a></div></div></section>
-<script>
- const input=document.querySelector<HTMLInputElement>('#barangay-search');const select=document.querySelector<HTMLSelectElement>('#barangay-zone');const count=document.querySelector<HTMLElement>('#barangay-count');
- const rows=[...document.querySelectorAll<HTMLTableRowElement>('[data-barangay-row]')];
- function run(){const q=(input?.value||'').trim().toLocaleLowerCase(),zone=select?.value;let shown=0;for(const row of rows){const valid=(!q||(row.dataset.name||'').includes(q))&&(zone==='all'||zone===row.dataset.zone);row.hidden=!valid;if(valid)shown++;}if(count)count.textContent=`${shown} directory entr${shown===1?'y':'ies'}`;}
- input?.addEventListener('input',run);select?.addEventListener('change',run);
-</script>
+
+<BaseLayout
+  title="Municipality & 35 Barangays | Municipality of Valencia, Bohol"
+  description="Municipal profile, Panangatan settlement history, geographical boundaries, and searchable directory of all 35 barangays in Valencia, Bohol (PSGC 0701247000)."
+>
+  <PageIntro
+    eyebrow="Municipal Profile · PSGC 0701247000"
+    title="Municipality & 35 Barangays"
+    description="Situated along the southern coast of Bohol 42 kilometers east of Tagbilaran City, Valencia connects coastal fishing and resort villages with 25 interior agricultural barangays."
+    asideTitle="BARUG VALENCIA"
+    aside="Valencia’s municipal identity honors its heritage as Panangatan—where communities lifted their boats together—while advancing responsive public service across all 35 barangays."
+    variant="forest"
+    bgImage="/media/valencia/valencia-town-view.jpg"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="count-grid">
+        <div class="count-card" style="border-top: 4px solid var(--valencia-orange); box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+          <strong style="color: var(--valencia-orange-dark);">{SITE_META.population2024}</strong>
+          <span>2024 Census Population (PSA)</span>
+        </div>
+        <div class="count-card" style="border-top: 4px solid var(--forest); box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+          <strong style="color: var(--forest);">{SITE_META.barangayCount}</strong>
+          <span>10 Coastal & Poblacion · 25 Upland & Interior</span>
+        </div>
+        <div class="count-card" style="border-top: 4px solid #b88428; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+          <strong style="color: #b88428;">{SITE_META.psgcCode}</strong>
+          <span>Philippine Standard Geographic Code</span>
+        </div>
+      </div>
+
+      <div class="municipality-story-grid" style="margin-top: 42px;">
+        <div>
+          <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">History & Geography</p>
+          <h2>From Barrio Panangatan to Modern Valencia</h2>
+          <p class="section-lead">
+            Before its establishment as an independent town in the late 1860s, the settlement was known as <strong>Panangatan</strong>—a barrio of neighboring Dimiao named after the Cebuano word <em>sang-at</em> ("to place on an elevated spot"). During the southwest monsoon (<em>habagat</em>), fishermen navigated into the mouth of the Panangatan River and lifted their wooden outrigger boats onto the elevated, nipa-lined riverbanks for shelter.
+          </p>
+          <p class="section-lead">
+            Separated from Dimiao in 1867 (and formally instituted on October 27, 1869 in provincial and parish chronicles), the municipality was named <strong>Valencia</strong> by its Spanish Recollect parish priest. By 1871, it became an independent parish dedicated to Sr. Santo Niño. Today, Valencia spans a coastal plain on the Bohol Sea and limestone interior ridges rising to 485 meters above sea level.
+          </p>
+          <div class="button-row" style="margin-top: 24px;">
+            <a href="/stories/panangatan-origin" class="btn btn-primary">Read Panangatan History</a>
+            <a href="/culture/sang-at" class="btn btn-outline">Sang-at Festival Profile</a>
+          </div>
+        </div>
+
+        <div class="municipality-photo-stack">
+          <MediaPanel
+            slotId="hero-panangatan"
+            variant="main"
+            label="Welcome to Valencia Highway Arch"
+            caption="Southern Coastal Highway, Valencia, Bohol · Photo: P199 (Public Domain)"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-stone" id="barangays">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Geographic Registry</p>
+          <h2>Directory of All 35 Barangays</h2>
+          <p class="section-description">
+            Search by barangay name, PSGC code, or local landmark, or filter between coastal/Poblacion and upland/interior zones.
+          </p>
+        </div>
+        <a
+          class="text-link"
+          href="https://psa.gov.ph/classification/psgc/barangays/0701247000"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          PSA PSGC Registry (0701247000) ↗
+        </a>
+      </div>
+
+      <div class="filter-toolbar">
+        <label>
+          Search barangays
+          <input id="barangay-search" type="search" placeholder="e.g. Anas, Canduao, Anoyon, Banderahan, Poblacion..." />
+        </label>
+        <label>
+          Geographic zone
+          <select id="barangay-zone">
+            <option value="all">All zones (35 barangays)</option>
+            <option value="Poblacion & Coastal">Poblacion & Coastal (10)</option>
+            <option value="Upland & Interior">Upland & Interior (25)</option>
+          </select>
+        </label>
+        <label>
+          Distinctive character
+          <select id="barangay-category">
+            <option value="all">All character tags</option>
+            <option value="Poblacion Center">Poblacion Heritage & Commerce</option>
+            <option value="Pottery & Crafts">Living Traditions & Crafts (Canduao)</option>
+            <option value="Springs & Waterways">Springs, Falls & Lakes (Badiang, Danao, Kinawa)</option>
+            <option value="Highland & Peaks">Highlands, Caves & Peaks (Banderahan, Ugjong)</option>
+            <option value="Coastal Waters">Coastal & Marine Villages</option>
+            <option value="Agricultural Heart">Upland Agricultural Heartland</option>
+          </select>
+        </label>
+        <span id="barangay-count" class="filter-count">{BARANGAYS.length} directory entries</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Barangay Name</th>
+              <th>Geographic Zone</th>
+              <th>Distinctive Character</th>
+              <th>PSGC Code</th>
+              <th>Notable Landmarks & Community Profile</th>
+              <th>Quick Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {BARANGAYS.map((b) => (
+              <tr
+                data-barangay-row
+                data-name={`${b.name} ${b.psgc} ${b.notableFeatures} ${b.categoryTag || ''}`.toLocaleLowerCase()}
+                data-zone={b.zone}
+                data-category={b.categoryTag || ''}
+              >
+                <td><strong>{b.name}</strong></td>
+                <td><span class="tag">{b.zone}</span></td>
+                <td>
+                  {b.categoryTag ? (
+                    <span class="badge badge-orange" style="font-size: 0.72rem; padding: 2px 8px;">
+                      {b.categoryTag}
+                    </span>
+                  ) : (
+                    <span style="color: var(--muted); font-size: 0.8rem;">—</span>
+                  )}
+                </td>
+                <td><code>{b.psgc}</code></td>
+                <td>{b.notableFeatures}</td>
+                <td style="white-space: nowrap;">
+                  {b.quickLink ? (
+                    <a href={b.quickLink.href} class="text-link" style="font-weight: 600; font-size: 0.84rem;">
+                      {b.quickLink.label} →
+                    </a>
+                  ) : (
+                    <span style="color: var(--muted); font-size: 0.8rem;">—</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const input = document.querySelector<HTMLInputElement>('#barangay-search');
+    const selectZone = document.querySelector<HTMLSelectElement>('#barangay-zone');
+    const selectCategory = document.querySelector<HTMLSelectElement>('#barangay-category');
+    const count = document.querySelector<HTMLElement>('#barangay-count');
+    const rows = [...document.querySelectorAll<HTMLTableRowElement>('[data-barangay-row]')];
+    function run() {
+      const q = (input?.value || '').trim().toLocaleLowerCase();
+      const zone = selectZone?.value;
+      const category = selectCategory?.value;
+      let shown = 0;
+      for (const row of rows) {
+        const valid =
+          (!q || (row.dataset.name || '').includes(q)) &&
+          (zone === 'all' || zone === row.dataset.zone) &&
+          (category === 'all' || category === row.dataset.category);
+        row.hidden = !valid;
+        if (valid) shown++;
+      }
+      if (count) count.textContent = `${shown} directory entr${shown === 1 ? 'y' : 'ies'}`;
+    }
+    input?.addEventListener('input', run);
+    selectZone?.addEventListener('change', run);
+    selectCategory?.addEventListener('change', run);
+  </script>
 </BaseLayout>

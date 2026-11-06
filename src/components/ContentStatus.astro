@@ -1,5 +1,18 @@
 ---
-interface Props {label?:string;detail?:string;}
-const {label='Verification notice',detail='This is a research-backed prototype. Confirm current procedures and official records with the municipal government before relying on them.'}=Astro.props;
+interface Props {
+  label?: string;
+  detail?: string;
+}
+const {
+  label = 'Public Service Note',
+  detail = 'For in-person transactions and scheduling, please coordinate with the relevant office at Valencia Municipal Hall.'
+} = Astro.props;
 ---
-<div class="status-notice" role="note"><span class="status-symbol" aria-hidden="true">i</span><div><strong>{label}</strong><p>{detail}</p></div></div>
+
+<div class="status-notice" role="note">
+  <span class="status-symbol" aria-hidden="true">i</span>
+  <div>
+    <strong>{label}</strong>
+    <p>{detail}</p>
+  </div>
+</div>

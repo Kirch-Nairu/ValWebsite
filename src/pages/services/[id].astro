@@ -3,12 +3,70 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentStatus from '../../components/ContentStatus.astro';
 import { SERVICE_CATEGORIES } from '../../data/services';
 import type { ServiceCategoryItem } from '../../data/types';
-export function getStaticPaths(){return SERVICE_CATEGORIES.map(item=>({params:{id:item.id},props:{item}}));}
-interface Props{item:ServiceCategoryItem}
-const {item}=Astro.props;
+
+export function getStaticPaths() {
+  return SERVICE_CATEGORIES.map((item) => ({
+    params: { id: item.id },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: ServiceCategoryItem;
+}
+
+const { item } = Astro.props;
 ---
+
 <BaseLayout title={item.title} description={item.summary}>
-<div class="container bread"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><span>{item.title}</span></div>
-<section class="page-intro"><div class="container"><p class="eyebrow">Municipal service guide</p><h1>{item.title}</h1><p class="page-intro-description">{item.summary}</p></div></section>
-<section class="section"><div class="container detail-layout"><article class="detail-main"><ContentStatus label="Current Citizen’s Charter pending" detail={item.charterStatus+'. This is an informational guide only. It does not confirm a fee, processing period, eligibility or required document checklist.'}/><h2>Service orientation</h2><p>{item.summary}</p><h2>What to verify with the office</h2><ul>{item.publicGuidance.map(g=><li>{g}</li>)}</ul><p>{item.officialChannelNote}</p><div class="button-row" style="margin-top:30px;"><a href="/contact" class="btn btn-primary">Check official channels ↗</a><a href="/services" class="btn btn-outline">All services</a></div></article><aside class="detail-sidebar"><h2>Service reference</h2><dl><dt>Responsible office</dt><dd>{item.office}</dd><dt>Current charter status</dt><dd>{item.charterStatus}</dd><dt>Application availability</dt><dd>No online submission in this prototype</dd></dl></aside></div></section>
+  <div class="container bread">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/services">Municipal Services</a>
+    <span>/</span>
+    <span>{item.title}</span>
+  </div>
+
+  <section class="page-intro" style="position: relative; background: #0a1f1b url('/media/valencia/valencia-municipal-hall-night.jpg') center center / cover no-repeat; overflow: hidden; padding: 48px 0;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 31, 27, 0.92) 0%, rgba(15, 45, 38, 0.86) 50%, rgba(10, 31, 27, 0.94) 100%); pointer-events: none;" aria-hidden="true"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">{item.office}</p>
+      <h1 style="color: #ffffff;">{item.title}</h1>
+      <p class="page-intro-description" style="color: #d1e2db;">{item.summary}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <ContentStatus label="In-Person Municipal Service" detail={item.officialChannelNote} />
+        <h2>Service Overview</h2>
+        <p>{item.summary}</p>
+
+        <h2>Preparation & Guidance</h2>
+        <ul>
+          {item.publicGuidance.map((g) => (
+            <li>{g}</li>
+          ))}
+        </ul>
+
+        <div class="button-row" style="margin-top: 30px;">
+          <a href="/contact" class="btn btn-primary">Contact & Office Location</a>
+          <a href="/services" class="btn btn-outline">All Municipal Services</a>
+        </div>
+      </article>
+
+      <aside class="detail-sidebar">
+        <h2>Office Reference</h2>
+        <dl>
+          <dt>Responsible Office</dt>
+          <dd>{item.office}</dd>
+          <dt>Transaction Mode</dt>
+          <dd>{item.charterStatus}</dd>
+          <dt>Location</dt>
+          <dd>Valencia Municipal Hall, Poblacion, Valencia, Bohol</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

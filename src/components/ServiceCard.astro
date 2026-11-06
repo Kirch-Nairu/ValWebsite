@@ -1,6 +1,20 @@
 ---
 import type { ServiceCategoryItem } from '../data/types';
-interface Props{item:ServiceCategoryItem;index:number;}
-const {item,index}=Astro.props;
+interface Props {
+  item: ServiceCategoryItem;
+  index?: number;
+}
+const { item } = Astro.props;
 ---
-<a class="service-card" href={`/services/${item.id}`}><div class="card-top"><span class="card-index">{String(index).padStart(2,'0')}</span><span class="link-arrow" aria-hidden="true">↗</span></div><h3>{item.title}</h3><p>{item.summary}</p><div class="card-bottom"><span>{item.office}</span><span class="card-more">View guide →</span></div></a>
+
+<a class="service-card" href={`/services/${item.id}`}>
+  <div class="service-card-head">
+    <span class="service-office-badge">{item.office}</span>
+    <span class="service-mode">{item.charterStatus}</span>
+  </div>
+  <h3>{item.title}</h3>
+  <p>{item.summary}</p>
+  <div class="service-card-foot">
+    <span>View service guide & preparation</span>
+  </div>
+</a>

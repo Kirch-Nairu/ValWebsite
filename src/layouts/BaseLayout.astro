@@ -4,26 +4,52 @@ import UtilityBar from '../components/UtilityBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchDialog from '../components/SearchDialog.astro';
-interface Props {title:string;description?:string;currentPath?:string;}
-const {title,description='Municipality of Valencia, Bohol — municipal services, public information and community records. Independent prototype.'}=Astro.props;
-const pageTitle=title.includes('Valencia')?title:`${title} | Municipality of Valencia, Bohol`;
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const {
+  title,
+  description = 'Municipality of Valencia, Province of Bohol (BARUG VALENCIA) — Municipal services, 35 barangays, public announcements, development projects, and cultural heritage.'
+} = Astro.props;
+
+const pageTitle = title.includes('Valencia')
+  ? title
+  : `${title} | Municipality of Valencia, Bohol`;
 ---
+
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta name="color-scheme" content="light"/>
-<meta name="theme-color" content="#123a33"/>
-<meta name="description" content={description}/>
-<meta name="robots" content="noindex,nofollow,noarchive"/>
-<title>{pageTitle}</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23123a33'/%3E%3Ctext x='13' y='48' fill='white' font-size='44' font-family='Arial' font-weight='bold'%3EV%3C/text%3E%3C/svg%3E"/>
-</head>
-<body id="top">
-<a class="skip-link" href="#main">Skip to main content</a>
-<UtilityBar/><Header/>
-<main id="main"><slot/></main>
-<Footer/><SearchDialog/>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0f352e" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f352e'/%3E%3Cpath d='M14 42L32 18L50 42' stroke='%23e5b44d' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <UtilityBar />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <SearchDialog />
+  </body>
 </html>
