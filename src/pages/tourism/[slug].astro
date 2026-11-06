@@ -58,6 +58,122 @@ const related = DESTINATIONS.filter(
           <p>{p}</p>
         ))}
 
+        {item.slug === 'sto-nino-parish-church' && (
+          <section class="church-walkthrough-section" style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line);">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+              <span class="badge badge-orange" style="font-size: 0.76rem;">Interactive Heritage Walkthrough</span>
+              <span style="font-size: 0.82rem; color: var(--muted);">Click an architectural feature below to inspect historical details</span>
+            </div>
+            <h2>Architectural Highlights & ICP Heritage Tour</h2>
+            <p class="section-lead" style="margin-bottom: 24px;">
+              Completed in 1882 in Poblacion Occidental, Sr. Santo Niño Parish Church features a rare combination of coral-stone masonry, twin bell towers, and the famed two-tone tindalo-and-molave hardwood floor.
+            </p>
+
+            <!-- Interactive Blueprint Diagram -->
+            <div class="church-floorplan-card" style="background: var(--forest-3); border: 1px solid var(--line); border-radius: 10px; padding: 24px; color: #ffffff; margin-bottom: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 12px;">
+                <strong style="color: var(--gold-light); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                  1882 Cruciform Floorplan & Complex Map
+                </strong>
+                <span style="font-size: 0.78rem; color: rgba(255,255,255,0.7);">National Cultural Treasure / ICP Site</span>
+              </div>
+
+              <!-- Hotspot Selector Buttons -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 22px;">
+                <button type="button" class="church-spot-btn active" data-spot="spot-crossing" style="text-align: left; padding: 12px 14px; background: rgba(223, 91, 30, 0.2); border: 1px solid var(--valencia-orange); border-radius: 6px; color: #ffffff; cursor: pointer; transition: all 0.15s ease;">
+                  <strong style="display: block; font-size: 0.88rem; color: var(--valencia-orange-light);">1. Hardwood Crossing Star</strong>
+                  <span style="font-size: 0.74rem; color: rgba(255,255,255,0.75);">1882 Tindalo & Molave Parquet</span>
+                </button>
+                <button type="button" class="church-spot-btn" data-spot="spot-nave" style="text-align: left; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #ffffff; cursor: pointer; transition: all 0.15s ease;">
+                  <strong style="display: block; font-size: 0.88rem; color: #ffffff;">2. Herringbone Nave</strong>
+                  <span style="font-size: 0.74rem; color: rgba(255,255,255,0.75);">Two-Tone Native Timber Weave</span>
+                </button>
+                <button type="button" class="church-spot-btn" data-spot="spot-facade" style="text-align: left; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #ffffff; cursor: pointer; transition: all 0.15s ease;">
+                  <strong style="display: block; font-size: 0.88rem; color: #ffffff;">3. Stone Belfry & Plaza</strong>
+                  <span style="font-size: 0.74rem; color: rgba(255,255,255,0.75);">Twin Coral Towers & Flame Tree</span>
+                </button>
+                <button type="button" class="church-spot-btn" data-spot="spot-convent" style="text-align: left; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #ffffff; cursor: pointer; transition: all 0.15s ease;">
+                  <strong style="display: block; font-size: 0.88rem; color: #ffffff;">4. 19th-Century Convent</strong>
+                  <span style="font-size: 0.74rem; color: rgba(255,255,255,0.75);">Historic Parish Rectory Complex</span>
+                </button>
+                <button type="button" class="church-spot-btn" data-spot="spot-marker" style="text-align: left; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #ffffff; cursor: pointer; transition: all 0.15s ease;">
+                  <strong style="display: block; font-size: 0.88rem; color: #ffffff;">5. NMP ICP Markers</strong>
+                  <span style="font-size: 0.74rem; color: rgba(255,255,255,0.75);">Sept 12, 2023 Official Turnover</span>
+                </button>
+              </div>
+
+              <!-- Hotspot Information Displays -->
+              <div id="spot-crossing" class="church-spot-display" style="display: block; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px;">
+                <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+                  <div style="flex: 1; min-width: 260px;">
+                    <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">Focal Architectural Masterpiece</span>
+                    <h3 style="color: var(--gold-light); margin: 0 0 10px; font-size: 1.25rem;">The Eight-Pointed Hardwood Crossing Star</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+                      Directly underneath the central transept crossing where the nave intersects the side chapels, Spanish Recollect builder Fray Francisco Arraya executed an intricate geometric carpentry feat in 1882: alternating dark reddish-brown <em>tindalo</em> (balayong) and golden <em>molave</em> (tugas) planks fitted into a radiant eight-pointed floral star.
+                    </p>
+                    <p style="font-size: 0.84rem; color: rgba(255,255,255,0.75); margin: 0;">
+                      <em>Significance:</em> Unlike painted or tiled floors common in late-Spanish era churches, Valencia’s floor was crafted from indigenous Philippine virgin hardwoods, interlocked without modern adhesives.
+                    </p>
+                  </div>
+                  <div style="width: 240px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2);">
+                    <img src="/media/valencia/valencia-church-plaza.jpg" alt="Sr. Santo Niño Parish Church floor and altar view" style="width: 100%; height: 160px; object-fit: cover; display: block;" />
+                    <div style="background: rgba(0,0,0,0.5); padding: 8px 10px; font-size: 0.74rem; color: #ffffff;">Interior sanctuary crossing</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="spot-nave" class="church-spot-display" style="display: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px;">
+                <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">Artisanal Parquet</span>
+                <h3 style="color: var(--gold-light); margin: 0 0 10px; font-size: 1.25rem;">Two-Tone Herringbone Nave Corridor</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+                  Running from the heavy wooden main entrance portals to the chancel steps, the entire length of the central nave is laid in a tight herringbone parquet weave. Dark tindalo beams alternate with lighter molave slats, creating a rhythmic visual pathway that draws the eyes of pilgrims directly toward the high altar.
+                </p>
+                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.75); margin: 0;">
+                  <em>Conservation Note:</em> Parishioners remove footwear or use protective runners during maintenance to prevent grit abrasion on the century-old wood.
+                </p>
+              </div>
+
+              <div id="spot-facade" class="church-spot-display" style="display: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px;">
+                <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+                  <div style="flex: 1; min-width: 260px;">
+                    <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">Coral Stone Masonry</span>
+                    <h3 style="color: var(--gold-light); margin: 0 0 10px; font-size: 1.25rem;">Coral Stone Belfry Towers & Flame Tree Plaza</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+                      Begun under Fray Mariano Cornago (1870–1877), the church facade was constructed using cut coral limestone quarried from the Bohol coastline. The twin octagonal bell towers flank a clean neoclassical pediment. In front of the church, the town plaza features blooming flame trees (caballero) that canopy religious processions during the January fiesta and late-October Sang-at celebrations.
+                    </p>
+                  </div>
+                  <div style="width: 240px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2);">
+                    <img src="/media/valencia/santo-nino-parish-arch.jpg" alt="Flame tree canopy and stone facade of Sr. Santo Niño Parish Church" style="width: 100%; height: 160px; object-fit: cover; display: block;" />
+                    <div style="background: rgba(0,0,0,0.5); padding: 8px 10px; font-size: 0.74rem; color: #ffffff;">Twin belfries & plaza canopy</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="spot-convent" class="church-spot-display" style="display: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px;">
+                <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">19th-Century Rectory</span>
+                <h3 style="color: var(--gold-light); margin: 0 0 10px; font-size: 1.25rem;">The Historic Parish Convent</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+                  Built alongside the church in the typical Spanish colonial <em>bahay-na-bato</em> style, the convent features a ground floor of massive coral-stone walls with an expansive upper living level built of Philippine timber, wide sliding capiz-shell window lattices, and elevated verandas overlooking the parish gardens and Bohol Sea.
+                </p>
+                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.75); margin: 0;">
+                  <em>Heritage Status:</em> Designated as a co-protected component in the National Museum's Important Cultural Property declaration.
+                </p>
+              </div>
+
+              <div id="spot-marker" class="church-spot-display" style="display: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 20px;">
+                <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">National Cultural Recognition</span>
+                <h3 style="color: var(--gold-light); margin: 0 0 10px; font-size: 1.25rem;">National Museum of the Philippines ICP Markers (September 2023)</h3>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 12px;">
+                  On September 12, 2023, the National Museum of the Philippines (NMP), in partnership with the Diocese of Tagbilaran and the Municipal Government of Valencia, formally unveiled the official Important Cultural Property (ICP) bronze markers on the parish church and convent complex under the provisions of the National Cultural Heritage Act (Republic Act No. 10066).
+                </p>
+                <p style="font-size: 0.84rem; color: rgba(255,255,255,0.75); margin: 0;">
+                  <em>Public Reading:</em> The marker permanently certifies the exceptional cultural, historical, and architectural significance of Valencia's church to the nation.
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
         {item.slug === 'canduao-occidental-pottery' && (
           <section style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line);">
             <h2>Field Documentation: The Potters of Canduao Occidental</h2>
@@ -160,4 +276,33 @@ const related = DESTINATIONS.filter(
       </aside>
     </div>
   </section>
+
+  <script>
+    const spotButtons = document.querySelectorAll<HTMLButtonElement>('.church-spot-btn');
+    const spotDisplays = document.querySelectorAll<HTMLElement>('.church-spot-display');
+
+    spotButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const spotId = btn.getAttribute('data-spot');
+        spotDisplays.forEach((display) => {
+          display.style.display = display.id === spotId ? 'block' : 'none';
+        });
+        spotButtons.forEach((b) => {
+          if (b === btn) {
+            b.classList.add('active');
+            b.style.background = 'rgba(223, 91, 30, 0.2)';
+            b.style.borderColor = 'var(--valencia-orange)';
+            const strong = b.querySelector('strong');
+            if (strong) strong.style.color = 'var(--valencia-orange-light)';
+          } else {
+            b.classList.remove('active');
+            b.style.background = 'rgba(255, 255, 255, 0.06)';
+            b.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            const strong = b.querySelector('strong');
+            if (strong) strong.style.color = '#ffffff';
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>
