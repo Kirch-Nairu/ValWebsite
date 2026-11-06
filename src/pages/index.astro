@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ValenciaMediaSlot from '../components/ValenciaMediaSlot.astro';
+import {
+  SITE_META,
+  DESTINATIONS,
+  STORIES,
+  PROGRESS_ITEMS,
+  UPDATES,
+  SERVICE_CATEGORIES
+} from '../data/valenciaData';
+
+const featuredDestinations = DESTINATIONS.slice(0, 4);
+const featuredProgress = PROGRESS_ITEMS.slice(0, 3);
+const recentUpdates = UPDATES.slice(0, 4);
+---
+
+<BaseLayout
+  title="Home — Place, Culture, Heritage & Municipal Progress"
+  description="BARUG VALENCIA — Flagship place-promotion, cultural heritage, and public service prototype for the Municipality of Valencia, Bohol (PSGC 0701247000)."
+>
+  <!-- 1. Immersive Flagship Hero -->
+  <section class="hero-stage section-tindalo">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow eyebrow-light">
+          <span>Municipality of Valencia · Bohol, Philippines</span>
+          <span>•</span>
+          <span>PSGC {SITE_META.psgcCode}</span>
+        </div>
+
+        <p class="hero-catchphrase-kicker">Municipal Catchphrase</p>
+        <h1 class="display-hero">BARUG VALENCIA</h1>
+
+        <p class="hero-editorial-lead">
+          Where fishermen once lifted (<em>sang-at</em>) their boats onto the nipa-lined banks of the Panangatan River to ride out the southwest monsoon—today a coastal-and-highland town of <strong>{SITE_META.population2024}</strong> people across <strong>{SITE_META.barangayCount}</strong> barangays standing together in heritage, nature, and community progress.
+        </p>
+
+        <div class="btn-row" style="margin-top: 1.65rem;">
+          <a href="/discover" class="btn btn-primary">Explore Valencia →</a>
+          <a href="/culture/sang-at" class="btn btn-outline-light">Discover Sang-at &amp; Our Story</a>
+          <a href="/government" class="btn btn-outline-light">Public Services</a>
+        </div>
+
+        <dl class="hero-quick-stats" aria-label="Verified Valencia municipal facts">
+          <div>
+            <dt>Former Name</dt>
+            <dd>Panangatan (from <em>sang-at</em>)</dd>
+          </div>
+          <div>
+            <dt>2024 Census (PSA)</dt>
+            <dd>28,535 Residents · 35 Barangays</dd>
+          </div>
+          <div>
+            <dt>Heritage Anchor</dt>
+            <dd>1882 Sto. Niño Hardwood Floor (ICP)</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-visual">
+        <ValenciaMediaSlot slotId="hero-panangatan" priority={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Short Visual Manifesto -->
+  <section class="section-block" style="background: var(--bg-paper); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="max-width: 54rem; margin-inline: auto; text-align: center;">
+        <span class="eyebrow">Place Identity &amp; Editorial Lens</span>
+        <h2 class="section-title">A Coastal Town Shaped by Shelter, Craft, and Highland Springs</h2>
+        <p class="lead-paragraph" style="margin-inline: auto;">
+          Forty-two to forty-six kilometers east of Tagbilaran along Bohol’s southern coast, Valencia rises from coral-stone shores and subterranean cold springs up to 485-meter interior ridges. Its story is neither a generic beach postcard nor a bureaucratic bulletin—it is lived in the two-tone 1882 timber floor of Sr. Santo Niño Parish, the street rhythms of the Sang-at Festival, and the weekly Sunday <em>Tabu</em> market.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The Valencia Edit (Asymmetric Curated Picture Essay) -->
+  <section class="section-block">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 2.25rem;">
+        <div>
+          <span class="eyebrow">The Valencia Edit · Curated Visual Essay</span>
+          <h2 class="section-title" style="margin-bottom: 0.35rem;">Four Pillars of Valencianhon Identity</h2>
+          <p class="lead-paragraph" style="margin: 0;">
+            Every narrative below is anchored in verified provincial, national, or local records—paired with rights-managed visual slots awaiting authorized municipal originals.
+          </p>
+        </div>
+        <a href="/culture" class="btn btn-outline-dark">Explore All Stories &amp; Heritage →</a>
+      </div>
+
+      <div class="grid-2">
+        {STORIES.map((story) => (
+          <article class="editorial-card">
+            <ValenciaMediaSlot slotId={story.mediaSlotId} compact={true} showMetadata={false} />
+            <div class="editorial-card-body">
+              <div class="badge badge-established">{story.kicker}</div>
+              <h3 style="font-size: 1.4rem; margin-bottom: 0.25rem;">
+                <a href={story.route} style="text-decoration: none;">{story.title}</a>
+              </h3>
+              <p style="margin: 0; color: var(--ink-secondary); font-size: 0.95rem;">{story.summary}</p>
+              <div style="margin-top: auto; padding-top: 0.85rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; border-top: 1px solid var(--border-subtle); font-size: 0.82rem;">
+                <span style="font-family: var(--font-mono); color: var(--ink-muted);">
+                  Sources: {story.sourceIds.join(', ')}
+                </span>
+                <a href={story.route} style="font-weight: 700;">Read Feature →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Sang-at Festival & Cultural Spotlight -->
+  <section class="section-block section-deep">
+    <div class="container grid-2" style="align-items: center;">
+      <div>
+        <span class="eyebrow eyebrow-light">Cultural Signature · October 27 Foundation Tradition</span>
+        <h2 class="section-title">Sang-at Festival: Lifting Heritage onto Higher Ground</h2>
+        <p class="lead-paragraph">
+          Named after the Visayan verb <em>sang-at</em> ("to put up on an elevated place"), the festival honors the fishermen who sheltered their boats along the nipa banks of the Panangatan River.
+        </p>
+        <ul style="padding-left: 1.2rem; color: var(--ink-on-dark-muted); display: flex; flex-direction: column; gap: 0.5rem; margin-block: 1.25rem;">
+          <li>
+            <strong>School &amp; Community Contingents:</strong> Inaugural 2023 showdown featured Valencia Technical Vocational High School (champion) and Valencia Central Elementary School (<em>The Bohol Times</em>, S027).
+          </li>
+          <li>
+            <strong>Provincial Stage (July 26, 2026):</strong> <em>Tribung Hamiling Sang-at</em> represented Valencia at the Sandugo street-dancing showcase in Tagbilaran City (PIA, S002).
+          </li>
+          <li>
+            <strong>Chronology Transparency:</strong> Both the 2022 (153rd anniversary) and 2023 (154th anniversary) establishment accounts are documented openly.
+          </li>
+        </ul>
+        <div class="btn-row" style="margin-top: 1.5rem;">
+          <a href="/culture/sang-at" class="btn btn-primary">Read the Sang-at Documentary Feature →</a>
+          <a href="/culture" class="btn btn-outline-light">Culture &amp; Heritage Hub</a>
+        </div>
+      </div>
+
+      <div>
+        <ValenciaMediaSlot slotId="sang-at-street-dance" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Discover Valencia (Established vs. Potential Sites from PPDO CY2025) -->
+  <section class="section-block section-sand">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 2rem;">
+        <div>
+          <span class="eyebrow">Bohol PPDO CY2025 Tourism Profile (pp. 192–195)</span>
+          <h2 class="section-title" style="margin-bottom: 0.35rem;">Springs, Heritage &amp; 14 Prospective Ecotourism Sites</h2>
+          <p class="lead-paragraph" style="margin: 0;">
+            We separate established visitor landmarks from emerging interior caves, falls, and ridges—with zero invented fees or operating hours.
+          </p>
+        </div>
+        <a href="/discover" class="btn btn-dark">Browse All 14 PPDO Sites →</a>
+      </div>
+
+      <div class="grid-2">
+        {featuredDestinations.map((dest) => (
+          <article class="editorial-card">
+            <ValenciaMediaSlot slotId={dest.mediaSlotId} compact={true} showMetadata={false} />
+            <div class="editorial-card-body">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem;">
+                <span class:list={['badge', dest.readiness === 'established' ? 'badge-established' : 'badge-potential']}>
+                  {dest.readinessLabel}
+                </span>
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted);">
+                  {dest.barangay}
+                </span>
+              </div>
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.2rem;">
+                <a href={`/discover/${dest.slug}`} style="text-decoration: none;">{dest.name}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.92rem; color: var(--ink-secondary);">{dest.summary}</p>
+              <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem;">
+                <span style="font-family: var(--font-mono); color: var(--ink-muted);">{dest.category}</span>
+                <a href={`/discover/${dest.slug}`} style="font-weight: 700;">View Site Guide →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Progress with Substance (Actual vs. Proposed Discipline) -->
+  <section class="section-block">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 2rem;">
+        <div>
+          <span class="eyebrow">Institutional &amp; Civic Development</span>
+          <h2 class="section-title" style="margin-bottom: 0.35rem;">Documented Progress Under BARUG Valencia</h2>
+          <p class="lead-paragraph" style="margin: 0;">
+            Every initiative below cites its exact publication date, partner agency, and whether it is a completed turnover, an active rollout, or a proposed policy concept.
+          </p>
+        </div>
+        <a href="/progress" class="btn btn-outline-dark">View Full Progress Ledger →</a>
+      </div>
+
+      <div class="grid-3">
+        {featuredProgress.map((item) => (
+          <article class="editorial-card">
+            <ValenciaMediaSlot slotId={item.mediaSlotId} compact={true} showMetadata={false} />
+            <div class="editorial-card-body">
+              <span
+                class:list={[
+                  'badge',
+                  item.statusCategory === 'verified_completed' || item.statusCategory === 'verified_launched'
+                    ? 'badge-established'
+                    : 'badge-potential'
+                ]}
+              >
+                {item.statusBadge}
+              </span>
+              <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-muted);">
+                {item.dateLabel} · {item.barangay}
+              </div>
+              <h3 style="font-size: 1.2rem; margin-bottom: 0.25rem;">
+                <a href={`/progress#${item.slug}`} style="text-decoration: none;">{item.title}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--ink-secondary);">{item.summary}</p>
+              <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); font-size: 0.78rem; color: var(--ink-muted);">
+                <strong>Partner:</strong> {item.partnerOrDonor} ({item.sourceIds.join(', ')})
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Recent Updates & Practical Public Service Gateway -->
+  <section class="section-block section-sand">
+    <div class="container grid-2">
+      <div>
+        <span class="eyebrow">Dated Source Archive (2023–2026)</span>
+        <h2 class="section-title" style="font-size: 1.85rem;">Recent Milestones &amp; Press Records</h2>
+        <p style="color: var(--ink-secondary); margin-bottom: 1.25rem;">
+          All items are labeled with their publication date and source status so archival reports are never mistaken for live emergency advisories.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          {recentUpdates.map((upd) => (
+            <article class="editorial-card" style="padding: 1rem 1.2rem;">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-spring);">
+                <span>{upd.publishedDate} · {upd.publisher}</span>
+                <span>{upd.recordState}</span>
+              </div>
+              <h3 style="font-size: 1.05rem; margin: 0.3rem 0;">
+                <a href={`/updates#${upd.slug}`} style="text-decoration: none;">{upd.title}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.86rem; color: var(--ink-secondary);">{upd.summary}</p>
+            </article>
+          ))}
+        </div>
+        <div style="margin-top: 1.25rem;">
+          <a href="/updates" class="btn btn-outline-dark">Open Filterable Updates Archive →</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow">Public Utility &amp; Citizen Access</span>
+        <h2 class="section-title" style="font-size: 1.85rem;">Municipal Services &amp; Official Channels</h2>
+        <p style="color: var(--ink-secondary); margin-bottom: 1.25rem;">
+          Quick access to municipal service categories, RA 11032 Citizen’s Charter status disclosures, and verified Valencia communication channels.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          {SERVICE_CATEGORIES.map((svc) => (
+            <div class="editorial-card" style="padding: 1rem 1.2rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-molave); text-transform: uppercase;">
+                {svc.office}
+              </div>
+              <h3 style="font-size: 1.05rem; margin: 0.2rem 0;">
+                <a href={`/government#${svc.id}`} style="text-decoration: none;">{svc.title}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.86rem; color: var(--ink-secondary);">{svc.summary}</p>
+            </div>
+          ))}
+        </div>
+        <div class="btn-row" style="margin-top: 1.25rem;">
+          <a href="/government" class="btn btn-dark">Government &amp; Services Guide →</a>
+          <a href="/contact" class="btn btn-outline-dark">Official Channels &amp; Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-stage {
+    padding-block: clamp(2.5rem, 5.5vw, 4.75rem);
+    border-bottom: 3px solid var(--accent-gold);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    align-items: center;
+  }
+
+  @media (min-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+    }
+  }
+
+  .hero-catchphrase-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-on-dark-muted);
+    margin: 0 0 0.2rem 0;
+  }
+
+  .hero-editorial-lead {
+    font-size: clamp(1.04rem, 1.35vw, 1.22rem);
+    color: #e6ece9;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .hero-quick-stats {
+    margin: 2rem 0 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-on-dark);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+  }
+
+  .hero-quick-stats dt {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f2c46d;
+  }
+
+  .hero-quick-stats dd {
+    margin: 0.2rem 0 0 0;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #ffffff;
+  }
+</style>

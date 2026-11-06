@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ValenciaMediaSlot from '../../components/ValenciaMediaSlot.astro';
+import { STORIES } from '../../data/valenciaData';
+
+const sangAt = STORIES[0];
+---
+
+<BaseLayout
+  title="Sang-at Festival — Cultural Documentary Feature"
+  description="Documentary feature on the Sang-at Festival of Valencia, Bohol: origins in the Panangatan river boat-lifting tradition, 2023 foundation showdown, and 2026 Sandugo participation."
+>
+  <article class="section-block">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/culture">Culture &amp; Heritage</a></li>
+          <li aria-current="page">Sang-at Festival</li>
+        </ol>
+      </nav>
+
+      <span class="eyebrow">{sangAt.kicker}</span>
+      <h1 class="display-hero" style="font-size: clamp(2rem, 4.2vw, 3.4rem);">{sangAt.title}</h1>
+      <p class="lead-paragraph">{sangAt.subtitle}</p>
+
+      <div style="margin-block: 2rem;">
+        <ValenciaMediaSlot slotId="sang-at-street-dance" />
+      </div>
+
+      <div class="grid-2" style="align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 1.2rem; font-size: 1.05rem;">
+          <h2 class="section-title" style="font-size: 1.7rem; margin-bottom: 0.2rem;">
+            From Monsoon Boat Shelter to Municipal Celebration
+          </h2>
+          {sangAt.body.map((para) => (
+            <p style="margin: 0;">{para}</p>
+          ))}
+
+          <h2 class="section-title" style="font-size: 1.6rem; margin-top: 1rem; margin-bottom: 0.2rem;">
+            Documented Festival Elements (2023–2026)
+          </h2>
+          <ul style="padding-left: 1.25rem; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 0.55rem; margin: 0;">
+            <li>
+              <strong>Sadsad sa Dalan &amp; Painsayaw Showdown:</strong> Street-dancing parade through Poblacion culminating in a choreographed ritual showdown dramatizing boat-lifting (<em>sang-at</em>), fishing livelihoods, and devotion (`S027`).
+            </li>
+            <li>
+              <strong>School Contingents:</strong> In the verified November 5, 2023 <em>Bohol Times</em> report (`S027`), the <strong>Valencia Technical Vocational High School (VTVHS)</strong> contingent captured the championship, with <strong>Valencia Central Elementary School (VCES)</strong> earning first runner-up.
+            </li>
+            <li>
+              <strong>Community Week Activities:</strong> Documented 2023 events included <em>Suroy sa Valencia</em>, a Bike Challenge, the <em>Pasundayag sa Chibugan</em> food and trade showcase, the <em>Choya Sakayan Contest</em>, and Senior Citizens’ Day parade (`S027`).
+            </li>
+            <li>
+              <strong>Tribung Hamiling Sang-at at Sandugo 2026:</strong> On July 26, 2026, Valencia’s contingent brought the Sang-at narrative to Bohol’s provincial Sandugo street-dancing stage, featured by the Philippine Information Agency on September 7, 2026 (`S002`).
+            </li>
+          </ul>
+        </div>
+
+        <aside style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div class="editorial-card" style="padding: 1.35rem;">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.65rem;">Festival Provenance &amp; Source Ledger</h3>
+            <dl style="margin: 0; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.88rem;">
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Etymology
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0;">
+                  Cebuano <em>sang-at</em> — "to put up on an elevated place" (origin of Valencia’s former name, <em>Panangatan</em>)
+                </dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Annual Commemoration
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0;">October 27 (Foundation Day Anniversary per PPDO CY2025 p. 194)</dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  User-Supplied Festival Page (`FB-002`)
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0;">
+                  <a href="https://www.facebook.com/profile.php?id=61595179684543" target="_blank" rel="noopener noreferrer">
+                    SANG - AT Festival on Facebook ↗
+                  </a>
+                  <p style="margin: 0.35rem 0 0 0; font-size: 0.8rem; color: var(--ink-secondary); font-style: italic;">
+                    "Celebrating the rich culture, vibrant traditions, and enduring pride of Valencianhons through the Sang-at Festival of Valencia. A celebration of heritage, unity, and community spirit." (Verified in page metadata on 2026-11-06)
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Cited Sources
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0; font-family: var(--font-mono);">
+                  {sangAt.sourceIds.join(', ')}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          {sangAt.conflictDisclosure && (
+            <div class="callout-box">
+              <strong>Chronology Note:</strong> {sangAt.conflictDisclosure}
+            </div>
+          )}
+
+          <div class="editorial-card" style="padding: 1.25rem; background: var(--bg-sand);">
+            <h4 style="font-size: 1rem; margin-bottom: 0.4rem;">Photography &amp; Media Request Status</h4>
+            <p style="margin: 0 0 0.75rem 0; font-size: 0.85rem; color: var(--ink-secondary);">
+              Public Facebook albums and press photographs (`R007`, `R011`, `R019`) are not automatically licensed for reuse. Written permission and high-resolution originals are requested from the LGU Tourism Office and credited festival photographers.
+            </p>
+            <a href="/contact" class="btn btn-outline-dark" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;">
+              Submit Authorized Festival Media →
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

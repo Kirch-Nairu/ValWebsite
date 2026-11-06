@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ValenciaMediaSlot from '../components/ValenciaMediaSlot.astro';
+import { PROGRESS_ITEMS } from '../data/valenciaData';
+---
+
+<BaseLayout
+  title="Progress & Development — Verified Milestones vs. Proposed Initiatives"
+  description="Evidence-backed municipal progress and development registry for Valencia, Bohol: Anoyon High School classroom handover, Paleng-QR PH Plus launch, and clearly labeled BARUG CARENav proposals."
+>
+  <section class="section-block section-deep">
+    <div class="container">
+      <span class="eyebrow eyebrow-light">Progress &amp; Development · Institutional Ledger</span>
+      <h1 class="display-hero" style="font-size: clamp(2rem, 4.2vw, 3.4rem);">
+        Verified Milestones &amp; Transparently Labeled Proposals
+      </h1>
+      <p class="lead-paragraph">
+        To present Valencia credibly to decision-makers, partner agencies, and residents, this page strictly separates <strong>verified completed turnovers</strong> and <strong>documented rollouts</strong> from <strong>proposed policy concepts</strong> and <strong>search leads awaiting primary links</strong>. No unverified budgets or campaign superlatives are asserted.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="container">
+      <div class="filter-bar" role="toolbar" aria-label="Filter progress initiatives by verification status">
+        <button type="button" class="filter-btn" data-progress-filter="all" aria-pressed="true">
+          All Documented Items ({PROGRESS_ITEMS.length})
+        </button>
+        <button type="button" class="filter-btn" data-progress-filter="verified" aria-pressed="false">
+          Verified Completed / Launched
+        </button>
+        <button type="button" class="filter-btn" data-progress-filter="proposed_concept" aria-pressed="false">
+          Proposed Policy Concepts / Planning
+        </button>
+        <button type="button" class="filter-btn" data-progress-filter="lead_pending_verification" aria-pressed="false">
+          Public Search Leads (Pending Primary Link)
+        </button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2rem;" id="progress-list">
+        {PROGRESS_ITEMS.map((item) => (
+          <article
+            class="editorial-card"
+            id={item.slug}
+            data-progress-card
+            data-status-cat={item.statusCategory}
+          >
+            <div class="grid-2" style="gap: 0; align-items: stretch;">
+              <div>
+                <ValenciaMediaSlot slotId={item.mediaSlotId} />
+              </div>
+              <div class="editorial-card-body" style="padding: clamp(1.35rem, 2.5vw, 2.15rem);">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; align-items: center;">
+                  <span
+                    class:list={[
+                      'badge',
+                      item.statusCategory === 'verified_completed' || item.statusCategory === 'verified_launched'
+                        ? 'badge-established'
+                        : item.statusCategory === 'proposed_concept'
+                          ? 'badge-potential'
+                          : 'badge-pending'
+                    ]}
+                  >
+                    {item.statusBadge}
+                  </span>
+                  <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-muted);">
+                    {item.dateLabel} · {item.barangay}
+                  </span>
+                </div>
+
+                <h2 style="font-size: 1.45rem; margin: 0.25rem 0;">{item.title}</h2>
+                <p style="margin: 0; font-weight: 600; color: var(--ink-secondary);">{item.summary}</p>
+
+                <ul style="margin: 0.5rem 0; padding-left: 1.2rem; color: var(--ink-secondary); font-size: 0.92rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                  {item.details.map((d) => (
+                    <li>{d}</li>
+                  ))}
+                </ul>
+
+                <div style="margin-top: auto; padding-top: 0.85rem; border-top: 1px solid var(--border-subtle); font-size: 0.82rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                  <div>
+                    <strong>Implementing / Beneficiary Body:</strong> {item.implementingBody}
+                  </div>
+                  <div>
+                    <strong>Partner / Donor Agency:</strong> {item.partnerOrDonor}
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                    <span style="font-family: var(--font-mono); color: var(--ink-muted);">
+                      Source ID: {item.sourceIds.join(', ')} · {item.verificationNote}
+                    </span>
+                    {item.sourceUrl && (
+                      <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" style="font-weight: 700;">
+                        View Primary / Press Source ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const buttons = document.querySelectorAll('[data-progress-filter]');
+      const cards = document.querySelectorAll('[data-progress-card]');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-progress-filter') || 'all';
+          buttons.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+
+          cards.forEach((card) => {
+            const cat = card.getAttribute('data-status-cat') || '';
+            let show = false;
+            if (filter === 'all') show = true;
+            else if (filter === 'verified') show = cat === 'verified_completed' || cat === 'verified_launched';
+            else show = cat === filter;
+
+            if (show) card.removeAttribute('hidden');
+            else card.setAttribute('hidden', '');
+          });
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
