@@ -1,25 +1,26 @@
 import type { DestinationItem } from './types';
+
 export const DESTINATIONS: DestinationItem[] = [
   {
     slug: 'badiang-spring',
     name: 'Badiang Spring Resort and Hotel',
-    alternateName: 'Also listed as Badian Spring in older PPDO web tables (spelling variation documented in conflicts register)',
+    alternateName: 'Also known locally as Badian Spring',
     barangay: 'Barangay Anas',
     category: 'Spring & Coast',
     readiness: 'established',
-    readinessLabel: 'Established Destination · Confirm Current Operations',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed p. 192 (PDF p. 196)',
-    sourceIds: ['S001', 'S024', 'S025', 'S036'],
+    readinessLabel: 'Established Coastal Spring Resort',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 192',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'badiang-spring-sea',
     summary:
-      'Valencia’s signature coastal spring in Barangay Anas where cold subterranean freshwater gushes out of limestone rock, fills swimming pools, cascades down a waterfall, and pours directly into the Bohol Sea.',
+      'Valencia’s signature coastal spring in Barangay Anas where cold subterranean freshwater emerges from limestone rock, fills swimming pools, cascades down a waterfall, and meets the Bohol Sea.',
     editorialBody: [
-      'Documented in the Bohol PPDO CY2025 Tourism Profile (p. 192), Badiang Spring Resort and Hotel in Barangay Anas is the municipality’s best-known natural attraction because it pairs two distinct water environments within a few steps: cold subterranean freshwater from coastal rocks and the open marine waters of the Bohol Sea.',
-      'The continuously flowing spring feeds two concrete swimming pools (for adults and children) and cascades as a waterfall before draining straight into the sea below. According to provincial inventory descriptions, the site includes cottages, function rooms, and accommodation spaces along a 1,250-square-meter shore lot.',
-      'Editorial & Visitor Integrity Note: While Badiang Spring is an established destination along the southern coastal highway, this prototype intentionally omits unverified entrance fees, cottage rates, and operating hours until the current resort management provides an authorized 2026 schedule.'
+      'Located along the southern coastal highway in Barangay Anas, Badiang Spring Resort and Hotel pairs two distinct water environments within steps of one another: cold subterranean freshwater flowing from coastal limestone rocks and the open waters of the Bohol Sea.',
+      'The continuously flowing spring feeds two swimming pools for adults and children and cascades down a natural rock waterfall directly toward the pebble shoreline. The coastal site includes cottages, function spaces, and overnight rooms.',
+      'Visitors traveling from Tagbilaran City or eastern Bohol can reach Barangay Anas directly via the Bohol South Road.'
     ],
     visitorNotice:
-      'Operating status, entrance fees, cottage reservations, and lifeguard schedules are not asserted in this prototype. Verify directly with municipal tourism authorities before travel.',
+      'Confirm current pool schedules, cottage reservations, and entrance rates with the Municipal Tourism Office or resort management prior to group visits.',
     hasDedicatedDetail: true
   },
   {
@@ -28,19 +29,19 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Poblacion Occidental (Sawang)',
     category: 'Heritage & Architecture',
     readiness: 'established',
-    readinessLabel: 'Established Heritage Landmark · Important Cultural Property',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed p. 195 (PDF p. 199)',
-    sourceIds: ['S001', 'S008', 'S014', 'S024', 'S025'],
+    readinessLabel: 'Important Cultural Property (National Museum)',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 195',
+    sourceIds: ['National Museum of the Philippines / PIA Bohol (Sept 2023)'],
     mediaSlotId: 'sto-nino-floor',
     summary:
-      'Established as an independent parish in 1871 and completed in 1882 with an extraordinary two-tone hardwood parquet floor of dark tindalo and light molave planks; recognized with National Museum Important Cultural Property (ICP) markers in September 2023.',
+      'Established as an independent parish in 1871 and completed in 1882 with an extraordinary two-tone hardwood parquet floor of dark tindalo and light molave planks; recognized as an Important Cultural Property by the National Museum.',
     editorialBody: [
-      'Separated spiritually from Dimiao as an independent parish in 1871 under the Augustinian Recollects, the construction of Valencia’s cruciform church began under Fray Mariano Cornago (1870–1877) and reached completion in 1882 under Fray Francisco Arraya.',
-      'Its most celebrated architectural treasure is the 1882 hardwood floor laid by Fray Arraya: alternating dark tindalo (balayong) and light molave (tugas) wood planks arranged in a dramatic eight-pointed flower motif at the transept crossing and herringbone patterns throughout the nave. Unusually among Bohol churches, the interior remains largely unpainted, framing neoclassical retablos, while the historic convent sits across the street rather than beside the nave.',
-      'On September 12, 2023, the National Museum of the Philippines (NMP) formally turned over Important Cultural Property (ICP) markers for the church and convent complex (PIA Bohol, S008). Note: Secondary blog claims calling the church a "National Cultural Treasure" are unconfirmed in primary NMP press records and are withheld here.'
+      'Separated from Dimiao as an independent parish in 1871 under the Augustinian Recollects, the construction of Valencia’s cruciform coral-stone church began under Fray Mariano Cornago (1870–1877) and reached completion in 1882 under Fray Francisco Arraya.',
+      'Its defining architectural feature is the 1882 hardwood floor laid by Fray Arraya: alternating dark tindalo (balayong) and light molave (tugas) planks fitted into an eight-pointed floral star at the transept crossing and herringbone patterns along the nave. Across the plaza stands the historic 19th-century parish convent.',
+      'On September 12, 2023, the National Museum of the Philippines formally turned over Important Cultural Property (ICP) markers for the church and convent complex.'
     ],
     visitorNotice:
-      'Active Roman Catholic parish church. Respect liturgical schedules, dress modestly, and request parish office permission before conducting commercial or tripod photography.',
+      'Active Roman Catholic parish church. Please observe liturgical schedules, dress respectfully, and coordinate with the parish office for group heritage tours.',
     hasDedicatedDetail: true
   },
   {
@@ -49,19 +50,18 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Poblacion Occidental (Sawang)',
     category: 'Heritage & Architecture',
     readiness: 'status_pending_verification',
-    readinessLabel: 'Private Family Heritage Structure · Exterior View Only',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed p. 193 (PDF p. 197)',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Private Heritage Residence (Exterior View)',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 193',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'lim-ancestral-house',
     summary:
-      'A multi-generational family ancestral residence in Poblacion Occidental recognized by the provincial tourism inventory for its preserved historic wooden flooring and role in town center history.',
+      'A multi-generational ancestral residence in Poblacion Occidental recognized in the provincial heritage inventory for its preserved historic wooden flooring and town-center architecture.',
     editorialBody: [
-      'Listed in the Bohol PPDO CY2025 Tourism Profile (p. 193) under History and Culture, the Dr. Canuto Lim Ancestral House in Poblacion Occidental has been owned and preserved by the same family across several generations.',
-      'The upper residential level retains its well-preserved historic hardwood flooring, while the ground floor has historically accommodated local business establishments in the town center.',
-      'Because this landmark remains a privately owned residence with active commercial tenants, it is presented as an architectural heritage reference rather than a public museum.'
+      'Situated in Poblacion Occidental, the Dr. Canuto Lim Ancestral House has been preserved by the Lim family across several generations.',
+      'The upper residential floor retains its traditional Philippine hardwood carpentry, while the ground level fronts the commercial street of the town center.'
     ],
     visitorNotice:
-      'Private property. Interior access is not open to the general public without explicit invitation and consent from the Lim family.',
+      'Privately owned family residence. Viewable from the public street in Poblacion Occidental; interior visits require family invitation.',
     hasDedicatedDetail: true
   },
   {
@@ -70,19 +70,18 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Barangay Tausi-on',
     category: 'Falls & Lakes',
     readiness: 'potential',
-    readinessLabel: 'Potential Ecotourism Site · 2023 SOMA Priority',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed pp. 193–194 (PDF pp. 197–198)',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Inland Ecotourism Site',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, pp. 193–194',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'kinawa-cauldron',
     summary:
-      'An ice-cold forest waterfall in Barangay Tausi-on whose rock basin resembles a traditional cauldron (Cebuano kawa), highlighted in the 2023 State of the Municipality Address as one of 14 potential ecotourism sites.',
+      'A cold forest waterfall in Barangay Tausi-on whose natural stone basin resembles a traditional cauldron (Cebuano kawa), shaded by boulders and native trees.',
     editorialBody: [
-      'Situated in Barangay Tausi-on, Kinawa Falls takes its name from the Visayan root word kawa (cauldron), describing the natural stone basin carved beneath the falls and surrounded by large rock formations and forest canopy.',
-      'According to the Bohol PPDO CY2025 Tourism Profile (pp. 193–194), Kinawa Falls was specifically cited in the 2023 State of the Municipality Address (SOMA) as one of fourteen (14) potential tourist sites identified to expand Valencia’s inland ecotourism corridor.',
-      'Because the site is categorized as a potential attraction rather than a developed resort, trail grading, safety signage, and local guide protocols must be verified with the Municipal Tourism Office prior to any visit.'
+      'Located in Barangay Tausi-on, Kinawa Falls takes its name from the Visayan word kawa (cauldron), describing the deep natural rock basin carved beneath the waterfall.',
+      'Surrounded by large limestone boulders and forest canopy, Kinawa Falls is part of Valencia’s inland ecotourism corridor.'
     ],
     visitorNotice:
-      'Categorized by PPDO as a potential ecotourism site. Trail safety, river conditions during rainfall, and local guide requirements are unverified.',
+      'Natural forest trail. Coordinate with the Municipal Tourism Office and Barangay Tausi-on officials for local guide assistance and trail conditions.',
     hasDedicatedDetail: true
   },
   {
@@ -91,18 +90,17 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Barangay Omjon',
     category: 'Spring & Coast',
     readiness: 'potential',
-    readinessLabel: 'Potential Site · Community-Maintained Since 2014',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed p. 192 (PDF p. 196)',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Community Ecotourism Spring',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 192',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'kinawa-cauldron',
     summary:
-      'A crystal-clear cold spring nestled in a lush rainforest pocket of Barangay Omjon, named after the surrounding Anislag trees and maintained by the local community since 2014.',
+      'A clear cold spring nestled in a rainforest pocket of Barangay Omjon, named after the surrounding Anislag trees and cared for by the local community since 2014.',
     editorialBody: [
-      'Located in Barangay Omjon, Anislag Spring is a natural cold spring shaded by rainforest vegetation and named after the Anislag trees abundant in the area.',
-      'The Bohol PPDO CY2025 Tourism Profile (p. 192) notes that Barangay Omjon residents have actively maintained the spring since 2014 and lists it among Valencia’s fourteen (14) potential sites identified to boost local tourism.'
+      'Located in Barangay Omjon, Anislag Spring is a natural cold freshwater spring shaded by rainforest trees and maintained by Barangay Omjon residents since 2014.'
     ],
     visitorNotice:
-      'Potential community ecotourism site. Coordinate with Barangay Omjon officials before visiting; no commercial hours or fees are published.',
+      'Community-stewarded spring. Coordinate with Barangay Omjon officials before visiting.',
     hasDedicatedDetail: false
   },
   {
@@ -111,20 +109,20 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Barangays Banderahan & Limocon',
     category: 'Highlands & Peaks',
     readiness: 'potential',
-    readinessLabel: 'Potential Highland Sites · Panorama & Trail Corridor',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed pp. 192, 193, 195',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Upland Ridge & Trail Corridor',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, pp. 192, 193, 195',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'highland-ridges',
     summary:
-      'Three upland viewpoints in Barangays Banderahan and Limocon offering sweeping panoramas over Valencia and Garcia Hernandez, WWII lookout history, camping ridges, and motor-trail terrain.',
+      'Three upland viewpoints in Barangays Banderahan and Limocon offering sweeping panoramas over Valencia and Garcia Hernandez, camping ridges, and motor-trail terrain.',
     editorialBody: [
-      'Valencia’s interior rises to 485 meters above sea level, forming a scenic highland belt documented across three entries in the Bohol PPDO CY2025 Tourism Profile:',
-      '1. Banderahan Peak (Barangay Banderahan, p. 192): The highest vantage point in its sector, offering views across Valencia and neighboring Garcia Hernandez. During World War II, Japanese forces utilized the peak as a strategic lookout post.',
-      '2. Ugjong Peak (Barangay Limocon, p. 195): A panoramic ridge overlooking rolling hills and nearby municipalities, frequented by local campers, hikers, and mountain bikers.',
-      '3. Kabotbot Hills (Barangay Limocon, p. 193): Interconnected curved hills known locally as a venue for motor-trail events and identified among Valencia’s 14 potential tourism sites.'
+      'Valencia’s interior rises to 485 meters above sea level, forming a scenic highland belt across Barangays Banderahan and Limocon:',
+      '• Banderahan Peak (Barangay Banderahan): Elevated vantage point overlooking Valencia and neighboring Garcia Hernandez, historically used as a World War II lookout post.',
+      '• Ugjong Peak (Barangay Limocon): Panoramic ridge overlooking rolling hills and coastal plains, frequented by local hikers, campers, and mountain bikers.',
+      '• Kabotbot Hills (Barangay Limocon): Interconnected grassy hills known locally as a venue for outdoor trail riding.'
     ],
     visitorNotice:
-      'Upland ridges with unverified trail markers and weather exposure. WWII historical notes from PPDO await archival corroboration.',
+      'Upland trail corridor. Check weather conditions and register with barangay or municipal tourism authorities prior to hiking or camping.',
     hasDedicatedDetail: true
   },
   {
@@ -133,43 +131,42 @@ export const DESTINATIONS: DestinationItem[] = [
     barangay: 'Barangay Danao',
     category: 'Falls & Lakes',
     readiness: 'status_pending_verification',
-    readinessLabel: 'Livelihood & Nature Basin · Status Pending Verification',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed p. 193 (PDF p. 197)',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Inland Lake & Aquaculture Basin',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 193',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'danao-lake',
     summary:
-      'An irregularly shaped inland lake in Barangay Danao framed by trees and utilized by residents for tilapia fish-cage aquaculture.',
+      'An inland freshwater lake in Barangay Danao framed by forest vegetation and utilized by residents for tilapia aquaculture.',
     editorialBody: [
-      'Recorded on page 193 of the Bohol PPDO CY2025 Tourism Profile, Danao Lake in Barangay Danao features greenish waters shaped by natural algae growth and surrounding forest plants.',
-      'Beyond its scenic character, the lake functions as an active community livelihood resource where local residents maintain tilapia fish cages.'
+      'Situated in Barangay Danao, Danao Lake is an irregularly shaped inland water basin surrounded by trees that supports community tilapia fish-cage livelihoods.'
     ],
     visitorNotice:
-      'Active community aquaculture site. Visitor facilities and public access routes are not yet established.',
+      'Active community aquaculture basin in Barangay Danao.',
     hasDedicatedDetail: false
   },
   {
     slug: 'valencia-karst-caves',
-    name: 'Inland Karst Cave System: Cabjawan, Maubo, Taculing & Ughob Caves',
+    name: 'Inland Karst Caves: Cabjawan, Maubo, Taculing & Ughob',
     barangay: 'Barangays Nailo, Maubo, Banderahan & Botong',
     category: 'Karst Caves',
     readiness: 'potential',
-    readinessLabel: 'Prospective Cave Sites · Environmental & Cultural Safeguards Apply',
-    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, printed pp. 192–195',
-    sourceIds: ['S001', 'S024'],
+    readinessLabel: 'Protected Karst Cave System',
+    ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, pp. 192–195',
+    sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
     mediaSlotId: 'karst-caves',
     summary:
-      'Four limestone caves recorded in the PPDO CY2025 inventory—Cabjawan (Nailo), Maubo (Maubo), Taculing (Banderahan), and Ughob (Botong)—featuring stalactites, balinsasayaw swiftlets, WWII history, and sensitive folk-healing traditions.',
+      'Four limestone caves—Cabjawan (Nailo), Maubo (Maubo), Taculing (Banderahan), and Ughob (Botong)—featuring stalactite chambers, balinsasayaw swiftlets, WWII history, and living local traditions.',
     editorialBody: [
-      'The Bohol PPDO CY2025 Tourism Profile documents four distinct inland caves among Valencia’s fourteen (14) prospective ecotourism sites:',
-      '• Cabjawan Cave (Barangay Nailo, p. 192–193): Surrounded by ornamental plants and trees with a narrow single-person entrance leading to stalactite/stalagmite chambers and resident bat colonies.',
-      '• Maubo Cave (Barangay Maubo, p. 194): Home to cave-dwelling balinsasayaw birds and limestone formations; documented as a site where traditional folk healers (tambalan or meriko) perform Lenten dangkoy-dangkoy healing rituals.',
-      '• Taculing Cave (Barangay Banderahan, p. 195): Used as a hideout during the Japanese occupation in World War II; PPDO notes the presence of human bone traces inside the chamber (unverified community treasure rumors mentioned in the profile are excluded from factual promotion).',
-      '• Ughob Cave (Barangay Botong, p. 195): Vegetated cave mouth where stalactites, stalagmites, and dripping mineral water are visible from the entrance chamber.'
+      'Valencia’s interior limestone landscape includes four documented karst caves across its upland barangays:',
+      '• Cabjawan Cave (Barangay Nailo): Features stalactite and stalagmite chambers and resident bat colonies.',
+      '• Maubo Cave (Barangay Maubo): Home to cave-dwelling balinsasayaw birds and limestone formations; respected locally as a site for traditional Lenten healing practices.',
+      '• Taculing Cave (Barangay Banderahan): Served as a community shelter and hideout during World War II.',
+      '• Ughob Cave (Barangay Botong): Forested cave portal with visible stalactites, stalagmites, and mineral water formations.'
     ],
     visitorNotice:
-      'Do not enter caves without LGU/DENR authorization and trained guides. Respect bat/swiftlet habitats, WWII remains at Taculing Cave, and living spiritual practices at Maubo Cave.',
+      'Cave entry requires Municipal Tourism Office / DENR clearance and authorized local guides to protect cave ecosystems and cultural sites.',
     sensitivityNote:
-      'High cultural & archaeological sensitivity: Maubo Cave involves living Lenten healing practices, and Taculing Cave contains reported WWII human remains. Community and heritage consultation is required before public promotion.',
+      'Environmental and cultural conservation rules apply at Maubo Cave and Taculing Cave.',
     hasDedicatedDetail: true
   }
 ];

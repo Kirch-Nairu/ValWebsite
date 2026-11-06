@@ -22,11 +22,16 @@ export interface MediaSlotSpec {
   barangay: string;
   motif: VisualMotif;
   aspectRatio: '16:9' | '4:3' | '3:2' | '4:5';
-  approvalStatus: 'NOT_APPROVED';
+  approvalStatus: 'APPROVED_REDISTRIBUTABLE' | 'LOCAL_PREVIEW_ONLY' | 'NOT_APPROVED';
   statusLabel: string;
   creditLine: string;
   approvedDropInPath: string;
   acquisitionNote: string;
+  imageSrc: string;
+  imageAlt: string;
+  photographer?: string;
+  license?: string;
+  sourceUrl?: string;
 }
 
 export interface DestinationItem {
@@ -88,7 +93,7 @@ export interface UpdateItem {
   publishedDate: string;
   eventDate: string;
   category: 'Cultural Milestone' | 'Education & Civic' | 'Governance & Digital' | 'Heritage Record';
-  recordState: 'Archival / Source-Referenced Record' | 'Verified Historical Milestone';
+  recordState: string;
   publisher: string;
   sourceId: string;
   sourceUrl?: string;

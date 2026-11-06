@@ -1,14 +1,79 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentStatus from '../../components/ContentStatus.astro';
+import MediaPanel from '../../components/MediaPanel.astro';
 import { STORIES } from '../../data/culture';
 import type { StoryItem } from '../../data/types';
-export function getStaticPaths(){return STORIES.filter(s=>s.route.startsWith('/stories/')).map(item=>({params:{slug:item.slug},props:{item}}));}
-interface Props{item:StoryItem}
-const {item}=Astro.props;
+
+export function getStaticPaths() {
+  return STORIES.filter((s) => s.route.startsWith('/stories/')).map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: StoryItem;
+}
+
+const { item } = Astro.props;
 ---
+
 <BaseLayout title={item.title} description={item.summary}>
-<div class="container bread"><a href="/">Home</a><span>/</span><a href="/tourism">Tourism & Culture</a><span>/</span><span>Heritage record</span></div>
-<section class="page-intro"><div class="container"><p class="eyebrow">Heritage archive / {item.kicker}</p><h1>{item.title}</h1><p class="page-intro-description">{item.summary}</p></div></section>
-<section class="section"><div class="container detail-layout"><article class="detail-main"><ContentStatus label="Research-context heritage page" detail={item.conflictDisclosure||'This record is based on attributed research rather than an officially approved municipal historical publication.'}/><h2>Context & source record</h2>{item.body.map(p=><p>{p}</p>)}<a href="/tourism" class="btn btn-primary" style="margin-top:22px;">Tourism & Culture ↗</a></article><aside class="detail-sidebar"><h2>Publication context</h2><dl><dt>Location</dt><dd>{item.barangayOrPlace}</dd><dt>Record date</dt><dd>{item.eventOrRecordDate}</dd><dt>Review date</dt><dd>{item.reviewDate}</dd><dt>Source IDs</dt><dd>{item.sourceIds.join(', ')}</dd><dt>Editorial status</dt><dd>{item.editorialStatus}</dd></dl></aside></div></section>
+  <div class="container bread">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/tourism">Tourism & Culture</a>
+    <span>/</span>
+    <span>{item.kicker}</span>
+  </div>
+
+  <section class="page-intro">
+    <div class="container">
+      <p class="section-kicker">{item.kicker}</p>
+      <h1>{item.title}</h1>
+      <p class="page-intro-description">{item.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <div style="margin-bottom: 24px;">
+          <MediaPanel
+            slotId={item.mediaSlotId}
+            variant="main"
+            label={item.title}
+            caption={item.barangayOrPlace}
+          />
+        </div>
+
+        {item.conflictDisclosure && (
+          <ContentStatus label="Historical Note" detail={item.conflictDisclosure} />
+        )}
+
+        <h2>Feature Narrative</h2>
+        {item.body.map((p) => (
+          <p>{p}</p>
+        ))}
+
+        <div class="button-row" style="margin-top: 26px;">
+          <a href="/tourism" class="btn btn-primary">Tourism & Culture Guide</a>
+          <a href="/municipality" class="btn btn-outline">Municipality & 35 Barangays</a>
+        </div>
+      </article>
+
+      <aside class="detail-sidebar">
+        <h2>Feature Reference</h2>
+        <dl>
+          <dt>Location</dt>
+          <dd>{item.barangayOrPlace}</dd>
+          <dt>Historical Period</dt>
+          <dd>{item.eventOrRecordDate}</dd>
+          <dt>Primary References</dt>
+          <dd>{item.sourceIds.join(' · ')}</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

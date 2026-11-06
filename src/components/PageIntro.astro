@@ -1,5 +1,26 @@
 ---
-interface Props {eyebrow:string;title:string;description:string;aside?:string;}
-const {eyebrow,title,description,aside}=Astro.props;
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  aside?: string;
+  asideTitle?: string;
+}
+const { eyebrow, title, description, aside, asideTitle = 'Office Guidance' } = Astro.props;
 ---
-<section class="page-intro"><div class="container page-intro-grid"><div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p class="page-intro-description">{description}</p></div>{aside&&<div class="intro-aside"><span class="eyebrow">Information note</span><p>{aside}</p></div>}</div></section>
+
+<section class="page-intro">
+  <div class="container page-intro-grid">
+    <div>
+      {eyebrow && <p class="section-kicker">{eyebrow}</p>}
+      <h1>{title}</h1>
+      <p class="page-intro-description">{description}</p>
+    </div>
+    {aside && (
+      <div class="intro-aside">
+        <strong class="intro-aside-title">{asideTitle}</strong>
+        <p>{aside}</p>
+      </div>
+    )}
+  </div>
+</section>

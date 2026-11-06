@@ -1,6 +1,26 @@
 ---
 import type { UpdateItem } from '../data/types';
-interface Props{item:UpdateItem;}
-const {item}=Astro.props;
+interface Props {
+  item: UpdateItem;
+}
+const { item } = Astro.props;
 ---
-<a class="news-row" href={`/news/${item.slug}`}><time datetime={item.publishedDate}>{new Date(item.publishedDate+'T00:00:00').toLocaleDateString('en-PH',{month:'short',day:'numeric',year:'numeric'})}</time><div><span class="item-category">{item.category}</span><h3>{item.title}</h3><p>{item.summary}</p><small>Source: {item.publisher} · Archival record</small></div><span class="list-arrow" aria-hidden="true">↗</span></a>
+
+<a class="news-row" href={`/news/${item.slug}`}>
+  <div class="news-date-col">
+    <time datetime={item.publishedDate}>
+      {new Date(item.publishedDate + 'T00:00:00').toLocaleDateString('en-PH', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      })}
+    </time>
+    <span class="item-category">{item.category}</span>
+  </div>
+  <div class="news-body-col">
+    <h3>{item.title}</h3>
+    <p>{item.summary}</p>
+    <small>{item.publisher}</small>
+  </div>
+  <span class="news-read-label">Read report</span>
+</a>

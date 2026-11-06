@@ -1,15 +1,85 @@
 ---
-const links=[
-{title:'Municipality',href:'/municipality'},{title:'Government',href:'/government'},{title:'Municipal Services',href:'/services'},
-{title:'News & Advisories',href:'/news'},{title:'Projects & Progress',href:'/projects'},{title:'Tourism & Culture',href:'/tourism'},
-{title:'Transparency',href:'/transparency'},{title:'Contact',href:'/contact'}
+const civicLinks = [
+  { title: 'Municipality & 35 Barangays', href: '/municipality' },
+  { title: 'Government & Offices', href: '/government' },
+  { title: 'Municipal Services', href: '/services' },
+  { title: 'News & Announcements', href: '/news' },
+  { title: 'Projects & Progress', href: '/projects' },
+  { title: 'Transparency & Records', href: '/transparency' }
+];
+
+const placeLinks = [
+  { title: 'Tourism & Culture Guide', href: '/tourism' },
+  { title: 'Badiang Spring Resort', href: '/tourism/badiang-spring' },
+  { title: 'Sr. Santo Niño Parish Church', href: '/tourism/sto-nino-parish-church' },
+  { title: 'Sang-at Festival & Heritage', href: '/culture/sang-at' },
+  { title: 'Kinawa Falls & Highlands', href: '/tourism/kinawa-falls' },
+  { title: 'Contact & Directions', href: '/contact' }
 ];
 ---
+
 <footer class="site-footer">
   <div class="container footer-main">
-    <div class="footer-brand"><span class="footer-mini">V.</span><p class="footer-eyebrow">Municipality of Valencia · Bohol</p><h2>BARUG<br/>VALENCIA<span>.</span></h2><p>A clearer digital gateway to municipal information, public services, and community updates.</p></div>
-    <div class="footer-column"><h3>Explore this site</h3><div class="footer-links">{links.map(x=><a href={x.href}>{x.title}</a>)}</div></div>
-    <div class="footer-column"><h3>Public information</h3><p>This is an independently developed prototype. It is not operated by, endorsed by, or connected to a live transaction system of the Municipal Government of Valencia.</p><a class="footer-official" href="https://www.facebook.com/lguvalofficialpage" target="_blank" rel="noopener noreferrer">Visit LGU Valencia public page ↗</a></div>
+    <div class="footer-brand">
+      <div class="footer-identity">
+        <span class="footer-crest" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <path d="M4 19.5C7 17.5 10.5 17.5 14 19.5C17.5 21.5 21 21.5 24 19.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M5.5 14.5L14 6.5L22.5 14.5" stroke="#E5B44D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <strong>Municipality of Valencia, Bohol</strong>
+          <span>BARUG VALENCIA</span>
+        </div>
+      </div>
+      <p class="footer-summary">
+        Located along the southern coast of Bohol 42 kilometers east of Tagbilaran City, uniting 35 coastal and upland barangays from the Panangatan River to Banderahan Peak.
+      </p>
+      <dl class="footer-meta-list">
+        <div>
+          <dt>Municipal Center</dt>
+          <dd>Poblacion, Valencia, Bohol 6306</dd>
+        </div>
+        <div>
+          <dt>PSGC Reference</dt>
+          <dd>0701247000 · 3rd District of Bohol</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="footer-column">
+      <h3>Municipal Directory</h3>
+      <div class="footer-links">
+        {civicLinks.map((x) => (
+          <a href={x.href}>{x.title}</a>
+        ))}
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h3>Explore Valencia</h3>
+      <div class="footer-links">
+        {placeLinks.map((x) => (
+          <a href={x.href}>{x.title}</a>
+        ))}
+      </div>
+      <a
+        class="footer-official"
+        href="https://www.facebook.com/lguvalofficialpage"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LGU Valencia Official Facebook Page ↗
+      </a>
+    </div>
   </div>
-  <div class="container footer-bottom"><span>© {new Date().getFullYear()} · Valencia municipal website prototype</span><span>Source attribution and validation notices are supplied throughout the site. No online transactions.</span><a href="#top">Back to top ↑</a></div>
+
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} Municipality of Valencia, Province of Bohol · BARUG VALENCIA</span>
+    <span>
+      Photographs via Wikimedia Commons (<a href="/transparency#media-credits">View attributions & licenses</a>)
+    </span>
+    <a href="#top">Back to top ↑</a>
+  </div>
 </footer>

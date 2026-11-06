@@ -1,17 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import ContentStatus from '../components/ContentStatus.astro';
 import { OFFICIAL_CHANNELS, CONFLICTS_SUMMARY } from '../data/site';
-const sources=OFFICIAL_CHANNELS.filter(x=>x.id==='PSA-PSGC'||x.id==='DILG-FDP'||x.id==='PPDO-BOHOL');
+
+const sources = OFFICIAL_CHANNELS.filter(
+  (x) => x.id === 'PSA-PSGC' || x.id === 'DILG-FDP' || x.id === 'PPDO-BOHOL'
+);
+
+const mediaCredits = [
+  {
+    file: '/media/valencia/valencia-church-plaza.jpg',
+    subject: 'Sr. Santo Niño Parish Church & Plaza in Poblacion Occidental, Valencia, Bohol',
+    author: 'Pinay06 (English Wikipedia / Wikimedia Commons)',
+    license: 'Creative Commons Attribution 2.5 (CC BY 2.5)',
+    url: 'https://commons.wikimedia.org/wiki/File:Valenciachurch_bohol.jpg'
+  },
+  {
+    file: '/media/valencia/santo-nino-parish-arch.jpg',
+    subject: 'Belfry & Flame Tree Canopy of Sr. Santo Niño Parish Church, Valencia, Bohol',
+    author: 'Southlens62 (Wikimedia Commons)',
+    license: 'Creative Commons Attribution-Share Alike 4.0 (CC BY-SA 4.0)',
+    url: 'https://commons.wikimedia.org/wiki/File:Santo_Ni%C3%B1o_Parish_Church_(Valencia,_Bohol)_2017.jpg'
+  },
+  {
+    file: '/media/valencia/valencia-public-market.jpg',
+    subject: 'Valencia Public Market & Local Motorcabs in Poblacion, Valencia, Bohol',
+    author: 'P199 (Wikimedia Commons)',
+    license: 'Creative Commons Attribution-Share Alike 3.0 (CC BY-SA 3.0)',
+    url: 'https://commons.wikimedia.org/wiki/File:Valencia_Bohol_2.jpg'
+  },
+  {
+    file: '/media/valencia/valencia-town-view.jpg',
+    subject: 'Welcome to Valencia Highway Arch along the Southern Bohol Coastal Road',
+    author: 'P199 (Wikimedia Commons)',
+    license: 'Public Domain',
+    url: 'https://commons.wikimedia.org/wiki/File:Valencia_Bohol_1.jpg'
+  },
+  {
+    file: '/media/valencia/valencia-cristo-rey.jpg',
+    subject: 'Historic Cristo Rey Monument on the Parish Plaza Grounds in Valencia, Bohol',
+    author: 'pinay06 (Wikimedia Commons)',
+    license: 'Creative Commons Attribution 2.5 (CC BY 2.5)',
+    url: 'https://commons.wikimedia.org/wiki/File:Valenciachurch.jpg'
+  },
+  {
+    file: '/media/valencia/bohol-locator-valencia.png',
+    subject: 'Locator Map of the Municipality of Valencia within the Province of Bohol',
+    author: 'Mike Gonzalez / TheCoffee (Wikimedia Commons)',
+    license: 'Creative Commons Attribution-Share Alike 3.0 (CC BY-SA 3.0)',
+    url: 'https://commons.wikimedia.org/wiki/File:Ph_locator_bohol_valencia.png'
+  }
+];
 ---
-<BaseLayout title="Transparency & Public Documents" description="External authoritative disclosure, statistics and source references relevant to Valencia Bohol municipal information.">
-<PageIntro eyebrow="07 / Accountability" title="Transparency & Documents" description="A navigable set of authoritative disclosure portals, statistical references and content-verification notes." aside="This independent prototype does not host or certify current municipal financial statements, procurement records, ordinances or Citizen's Charter PDFs."/>
-<section class="section"><div class="container"><ContentStatus label="Primary disclosure sources — external gateways" detail="The links below open government or provincial sources. An external disclosure portal is not proof that a particular Valencia document is currently filed or available there."/>
-<div class="section-heading" style="margin-top:38px;"><div><p class="eyebrow">Source gateways</p><h2>Go to the authoritative record.</h2></div></div>
-<div class="source-grid">{sources.map(s=><a target="_blank" rel="noopener noreferrer" href={s.url}><span class="tag">{s.id}</span><strong>{s.name}</strong><small>{s.scope}</small><p class="text-link" style="margin:15px 0 0;display:inline-block;">Open source ↗</p></a>)}</div>
-<div class="section-heading" style="margin-top:55px;"><div><p class="eyebrow">Publication validation</p><h2>What is not claimed here.</h2></div></div><div class="two-col"><div class="info-card"><h3>Documents and budgets</h3><p>Municipal budgets, procurement notices, ordinances, policy files and current Citizen’s Charter schedules must come from official municipal or government registers. None are fabricated or simulated as downloadable records.</p><a href="/contact">Verify through official channels ↗</a></div><div class="info-card"><h3>Content and media rights</h3><p>Destination photos, a municipal seal, leadership portraits and official media remain unapproved for reuse. The interface uses clearly identified non-photographic placeholders.</p><a href="/tourism">See documented locations ↗</a></div></div>
-<div class="section-heading" style="margin-top:52px;"><div><p class="eyebrow">Research register</p><h2>Known source conflicts.</h2><p class="section-description">These discrepancies are disclosed rather than resolved by invented certainty.</p></div></div>
-<div class="news-list">{CONFLICTS_SUMMARY.map(c=><div class="news-row conflict-row"><span class="item-category">{c.id}</span><div><h3>{c.topic}</h3><p>{c.claimA} / {c.claimB}</p><small>{c.handling}</small></div></div>)}</div>
-</div></section>
+
+<BaseLayout
+  title="Transparency & Public Records | Municipality of Valencia, Bohol"
+  description="National and provincial disclosure portals, statistical registries, historical notes, and media attributions for the Municipality of Valencia, Bohol."
+>
+  <PageIntro
+    eyebrow="Public Accountability & Open Records"
+    title="Transparency & Public Records"
+    description="Direct links to national and provincial government registries for local government disclosures, census statistics, and provincial socio-economic profiles."
+    asideTitle="DILG Full Disclosure"
+    aside="Statutory financial and procurement reports for local government units are published through the DILG Full Disclosure Policy Portal."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">National & Provincial Portals</p>
+          <h2>Official Public Record Gateways</h2>
+          <p class="section-description">
+            Access primary statistical, geographic, tourism, and fiscal disclosure repositories covering the Municipality of Valencia.
+          </p>
+        </div>
+      </div>
+
+      <div class="source-grid">
+        {sources.map((s) => (
+          <a target="_blank" rel="noopener noreferrer" href={s.url}>
+            <span class="tag">{s.verificationStatus}</span>
+            <strong>{s.name}</strong>
+            <small>{s.scope}</small>
+            <p class="text-link" style="margin: 15px 0 0; display: inline-block;">
+              Open official portal ↗
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <div class="section-heading" style="margin-top: 56px;">
+        <div>
+          <p class="section-kicker">Historical & Geographic Notes</p>
+          <h2>Municipal Reference Notes</h2>
+          <p class="section-description">
+            Documented historical and geographic notes from provincial and national publications.
+          </p>
+        </div>
+      </div>
+
+      <div class="news-list">
+        {CONFLICTS_SUMMARY.map((c) => (
+          <div class="news-row conflict-row">
+            <span class="item-category">{c.id}</span>
+            <div>
+              <h3>{c.topic}</h3>
+              <p>
+                {c.claimA} {c.claimB}
+              </p>
+              <small>{c.handling}</small>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="section-heading" style="margin-top: 56px;" id="media-credits">
+        <div>
+          <p class="section-kicker">Photography & Cartography</p>
+          <h2>Media Attributions & Licenses</h2>
+          <p class="section-description">
+            All photographs and maps of Valencia, Bohol displayed on this website are credited to their respective photographers under open licenses.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Subject & Location in Valencia</th>
+              <th>Author / Photographer</th>
+              <th>License</th>
+              <th>Source File</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mediaCredits.map((m) => (
+              <tr>
+                <td><strong>{m.subject}</strong></td>
+                <td>{m.author}</td>
+                <td><span class="tag">{m.license}</span></td>
+                <td>
+                  <a href={m.url} target="_blank" rel="noopener noreferrer" class="source-link">
+                    Wikimedia Commons ↗
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

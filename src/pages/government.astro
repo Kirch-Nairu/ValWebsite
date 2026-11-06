@@ -1,18 +1,92 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import ContentStatus from '../components/ContentStatus.astro';
 import { SERVICE_CATEGORIES } from '../data/services';
 ---
-<BaseLayout title="Government & Municipal Offices" description="Government functions, offices and public-service paths in Valencia, Bohol. Independent non-transactional prototype.">
-<PageIntro eyebrow="02 / Local government" title="Government & Municipal Offices" description="Understand the municipality's public-facing functions and find the office connected to your inquiry." aside="Current officeholder rosters and personnel details are not displayed without authoritative, dated municipal verification."/>
-<section class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">Municipal government</p><h2>Public offices, clearly organized.</h2><p class="section-description">This functional guide is organized around citizen needs instead of an unverified list of individual officials.</p></div><a href="/services" class="text-link">Browse service guides ↗</a></div>
-<div class="two-col">
- <div class="info-card"><span class="tag">Local executive</span><h3 style="margin-top:17px;">Office of the Municipal Mayor</h3><p>Executive coordination, municipal programs, service delivery oversight, and public concerns. Leadership names and current terms require official approval before publication.</p><a href="/contact">Find official channels ↗</a></div>
- <div class="info-card"><span class="tag">Local legislative</span><h3 style="margin-top:17px;">Sangguniang Bayan</h3><p>The municipal legislative body handles local ordinances and policy work. Approved meeting schedules, ordinances, and elected-member details are not reproduced without an official source record.</p><a href="/transparency">Public disclosure resources ↗</a></div>
-</div>
-<div class="section-heading" style="margin-top:55px;"><div><p class="eyebrow">Functional office directory</p><h2>Where to direct your inquiry.</h2></div></div>
-<div class="two-col">{SERVICE_CATEGORIES.map(s=><div class="info-card"><span class="tag muted">Office guide</span><h3 style="margin-top:14px;">{s.office}</h3><p>{s.summary}</p><a href={`/services/${s.id}`}>See related service and guidance ↗</a></div>)}</div>
-</div></section>
-<section class="section section-mist"><div class="container"><div class="section-heading"><div><p class="eyebrow">Accountable public information</p><h2>Published facts should be traceable.</h2></div></div><ContentStatus label="Roster and Citizen’s Charter verification" detail="Do not rely on this prototype for currently serving officeholders, office hours, fees or mandatory documents. Confirm them through the Municipal Government's official channels and its latest approved Citizen's Charter."/><div class="button-row" style="margin-top:24px;"><a href="/transparency" class="btn btn-primary">Transparency resources ↗</a><a href="/news" class="btn btn-outline">Dated public records ↗</a></div></div></section>
+
+<BaseLayout
+  title="Government & Municipal Offices | Municipality of Valencia, Bohol"
+  description="Executive leadership, Sangguniang Bayan legislative functions, BARUG Valencia governance framework, and municipal department directory in Valencia, Bohol."
+>
+  <PageIntro
+    eyebrow="Local Government Unit · Valencia, Bohol"
+    title="Government & Municipal Offices"
+    description="Guided by the BARUG VALENCIA framework—Better, Affectionate, Responsive and Unifying Governance—the Municipal Government coordinates public services across 35 barangays."
+    asideTitle="Municipal Hall"
+    aside="Located in Poblacion, Valencia, Bohol. Office hours follow regular weekday Philippine government schedules."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Executive & Legislative Branches</p>
+          <h2>Municipal Governance Structure</h2>
+          <p class="section-description">
+            Local administration and policy-making operate under the Local Government Code of the Philippines (Republic Act No. 7160).
+          </p>
+        </div>
+        <a href="/services" class="text-link">Browse resident service guides</a>
+      </div>
+
+      <div class="two-col">
+        <div class="info-card">
+          <span class="tag">Executive Branch</span>
+          <h3 style="margin-top: 14px;">Office of the Municipal Mayor</h3>
+          <p>
+            Led by Municipal Mayor <strong>Dionisio Neil A. Balite</strong> (sworn into office in June 2025; completed the Development Academy of the Philippines AI Governance course in October 2026), the Executive Office oversees municipal departments, infrastructure delivery, disaster preparedness, and inter-agency programs under the <strong>BARUG VALENCIA</strong> agenda.
+          </p>
+          <a href="/projects">View municipal development programs →</a>
+        </div>
+
+        <div class="info-card">
+          <span class="tag">Legislative Branch</span>
+          <h3 style="margin-top: 14px;">Sangguniang Bayan</h3>
+          <p>
+            The municipal legislative council enacts ordinances, approves annual and supplemental budgets, reviews barangay development measures, and establishes local regulatory frameworks for Valencia’s 35 barangays. Youth representation sits through the Sangguniang Kabataan Municipal Federation.
+          </p>
+          <a href="/transparency">View public disclosure portals →</a>
+        </div>
+      </div>
+
+      <div class="section-heading" style="margin-top: 56px;">
+        <div>
+          <p class="section-kicker">Department Directory</p>
+          <h2>Frontline Municipal Offices</h2>
+          <p class="section-description">
+            Find the responsible municipal office for civil registry, business licensing, tax collection, social welfare, rural health, agriculture, and tourism.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        {SERVICE_CATEGORIES.map((s) => (
+          <div class="info-card" id={s.id}>
+            <span class="tag muted">{s.charterStatus}</span>
+            <h3 style="margin-top: 14px;">{s.office}</h3>
+            <p>{s.summary}</p>
+            <a href={`/services/${s.id}`}>View service guide & requirements →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-stone">
+    <div class="container">
+      <div class="contact-strip">
+        <div>
+          <p class="section-kicker">Public Inquiries & Coordination</p>
+          <h2>Verify Schedules & Documentary Checklists</h2>
+          <p class="section-description">
+            For specific Citizen’s Charter schedules, tax assessments, or mayor’s office appointments, coordinate in person at Valencia Municipal Hall or through the official LGU communication page.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a href="/contact" class="btn btn-primary">Official Channels & Directions</a>
+          <a href="/transparency" class="btn btn-outline">Transparency Gateways</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

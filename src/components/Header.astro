@@ -1,45 +1,118 @@
 ---
 const path = Astro.url.pathname;
 const items = [
- {title:'Home', href:'/'}, {title:'Municipality',href:'/municipality'}, {title:'Government',href:'/government'},
- {title:'Services',href:'/services'}, {title:'News & Advisories',href:'/news'}, {title:'Projects',href:'/projects'},
- {title:'Tourism',href:'/tourism'}, {title:'Transparency',href:'/transparency'}
+  { title: 'Home', href: '/' },
+  { title: 'Municipality', href: '/municipality' },
+  { title: 'Government', href: '/government' },
+  { title: 'Services', href: '/services' },
+  { title: 'News', href: '/news' },
+  { title: 'Projects', href: '/projects' },
+  { title: 'Tourism & Culture', href: '/tourism' },
+  { title: 'Transparency', href: '/transparency' }
 ];
-const selected=(href:string)=>href==='/'?path==='/':path===href||path.startsWith(href+'/');
+const selected = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
 ---
+
 <header class="site-header">
   <div class="container header-inner">
-    <a class="identity" href="/" aria-label="Municipality of Valencia prototype homepage">
-      <span class="identity-monogram" aria-hidden="true">V<span class="monogram-pip">.</span></span>
-      <span class="identity-words"><strong>MUNICIPALITY OF VALENCIA</strong><span>BOHOL, PHILIPPINES <b class="identity-separator">/</b> BARUG VALENCIA</span></span>
+    <a class="identity" href="/" aria-label="Municipality of Valencia, Bohol homepage">
+      <span class="identity-crest" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+          <path d="M4 19.5C7 17.5 10.5 17.5 14 19.5C17.5 21.5 21 21.5 24 19.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M5.5 14.5L14 6.5L22.5 14.5" stroke="#E5B44D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="14" cy="13.5" r="2" fill="#E5B44D"/>
+        </svg>
+      </span>
+      <span class="identity-words">
+        <strong>Municipality of Valencia, Bohol</strong>
+        <span>BARUG VALENCIA · 3rd District of Bohol</span>
+      </span>
     </a>
+
     <nav class="desktop-nav" aria-label="Primary navigation">
-      {items.map(item=><a href={item.href} aria-current={selected(item.href)?'page':undefined}>{item.title}</a>)}
+      {items.map((item) => (
+        <a href={item.href} aria-current={selected(item.href) ? 'page' : undefined}>
+          {item.title}
+        </a>
+      ))}
     </nav>
+
     <div class="header-actions">
-      <button class="icon-button" type="button" data-open-search aria-label="Search the website" title="Search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
-      <a class="header-contact" href="/contact">Contact <span aria-hidden="true">↗</span></a>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button
+        class="search-trigger"
+        type="button"
+        data-open-search
+        aria-label="Search the website"
+        title="Search"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" />
+        </svg>
+        <span class="search-trigger-label">Search</span>
+      </button>
+      <a class="header-contact" href="/contact">Contact</a>
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </div>
 </header>
+
 <dialog class="mobile-dialog" id="mobile-nav" aria-label="Mobile navigation">
-  <div class="mobile-dialog-head"><strong>MUNICIPALITY OF VALENCIA</strong><button type="button" id="menu-close" aria-label="Close navigation">Close ×</button></div>
+  <div class="mobile-dialog-head">
+    <div>
+      <strong>Municipality of Valencia, Bohol</strong>
+      <span class="mobile-dialog-sub">BARUG VALENCIA</span>
+    </div>
+    <button type="button" id="menu-close" aria-label="Close navigation">Close</button>
+  </div>
   <nav aria-label="Mobile navigation" class="mobile-links">
-    {items.map((item,i)=><a href={item.href} aria-current={selected(item.href)?'page':undefined}><span class="menu-index">{String(i+1).padStart(2,'0')}</span>{item.title}<span aria-hidden="true">↗</span></a>)}
-    <a href="/contact"><span class="menu-index">09</span>Contact<span aria-hidden="true">↗</span></a>
+    {items.map((item) => (
+      <a href={item.href} aria-current={selected(item.href) ? 'page' : undefined}>
+        <span>{item.title}</span>
+      </a>
+    ))}
+    <a href="/contact" aria-current={selected('/contact') ? 'page' : undefined}>
+      <span>Contact & Channels</span>
+    </a>
+    <a href="/search" aria-current={selected('/search') ? 'page' : undefined}>
+      <span>Search Directory</span>
+    </a>
   </nav>
-  <p>Independent prototype · Not an official government transaction portal.</p>
+  <div class="mobile-dialog-foot">
+    <p>Poblacion, Valencia, Province of Bohol · PSGC 0701247000</p>
+  </div>
 </dialog>
+
 <script>
   const menu = document.querySelector<HTMLDialogElement>('#mobile-nav');
   const toggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
   const close = document.querySelector<HTMLButtonElement>('#menu-close');
   if (menu && toggle && close) {
-    toggle.addEventListener('click', () => {menu.showModal();toggle.setAttribute('aria-expanded','true');close.focus();});
+    toggle.addEventListener('click', () => {
+      menu.showModal();
+      toggle.setAttribute('aria-expanded', 'true');
+      close.focus();
+    });
     close.addEventListener('click', () => menu.close());
-    menu.addEventListener('close', () => {toggle.setAttribute('aria-expanded','false');toggle.focus();});
-    menu.addEventListener('click', e => {if(e.target===menu)menu.close();});
-    menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>menu.close()));
+    menu.addEventListener('close', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    });
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu) menu.close();
+    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => menu.close()));
   }
 </script>

@@ -9,57 +9,337 @@ import { UPDATES } from '../data/news';
 import { PROGRESS_ITEMS } from '../data/projects';
 import { DESTINATIONS } from '../data/destinations';
 import { SITE_META } from '../data/site';
-const news=[...UPDATES].sort((a,b)=>b.publishedDate.localeCompare(a.publishedDate)).slice(0,3);
-const projects=PROGRESS_ITEMS.filter(p=>p.statusCategory==='verified_completed'||p.statusCategory==='verified_launched').slice(0,3);
-const destinations=DESTINATIONS.filter(d=>d.readiness==='established').slice(0,3);
+
+const news = [...UPDATES]
+  .sort((a, b) => b.publishedDate.localeCompare(a.publishedDate))
+  .slice(0, 4);
+
+const projects = PROGRESS_ITEMS.slice(0, 4);
+const featuredDestinations = DESTINATIONS.filter(
+  (d) =>
+    d.slug === 'sto-nino-parish-church' ||
+    d.slug === 'badiang-spring' ||
+    d.slug === 'banderahan-ugjong-highlands'
+);
 ---
-<BaseLayout title="Municipality of Valencia, Bohol | BARUG VALENCIA" description="Independent municipal information prototype for Valencia, Bohol. Find services, government information, dated news, projects, destinations, and official public channels.">
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-content">
-      <p class="eyebrow">Municipality of Valencia / Province of Bohol</p>
-      <h1>Valencia, Bohol.<br/><span>Better connected.</span></h1>
-      <p class="hero-copy">A practical starting point for municipal services, government information, community news, and the places that make Valencia distinct. Clear information, useful directions, and source-attributed records.</p>
-      <div class="button-row"><a class="btn btn-primary" href="/services">Municipal Services <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="/tourism">Explore Valencia <span aria-hidden="true">↗</span></a></div>
-      <p style="font-size:11px;margin:21px 0 0;">Independent design prototype · Information is not an official LGU transaction or real-time advisory.</p>
-    </div>
-    <div class="hero-utility">
-      <div><span class="utility-module-label">Resident information desk</span><h2>What do you<br/>need today?</h2><p>Reach the correct section without searching through announcements.</p></div>
-      <div class="hero-feature-list">
-        <a href="/services"><span><span class="hero-number">01</span> Find a municipal service</span><span aria-hidden="true">↗</span></a>
-        <a href="/news"><span><span class="hero-number">02</span> Read dated news & notices</span><span aria-hidden="true">↗</span></a>
-        <a href="/municipality#barangays"><span><span class="hero-number">03</span> Locate a barangay</span><span aria-hidden="true">↗</span></a>
-        <a href="/contact"><span><span class="hero-number">04</span> Check official communication channels</span><span aria-hidden="true">↗</span></a>
+
+<BaseLayout
+  title="Municipality of Valencia, Bohol | BARUG VALENCIA"
+  description="Municipality of Valencia, Province of Bohol (BARUG VALENCIA). Access municipal services, office directory, dated public announcements, infrastructure progress, and tourism guides."
+>
+  <!-- First Viewport: Balanced Municipal Identity + Authentic Valencia Photography -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-identity-pill">
+          <span class="hero-catchphrase">BARUG VALENCIA</span>
+          <span class="hero-divider" aria-hidden="true">·</span>
+          <span>Municipality of Valencia, Province of Bohol</span>
+        </div>
+
+        <h1>Valencia, Bohol.</h1>
+
+        <p class="hero-copy">
+          Where the Panangatan River meets the Bohol Sea and 35 coastal and upland barangays stand together. Access municipal services, public announcements, community projects, and the natural and cultural landmarks of Valencia.
+        </p>
+
+        <div class="button-row">
+          <a class="btn btn-primary" href="/services">Municipal Services</a>
+          <a class="btn btn-outline" href="/tourism">Explore Valencia</a>
+        </div>
+
+        <dl class="hero-facts" aria-label="Municipal key figures">
+          <div>
+            <dt>Population (2024 Census)</dt>
+            <dd>{SITE_META.population2024}</dd>
+          </div>
+          <div>
+            <dt>Barangays</dt>
+            <dd>35 Coastal & Upland</dd>
+          </div>
+          <div>
+            <dt>District & Code</dt>
+            <dd>3rd District · 0701247000</dd>
+          </div>
+        </dl>
       </div>
-      <p class="hero-meta">BARUG VALENCIA · Municipal information prototype</p>
+
+      <div class="hero-photo-stage">
+        <figure class="hero-primary-photo">
+          <img
+            src="/media/valencia/valencia-church-plaza.jpg"
+            alt="Twin-tower stone facade of Sr. Santo Niño Parish Church and plaza palms in Poblacion Occidental, Valencia, Bohol"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption class="hero-photo-caption">
+            <div>
+              <strong>Sr. Santo Niño Parish Church & Civic Plaza</strong>
+              <span>Poblacion Occidental, Valencia, Bohol · Completed 1882 (Important Cultural Property)</span>
+            </div>
+            <span class="photo-credit-tag">Photo: Pinay06 · CC BY 2.5</span>
+          </figcaption>
+        </figure>
+
+        <div class="hero-secondary-strip">
+          <a href="/municipality" class="hero-mini-card">
+            <img
+              src="/media/valencia/valencia-town-view.jpg"
+              alt="Welcome to Valencia arch along the Bohol South Road"
+              loading="eager"
+            />
+            <div>
+              <strong>Southern Coastal Gateway</strong>
+              <span>42 km east of Tagbilaran City along the Bohol South Road</span>
+            </div>
+          </a>
+          <a href="/stories/sunday-tabu-and-crafts" class="hero-mini-card">
+            <img
+              src="/media/valencia/valencia-public-market.jpg"
+              alt="Valencia Public Market and local motorcabs in Poblacion"
+              loading="eager"
+            />
+            <div>
+              <strong>Valencia Public Market</strong>
+              <span>Sunday Tabu trade & Paleng-QR PH Plus digital payments</span>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-<div class="quick-strip"><div class="container quick-grid">
-<a href="/services/civil-registry"><span>Birth & civil records</span><span aria-hidden="true">↗</span></a>
-<a href="/services/treasury-business-permits"><span>Permits & treasury</span><span aria-hidden="true">↗</span></a>
-<a href="/transparency"><span>Public disclosures</span><span aria-hidden="true">↗</span></a>
-<a href="/search"><span>Search this website</span><span aria-hidden="true">↗</span></a>
-</div></div>
-<section class="section section-mist" id="services"><div class="container">
-  <div class="section-heading"><div><p class="eyebrow">Public service directory</p><h2>Start with the service you need.</h2><p class="section-description">Service guides identify the relevant municipal office and explain which requirements must still be confirmed with the current Citizen’s Charter.</p></div><a class="text-link" href="/services">All service categories ↗</a></div>
-  <div class="service-grid">{SERVICE_CATEGORIES.slice(0,4).map((s,i)=><ServiceCard item={s} index={i+1}/>)}</div>
-</div></section>
-<section class="section" id="news"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">News & public information</p><h2>Community updates, with dates and sources.</h2><p class="section-description">A curated archive of identifiable public and press records. These are not presented as a live municipal advisory feed.</p></div><a class="text-link" href="/news">View news archive ↗</a></div>
- <div class="news-list">{news.map(item=><NewsRow item={item}/>)}</div>
-</div></section>
-<section class="section section-mint"><div class="container profile-grid">
-  <div><p class="eyebrow">Know your municipality</p><h2>One community.<br/>35 barangays.</h2><p class="section-lead">Valencia is a municipality in Bohol’s Third Congressional District. Explore its municipal profile, geography, and research-compiled barangay directory, with sources and verification notes attached.</p><div class="stats"><div class="stat"><strong>{SITE_META.population2024}</strong><span>2024 population<br/>PSA attribution</span></div><div class="stat"><strong>35</strong><span>Barangays<br/>research directory</span></div><div class="stat"><strong>VII</strong><span>Central Visayas<br/>Philippines</span></div></div><a href="/municipality" class="btn btn-primary" style="margin-top:27px;">Municipal profile <span aria-hidden="true">↗</span></a></div>
-  <div class="profile-panel"><p class="eyebrow">Municipal quick facts</p><h3>Valencia at a glance</h3><dl><div><dt>Province</dt><dd>Bohol</dd></div><div><dt>Congressional district</dt><dd>3rd District</dd></div><div><dt>PSGC municipality code</dt><dd>0701247000</dd></div><div><dt>Public identity</dt><dd>BARUG VALENCIA</dd></div><div><dt>Local directory</dt><dd><a href="/municipality#barangays" style="text-decoration:underline;">View barangays ↗</a></dd></div></dl><p class="tabs-note" style="margin-top:22px;">Figures and identifiers are attributed to the underlying research register; the current PSA barangay-code list requires canonical source recheck.</p></div>
-</div></section>
-<section class="section"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">Municipal development</p><h2>Projects and progress.</h2><p class="section-description">Completed and reported milestones are separated from proposals. Dates and implementing bodies are shown for accountability.</p></div><a href="/projects" class="text-link">View project register ↗</a></div>
- <div class="project-table"><div class="project-labels"><span>Project / location</span><span>Documented status</span><span>Implementing office / partner</span><span></span></div>{projects.map(item=><ProjectRow item={item}/>)}</div>
-</div></section>
-<section class="section section-mist"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">Tourism & local culture</p><h2>Get to know Valencia beyond the town center.</h2><p class="section-description">Attractions recorded in the Bohol provincial tourism profile, alongside Valencia’s Sang-at tradition. Verify visitor access before travelling.</p></div><a class="text-link" href="/tourism">Explore destinations ↗</a></div>
- <div class="destination-grid">{destinations.map(d=><a class="destination-card" href={`/tourism/${d.slug}`}><MediaPanel label={d.name} caption="Approved destination photograph not yet supplied"/><div class="destination-card-body"><small>{d.barangay} · {d.category}</small><h3>{d.name}</h3><p>{d.summary}</p><strong style="font-size:12px;color:var(--forest)">Explore profile ↗</strong></div></a>)}</div>
-</div></section>
-<section class="section section-dark"><div class="container contact-strip"><div><p class="eyebrow light">Public communication</p><h2>Need an official answer? Start with the official channels.</h2><p>Use municipal communication sources for current schedules, fees, advisories, and document verification.</p></div><div class="contact-actions"><a href="/contact" class="btn btn-cream">Official channels ↗</a><a href="/transparency" class="btn btn-outline-light btn">Transparency ↗</a><p class="contact-note">This prototype does not accept payments, applications, or personal records.</p></div></div></section>
+  </section>
+
+  <!-- Primary Municipal Actions Band -->
+  <nav class="civic-action-band" aria-label="Primary municipal actions">
+    <div class="container civic-action-grid">
+      <a href="/services" class="civic-action-item">
+        <strong>Municipal Services</strong>
+        <span>Civil registry, business permits, treasury, health & agriculture</span>
+      </a>
+      <a href="/government" class="civic-action-item">
+        <strong>Offices & Governance</strong>
+        <span>Executive, Sangguniang Bayan & functional office directory</span>
+      </a>
+      <a href="/municipality#barangays" class="civic-action-item">
+        <strong>35 Barangays Directory</strong>
+        <span>Search coastal and upland barangays and PSGC references</span>
+      </a>
+      <a href="/transparency" class="civic-action-item">
+        <strong>Transparency & Records</strong>
+        <span>DILG Full Disclosure portal, PSA census & provincial profiles</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Municipal Services Section -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Resident & Business Guide</p>
+          <h2>Municipal Services & Offices</h2>
+          <p class="section-description">
+            Direct guidance on documentary preparation, responsible departments, and in-person transactions at Valencia Municipal Hall.
+          </p>
+        </div>
+        <a class="text-link" href="/services">View all service guides</a>
+      </div>
+
+      <div class="service-grid">
+        {SERVICE_CATEGORIES.map((s) => (
+          <ServiceCard item={s} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- News & Public Announcements + Municipal Projects Split/Ledger -->
+  <section class="section section-stone" id="news">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Public Information</p>
+          <h2>Recent News & Announcements</h2>
+          <p class="section-description">
+            Dated reports covering municipal governance, classroom infrastructure, digital market payments, and cultural milestones in Valencia.
+          </p>
+        </div>
+        <a class="text-link" href="/news">Browse all announcements</a>
+      </div>
+
+      <div class="news-list">
+        {news.map((item) => (
+          <NewsRow item={item} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects & Municipal Progress -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">BARUG VALENCIA in Action</p>
+          <h2>Municipal Projects & Development</h2>
+          <p class="section-description">
+            Completed educational facilities, public market modernization, agricultural recovery programs, and policy initiatives across Valencia’s barangays.
+          </p>
+        </div>
+        <a href="/projects" class="text-link">Open full project register</a>
+      </div>
+
+      <div class="project-table">
+        <div class="project-labels">
+          <span>Project & Location</span>
+          <span>Status</span>
+          <span>Implementing Office / Partner</span>
+          <span></span>
+        </div>
+        {projects.map((item) => (
+          <ProjectRow item={item} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Photograph-Driven Discover Valencia & Sang-at Heritage Showcase -->
+  <section class="section section-forest" id="discover">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker light">Tourism, Culture & Heritage</p>
+          <h2>From Coastal Springs to the Sang-at Festival</h2>
+          <p class="section-description">
+            Experience Badiang Spring where cold mountain water meets the Bohol Sea, walk across the 1882 tindalo-and-molave hardwood floor of Sr. Santo Niño Parish Church, and celebrate Valencia’s Panangatan boat-lifting heritage.
+          </p>
+        </div>
+        <a class="text-link light" href="/tourism">Explore all 14 destinations</a>
+      </div>
+
+      <div class="showcase-feature-grid">
+        <a href="/culture/sang-at" class="showcase-lead-card">
+          <div class="showcase-lead-media">
+            <img
+              src="/media/valencia/santo-nino-parish-arch.jpg"
+              alt="Flame tree canopy and stone belfry of Sr. Santo Niño Parish Church in Poblacion Occidental, Valencia, Bohol"
+              loading="eager"
+            />
+          </div>
+          <div class="showcase-lead-body">
+            <span class="showcase-pill">Foundation Day Cultural Signature · Late October</span>
+            <h3>Sang-at Festival & Panangatan Heritage</h3>
+            <p>
+              Rooted in the Cebuano verb <em>sang-at</em>—how early fishermen lifted their wooden outrigger boats onto the elevated, nipa-lined banks of the Panangatan River during the southwest monsoon. Featured at Bohol’s Sandugo showcase in July 2026.
+            </p>
+            <span class="showcase-cta">Read the Sang-at cultural profile →</span>
+          </div>
+        </a>
+
+        <div class="destination-grid">
+          {featuredDestinations.map((d) => (
+            <a class="destination-card" href={`/tourism/${d.slug}`}>
+              <MediaPanel
+                slotId={d.mediaSlotId}
+                label={d.name}
+                caption={d.barangay}
+              />
+              <div class="destination-card-body">
+                <small>{d.barangay} · {d.category}</small>
+                <h3>{d.name}</h3>
+                <p>{d.summary}</p>
+                <span class="destination-link-text">Explore destination guide →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Municipality & 35 Barangays Profile Band -->
+  <section class="section">
+    <div class="container profile-grid">
+      <div>
+        <p class="section-kicker">Know Your Municipality</p>
+        <h2>One Community Across 35 Barangays</h2>
+        <p class="section-lead">
+          Valencia spans coastal fishing and resort villages along the Bohol Sea, the commercial and heritage district of Poblacion, and upland agricultural communities rising to 485 meters at Banderahan and Limocon.
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <strong>{SITE_META.population2024}</strong>
+            <span>2024 Census of Population (PSA)</span>
+          </div>
+          <div class="stat">
+            <strong>35</strong>
+            <span>Coastal & Upland Barangays</span>
+          </div>
+          <div class="stat">
+            <strong>1867 / 1869</strong>
+            <span>Historical Foundation from Panangatan</span>
+          </div>
+        </div>
+        <div class="button-row" style="margin-top: 28px;">
+          <a href="/municipality" class="btn btn-primary">Municipal Profile & History</a>
+          <a href="/municipality#barangays" class="btn btn-outline">Search 35 Barangays</a>
+        </div>
+      </div>
+
+      <div class="profile-map-card">
+        <div class="profile-map-visual">
+          <img
+            src="/media/valencia/bohol-locator-valencia.png"
+            alt="Map of Bohol showing the location of the Municipality of Valencia on the southern coast"
+            loading="eager"
+          />
+        </div>
+        <div class="profile-map-details">
+          <h3>Geographic Overview</h3>
+          <dl>
+            <div>
+              <dt>Province & Region</dt>
+              <dd>Bohol · Central Visayas (Region VII)</dd>
+            </div>
+            <div>
+              <dt>Congressional District</dt>
+              <dd>3rd Congressional District</dd>
+            </div>
+            <div>
+              <dt>Adjacent Municipalities</dt>
+              <dd>Dimiao (West), Garcia Hernandez (East), Carmen & Sierra Bullones (North)</dd>
+            </div>
+            <div>
+              <dt>Weekly Market Day</dt>
+              <dd>Sunday Tabu at Poblacion Public Market</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Contact & Public Channels Strip -->
+  <section class="section section-stone">
+    <div class="container contact-strip">
+      <div>
+        <p class="section-kicker">Official Communication Channels</p>
+        <h2>Connect with the Municipality of Valencia</h2>
+        <p class="section-description">
+          Reach municipal offices in Poblacion, follow official public advisories from the Local Government Unit, or plan your overland trip from Tagbilaran City.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a href="/contact" class="btn btn-primary">Contact & Directions</a>
+        <a
+          href="https://www.facebook.com/lguvalofficialpage"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+        >
+          LGU Valencia Facebook ↗
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

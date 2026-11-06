@@ -1,15 +1,91 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentStatus from '../../components/ContentStatus.astro';
+import MediaPanel from '../../components/MediaPanel.astro';
 import { PROGRESS_ITEMS } from '../../data/projects';
 import type { ProgressItem } from '../../data/types';
-export function getStaticPaths(){return PROGRESS_ITEMS.map(item=>({params:{slug:item.slug},props:{item}}));}
-interface Props{item:ProgressItem}
-const {item}=Astro.props;
-const status=item.statusCategory==='verified_completed'?'Documented turnover':item.statusCategory==='verified_launched'?'Reported launch':item.statusCategory==='proposed_concept'?'Proposal only':'Unverified lead';
+
+export function getStaticPaths() {
+  return PROGRESS_ITEMS.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: ProgressItem;
+}
+
+const { item } = Astro.props;
 ---
+
 <BaseLayout title={item.title} description={item.summary}>
-<div class="container bread"><a href="/">Home</a><span>/</span><a href="/projects">Projects & Progress</a><span>/</span><span>Project record</span></div>
-<section class="page-intro"><div class="container"><p class="eyebrow">Development record / {status}</p><h1>{item.title}</h1><p class="page-intro-description">{item.summary}</p></div></section>
-<section class="section"><div class="container detail-layout"><article class="detail-main"><ContentStatus label="Record verification context" detail={item.verificationNote}/><h2>Documented context</h2><p>{item.summary}</p>{item.details.map(paragraph=><p>{paragraph}</p>)}<div class="button-row" style="margin-top:28px;"><a href="/projects" class="btn btn-primary">Back to projects ↗</a>{item.sourceUrl&&<a href={item.sourceUrl} class="btn btn-outline" rel="noopener noreferrer" target="_blank">Source publication ↗</a>}</div></article><aside class="detail-sidebar"><h2>Project record</h2><dl><dt>Research status</dt><dd>{status}</dd><dt>Location</dt><dd>{item.barangay}</dd><dt>Record date</dt><dd>{item.dateLabel}</dd><dt>Implementing body</dt><dd>{item.implementingBody}</dd><dt>Partner / donor</dt><dd>{item.partnerOrDonor}</dd><dt>Source IDs</dt><dd>{item.sourceIds.join(', ')}</dd></dl></aside></div></section>
+  <div class="container bread">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/projects">Projects & Progress</a>
+    <span>/</span>
+    <span>{item.title}</span>
+  </div>
+
+  <section class="page-intro">
+    <div class="container">
+      <p class="section-kicker">{item.statusBadge} · {item.dateLabel}</p>
+      <h1>{item.title}</h1>
+      <p class="page-intro-description">{item.summary}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <div style="margin-bottom: 24px;">
+          <MediaPanel
+            slotId={item.mediaSlotId}
+            variant="main"
+            label={item.title}
+            caption={item.barangay}
+          />
+        </div>
+
+        <ContentStatus label="Program Status" detail={item.verificationNote} />
+
+        <h2>Overview & Implementation</h2>
+        <p>{item.summary}</p>
+        {item.details.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+
+        <div class="button-row" style="margin-top: 28px;">
+          <a href="/projects" class="btn btn-primary">Back to Projects Register</a>
+          {item.sourceUrl && (
+            <a
+              href={item.sourceUrl}
+              class="btn btn-outline"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              View Publication ↗
+            </a>
+          )}
+        </div>
+      </article>
+
+      <aside class="detail-sidebar">
+        <h2>Project Profile</h2>
+        <dl>
+          <dt>Status</dt>
+          <dd>{item.statusBadge}</dd>
+          <dt>Location</dt>
+          <dd>{item.barangay}</dd>
+          <dt>Date</dt>
+          <dd>{item.dateLabel}</dd>
+          <dt>Implementing Office</dt>
+          <dd>{item.implementingBody}</dd>
+          <dt>Partner / Agency</dt>
+          <dd>{item.partnerOrDonor}</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

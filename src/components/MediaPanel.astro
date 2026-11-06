@@ -1,5 +1,42 @@
 ---
-interface Props {label:string;variant?:'main'|'tile'|'small';caption?:string;}
-const {label,variant='tile',caption='Municipal photo awaiting reuse approval'}=Astro.props;
+import { MEDIA_SLOTS } from '../data/media';
+
+interface Props {
+  slotId?: string;
+  label?: string;
+  variant?: 'main' | 'tile' | 'small';
+  caption?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  eager?: boolean;
+}
+
+const {
+  slotId,
+  label,
+  variant = 'tile',
+  caption,
+  imageSrc,
+  imageAlt,
+  eager = true
+} = Astro.props;
+
+const slot = slotId ? MEDIA_SLOTS[slotId] : undefined;
+const resolvedSrc = imageSrc || slot?.imageSrc || '/media/valencia/valencia-church-plaza.jpg';
+const resolvedTitle = label || slot?.title || 'Valencia, Bohol';
+const resolvedCaption = caption || slot?.barangay || 'Municipality of Valencia, Bohol';
+const resolvedAlt = imageAlt || slot?.imageAlt || `${resolvedTitle} — ${resolvedCaption}`;
 ---
-<div class={`media-panel media-${variant}`} aria-label={caption}><div class="media-corner"><span class="media-square" aria-hidden="true"></span><span>VALENCIA / BOHOL</span></div><div class="media-bottom"><strong>{label}</strong><span>{caption}</span></div></div>
+
+<figure class={`media-frame media-${variant}`}>
+  <img
+    src={resolvedSrc}
+    alt={resolvedAlt}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="sync"
+  />
+  <figcaption class="media-caption">
+    <strong>{resolvedTitle}</strong>
+    <span>{resolvedCaption}</span>
+  </figcaption>
+</figure>

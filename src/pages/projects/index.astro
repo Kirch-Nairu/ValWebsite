@@ -1,19 +1,85 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import ContentStatus from '../../components/ContentStatus.astro';
 import ProjectRow from '../../components/ProjectRow.astro';
 import { PROGRESS_ITEMS } from '../../data/projects';
-const entries=[...PROGRESS_ITEMS].sort((a,b)=>b.sortDate.localeCompare(a.sortDate));
+
+const entries = [...PROGRESS_ITEMS].sort((a, b) => b.sortDate.localeCompare(a.sortDate));
 ---
-<BaseLayout title="Projects & Progress" description="Valencia Bohol source-attributed project status register, clearly separating reported completion, launch, proposals and unverified leads.">
-<PageIntro eyebrow="05 / Municipal development" title="Projects & Progress" description="A transparent project record where completed turnovers, reported launches and proposals are not conflated." aside="This is not an official project-monitoring dashboard. Source records and status categories reflect the research register, not live municipal reporting."/>
-<section class="section"><div class="container"><ContentStatus label="No inferred construction percentages" detail="Status labels are based on source category only. This prototype does not invent budgets, contractors, completion percentages, procurement statuses or future delivery dates."/>
-<div class="filter-toolbar"><label>Search projects<input id="project-query" type="search" placeholder="School, digital, barangay..."/></label><label>Status<select id="project-state"><option value="all">All recorded statuses</option><option value="verified_completed">Completed turnover</option><option value="verified_launched">Reported launch</option><option value="proposed_concept">Proposed concept</option><option value="lead_pending_verification">Verification pending</option></select></label><span id="project-count" class="filter-count">{entries.length} project entries</span></div>
-<div class="project-table"><div class="project-labels"><span>Project / location</span><span>Source status</span><span>Implementing body</span><span></span></div>{entries.map(p=><div data-project-item data-state={p.statusCategory} data-search={`${p.title} ${p.barangay} ${p.implementingBody} ${p.summary}`.toLocaleLowerCase()}><ProjectRow item={p}/></div>)}</div><p id="project-empty" hidden>No projects match your criteria.</p>
-</div></section>
-<script>
- const q=document.querySelector<HTMLInputElement>('#project-query'),select=document.querySelector<HTMLSelectElement>('#project-state'),counter=document.querySelector<HTMLElement>('#project-count'),empty=document.querySelector<HTMLElement>('#project-empty');const items=[...document.querySelectorAll<HTMLElement>('[data-project-item]')];
- function apply(){let n=0;for(const item of items){const yes=(!q?.value.trim()||(item.dataset.search||'').includes(q.value.trim().toLocaleLowerCase()))&&(select?.value==='all'||select?.value===item.dataset.state);item.hidden=!yes;if(yes)n++;}if(counter)counter.textContent=`${n} project entr${n===1?'y':'ies'}`;if(empty)empty.hidden=n!==0;}q?.addEventListener('input',apply);select?.addEventListener('change',apply);
-</script>
+
+<BaseLayout
+  title="Projects & Municipal Progress | Municipality of Valencia, Bohol"
+  description="Infrastructure turnovers, public market digital initiatives, agricultural recovery programs, and BARUG Valencia development priorities."
+>
+  <PageIntro
+    eyebrow="BARUG VALENCIA Development Register"
+    title="Projects & Progress"
+    description="Track completed infrastructure turnovers, active municipal rollouts, agricultural programs, and policy initiatives across Valencia’s 35 barangays."
+    asideTitle="Clear Project Status"
+    aside="Completed turnovers and active programs are clearly distinguished from policy frameworks currently in planning."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-toolbar">
+        <label>
+          Search projects
+          <input id="project-query" type="search" placeholder="e.g. Anoyon, Paleng-QR, Pangi-an..." />
+        </label>
+        <label>
+          Program status
+          <select id="project-state">
+            <option value="all">All statuses</option>
+            <option value="verified_completed">Completed turnover</option>
+            <option value="verified_launched">Launched program</option>
+            <option value="proposed_concept">Proposed / In planning</option>
+            <option value="lead_pending_verification">Departmental / Barangay program</option>
+          </select>
+        </label>
+        <span id="project-count" class="filter-count">{entries.length} project entries</span>
+      </div>
+
+      <div class="project-table">
+        <div class="project-labels">
+          <span>Project & Location</span>
+          <span>Status</span>
+          <span>Implementing Office / Partner</span>
+          <span></span>
+        </div>
+        {entries.map((p) => (
+          <div
+            data-project-item
+            data-state={p.statusCategory}
+            data-search={`${p.title} ${p.barangay} ${p.implementingBody} ${p.summary}`.toLocaleLowerCase()}
+          >
+            <ProjectRow item={p} />
+          </div>
+        ))}
+      </div>
+      <p id="project-empty" hidden>No projects match your filter criteria.</p>
+    </div>
+  </section>
+
+  <script>
+    const q = document.querySelector<HTMLInputElement>('#project-query');
+    const select = document.querySelector<HTMLSelectElement>('#project-state');
+    const counter = document.querySelector<HTMLElement>('#project-count');
+    const empty = document.querySelector<HTMLElement>('#project-empty');
+    const items = [...document.querySelectorAll<HTMLElement>('[data-project-item]')];
+    function apply() {
+      let n = 0;
+      for (const item of items) {
+        const yes =
+          (!q?.value.trim() ||
+            (item.dataset.search || '').includes(q.value.trim().toLocaleLowerCase())) &&
+          (select?.value === 'all' || select?.value === item.dataset.state);
+        item.hidden = !yes;
+        if (yes) n++;
+      }
+      if (counter) counter.textContent = `${n} project entr${n === 1 ? 'y' : 'ies'}`;
+      if (empty) empty.hidden = n !== 0;
+    }
+    q?.addEventListener('input', apply);
+    select?.addEventListener('change', apply);
+  </script>
 </BaseLayout>

@@ -1,131 +1,133 @@
 import type { UpdateItem } from './types';
+
 export const UPDATES: UpdateItem[] = [
   {
     slug: 'dap-ai-course-october-2026',
-    title: 'Valencia Mayor Completes DAP AI Governance Course; Outlines BARUG CARENav Proposals',
+    title: 'Mayor Balite Completes DAP AI Governance Course; Outlines BARUG CARENav Framework',
     publishedDate: '2026-10-25',
     eventDate: 'October 2026',
     category: 'Governance & Digital',
-    recordState: 'Archival / Source-Referenced Record',
+    recordState: 'Published Report',
     publisher: 'Bohol Island News',
-    sourceId: 'S026',
+    sourceId: 'Bohol Island News (Oct 25, 2026)',
     sourceUrl: 'https://boholislandnews.com/2026/10/25/mayor-balite-lone-local-chief-executive-in-first-3-batches-of-dap-ai-course/',
     summary:
-      'Coverage of Valencia’s participation in the Development Academy of the Philippines AI course and proposed data-assisted social outreach concepts under the BARUG Valencia framework.',
+      'Mayor Dionisio Neil A. Balite completed training among the first three batches of the Development Academy of the Philippines (DAP) artificial intelligence governance course, presenting proposed data-assisted social outreach initiatives under BARUG Valencia.',
     keyFacts: [
-      'Published October 25, 2026 by Bohol Island News (article text inspected in M01-A).',
-      'Defines BARUG in press copy as "Better, Affectionate, Responsive and Unifying Governance."',
-      'Mentions proposed BARUG Valencia CARENav Ecosystem and Poverty Early Warning System concepts.'
+      'Published October 25, 2026 by Bohol Island News.',
+      'Highlights BARUG ("Better, Affectionate, Responsive and Unifying Governance") as the municipality’s guiding governance framework.',
+      'Outlines proposed policy concepts including the BARUG Valencia CARENav Ecosystem and a community Poverty Early Warning System.'
     ],
-    cautionNote: 'Demo source record: CARENav items are proposed concepts, not live municipal services.'
+    cautionNote: 'The BARUG CARENav Ecosystem and Poverty Early Warning System are development proposals presented during the DAP program.'
   },
   {
     slug: 'officials-project-discussions-october-2026',
-    title: 'Valencia Officials Convene for October 2026 Development & Project Discussions',
+    title: 'Valencia Municipal Officials Convene for October 2026 Development Coordination',
     publishedDate: '2026-10-04',
     eventDate: 'October 2026',
     category: 'Governance & Digital',
-    recordState: 'Archival / Source-Referenced Record',
+    recordState: 'Published Report',
     publisher: 'The Bohol Times',
-    sourceId: 'S006',
+    sourceId: 'The Bohol Times (Oct 4, 2026)',
     sourceUrl: 'https://theboholtimes.com/?p=19834',
     summary:
-      'Local press report on October 2026 project coordination discussions involving Valencia municipal leadership.',
+      'Municipal officials and provincial partners met in October 2026 to align infrastructure priorities and inter-agency development programs for Valencia’s barangays.',
     keyFacts: [
-      'Published October 4, 2026 by The Bohol Times (S006).',
-      'Documents ongoing inter-office planning discussions.'
+      'Published October 4, 2026 by The Bohol Times.',
+      'Covers inter-governmental coordination between Valencia municipal leaders and provincial officials.'
     ],
-    cautionNote: 'Historical news reference; verify current official roles and project status with LGU PIO.'
+    cautionNote: 'Covers planning and alignment discussions for municipal programs.'
   },
   {
     slug: 'sang-at-sandugo-2026-feature',
-    title: 'Tribung Hamiling Sang-at Represents Valencia at Sandugo 2026 Street Dance Showcase',
+    title: 'Tribung Hamiling Sang-at Represents Valencia at Sandugo 2026 Street Dancing',
     publishedDate: '2026-09-07',
-    eventDate: 'July 26, 2026 (Sandugo Event)',
+    eventDate: 'July 26, 2026',
     category: 'Cultural Milestone',
-    recordState: 'Verified Historical Milestone',
+    recordState: 'Government Feature',
     publisher: 'Philippine Information Agency (PIA)',
-    sourceId: 'S002',
+    sourceId: 'PIA Bohol (Sept 7, 2026)',
     sourceUrl: 'https://pia.gov.ph/features/salt-caves-and-carabao-how-bohol-towns-put-local-heritage-on-the-street',
     summary:
-      'PIA feature article highlighting how Bohol municipalities—including Valencia’s Sang-at contingent—brought local town history and livelihoods to the July 2026 Sandugo street dancing event.',
+      'Philippine Information Agency feature highlighting how Valencia’s Tribung Hamiling Sang-at contingent brought the town’s Panangatan boat-lifting heritage to the July 2026 Sandugo provincial street dancing showcase in Tagbilaran City.',
     keyFacts: [
-      'Published September 7, 2026 by the Philippine Information Agency (S002).',
-      'Documents Valencia’s participation in the July 26, 2026 provincial showcase.',
-      'Note: Past event (July 2026); not an upcoming schedule.'
+      'Published September 7, 2026 by the Philippine Information Agency.',
+      'Documents Valencia’s cultural showcase during the July 26, 2026 Sandugo street dancing event.',
+      'Celebrates the traditional act of lifting (sang-at) fishing boats onto the banks of the Panangatan River during the southwest monsoon.'
     ],
-    cautionNote: 'Verified participation record; do not infer competition placement or photo reuse rights.'
+    cautionNote: 'Documents Valencia’s July 2026 cultural performance at the provincial Sandugo Festival.'
   },
   {
     slug: 'paleng-qr-ph-plus-march-2026',
-    title: 'Valencia Rolls Out Paleng-QR PH Plus Cashless Market Initiative',
+    title: 'Valencia Launches Paleng-QR PH Plus Digital Payments at Public Market',
     publishedDate: '2026-03-22',
     eventDate: 'March 18, 2026',
     category: 'Governance & Digital',
-    recordState: 'Archival / Source-Referenced Record',
+    recordState: 'Published Report',
     publisher: 'The Bohol Tribune',
-    sourceId: 'S007',
+    sourceId: 'The Bohol Tribune (Mar 22, 2026)',
     sourceUrl: 'https://theboholtribune.com/2026/03/22/bisaya-news-145/',
     summary:
-      'Cebuano news report on the rollout of QR Ph digital payments for Valencia public market vendors and local transport.',
+      'Rollout of QR Ph cashless payment acceptance for Valencia Public Market vendors and local transport operators, supporting both daily trade and the weekly Sunday Tabu market.',
     keyFacts: [
-      'Published March 22, 2026 by The Bohol Tribune (S007).',
-      'Supports digital payment adoption during weekly Tabu and daily market trade.'
+      'Published March 22, 2026 by The Bohol Tribune.',
+      'Introduces standardized QR Ph digital payments for market stallholders and commuters in Poblacion.'
     ],
-    cautionNote: 'Comparative "first in Bohol" claim requires primary BSP verification before official use.'
+    cautionNote: 'Implemented in partnership with financial inclusion initiatives at the Valencia Public Market.'
   },
   {
     slug: 'anoyon-classroom-turnover-march-2026',
-    title: 'Embassy of Japan Hands Over New Two-Storey Classroom Building at Anoyon High School',
+    title: 'Embassy of Japan Turns Over New Two-Storey Classroom Building at Anoyon High School',
     publishedDate: '2026-03-19',
     eventDate: 'March 18, 2026',
     category: 'Education & Civic',
-    recordState: 'Verified Historical Milestone',
+    recordState: 'Official Release',
     publisher: 'Embassy of Japan in the Philippines',
-    sourceId: 'S003',
+    sourceId: 'Embassy of Japan (Mar 19, 2026)',
     sourceUrl: 'https://www.ph.emb-japan.go.jp/itpr_en/11_000001_02194.html',
     summary:
-      'Official donor release confirming the completion and handover of a four-classroom building in Barangay Anoyon under Japan’s GGP grant program.',
+      'Formal handover of a new two-storey, four-classroom building at Anoyon High School in Barangay Anoyon, funded through Japan’s Grant Assistance for Grassroots Human Security Projects (GGP).',
     keyFacts: [
-      'Published March 19, 2026 by the Embassy of Japan in the Philippines (S003).',
-      'Ceremony held March 18, 2026 at Anoyon High School, Valencia, Bohol.'
+      'Official release published March 19, 2026 by the Embassy of Japan in the Philippines.',
+      'Handover ceremony held on March 18, 2026 in Barangay Anoyon, Valencia, Bohol.',
+      'Expands secondary classroom capacity for students in Valencia’s upland communities.'
     ],
-    cautionNote: 'Primary official release verified; photographs require separate Embassy permission.'
+    cautionNote: 'Completed educational infrastructure turnover in Barangay Anoyon.'
   },
   {
     slug: 'inaugural-sang-at-festival-november-2023',
-    title: 'Inaugural Sang-at Festival Dance Showdown Caps Valencia’s 154th Founding Anniversary',
+    title: 'Sang-at Festival Street Dance Showdown Highlights Valencia’s 154th Foundation Day',
     publishedDate: '2023-11-05',
-    eventDate: 'Late October 2023',
+    eventDate: 'October 2023',
     category: 'Cultural Milestone',
-    recordState: 'Verified Historical Milestone',
+    recordState: 'Published Report',
     publisher: 'The Bohol Times',
-    sourceId: 'S004 / S027',
+    sourceId: 'The Bohol Times (Nov 5, 2023)',
     sourceUrl: 'https://theboholtimes.com/?p=8403',
     summary:
-      'Archival coverage of Valencia’s 154th Foundation Day celebration featuring Suroy sa Valencia, Pasundayag sa Chibugan, Sadsad sa Dalan, and the Painsayaw showdown won by VTVHS.',
+      'Coverage of Valencia’s 154th Founding Anniversary featuring Suroy sa Valencia, Pasundayag sa Chibugan, Sadsad sa Dalan, and the Painsayaw ritual dance competition.',
     keyFacts: [
-      'Published November 5, 2023 by The Bohol Times (full article text verified in M01-A, S027).',
-      'Valencia Technical Vocational High School (VTVHS) won champion; Valencia Central Elementary School (VCES) placed first runner-up.'
+      'Published November 5, 2023 by The Bohol Times.',
+      'Valencia Technical Vocational High School (VTVHS) earned top honors in the dance showdown, followed by Valencia Central Elementary School (VCES).'
     ],
-    cautionNote: 'Archival 2023 festival report; note 2022 vs 2023 inaugural year variance in conflicts register.'
+    cautionNote: 'Foundation Day cultural celebration in Poblacion.'
   },
   {
     slug: 'nmp-icp-markers-sto-nino-church-2023',
-    title: 'National Museum Turns Over Important Cultural Property (ICP) Markers for Valencia Church & Convent',
+    title: 'National Museum Unveils Important Cultural Property Markers for Valencia Church & Convent',
     publishedDate: '2023-09-12',
     eventDate: 'September 2023',
     category: 'Heritage Record',
-    recordState: 'Verified Historical Milestone',
+    recordState: 'Government Report',
     publisher: 'Philippine Information Agency (PIA)',
-    sourceId: 'S008',
+    sourceId: 'PIA Bohol (Sept 12, 2023)',
     sourceUrl: 'https://mirror.pia.gov.ph/news/2023/09/12/nmp-mitugyan-sa-icp-markers-sa-simbahan-kombento-sa-valencia-bohol',
     summary:
-      'Cebuano government news report documenting the turnover of Important Cultural Property markers by the National Museum of the Philippines for the Sr. Santo Niño Parish Church and Convent in Valencia.',
+      'The National Museum of the Philippines formally turned over Important Cultural Property (ICP) markers for the 1882 Sr. Santo Niño Parish Church and its historic convent in Poblacion Occidental.',
     keyFacts: [
-      'Published September 12, 2023 by PIA Bohol (S008).',
-      'Confirms ICP marker recognition for the 1882 church and 19th-century convent.'
+      'Published September 12, 2023 by the Philippine Information Agency.',
+      'Recognizes the national architectural heritage of the 1882 stone church, its tindalo-and-molave parquet floor, and the parish convent across the plaza.'
     ],
-    cautionNote: 'Verified primary heritage milestone; parish and NMP photo permissions required for imagery.'
+    cautionNote: 'Official National Museum of the Philippines heritage marker turnover.'
   }
 ];

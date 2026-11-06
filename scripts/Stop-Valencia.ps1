@@ -8,13 +8,13 @@ try {
   $Astro = Join-Path $Root 'node_modules\astro\astro.js'
   $proc = Get-CimInstance Win32_Process -Filter "ProcessId = $pidValue" -ErrorAction SilentlyContinue
   if (-not $proc) { Write-Host "Recorded PID $pidValue is no longer running."; return }
-  if ($proc.CommandLine -notlike "*$Astro*" -or $proc.ExecutablePath -ne [string]$record.executable) {
+  if ($proc.CommandLine -notlike "*$Astro*") {
     throw "PID $pidValue is not the recorded Valencia Astro process. Refusing to stop it."
   }
-  Stop-Process -Id $pidValue -ErrorAction Stop
+  Stop-Process -Id $pidValue -Force -ErrorAction Stop
   Write-Host "Stopped verified Valencia Astro PID $pidValue" -ForegroundColor Green
 } finally {
-  if (-not $proc -or ($proc.CommandLine -like "*$Astro*" -and $proc.ExecutablePath -eq [string]$record.executable)) {
+  if (-not $proc -or ($proc.CommandLine -like "*$Astro*")) {
     Remove-Item $State -Force -ErrorAction SilentlyContinue
   }
 }

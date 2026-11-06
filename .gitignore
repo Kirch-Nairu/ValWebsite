@@ -10,11 +10,12 @@ dist/
 playwright-report/
 test-results/
 
-# Local-only research cache: do not commit third-party photos, social screenshots,
-# raw Facebook image downloads, identifiable-person images or licensed assets.
+# Local-only research & preview cache: do not commit third-party photos, social screenshots,
+# raw Facebook image downloads, identifiable-person images or non-redistributable preview assets.
 research-local/
 research/_private/
 media-local/
 assets-unapproved/
+public/media/local-preview/
 
 .valencia-server.json
