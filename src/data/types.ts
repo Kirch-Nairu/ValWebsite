@@ -17,7 +17,8 @@ export type VisualMotif =
   | 'market-commercial'
   | 'market-night'
   | 'anislag-spring'
-  | 'banderahan-locator';
+  | 'banderahan-locator'
+  | 'municipal-hall-night';
 
 export interface MediaSlotSpec {
   slotId: string;

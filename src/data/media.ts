@@ -301,6 +301,24 @@ export const MEDIA_SLOTS: Record<string, MediaSlotSpec> = {
     imageAlt: 'Illuminated night facade of the Valencia Business Center with glowing sign and warm architectural lights in Poblacion, Valencia, Bohol',
     photographer: 'LGU Valencia Public Documentation',
     license: 'Official Municipal Documentation'
+  },
+  'valencia-municipal-hall-night': {
+    slotId: 'valencia-municipal-hall-night',
+    candidateId: 'VALENCIA-HALL-NIGHT-01',
+    title: 'Valencia Municipal Hall Illuminated Night Panorama',
+    subject: 'Two-storey municipal government hall with Jose Rizal monument and landscaped plaza illuminated under the evening sky in Poblacion',
+    barangay: 'Poblacion, Valencia, Bohol',
+    motif: 'municipal-hall-night',
+    aspectRatio: '16:9',
+    approvalStatus: 'APPROVED_REDISTRIBUTABLE',
+    statusLabel: 'Valencia Municipal Hall (Poblacion)',
+    creditLine: 'Official Municipal Photography · Municipality of Valencia',
+    approvedDropInPath: '/media/valencia/valencia-municipal-hall-night.jpg',
+    acquisitionNote: 'Official municipal photograph of the Valencia Municipal Hall and illuminated civic plaza grounds in Poblacion.',
+    imageSrc: '/media/valencia/valencia-municipal-hall-night.jpg',
+    imageAlt: 'Valencia Municipal Hall illuminated at night with warm architectural lighting, Jose Rizal monument, and landscaped civic grounds in Poblacion, Valencia, Bohol',
+    photographer: 'Municipality of Valencia Civic Photography',
+    license: 'Official Municipal Documentation'
   }
 };
 
