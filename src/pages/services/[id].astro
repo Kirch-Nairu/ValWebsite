@@ -27,11 +27,12 @@ const { item } = Astro.props;
     <span>{item.title}</span>
   </div>
 
-  <section class="page-intro">
-    <div class="container">
-      <p class="section-kicker">{item.office}</p>
-      <h1>{item.title}</h1>
-      <p class="page-intro-description">{item.summary}</p>
+  <section class="page-intro" style="position: relative; background: #0a1f1b url('/media/valencia/valencia-municipal-hall-night.jpg') center center / cover no-repeat; overflow: hidden; padding: 48px 0;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 31, 27, 0.92) 0%, rgba(15, 45, 38, 0.86) 50%, rgba(10, 31, 27, 0.94) 100%); pointer-events: none;" aria-hidden="true"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">{item.office}</p>
+      <h1 style="color: #ffffff;">{item.title}</h1>
+      <p class="page-intro-description" style="color: #d1e2db;">{item.summary}</p>
     </div>
   </section>
 
