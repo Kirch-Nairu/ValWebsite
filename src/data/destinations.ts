@@ -115,15 +115,16 @@ export const DESTINATIONS: DestinationItem[] = [
     readinessLabel: 'Community Ecotourism Spring',
     ppdoPage: 'Bohol PPDO CY2025 Tourism Profile, p. 192',
     sourceIds: ['Bohol PPDO CY2025 Tourism Profile'],
-    mediaSlotId: 'kinawa-cauldron',
+    mediaSlotId: 'anislag-spring-pool',
     summary:
       'A clear cold spring nestled in a rainforest pocket of Barangay Omjon, named after the surrounding Anislag trees and cared for by the local community since 2014.',
     editorialBody: [
-      'Located in Barangay Omjon, Anislag Spring is a natural cold freshwater spring shaded by rainforest trees and maintained by Barangay Omjon residents since 2014.'
+      'Located in Barangay Omjon, Anislag Spring is a natural cold freshwater spring shaded by rainforest trees and maintained by Barangay Omjon residents since 2014.',
+      'Unlike developed coastal resorts, Anislag offers an authentic, cool probinsya retreat where pristine waters flow from limestone ground under a dense green jungle canopy.'
     ],
     visitorNotice:
       'Community-stewarded spring. Coordinate with Barangay Omjon officials before visiting.',
-    hasDedicatedDetail: false
+    hasDedicatedDetail: true
   },
   {
     slug: 'banderahan-ugjong-highlands',

@@ -11,12 +11,15 @@ const news = [...UPDATES]
   .slice(0, 4);
 
 const projects = PROGRESS_ITEMS.slice(0, 4);
-const featuredDestinations = DESTINATIONS.filter(
-  (d) =>
-    d.slug === 'sto-nino-parish-church' ||
-    d.slug === 'badiang-spring' ||
-    d.slug === 'banderahan-ugjong-highlands'
-);
+const destinationOrder = [
+  'sto-nino-parish-church',
+  'badiang-spring',
+  'anislag-spring',
+  'banderahan-ugjong-highlands'
+];
+const featuredDestinations = destinationOrder
+  .map((slug) => DESTINATIONS.find((d) => d.slug === slug))
+  .filter((d): d is typeof DESTINATIONS[0] => Boolean(d));
 ---
 
 <BaseLayout
@@ -437,56 +440,120 @@ const featuredDestinations = DESTINATIONS.filter(
     </div>
   </section>
 
-  <!-- 4. Real Tourism Anchors: Santo Niño Church, Badiang Spring & Sang-at -->
-  <section class="section section-forest" id="discover">
+  <!-- 4. Real Tourism & Heritage Anchors: Santo Niño Church, Badiang Spring, Anislag & Banderahan -->
+  <section class="section section-forest" id="discover" style="padding: 64px 0;">
     <div class="container">
-      <div class="section-heading">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; border-bottom: 2px solid rgba(229, 180, 77, 0.4); padding-bottom: 16px;">
         <div>
-          <p class="section-kicker light">Heritage & Natural Wonders</p>
-          <h2>The Authentic Destinations of Valencia</h2>
-          <p class="section-description">
-            From the 1882 tindalo-and-molave hardwood floor of Sr. Santo Niño Parish Church to cold subterranean waters cascading into the Bohol Sea at Badiang Spring.
+          <p class="section-kicker light" style="letter-spacing: 0.08em; font-size: 0.78rem; margin-bottom: 6px;">HERITAGE & ECOTOURISM CORRIDORS</p>
+          <h2 style="margin: 0; font-size: 1.85rem; color: #ffffff;">The Authentic Destinations of Valencia</h2>
+          <p style="margin: 6px 0 0; color: #cfe0d9; font-size: 0.95rem; max-width: 680px; line-height: 1.5;">
+            From the 1882 tindalo-and-molave hardwood floor of Sr. Santo Niño Parish Church to coastal subterranean springs and 485-meter upland ridges overlooking the Bohol Sea.
           </p>
         </div>
-        <a class="text-link light" href="/tourism">View destination catalog →</a>
+        <a class="text-link light" href="/tourism" style="font-weight: 600; white-space: nowrap;">Explore Full Destination Directory →</a>
       </div>
 
-      <div class="showcase-feature-grid">
-        <a href="/culture/sang-at" class="showcase-lead-card">
-          <div class="showcase-lead-media">
-            <img
-              src="/media/valencia/santo-nino-parish-arch.jpg"
-              alt="Flame tree canopy and stone belfry of Sr. Santo Niño Parish Church in Poblacion Occidental, Valencia, Bohol"
-              loading="eager"
-            />
+      <!-- Lead Cultural Signature: Sang-at Festival & Panangatan Heritage -->
+      <a href="/culture/sang-at" class="showcase-lead-card" style="margin-bottom: 32px; background: #0c2b25; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 12px 28px rgba(0,0,0,0.2);">
+        <div class="showcase-lead-media">
+          <img
+            src="/media/valencia/santo-nino-parish-arch.jpg"
+            alt="Flame tree canopy and stone belfry of Sr. Santo Niño Parish Church in Poblacion Occidental, Valencia, Bohol"
+            loading="eager"
+            style="width: 100%; height: 100%; object-fit: cover; min-height: 280px;"
+          />
+        </div>
+        <div class="showcase-lead-body" style="padding: 32px 36px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+            <span style="background: rgba(229, 180, 77, 0.18); color: var(--gold-light); border: 1px solid rgba(229, 180, 77, 0.4); padding: 3px 9px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">Foundation Day Cultural Signature</span>
+            <span style="font-size: 0.78rem; color: #a3c2b7;">Celebrated Annually Every Late October</span>
           </div>
-          <div class="showcase-lead-body">
-            <span class="showcase-pill">Foundation Day Cultural Signature · Late October</span>
-            <h3>Sang-at Festival & Panangatan Heritage</h3>
-            <p>
-              Rooted in the Cebuano verb <em>sang-at</em>—how early coastal fishermen lifted their wooden outrigger boats onto the elevated, nipa-lined banks of the Panangatan River during the monsoon. Celebrated with street dancing every October.
-            </p>
-            <span class="showcase-cta">Read the Sang-at cultural profile →</span>
-          </div>
-        </a>
+          <h3 style="font-size: 1.65rem; color: #ffffff; margin: 0 0 10px; line-height: 1.3;">Sang-at Festival & Panangatan Heritage</h3>
+          <p style="color: #d1e2db; font-size: 0.94rem; line-height: 1.6; margin: 0 0 18px;">
+            Rooted in the Cebuano verb <em>sang-at</em>—how early coastal fishermen lifted their wooden outrigger boats onto the elevated, nipa-lined banks of the Panangatan River during the southwest monsoon for shelter. Celebrated across all 35 barangays with street dancing and community rituals.
+          </p>
+          <span class="showcase-cta" style="color: var(--gold-light); font-weight: 700; font-size: 0.88rem;">Read the Panangatan cultural story & historical origin →</span>
+        </div>
+      </a>
 
-        <div class="destination-grid">
-          {featuredDestinations.map((d) => (
-            <a class="destination-card" href={`/tourism/${d.slug}`}>
-              <MediaPanel
-                slotId={d.mediaSlotId}
-                label={d.name}
-                caption={d.barangay}
-              />
-              <div class="destination-card-body">
-                <small>{d.barangay} · {d.category}</small>
-                <h3>{d.name}</h3>
-                <p>{d.summary}</p>
-                <span class="destination-link-text">Explore destination guide →</span>
+      <!-- 4 Strategic Economic & Natural Anchors Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        {featuredDestinations.map((d) => {
+          // Explicit visual indicators per destination type
+          const isChurch = d.slug === 'sto-nino-parish-church';
+          const isBadiang = d.slug === 'badiang-spring';
+          const isAnislag = d.slug === 'anislag-spring';
+
+          const categoryBadge = isChurch
+            ? { text: 'Important Cultural Property', color: '#164e63', bg: '#ecfeff', border: '#a5f3fc' }
+            : isBadiang
+            ? { text: 'Municipal Coastal Spring', color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd' }
+            : isAnislag
+            ? { text: 'Rainforest Ecotourism Basin', color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0' }
+            : { text: 'Upland Ridge Corridor (485m)', color: '#b45309', bg: '#fffbeb', border: '#fde68a' };
+
+          const featureHighlight = isChurch
+            ? '1882 Tindalo & Molave 8-pointed star crossing floor'
+            : isBadiang
+            ? 'Subterranean freshwater cascading directly to the Bohol Sea'
+            : isAnislag
+            ? 'Cold, crystal-clear natural pool beneath lush tree canopy'
+            : 'WWII historical lookout & 360° panoramic ridges';
+
+          return (
+            <a
+              class="destination-card"
+              href={`/tourism/${d.slug}`}
+              style="display: flex; flex-direction: column; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #d1d5db; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+            >
+              <div style="position: relative;">
+                <MediaPanel
+                  slotId={d.mediaSlotId}
+                  label={d.name}
+                  caption={d.barangay}
+                />
+                <span
+                  style={`position: absolute; top: 10px; right: 10px; background: ${categoryBadge.bg}; color: ${categoryBadge.color}; border: 1px solid ${categoryBadge.border}; font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);`}
+                >
+                  {categoryBadge.text}
+                </span>
+              </div>
+
+              <div class="destination-card-body" style="padding: 18px 20px; display: flex; flex-direction: column; flex: 1;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                  <small style="font-size: 0.74rem; color: var(--valencia-orange-dark); font-weight: 700; text-transform: uppercase;">
+                    {d.barangay}
+                  </small>
+                  <span style="font-size: 0.72rem; color: var(--muted); font-weight: 600;">
+                    {d.category}
+                  </span>
+                </div>
+
+                <h3 style="font-size: 1.12rem; margin: 0 0 8px; color: var(--forest); line-height: 1.35;">
+                  {d.name}
+                </h3>
+
+                <p style="font-size: 0.85rem; color: #4b5563; line-height: 1.5; margin: 0 0 14px; flex: 1;">
+                  {d.summary}
+                </p>
+
+                <div style="background: var(--stone); border-radius: 4px; padding: 8px 12px; margin-bottom: 14px; border-left: 3px solid var(--valencia-orange);">
+                  <span style="display: block; font-size: 0.72rem; font-weight: 700; color: var(--forest); text-transform: uppercase; margin-bottom: 2px;">
+                    Key Feature
+                  </span>
+                  <span style="display: block; font-size: 0.78rem; color: #374151; line-height: 1.35;">
+                    {featureHighlight}
+                  </span>
+                </div>
+
+                <span class="destination-link-text" style="font-size: 0.82rem; font-weight: 700; color: var(--valencia-orange-dark); display: inline-flex; align-items: center; gap: 4px;">
+                  Explore destination guide →
+                </span>
               </div>
             </a>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   </section>

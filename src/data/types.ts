@@ -15,7 +15,9 @@ export type VisualMotif =
   | 'danao-lake'
   | 'pottery-craft'
   | 'market-commercial'
-  | 'market-night';
+  | 'market-night'
+  | 'anislag-spring'
+  | 'banderahan-locator';
 
 export interface MediaSlotSpec {
   slotId: string;
