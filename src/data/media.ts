@@ -246,5 +246,42 @@ export const MEDIA_SLOTS: Record<string, MediaSlotSpec> = {
     imageAlt: 'Local artisan shaping earthenware using traditional paddle in Barangay Canduao Occidental, Valencia, Bohol',
     photographer: 'Local Community Documentation',
     license: 'Community Field Record'
+  },
+  'valencia-business-center': {
+    slotId: 'valencia-business-center',
+    candidateId: 'VALENCIA-BIZ-CTR-01',
+    title: 'Valencia Business Center (Poblacion Public Market Modernization)',
+    subject: 'Modernized commercial trade hub and public market in Poblacion, featuring signature orange-and-yellow civic portico pillars and active retail bays',
+    barangay: 'Poblacion, Valencia, Bohol',
+    motif: 'market-commercial',
+    aspectRatio: '16:9',
+    approvalStatus: 'APPROVED_REDISTRIBUTABLE',
+    statusLabel: 'Valencia Business Center, Poblacion',
+    creditLine: 'Municipal Documentation · LGU Valencia',
+    approvedDropInPath: '/media/valencia/valencia-business-center-day.jpg',
+    acquisitionNote: 'Field documentation of the modernized Valencia Business Center in Poblacion.',
+    imageSrc: '/media/valencia/valencia-business-center-day.jpg',
+    imageAlt: 'Valencia Business Center showing the modern two-storey commercial building with vibrant orange pillars and fiesta banderitas in Poblacion, Valencia, Bohol',
+    photographer: 'LGU Valencia Public Documentation',
+    license: 'Official Municipal Documentation'
+  },
+  'valencia-business-center-night': {
+    slotId: 'valencia-business-center-night',
+    candidateId: 'VALENCIA-BIZ-CTR-02',
+    title: 'Valencia Business Center Illuminated Night Facade',
+    subject: 'Evening illumination of the Valencia Business Center commercial complex and town plaza approach',
+    barangay: 'Poblacion, Valencia, Bohol',
+    motif: 'market-night',
+    aspectRatio: '16:9',
+    approvalStatus: 'APPROVED_REDISTRIBUTABLE',
+    statusLabel: 'Valencia Business Center by Night',
+    creditLine: 'Municipal Documentation · LGU Valencia',
+    approvedDropInPath: '/media/valencia/valencia-business-center-night.jpg',
+    acquisitionNote: 'Night photograph of the illuminated Valencia Business Center signage and portico in Poblacion.',
+    imageSrc: '/media/valencia/valencia-business-center-night.jpg',
+    imageAlt: 'Illuminated night facade of the Valencia Business Center with glowing sign and warm architectural lights in Poblacion, Valencia, Bohol',
+    photographer: 'LGU Valencia Public Documentation',
+    license: 'Official Municipal Documentation'
   }
 };
+

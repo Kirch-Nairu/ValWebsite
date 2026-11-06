@@ -76,17 +76,18 @@ export const STORIES: StoryItem[] = [
     title: 'Sunday Tabu, Public Market Trade, and Agricultural Livelihoods',
     subtitle:
       'Every Sunday in Poblacion, upland growers and coastal fishers gather for Valencia’s weekly Tabu market—now supported by QR Ph digital payments and barangay farming programs.',
-    barangayOrPlace: 'Poblacion Public Market & Interior Barangays, Valencia',
+    barangayOrPlace: 'Valencia Business Center (Poblacion Public Market), Valencia',
     eventOrRecordDate: 'Weekly Sunday Market & March 2026 Digital Payment Rollout',
     reviewDate: '2026',
-    sourceIds: ['The Bohol Tribune', 'Bohol PPDO CY2025'],
-    mediaSlotId: 'sunday-tabu-market',
+    sourceIds: ['The Bohol Tribune', 'Bohol PPDO CY2025', 'LGU Valencia Public Archive'],
+    mediaSlotId: 'valencia-business-center',
     editorialStatus: 'Economic & Community Profile',
     summary:
-      'From the weekly Sunday Tabu market in Poblacion to smallholder farmer associations in interior barangays, Valencia’s economy connects upland agriculture with coastal trade.',
+      'From the weekly Sunday Tabu at the modernized Valencia Business Center in Poblacion to smallholder farmer associations in interior barangays, Valencia’s economy connects upland agriculture with coastal trade.',
     body: [
-      'Across southern Bohol, each town observes a dedicated weekly market day—known as Tabu—when interior farming households and coastal families meet in the town center. In Valencia, Tabu takes place every Sunday at the Valencia Public Market in Poblacion, bringing together harvests of rice, coconuts, corn, root crops, bananas, freshly landed fish, and traditional household weaving and pottery.',
-      'In March 2026, the Municipality of Valencia rolled out the Paleng-QR PH Plus program at the public market, enabling stallholders and local transport drivers to accept standardized QR Ph cashless payments alongside traditional cash trade.',
+      'Across southern Bohol, each town observes a dedicated weekly market day—known as Tabu—when interior farming households and coastal families meet in the town center. In Valencia, Tabu takes place every Sunday at the newly modernized Valencia Business Center in Poblacion, bringing together harvests of rice, coconuts, corn, root crops, bananas, freshly landed fish, and traditional household weaving and pottery.',
+      'The modern Valencia Business Center replaces the former open-shed market with a clean, two-storey commercial complex featuring bold civic orange-and-yellow portico pillars, well-ventilated dry and wet market bays, and dedicated commercial spaces for local entrepreneurs.',
+      'In March 2026, the Municipality of Valencia rolled out the Paleng-QR PH Plus program across the center, enabling stallholders and local transport drivers to accept standardized QR Ph cashless payments alongside traditional cash trade.',
       'In upland communities such as Barangay Pangi-an, farmer organizations including the Barangay Pangi-an Small Farmers’ Association (BaPaSFA) partner with the Municipal Agriculture Office and the Department of Agriculture to strengthen rural livestock and crop production.'
     ]
   },

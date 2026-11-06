@@ -190,5 +190,26 @@ export const DESTINATIONS: DestinationItem[] = [
     sensitivityNote:
       'Environmental and cultural conservation rules apply at Maubo Cave and Taculing Cave.',
     hasDedicatedDetail: true
+  },
+  {
+    slug: 'canduao-pottery-capital',
+    name: 'Canduao Occidental Pottery Living Heritage',
+    barangay: 'Barangay Canduao Occidental',
+    category: 'Living Traditions & Artisanal Craft',
+    readiness: 'established',
+    readinessLabel: 'Living Cultural & Artisanal Heritage',
+    ppdoPage: 'Valencia Cultural Inventory & Barangay Field Documentation',
+    sourceIds: ['Barangay Canduao Occidental Field Documentation', 'Kajanangan Festival Archives'],
+    mediaSlotId: 'canduao-pottery-craft',
+    summary:
+      'Valencia’s living artisanal pottery tradition where master potters practice intergenerational earthenware craft—paghumol, pagkugi, pagpikpik, and open-pit firing—celebrated in the annual Kajanangan Festival.',
+    editorialBody: [
+      'Barangay Canduao Occidental is celebrated throughout southern Bohol as the Pottery Capital of Valencia, where family workshops have passed down traditional pottery techniques across multiple generations.',
+      'Using natural clay sourced from local upland deposits, artisans engage in a rigorous multi-stage workflow: paghumol (soaking and hydrating clay), pagkugi (kneading and tempering), pagpikpik (thinning and shaping using traditional wooden paddle and stone anvil), and open-pit bonfire firing.',
+      'The community produces earthenware cooking stoves (con and sug-ang), water jars (banga), and plant pots, honored annually in the community’s Kajanangan Festival by the Banay sa Canuao Dako and the Pasil Coral Reef Stones Tribe.'
+    ],
+    visitorNotice:
+      'Working family artisanal workshops. Coordinate with Barangay Canduao Occidental officials or the Municipal Tourism Office for educational visits and pottery demonstrations.',
+    hasDedicatedDetail: true
   }
 ];

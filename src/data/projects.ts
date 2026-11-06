@@ -34,14 +34,14 @@ export const PROGRESS_ITEMS: ProgressItem[] = [
     partnerOrDonor: 'Bangko Sentral ng Pilipinas (BSP) & DILG Paleng-QR PH Plus Framework',
     sourceIds: ['The Bohol Tribune (Mar 22, 2026)'],
     sourceUrl: 'https://theboholtribune.com/2026/03/22/bisaya-news-145/',
-    mediaSlotId: 'sunday-tabu-market',
+    mediaSlotId: 'valencia-business-center',
     summary:
-      'Rollout of standardized QR Ph cashless payment acceptance for vendors at the Valencia Public Market and local transport operators.',
+      'Rollout of standardized QR Ph cashless payment acceptance for vendors at the Valencia Business Center (Poblacion Public Market) and local transport operators.',
     details: [
-      'Launched in March 2026 at the Valencia Public Market in Poblacion, the initiative enables stallholders, Sunday Tabu traders, and local transport drivers to accept digital payments via QR Ph.',
-      'The program supports financial inclusion and convenient cashless transactions for residents and visitors.'
+      'Launched in March 2026 at the newly modernized Valencia Business Center in Poblacion, the initiative enables stallholders, Sunday Tabu traders, and local transport drivers to accept digital payments via QR Ph.',
+      'The program supports financial inclusion and convenient cashless transactions for residents and visitors across the commercial hub.'
     ],
-    verificationNote: 'Active digital payment program at the Valencia Public Market.'
+    verificationNote: 'Active digital payment program at the Valencia Business Center in Poblacion.'
   },
   {
     slug: 'dap-ai-governance-and-carenav-proposals',

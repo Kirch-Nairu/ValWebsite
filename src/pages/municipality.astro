@@ -86,14 +86,26 @@ import { BARANGAYS } from '../data/municipality';
       <div class="filter-toolbar">
         <label>
           Search barangays
-          <input id="barangay-search" type="search" placeholder="e.g. Anas, Poblacion, Anoyon, Banderahan..." />
+          <input id="barangay-search" type="search" placeholder="e.g. Anas, Canduao, Anoyon, Banderahan, Poblacion..." />
         </label>
         <label>
           Geographic zone
           <select id="barangay-zone">
-            <option value="all">All areas (35 barangays)</option>
+            <option value="all">All zones (35 barangays)</option>
             <option value="Poblacion & Coastal">Poblacion & Coastal (10)</option>
             <option value="Upland & Interior">Upland & Interior (25)</option>
+          </select>
+        </label>
+        <label>
+          Distinctive character
+          <select id="barangay-category">
+            <option value="all">All character tags</option>
+            <option value="Poblacion Center">Poblacion Heritage & Commerce</option>
+            <option value="Pottery & Crafts">Living Traditions & Crafts (Canduao)</option>
+            <option value="Springs & Waterways">Springs, Falls & Lakes (Badiang, Danao, Kinawa)</option>
+            <option value="Highland & Peaks">Highlands, Caves & Peaks (Banderahan, Ugjong)</option>
+            <option value="Coastal Waters">Coastal & Marine Villages</option>
+            <option value="Agricultural Heart">Upland Agricultural Heartland</option>
           </select>
         </label>
         <span id="barangay-count" class="filter-count">{BARANGAYS.length} directory entries</span>
@@ -105,21 +117,42 @@ import { BARANGAYS } from '../data/municipality';
             <tr>
               <th>Barangay Name</th>
               <th>Geographic Zone</th>
+              <th>Distinctive Character</th>
               <th>PSGC Code</th>
               <th>Notable Landmarks & Community Profile</th>
+              <th>Quick Link</th>
             </tr>
           </thead>
           <tbody>
             {BARANGAYS.map((b) => (
               <tr
                 data-barangay-row
-                data-name={`${b.name} ${b.psgc} ${b.notableFeatures}`.toLocaleLowerCase()}
+                data-name={`${b.name} ${b.psgc} ${b.notableFeatures} ${b.categoryTag || ''}`.toLocaleLowerCase()}
                 data-zone={b.zone}
+                data-category={b.categoryTag || ''}
               >
                 <td><strong>{b.name}</strong></td>
                 <td><span class="tag">{b.zone}</span></td>
+                <td>
+                  {b.categoryTag ? (
+                    <span class="badge badge-orange" style="font-size: 0.72rem; padding: 2px 8px;">
+                      {b.categoryTag}
+                    </span>
+                  ) : (
+                    <span style="color: var(--muted); font-size: 0.8rem;">—</span>
+                  )}
+                </td>
                 <td><code>{b.psgc}</code></td>
                 <td>{b.notableFeatures}</td>
+                <td style="white-space: nowrap;">
+                  {b.quickLink ? (
+                    <a href={b.quickLink.href} class="text-link" style="font-weight: 600; font-size: 0.84rem;">
+                      {b.quickLink.label} →
+                    </a>
+                  ) : (
+                    <span style="color: var(--muted); font-size: 0.8rem;">—</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -130,23 +163,27 @@ import { BARANGAYS } from '../data/municipality';
 
   <script>
     const input = document.querySelector<HTMLInputElement>('#barangay-search');
-    const select = document.querySelector<HTMLSelectElement>('#barangay-zone');
+    const selectZone = document.querySelector<HTMLSelectElement>('#barangay-zone');
+    const selectCategory = document.querySelector<HTMLSelectElement>('#barangay-category');
     const count = document.querySelector<HTMLElement>('#barangay-count');
     const rows = [...document.querySelectorAll<HTMLTableRowElement>('[data-barangay-row]')];
     function run() {
       const q = (input?.value || '').trim().toLocaleLowerCase();
-      const zone = select?.value;
+      const zone = selectZone?.value;
+      const category = selectCategory?.value;
       let shown = 0;
       for (const row of rows) {
         const valid =
           (!q || (row.dataset.name || '').includes(q)) &&
-          (zone === 'all' || zone === row.dataset.zone);
+          (zone === 'all' || zone === row.dataset.zone) &&
+          (category === 'all' || category === row.dataset.category);
         row.hidden = !valid;
         if (valid) shown++;
       }
       if (count) count.textContent = `${shown} directory entr${shown === 1 ? 'y' : 'ies'}`;
     }
     input?.addEventListener('input', run);
-    select?.addEventListener('change', run);
+    selectZone?.addEventListener('change', run);
+    selectCategory?.addEventListener('change', run);
   </script>
 </BaseLayout>

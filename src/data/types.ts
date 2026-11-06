@@ -13,7 +13,9 @@ export type VisualMotif =
   | 'pangian-livelihood'
   | 'ancestral-house'
   | 'danao-lake'
-  | 'pottery-craft';
+  | 'pottery-craft'
+  | 'market-commercial'
+  | 'market-night';
 
 export interface MediaSlotSpec {
   slotId: string;
@@ -107,7 +109,12 @@ export interface BarangayItem {
   psgc: string;
   name: string;
   zone: 'Poblacion & Coastal' | 'Upland & Interior';
+  categoryTag?: 'Coastal Waters' | 'Poblacion Center' | 'Highland & Peaks' | 'Springs & Waterways' | 'Pottery & Crafts' | 'Agricultural Heart';
   notableFeatures: string;
+  quickLink?: {
+    label: string;
+    href: string;
+  };
 }
 
 export interface ServiceCategoryItem {

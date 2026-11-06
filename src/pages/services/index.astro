@@ -30,6 +30,93 @@ import { SERVICE_CATEGORIES } from '../../data/services';
         </div>
       </div>
 
+      <!-- Quick-Access Resident Transaction Requirements Finder -->
+      <div class="service-quick-finder" style="margin-bottom: 40px; background: #ffffff; border: 1px solid var(--valencia-orange-border); border-left: 5px solid var(--valencia-orange); border-radius: 8px; padding: 28px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px;">
+          <div>
+            <span class="badge badge-orange" style="font-size: 0.76rem; margin-bottom: 6px; display: inline-block;">Frontline Quick Finder</span>
+            <h3 style="margin: 0; font-size: 1.35rem; color: var(--forest);">What do you need to process today?</h3>
+          </div>
+          <span style="font-size: 0.82rem; color: var(--muted);">Select a common transaction for requirements & window guide</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 22px;">
+          <button type="button" class="quick-finder-btn" data-target="req-civil" style="text-align: left; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--mint); cursor: pointer; transition: all 0.15s ease;">
+            <strong style="display: block; color: var(--forest); font-size: 0.95rem;">Civil Registry Records</strong>
+            <span style="font-size: 0.8rem; color: var(--muted);">Birth, Marriage & Death Certificates</span>
+          </button>
+          <button type="button" class="quick-finder-btn" data-target="req-bplo" style="text-align: left; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--mint); cursor: pointer; transition: all 0.15s ease;">
+            <strong style="display: block; color: var(--forest); font-size: 0.95rem;">Business Permit & Cedula</strong>
+            <span style="font-size: 0.8rem; color: var(--muted);">New / Renewals, Community Tax, Paleng-QR</span>
+          </button>
+          <button type="button" class="quick-finder-btn" data-target="req-rpt" style="text-align: left; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--mint); cursor: pointer; transition: all 0.15s ease;">
+            <strong style="display: block; color: var(--forest); font-size: 0.95rem;">Real Property Tax (RPT)</strong>
+            <span style="font-size: 0.8rem; color: var(--muted);">Land tax declaration & official receipt</span>
+          </button>
+          <button type="button" class="quick-finder-btn" data-target="req-social" style="text-align: left; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--mint); cursor: pointer; transition: all 0.15s ease;">
+            <strong style="display: block; color: var(--forest); font-size: 0.95rem;">Social Assistance & Health</strong>
+            <span style="font-size: 0.8rem; color: var(--muted);">Senior/PWD aid, RHU medical checkups</span>
+          </button>
+        </div>
+
+        <!-- Detail Panels -->
+        <div id="req-civil" class="quick-finder-panel" style="display: block; background: var(--valencia-orange-bg); border: 1px solid var(--valencia-orange-border); border-radius: 6px; padding: 20px;">
+          <h4 style="margin: 0 0 10px; color: var(--valencia-orange-dark); font-size: 1.05rem;">Civil Registry: Certified Copies & Vital Registration</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 12px; color: var(--ink);">
+            <strong>Responsible Office:</strong> Office of the Municipal Civil Registrar (Ground Floor, Valencia Municipal Hall)
+          </p>
+          <ul style="margin: 0 0 12px 18px; font-size: 0.85rem; color: var(--ink); line-height: 1.6;">
+            <li><strong>Birth / Death / Marriage Certified Copy:</strong> Valid Government-Issued ID of document owner or authorized representative, Authorization Letter (if requesting for relative), and Barangay Clearance of residence.</li>
+            <li><strong>Delayed Registration of Birth:</strong> Negative Result Certification from PSA, Baptismal Certificate or School Records (Form 137), Joint Affidavit of Two Disinterested Persons, and Barangay Certificate of Residency.</li>
+            <li><strong>Marriage License Application:</strong> Certificate of No Marriage Record (CENOMAR) from PSA, Pre-Marriage Orientation and Counseling (PMOC) Certificate, Birth Certificates, and Valid IDs.</li>
+          </ul>
+          <p style="font-size: 0.8rem; margin: 0; color: var(--muted);">
+            <em>Payment window: Transact at Municipal Treasury Windows for official fees and keep your Official Receipt.</em>
+          </p>
+        </div>
+
+        <div id="req-bplo" class="quick-finder-panel" style="display: none; background: var(--valencia-orange-bg); border: 1px solid var(--valencia-orange-border); border-radius: 6px; padding: 20px;">
+          <h4 style="margin: 0 0 10px; color: var(--valencia-orange-dark); font-size: 1.05rem;">Business Permits (Mayor's Permit), Cedula & Paleng-QR Ph</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 12px; color: var(--ink);">
+            <strong>Responsible Office:</strong> Business Permits & Licensing Office (BPLO) & Municipal Treasury
+          </p>
+          <ul style="margin: 0 0 12px 18px; font-size: 0.85rem; color: var(--ink); line-height: 1.6;">
+            <li><strong>New Business Application:</strong> DTI / SEC Registration, Barangay Business Clearance, Lease Contract or Proof of Property Ownership, Zoning Clearance, and Sanitary Permit.</li>
+            <li><strong>Annual Business Renewal (Every January):</strong> Previous year's Mayor's Permit & Official Receipts, Gross Sales Declaration / Financial Statements, Barangay Business Clearance, and Community Tax Certificate (Cedula).</li>
+            <li><strong>Community Tax Certificate (Cedula):</strong> Valid ID and proof of annual income / gross receipts.</li>
+            <li><strong>Paleng-QR Ph Plus Digital Payment:</strong> Stalls at the Valencia Business Center and public transport operators may coordinate onboarding through the BPLO window.</li>
+          </ul>
+          <p style="font-size: 0.8rem; margin: 0; color: var(--muted);">
+            <em>Official payments are collected strictly at Municipal Treasury windows.</em>
+          </p>
+        </div>
+
+        <div id="req-rpt" class="quick-finder-panel" style="display: none; background: var(--valencia-orange-bg); border: 1px solid var(--valencia-orange-border); border-radius: 6px; padding: 20px;">
+          <h4 style="margin: 0 0 10px; color: var(--valencia-orange-dark); font-size: 1.05rem;">Real Property Tax (RPT / Land Tax Assessment & Payment)</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 12px; color: var(--ink);">
+            <strong>Responsible Office:</strong> Office of the Municipal Assessor (Assessment) & Office of the Municipal Treasurer (Payment)
+          </p>
+          <ul style="margin: 0 0 12px 18px; font-size: 0.85rem; color: var(--ink); line-height: 1.6;">
+            <li><strong>Annual Land / Property Tax Payment:</strong> Previous year's Real Property Tax Official Receipt, Tax Declaration Number, and Valid Government-Issued ID.</li>
+            <li><strong>Transfer of Property Tax Declaration:</strong> Deed of Absolute Sale / Extrajudicial Settlement, Certificate Authorizing Registration (CAR / eCAR) from BIR, Real Property Tax Clearance, and Provincial Transfer Tax Receipt.</li>
+            <li><strong>Quarterly Discounts:</strong> Prompt payment discounts apply according to the approved municipal revenue calendar (check Treasury window for current period discounts).</li>
+          </ul>
+        </div>
+
+        <div id="req-social" class="quick-finder-panel" style="display: none; background: var(--valencia-orange-bg); border: 1px solid var(--valencia-orange-border); border-radius: 6px; padding: 20px;">
+          <h4 style="margin: 0 0 10px; color: var(--valencia-orange-dark); font-size: 1.05rem;">Social Welfare Assistance, PWD/Senior IDs & Rural Health</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 12px; color: var(--ink);">
+            <strong>Responsible Office:</strong> MSWDO & Rural Health Unit (RHU), Poblacion
+          </p>
+          <ul style="margin: 0 0 12px 18px; font-size: 0.85rem; color: var(--ink); line-height: 1.6;">
+            <li><strong>Senior Citizen Identification Card:</strong> Proof of age (Birth Certificate or valid ID showing age 60+), Barangay Certificate of Residency, and 1x1 ID photographs.</li>
+            <li><strong>Person with Disability (PWD) ID:</strong> Medical certificate or disability assessment from a licensed physician, Barangay Certificate of Residency, and ID photos.</li>
+            <li><strong>Medical / Burial Financial Assistance (AICS):</strong> Clinical summary or medical abstract, hospital bill / quotation / pharmacy prescription, Death Certificate (for burial aid), Barangay Certificate of Indigency, and Valid ID of claimant.</li>
+            <li><strong>Rural Health Consultations:</strong> Direct walk-in consultation at the RHU Poblacion or scheduled barangay health station visits.</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="service-grid two">
         {SERVICE_CATEGORIES.map((s) => (
           <ServiceCard item={s} />
@@ -37,6 +124,29 @@ import { SERVICE_CATEGORIES } from '../../data/services';
       </div>
     </div>
   </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.quick-finder-btn');
+    const panels = document.querySelectorAll<HTMLElement>('.quick-finder-panel');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        panels.forEach((p) => {
+          p.style.display = p.id === targetId ? 'block' : 'none';
+        });
+        buttons.forEach((b) => {
+          if (b === btn) {
+            b.style.borderColor = 'var(--valencia-orange)';
+            b.style.background = 'var(--valencia-orange-bg)';
+          } else {
+            b.style.borderColor = 'var(--line)';
+            b.style.background = 'var(--mint)';
+          }
+        });
+      });
+    });
+  </script>
 
   <section class="section section-stone">
     <div class="container">
@@ -64,10 +174,10 @@ import { SERVICE_CATEGORIES } from '../../data/services';
 
         <div>
           <MediaPanel
-            slotId="sunday-tabu-market"
+            slotId="valencia-business-center"
             variant="main"
-            label="Valencia Public Market & Town Center"
-            caption="Poblacion, Valencia, Bohol · Photo: P199 (CC BY-SA 3.0)"
+            label="Valencia Business Center & Civic Commerce"
+            caption="Poblacion, Valencia, Bohol · LGU Valencia Documentation"
           />
         </div>
       </div>
