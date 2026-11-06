@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentStatus from '../../components/ContentStatus.astro';
+import MediaPanel from '../../components/MediaPanel.astro';
+import { DESTINATIONS } from '../../data/destinations';
+import type { DestinationItem } from '../../data/types';
+export function getStaticPaths(){return DESTINATIONS.map(item=>({params:{slug:item.slug},props:{item}}));}
+interface Props{item:DestinationItem}
+const {item}=Astro.props;
+const related=DESTINATIONS.filter(d=>d.slug!==item.slug&&d.category===item.category).slice(0,2);
+---
+<BaseLayout title={item.name} description={item.summary}>
+<div class="container bread"><a href="/">Home</a><span>/</span><a href="/tourism">Tourism & Culture</a><span>/</span><span>{item.name}</span></div>
+<section class="page-intro"><div class="container"><p class="eyebrow">Destination / {item.category}</p><h1>{item.name}</h1><p class="page-intro-description">{item.summary}</p></div></section>
+<section class="section"><div class="container detail-layout"><article class="detail-main"><div style="min-height:260px;margin-bottom:24px;"><MediaPanel variant="main" label={item.name} caption="Approved location image not supplied"/></div><ContentStatus label="Check current visitor conditions" detail={item.visitorNotice}/><h2>About this place</h2>{item.editorialBody.map(p=><p>{p}</p>)}{item.sensitivityNote&&<ContentStatus label="Access and conservation" detail={item.sensitivityNote}/>}<h2>More from this category</h2><div class="two-col">{related.map(d=><div class="info-card"><h3>{d.name}</h3><p>{d.summary}</p><a href={`/tourism/${d.slug}`}>Explore profile ↗</a></div>)}</div><div class="button-row" style="margin-top:25px;"><a class="btn btn-primary" href="/tourism">All destinations ↗</a><a class="btn btn-outline" href="/contact">Official channels</a></div></article><aside class="detail-sidebar"><h2>Destination reference</h2><dl><dt>Barangay</dt><dd>{item.barangay}</dd><dt>Category</dt><dd>{item.category}</dd><dt>Source inventory</dt><dd>{item.ppdoPage}</dd><dt>Readiness / listing</dt><dd>{item.readinessLabel}</dd><dt>Source IDs</dt><dd>{item.sourceIds.join(', ')}</dd><dt>Fees / hours</dt><dd>Not verified — check locally</dd></dl></aside></div></section>
+</BaseLayout>

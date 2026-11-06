@@ -1,0 +1,15 @@
+---
+const links=[
+{title:'Municipality',href:'/municipality'},{title:'Government',href:'/government'},{title:'Municipal Services',href:'/services'},
+{title:'News & Advisories',href:'/news'},{title:'Projects & Progress',href:'/projects'},{title:'Tourism & Culture',href:'/tourism'},
+{title:'Transparency',href:'/transparency'},{title:'Contact',href:'/contact'}
+];
+---
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand"><span class="footer-mini">V.</span><p class="footer-eyebrow">Municipality of Valencia · Bohol</p><h2>BARUG<br/>VALENCIA<span>.</span></h2><p>A clearer digital gateway to municipal information, public services, and community updates.</p></div>
+    <div class="footer-column"><h3>Explore this site</h3><div class="footer-links">{links.map(x=><a href={x.href}>{x.title}</a>)}</div></div>
+    <div class="footer-column"><h3>Public information</h3><p>This is an independently developed prototype. It is not operated by, endorsed by, or connected to a live transaction system of the Municipal Government of Valencia.</p><a class="footer-official" href="https://www.facebook.com/lguvalofficialpage" target="_blank" rel="noopener noreferrer">Visit LGU Valencia public page ↗</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© {new Date().getFullYear()} · Valencia municipal website prototype</span><span>Source attribution and validation notices are supplied throughout the site. No online transactions.</span><a href="#top">Back to top ↑</a></div>
+</footer>

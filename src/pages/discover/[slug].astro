@@ -1,0 +1,5 @@
+---
+import { DESTINATIONS } from '../../data/destinations';
+export function getStaticPaths(){return DESTINATIONS.filter(d=>d.hasDedicatedDetail).map(d=>({params:{slug:d.slug}}));}
+return Astro.redirect('/tourism/'+Astro.params.slug,301);
+---

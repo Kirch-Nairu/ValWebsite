@@ -16,3 +16,5 @@ research-local/
 research/_private/
 media-local/
 assets-unapproved/
+
+.valencia-server.json

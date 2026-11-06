@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContentStatus from '../components/ContentStatus.astro';
+import { OFFICIAL_CHANNELS } from '../data/site';
+const channels=OFFICIAL_CHANNELS.filter(x=>x.id.startsWith('FB-'));
+---
+<BaseLayout title="Contact & Public Channels" description="Direct links to identified public communication channels for Valencia Bohol, with provenance and authorization notices.">
+<PageIntro eyebrow="08 / Contact" title="Contact & Public Channels" description="Use identifiable municipal and community channels to confirm official announcements, service requirements and visitor conditions." aside="No unverified contact number, email address, office schedule or online transaction form is provided by this prototype."/>
+<section class="section"><div class="container"><ContentStatus label="Confirm account identity before sharing personal information" detail="These are user-supplied or research-inspected public pages. The LGU page is the primary source for municipal inquiries; festival and SK pages serve narrower scopes. Facebook page identity does not imply every post has been inspected."/>
+<div class="section-heading" style="margin-top:38px;"><div><p class="eyebrow">Public communication sources</p><h2>Where to start.</h2></div></div>
+<div class="source-grid">{channels.map(c=><a href={c.url} target="_blank" rel="noopener noreferrer"><span class="tag">{c.id==='FB-001'?'Primary LGU channel':c.id==='FB-002'?'Cultural page':'Youth federation'}</span><strong>{c.name}</strong><small>{c.scope}</small><p class="text-link" style="margin:15px 0 0;display:inline-block;">Open page ↗</p></a>)}</div>
+<div class="section-heading" style="margin-top:55px;"><div><p class="eyebrow">Municipal visits and inquiries</p><h2>Use the relevant office.</h2></div></div>
+<div class="two-col"><div class="info-card"><h3>For local services</h3><p>Identify the service category and corresponding municipal office first. Obtain current approved requirements, a processing schedule and official fee information through LGU communication.</p><a href="/services">Browse service categories ↗</a></div><div class="info-card"><h3>For photos, branding and factual publication</h3><p>Approval must come from the relevant media owner, municipal office or festival organizer. This prototype does not assert permission for official seals, location photographs or organizational portraits.</p><a href="/transparency">Review provenance ↗</a></div></div>
+</div></section>
+</BaseLayout>

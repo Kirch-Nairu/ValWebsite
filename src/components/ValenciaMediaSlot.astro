@@ -1,0 +1,252 @@
+---
+import { MEDIA_SLOTS, type MediaSlotSpec } from '../data/valenciaData';
+
+interface Props {
+  slotId: string;
+  priority?: boolean;
+  compact?: boolean;
+  showMetadata?: boolean;
+}
+
+const { slotId, compact = false, showMetadata = true } = Astro.props;
+const spec: MediaSlotSpec = MEDIA_SLOTS[slotId] ?? MEDIA_SLOTS['hero-panangatan'];
+---
+
+<figure class:list={['valencia-media-slot', { 'is-compact': compact }]} data-slot-id={spec.slotId} data-candidate-id={spec.candidateId}>
+  <div class="media-canvas" data-motif={spec.motif}>
+    <div class="media-pending-ribbon" role="note" aria-label="Media licensing status">
+      <span class="ribbon-dot" aria-hidden="true"></span>
+      <span>{spec.statusLabel}</span>
+      <span class="ribbon-ref">Ref {spec.candidateId}</span>
+    </div>
+
+    {spec.motif === 'panangatan-hero' && (
+      <svg viewBox="0 0 800 450" role="img" aria-label={spec.title} class="motif-svg">
+        <defs>
+          <linearGradient id="panangatan-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d2320" />
+            <stop offset="52%" stop-color="#1d443d" />
+            <stop offset="100%" stop-color="#d69442" />
+          </linearGradient>
+        </defs>
+        <rect width="800" height="450" fill="url(#panangatan-sky)" />
+        <circle cx="620" cy="145" r="56" fill="#f3c56d" opacity="0.88" />
+        <path d="M0 265 Q190 190 390 250 T800 220 L800 450 L0 450 Z" fill="#12302b" />
+        <path d="M0 315 Q260 270 510 320 T800 300 L800 450 L0 450 Z" fill="#091b18" />
+        <path d="M180 450 C260 365 420 340 590 295 L740 450 Z" fill="#1b5953" opacity="0.7" />
+        <g stroke="#e7b662" stroke-width="2.5" fill="none" opacity="0.9">
+          <path d="M230 355 Q310 380 395 352 L375 375 L250 375 Z" fill="#3a2112" />
+          <path d="M312 315 L312 372 M270 336 Q312 325 354 336" />
+          <path d="M430 335 Q495 355 565 332 L548 350 L446 350 Z" fill="#3a2112" />
+        </g>
+        <text x="36" y="418" fill="#f5efe4" font-family="monospace" font-size="13" letter-spacing="2">
+          PANANGATAN RIVER MOUTH · ELEVATED BANCA SHELTER (SANG-AT) · VALENCIA, BOHOL
+        </text>
+      </svg>
+    )}
+
+    {spec.motif === 'sang-at-dance' && (
+      <svg viewBox="0 0 800 450" role="img" aria-label={spec.title} class="motif-svg">
+        <rect width="800" height="450" fill="#23120b" />
+        <circle cx="400" cy="225" r="190" fill="#8f2d24" opacity="0.32" />
+        <circle cx="400" cy="225" r="130" fill="#d99b42" opacity="0.22" />
+        <path d="M80 360 Q400 275 720 360" stroke="#e4a84f" stroke-width="4" fill="none" />
+        <path d="M130 330 Q400 390 670 330 L620 375 L180 375 Z" fill="#5e2a14" stroke="#f3c56d" stroke-width="2.5" />
+        <g stroke="#f6e7c8" stroke-width="3" fill="none">
+          <circle cx="280" cy="220" r="18" fill="#d99b42" />
+          <path d="M280 238 L280 305 M245 262 L315 248" />
+          <circle cx="400" cy="195" r="22" fill="#f3c56d" />
+          <path d="M400 217 L400 298 M352 242 L448 242" />
+          <circle cx="520" cy="220" r="18" fill="#d99b42" />
+          <path d="M520 238 L520 305 M485 248 L555 262" />
+        </g>
+        <text x="36" y="418" fill="#f6e7c8" font-family="monospace" font-size="13" letter-spacing="2">
+          TRIBUNG HAMILING SANG-AT · STREET DANCE &amp; RITUAL SHOWDOWN · OCTOBER 27
+        </text>
+      </svg>
+    )}
+
+    {spec.motif === 'church-floor' && (
+      <svg viewBox="0 0 800 450" role="img" aria-label={spec.title} class="motif-svg">
+        <rect width="800" height="450" fill="#2a170e" />
+        <g stroke="#d99b42" stroke-width="1.4" opacity="0.32">
+          <path d="M0 90 L800 90 M0 180 L800 180 M0 270 L800 270 M0 360 L800 360" />
+          <path d="M160 0 L160 450 M320 0 L320 450 M480 0 L480 450 M640 0 L640 450" />
+        </g>
+        <g transform="translate(400,220)">
+          <polygon points="0,-135 36,-36 135,0 36,36 0,135 -36,36 -135,0 -36,-36" fill="#d69442" stroke="#fbf3e4" stroke-width="2.5" />
+          <polygon points="0,-135 36,-36 135,0 36,36 0,135 -36,36 -135,0 -36,-36" transform="rotate(45)" fill="#6e3219" stroke="#f3c56d" stroke-width="2" />
+          <circle r="28" fill="#2a170e" stroke="#f3c56d" stroke-width="2" />
+        </g>
+        <text x="36" y="418" fill="#f6e7c8" font-family="monospace" font-size="13" letter-spacing="2">
+          1882 TINDALO &amp; MOLAVE PARQUET · EIGHT-POINTED CROSSING STAR · STO. NIÑO PARISH
+        </text>
+      </svg>
+    )}
+
+    {spec.motif === 'badiang-spring' && (
+      <svg viewBox="0 0 800 450" role="img" aria-label={spec.title} class="motif-svg">
+        <rect width="800" height="450" fill="#0d2b29" />
+        <path d="M0 110 L360 110 L420 295 L0 295 Z" fill="#174944" />
+        <path d="M250 110 C295 175 305 235 340 315" stroke="#8ce0d8" stroke-width="18" fill="none" opacity="0.85" />
+        <path d="M285 110 C325 180 335 235 375 315" stroke="#c5f6f0" stroke-width="8" fill="none" opacity="0.9" />
+        <rect x="0" y="305" width="800" height="145" fill="#155e63" />
+        <path d="M0 345 Q200 330 400 345 T800 345" stroke="#9be7e0" stroke-width="2" fill="none" />
+        <text x="36" y="418" fill="#e9fbf9" font-family="monospace" font-size="13" letter-spacing="2">
+          BADIANG SPRING RESORT · FRESHWATER WATERFALL TO BOHOL SEA · BRGY. ANAS
+        </text>
+      </svg>
+    )}
+
+    {spec.motif !== 'panangatan-hero' &&
+      spec.motif !== 'sang-at-dance' &&
+      spec.motif !== 'church-floor' &&
+      spec.motif !== 'badiang-spring' && (
+        <svg viewBox="0 0 800 450" role="img" aria-label={spec.title} class="motif-svg">
+          <rect width="800" height="450" fill="#112925" />
+          <path d="M0 290 Q180 165 370 245 T800 190 L800 450 L0 450 Z" fill="#1b463f" />
+          <path d="M0 340 Q270 265 540 330 T800 295 L800 450 L0 450 Z" fill="#0b1d1a" />
+          <circle cx="650" cy="120" r="42" fill="#d99b42" opacity="0.82" />
+          <text x="36" y="418" fill="#f5efe4" font-family="monospace" font-size="13" letter-spacing="2">
+            {spec.barangay.toUpperCase()} · DOCUMENTED VALENCIA SITE
+          </text>
+        </svg>
+      )}
+
+    <div class="media-overlay-caption">
+      <span class="media-location-tag">{spec.barangay}</span>
+      <strong class="media-slot-title">{spec.title}</strong>
+    </div>
+  </div>
+
+  {showMetadata && (
+    <figcaption class="media-figcaption">
+      <div class="figcaption-main">{spec.subject}</div>
+      <div class="figcaption-meta">
+        <span>{spec.creditLine}</span>
+        <span class="figcaption-dropin">Drop-in target: <code>{spec.approvedDropInPath}</code></span>
+      </div>
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .valencia-media-slot {
+    margin: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background: #0d211e;
+    color: var(--ink-on-dark);
+  }
+
+  .media-canvas {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #0d211e;
+  }
+
+  .is-compact .media-canvas {
+    aspect-ratio: 16 / 10;
+  }
+
+  .motif-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .media-pending-ribbon {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+    max-width: calc(100% - 1.5rem);
+    background: rgba(8, 21, 19, 0.88);
+    color: #f7d288;
+    border: 1px solid rgba(217, 155, 66, 0.55);
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .ribbon-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #d99b42;
+    flex-shrink: 0;
+  }
+
+  .ribbon-ref {
+    color: #ffffff;
+    opacity: 0.85;
+    padding-left: 0.35rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .media-overlay-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem 1rem 0.85rem;
+    background: linear-gradient(to top, rgba(8, 21, 19, 0.92) 0%, rgba(8, 21, 19, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .media-location-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #f2c46d;
+  }
+
+  .media-slot-title {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    color: #ffffff;
+  }
+
+  .media-figcaption {
+    padding: 0.75rem 1rem;
+    background: #102723;
+    border-top: 1px solid rgba(245, 240, 230, 0.14);
+    font-size: 0.78rem;
+    color: var(--ink-on-dark-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .figcaption-main {
+    color: #eef3f1;
+  }
+
+  .figcaption-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.4rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    opacity: 0.85;
+  }
+
+  .figcaption-dropin code {
+    color: #f3c56d;
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentStatus from '../../components/ContentStatus.astro';
+import MediaPanel from '../../components/MediaPanel.astro';
+import { STORIES } from '../../data/culture';
+const story=STORIES[0];
+---
+<BaseLayout title="Sang-at Festival & Valencia Culture" description={story.summary}>
+<div class="container bread"><a href="/">Home</a><span>/</span><a href="/tourism">Tourism & Culture</a><span>/</span><span>Sang-at</span></div>
+<section class="page-intro"><div class="container"><p class="eyebrow">Cultural record / Sang-at</p><h1>Sang-at Festival & Community Heritage</h1><p class="page-intro-description">{story.summary}</p></div></section>
+<section class="section"><div class="container detail-layout"><article class="detail-main"><div style="min-height:280px;margin-bottom:24px;"><MediaPanel variant="main" label="Sang-at Festival" caption="Approved festival photograph not yet supplied"/></div><ContentStatus label="Festival chronology is under source review" detail={story.conflictDisclosure||'Published accounts differ on the inaugural festival year. Refer to the original dated source records before treating a chronology as authoritative.'}/><h2>Culture and community</h2><p>{story.summary}</p>{story.body.map(p=><p>{p}</p>)}<div class="button-row" style="margin-top:25px;"><a href="/tourism" class="btn btn-primary">Explore more places ↗</a><a href="/contact" class="btn btn-outline">Cultural channels ↗</a></div></article><aside class="detail-sidebar"><h2>Cultural record</h2><dl><dt>Theme</dt><dd>{story.subtitle}</dd><dt>Location</dt><dd>{story.barangayOrPlace}</dd><dt>Source IDs</dt><dd>{story.sourceIds.join(', ')}</dd><dt>Source review date</dt><dd>{story.reviewDate}</dd><dt>Editorial status</dt><dd>{story.editorialStatus}</dd></dl></aside></div></section>
+</BaseLayout>

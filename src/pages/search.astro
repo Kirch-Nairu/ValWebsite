@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { SEARCH_INDEX } from '../data/search';
+const pages=[
+{title:'Municipal Services',url:'/services',summary:'Locate services and offices',section:'Page'},
+{title:'Municipality & Barangays',url:'/municipality',summary:'Municipal profile and barangay directory',section:'Page'},
+{title:'Government & Municipal Offices',url:'/government',summary:'Office functions and guidance',section:'Page'},
+{title:'News & Advisories',url:'/news',summary:'Source-attributed dated records',section:'Page'},
+{title:'Projects & Progress',url:'/projects',summary:'Progress register and sourced proposals',section:'Page'},
+{title:'Tourism & Culture',url:'/tourism',summary:'Destination and festival guides',section:'Page'},
+{title:'Transparency & Documents',url:'/transparency',summary:'National and provincial source gateways',section:'Page'},
+{title:'Contact & Public Channels',url:'/contact',summary:'Identified public pages and contact guidance',section:'Page'}];
+const normalize=(path:string)=>{
+  if(path.startsWith('/progress#'))return path.replace('/progress#','/projects/');
+  if(path.startsWith('/updates#'))return path.replace('/updates#','/news/');
+  if(path.startsWith('/government#'))return path.replace('/government#','/services/');
+  if(path.startsWith('/discover/'))return path.replace('/discover/','/tourism/');
+  if(path.startsWith('/discover'))return '/tourism';
+  return {'/valencia':'/municipality','/progress':'/projects','/updates':'/news','/culture':'/tourism#culture'}[path]||path;
+};
+const records=[...pages.map((p,i)=>({...p,id:`new-${i}`})),...SEARCH_INDEX.map(x=>({id:x.id,title:x.title,summary:x.summary,section:x.section,url:normalize(x.url)}))];
+---
+<BaseLayout title="Search Valencia Information" description="Search the Valencia municipal information prototype. Results include only source-backed research records and site pages, not live government transactions.">
+<PageIntro eyebrow="Site search" title="Find information" description="Search page titles, services, public records, destinations and office categories from this prototype." aside="Results are from a static source-backed index, not municipal databases or live transactions."/>
+<section class="section"><div class="container"><label for="page-search-input" class="eyebrow" style="display:block;">Search website</label><input class="search-page-input" id="page-search-input" type="search" style="width:min(100%,650px);" placeholder="e.g. Civil Registry, Badiang, Anoyon..." autocomplete="off"/><p class="tabs-note" id="page-search-count" aria-live="polite" style="margin:13px 0 25px;">Browse frequently accessed pages or enter a search term.</p><div id="page-search-results" class="news-list" data-records={JSON.stringify(records)}></div><p class="tabs-note">Search returns prototype content only. Current fees, office hours and advisories require verification with the LGU.</p></div></section>
+<script>
+ const input=document.querySelector<HTMLInputElement>('#page-search-input'),results=document.querySelector<HTMLElement>('#page-search-results'),count=document.querySelector<HTMLElement>('#page-search-count');
+ if(input&&results&&count){
+  const entries=JSON.parse(results.dataset.records||'[]') as Array<{title:string;url:string;summary:string;section:string}>;
+  const params=new URLSearchParams(window.location.search),initial=params.get('q');
+  if(initial)input.value=initial;
+  const render=()=>{
+   results.replaceChildren();const query=input.value.trim().toLocaleLowerCase();
+   const shown=(query?entries.filter(x=>[x.title,x.summary,x.section].join(' ').toLocaleLowerCase().includes(query)):entries.slice(0,10)).slice(0,60);
+   count.textContent=query?`${shown.length} matching result${shown.length===1?'':'s'}`:'Suggested links';
+   if(!shown.length){const empty=document.createElement('p');empty.textContent='No results found. Try a different term.';results.append(empty);}
+   for(const item of shown){const a=document.createElement('a');a.className='news-row search-result-row';a.href=item.url;const cat=document.createElement('span');cat.className='item-category';cat.textContent=item.section;const block=document.createElement('div');const title=document.createElement('h3');title.textContent=item.title;const description=document.createElement('p');description.textContent=item.summary;block.append(title,description);const arrow=document.createElement('span');arrow.className='list-arrow';arrow.textContent='↗';a.append(cat,block,arrow);results.append(a);}
+  };
+  input.addEventListener('input',render);render();
+ }
+</script>
+</BaseLayout>

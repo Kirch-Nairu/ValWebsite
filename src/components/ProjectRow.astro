@@ -1,0 +1,9 @@
+---
+import type { ProgressItem } from '../data/types';
+interface Props{item:ProgressItem;}
+const {item}=Astro.props;
+const isComplete=item.statusCategory==='verified_completed';
+const isLaunched=item.statusCategory==='verified_launched';
+const status=isComplete?'Completed turnover':isLaunched?'Reported launch':item.statusCategory==='proposed_concept'?'Proposed concept':'Verification pending';
+---
+<a class="project-row" href={`/projects/${item.slug}`}><div class="project-name"><strong>{item.title}</strong><span>{item.barangay} · {item.dateLabel}</span></div><span class={`project-status ${isComplete||isLaunched?'status-known':'status-pending'}`}>{status}</span><span class="project-office">{item.implementingBody}</span><span aria-hidden="true" class="list-arrow">↗</span></a>

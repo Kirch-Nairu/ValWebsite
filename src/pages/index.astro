@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import NewsRow from '../components/NewsRow.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import MediaPanel from '../components/MediaPanel.astro';
+import { SERVICE_CATEGORIES } from '../data/services';
+import { UPDATES } from '../data/news';
+import { PROGRESS_ITEMS } from '../data/projects';
+import { DESTINATIONS } from '../data/destinations';
+import { SITE_META } from '../data/site';
+const news=[...UPDATES].sort((a,b)=>b.publishedDate.localeCompare(a.publishedDate)).slice(0,3);
+const projects=PROGRESS_ITEMS.filter(p=>p.statusCategory==='verified_completed'||p.statusCategory==='verified_launched').slice(0,3);
+const destinations=DESTINATIONS.filter(d=>d.readiness==='established').slice(0,3);
+---
+<BaseLayout title="Municipality of Valencia, Bohol | BARUG VALENCIA" description="Independent municipal information prototype for Valencia, Bohol. Find services, government information, dated news, projects, destinations, and official public channels.">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <p class="eyebrow">Municipality of Valencia / Province of Bohol</p>
+      <h1>Valencia, Bohol.<br/><span>Better connected.</span></h1>
+      <p class="hero-copy">A practical starting point for municipal services, government information, community news, and the places that make Valencia distinct. Clear information, useful directions, and source-attributed records.</p>
+      <div class="button-row"><a class="btn btn-primary" href="/services">Municipal Services <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="/tourism">Explore Valencia <span aria-hidden="true">↗</span></a></div>
+      <p style="font-size:11px;margin:21px 0 0;">Independent design prototype · Information is not an official LGU transaction or real-time advisory.</p>
+    </div>
+    <div class="hero-utility">
+      <div><span class="utility-module-label">Resident information desk</span><h2>What do you<br/>need today?</h2><p>Reach the correct section without searching through announcements.</p></div>
+      <div class="hero-feature-list">
+        <a href="/services"><span><span class="hero-number">01</span> Find a municipal service</span><span aria-hidden="true">↗</span></a>
+        <a href="/news"><span><span class="hero-number">02</span> Read dated news & notices</span><span aria-hidden="true">↗</span></a>
+        <a href="/municipality#barangays"><span><span class="hero-number">03</span> Locate a barangay</span><span aria-hidden="true">↗</span></a>
+        <a href="/contact"><span><span class="hero-number">04</span> Check official communication channels</span><span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="hero-meta">BARUG VALENCIA · Municipal information prototype</p>
+    </div>
+  </div>
+</section>
+<div class="quick-strip"><div class="container quick-grid">
+<a href="/services/civil-registry"><span>Birth & civil records</span><span aria-hidden="true">↗</span></a>
+<a href="/services/treasury-business-permits"><span>Permits & treasury</span><span aria-hidden="true">↗</span></a>
+<a href="/transparency"><span>Public disclosures</span><span aria-hidden="true">↗</span></a>
+<a href="/search"><span>Search this website</span><span aria-hidden="true">↗</span></a>
+</div></div>
+<section class="section section-mist" id="services"><div class="container">
+  <div class="section-heading"><div><p class="eyebrow">Public service directory</p><h2>Start with the service you need.</h2><p class="section-description">Service guides identify the relevant municipal office and explain which requirements must still be confirmed with the current Citizen’s Charter.</p></div><a class="text-link" href="/services">All service categories ↗</a></div>
+  <div class="service-grid">{SERVICE_CATEGORIES.slice(0,4).map((s,i)=><ServiceCard item={s} index={i+1}/>)}</div>
+</div></section>
+<section class="section" id="news"><div class="container">
+ <div class="section-heading"><div><p class="eyebrow">News & public information</p><h2>Community updates, with dates and sources.</h2><p class="section-description">A curated archive of identifiable public and press records. These are not presented as a live municipal advisory feed.</p></div><a class="text-link" href="/news">View news archive ↗</a></div>
+ <div class="news-list">{news.map(item=><NewsRow item={item}/>)}</div>
+</div></section>
+<section class="section section-mint"><div class="container profile-grid">
+  <div><p class="eyebrow">Know your municipality</p><h2>One community.<br/>35 barangays.</h2><p class="section-lead">Valencia is a municipality in Bohol’s Third Congressional District. Explore its municipal profile, geography, and research-compiled barangay directory, with sources and verification notes attached.</p><div class="stats"><div class="stat"><strong>{SITE_META.population2024}</strong><span>2024 population<br/>PSA attribution</span></div><div class="stat"><strong>35</strong><span>Barangays<br/>research directory</span></div><div class="stat"><strong>VII</strong><span>Central Visayas<br/>Philippines</span></div></div><a href="/municipality" class="btn btn-primary" style="margin-top:27px;">Municipal profile <span aria-hidden="true">↗</span></a></div>
+  <div class="profile-panel"><p class="eyebrow">Municipal quick facts</p><h3>Valencia at a glance</h3><dl><div><dt>Province</dt><dd>Bohol</dd></div><div><dt>Congressional district</dt><dd>3rd District</dd></div><div><dt>PSGC municipality code</dt><dd>0701247000</dd></div><div><dt>Public identity</dt><dd>BARUG VALENCIA</dd></div><div><dt>Local directory</dt><dd><a href="/municipality#barangays" style="text-decoration:underline;">View barangays ↗</a></dd></div></dl><p class="tabs-note" style="margin-top:22px;">Figures and identifiers are attributed to the underlying research register; the current PSA barangay-code list requires canonical source recheck.</p></div>
+</div></section>
+<section class="section"><div class="container">
+ <div class="section-heading"><div><p class="eyebrow">Municipal development</p><h2>Projects and progress.</h2><p class="section-description">Completed and reported milestones are separated from proposals. Dates and implementing bodies are shown for accountability.</p></div><a href="/projects" class="text-link">View project register ↗</a></div>
+ <div class="project-table"><div class="project-labels"><span>Project / location</span><span>Documented status</span><span>Implementing office / partner</span><span></span></div>{projects.map(item=><ProjectRow item={item}/>)}</div>
+</div></section>
+<section class="section section-mist"><div class="container">
+ <div class="section-heading"><div><p class="eyebrow">Tourism & local culture</p><h2>Get to know Valencia beyond the town center.</h2><p class="section-description">Attractions recorded in the Bohol provincial tourism profile, alongside Valencia’s Sang-at tradition. Verify visitor access before travelling.</p></div><a class="text-link" href="/tourism">Explore destinations ↗</a></div>
+ <div class="destination-grid">{destinations.map(d=><a class="destination-card" href={`/tourism/${d.slug}`}><MediaPanel label={d.name} caption="Approved destination photograph not yet supplied"/><div class="destination-card-body"><small>{d.barangay} · {d.category}</small><h3>{d.name}</h3><p>{d.summary}</p><strong style="font-size:12px;color:var(--forest)">Explore profile ↗</strong></div></a>)}</div>
+</div></section>
+<section class="section section-dark"><div class="container contact-strip"><div><p class="eyebrow light">Public communication</p><h2>Need an official answer? Start with the official channels.</h2><p>Use municipal communication sources for current schedules, fees, advisories, and document verification.</p></div><div class="contact-actions"><a href="/contact" class="btn btn-cream">Official channels ↗</a><a href="/transparency" class="btn btn-outline-light btn">Transparency ↗</a><p class="contact-note">This prototype does not accept payments, applications, or personal records.</p></div></div></section>
+</BaseLayout>
