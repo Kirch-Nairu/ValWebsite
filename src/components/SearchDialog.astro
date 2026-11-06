@@ -35,6 +35,7 @@ const records=[...basicPages,...SEARCH_INDEX.map(x=>({id:x.id,title:x.title,url:
     };
     document.querySelectorAll<HTMLElement>('[data-open-search]').forEach(btn=>btn.addEventListener('click',()=>{previous=btn;field.value='';render();dlg.showModal();field.focus();}));
     field.addEventListener('input',render);
+    dlg.addEventListener('keydown',(event:KeyboardEvent)=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();dlg.close();}},true);
     closer.addEventListener('click',()=>dlg.close());
     dlg.addEventListener('click',event=>{if(event.target===dlg)dlg.close();});
     dlg.addEventListener('close',()=>previous?.focus());

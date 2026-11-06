@@ -35,7 +35,7 @@ jobs:
           name: valencia-municipal-frontend-evidence
           path: |
             test-results/screenshots/
-            test-results/html/
+            playwright-report/
             test-results/**/*.zip
           if-no-files-found: warn
           retention-days: 14
