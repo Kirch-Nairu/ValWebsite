@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import NewsRow from '../components/NewsRow.astro';
-import ProjectRow from '../components/ProjectRow.astro';
 import MediaPanel from '../components/MediaPanel.astro';
 import { SERVICE_CATEGORIES } from '../data/services';
 import { UPDATES } from '../data/news';
@@ -19,7 +18,6 @@ const featuredDestinations = DESTINATIONS.filter(
   (d) =>
     d.slug === 'sto-nino-parish-church' ||
     d.slug === 'badiang-spring' ||
-    d.slug === 'canduao-pottery-capital' ||
     d.slug === 'banderahan-ugjong-highlands'
 );
 ---
@@ -179,35 +177,99 @@ const featuredDestinations = DESTINATIONS.filter(
     <div class="container civic-action-grid">
       <a href="/services" class="civic-action-item">
         <strong>Municipal Services</strong>
-        <span>Civil registry, business permits, treasury, health & agriculture</span>
+        <span>Civil registry, permits, treasury, health & social welfare</span>
       </a>
       <a href="/government" class="civic-action-item">
         <strong>Offices & Governance</strong>
-        <span>Executive, Sangguniang Bayan & functional office directory</span>
+        <span>Executive, Sangguniang Bayan & Municipal Hall directory</span>
       </a>
       <a href="/municipality#barangays" class="civic-action-item">
         <strong>35 Barangays Directory</strong>
-        <span>Search coastal and upland barangays and PSGC references</span>
+        <span>Search coastal and interior farming communities</span>
       </a>
       <a href="/transparency" class="civic-action-item">
         <strong>Transparency & Records</strong>
-        <span>DILG Full Disclosure portal, PSA census & provincial profiles</span>
+        <span>Full Disclosure portal, PSA census & development plans</span>
       </a>
     </div>
   </nav>
 
-  <!-- Municipal Services Section -->
-  <section class="section" id="services">
+  <!-- 1. The Real Valencia: Agri-Coastal Landscape & Commercial Heart -->
+  <section class="section" id="landscape">
     <div class="container">
       <div class="section-heading">
         <div>
-          <p class="section-kicker">Resident & Business Guide</p>
-          <h2>Municipal Services & Offices</h2>
+          <p class="section-kicker">Municipal Profile · PSGC 0701247000</p>
+          <h2>An Agri-Coastal Economy Powered by Community Trade</h2>
           <p class="section-description">
-            Direct guidance on documentary preparation, responsible departments, and in-person transactions at Valencia Municipal Hall.
+            Stretching across 116.67 km² along southern Bohol, Valencia combines marine fisheries along the Bohol Sea with a productive interior agricultural heartland of 15 rice-growing barangays and copra plantations.
           </p>
         </div>
-        <a class="text-link" href="/services">View all service guides</a>
+        <a class="text-link" href="/municipality">Learn about Valencia's geography & history →</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 16px;">
+        <!-- Card 1: Valencia Business Center -->
+        <article style="background: #ffffff; border: 1px solid var(--valencia-orange-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          <div style="position: relative; height: 220px; overflow: hidden;">
+            <img
+              src="/media/valencia/valencia-business-center-day.jpg"
+              alt="Modernized Valencia Business Center commercial portico in Poblacion"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              loading="eager"
+            />
+            <span class="badge badge-orange" style="position: absolute; bottom: 12px; left: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+              Commercial Trading Center
+            </span>
+          </div>
+          <div style="padding: 22px; flex: 1; display: flex; flex-direction: column;">
+            <small style="color: var(--valencia-orange-dark); font-weight: 700; text-transform: uppercase; font-size: 0.76rem;">Poblacion Center</small>
+            <h3 style="margin: 6px 0 10px; font-size: 1.25rem; color: var(--forest);">Valencia Business Center & Sunday Tabu</h3>
+            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--muted); margin-bottom: 16px; flex: 1;">
+              The heart of municipal commerce. Every Sunday, interior farming households and coastal fishermen gather at the modernized two-storey commercial complex for the weekly Tabu trade, now upgraded with QR Ph digital payments.
+            </p>
+            <a href="/stories/sunday-tabu-and-crafts" class="text-link" style="font-weight: 600;">Explore Business Center & Tabu Trade →</a>
+          </div>
+        </article>
+
+        <!-- Card 2: Agricultural Heartland -->
+        <article style="background: #ffffff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          <div style="position: relative; height: 220px; overflow: hidden; background: var(--forest-2);">
+            <img
+              src="/media/valencia/valencia-town-view.jpg"
+              alt="Coastal highway and interior farming corridor entering Valencia"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              loading="eager"
+            />
+            <span class="tag" style="position: absolute; bottom: 12px; left: 14px; background: rgba(0,0,0,0.7); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">
+              15 Rice & Coconut Barangays
+            </span>
+          </div>
+          <div style="padding: 22px; flex: 1; display: flex; flex-direction: column;">
+            <small style="color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 0.76rem;">Interior & Highland Belt</small>
+            <h3 style="margin: 6px 0 10px; font-size: 1.25rem; color: var(--forest);">Agricultural Heartland & Rural Livelihoods</h3>
+            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--muted); margin-bottom: 16px; flex: 1;">
+              Over half of Valencia's territory is cultivated in rice, coconut copra, corn, and fruit trees across rural communities like Anonang, Anoyon, Adlawan, and Pangi-an, supported by regional DA and municipal livestock recovery programs.
+            </p>
+            <a href="/municipality#barangays" class="text-link" style="font-weight: 600;">Browse 25 Upland & Interior Barangays →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Frontline Resident Services & Requirements Hub -->
+  <section class="section section-stone" id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Resident & Business Frontline</p>
+          <h2>Municipal Hall Frontline Services</h2>
+          <p class="section-description">
+            Transparent documentary requirements, responsible departments, and cashier guidelines for resident transactions at Valencia Municipal Hall.
+          </p>
+        </div>
+        <a class="text-link" href="/services">View complete service catalog →</a>
       </div>
 
       <div class="service-grid">
@@ -218,68 +280,74 @@ const featuredDestinations = DESTINATIONS.filter(
     </div>
   </section>
 
-  <!-- News & Public Announcements + Municipal Projects Split/Ledger -->
-  <section class="section section-stone" id="news">
+  <!-- 3. Dual-Feed: Recent Public Announcements & Verified Project Progress -->
+  <section class="section" id="news-and-projects">
     <div class="container">
-      <div class="section-heading">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 36px;">
+        <!-- Left Column: News & Advisories -->
         <div>
-          <p class="section-kicker">Public Information</p>
-          <h2>Recent News & Announcements</h2>
-          <p class="section-description">
-            Dated reports covering municipal governance, classroom infrastructure, digital market payments, and cultural milestones in Valencia.
-          </p>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 10px;">
+            <div>
+              <p class="section-kicker" style="margin-bottom: 4px;">Public Information</p>
+              <h2 style="margin: 0; font-size: 1.5rem;">News & Announcements</h2>
+            </div>
+            <a class="text-link" href="/news" style="font-size: 0.86rem;">All news →</a>
+          </div>
+          <div class="news-list" style="margin-top: 16px;">
+            {news.map((item) => (
+              <NewsRow item={item} />
+            ))}
+          </div>
         </div>
-        <a class="text-link" href="/news">Browse all announcements</a>
-      </div>
 
-      <div class="news-list">
-        {news.map((item) => (
-          <NewsRow item={item} />
-        ))}
+        <!-- Right Column: Projects & Progress -->
+        <div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 10px;">
+            <div>
+              <p class="section-kicker" style="margin-bottom: 4px;">BARUG VALENCIA in Action</p>
+              <h2 style="margin: 0; font-size: 1.5rem;">Infrastructure & Programs</h2>
+            </div>
+            <a class="text-link" href="/projects" style="font-size: 0.86rem;">Full register →</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+            {projects.map((p) => (
+              <article style="background: var(--mint); border: 1px solid var(--line); border-left: 4px solid var(--valencia-orange); border-radius: 6px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                  <span class="badge badge-orange" style="font-size: 0.7rem; padding: 2px 7px;">{p.statusBadge}</span>
+                  <small style="color: var(--muted); font-size: 0.78rem;">{p.dateLabel}</small>
+                </div>
+                <h3 style="margin: 4px 0 2px; font-size: 1.05rem;">
+                  <a href={`/projects/${p.slug}`} style="color: var(--forest); text-decoration: none;">
+                    {p.title}
+                  </a>
+                </h3>
+                <p style="font-size: 0.84rem; color: var(--ink); margin: 0; line-height: 1.5;">
+                  {p.summary}
+                </p>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.06);">
+                  <span style="font-size: 0.76rem; color: var(--muted);">{p.barangay}</span>
+                  <a href={`/projects/${p.slug}`} class="text-link" style="font-size: 0.8rem; font-weight: 600;">Details →</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects & Municipal Progress -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">BARUG VALENCIA in Action</p>
-          <h2>Municipal Projects & Development</h2>
-          <p class="section-description">
-            Completed educational facilities, public market modernization, agricultural recovery programs, and policy initiatives across Valencia’s barangays.
-          </p>
-        </div>
-        <a href="/projects" class="text-link">Open full project register</a>
-      </div>
-
-      <div class="project-table">
-        <div class="project-labels">
-          <span>Project & Location</span>
-          <span>Status</span>
-          <span>Implementing Office / Partner</span>
-          <span></span>
-        </div>
-        {projects.map((item) => (
-          <ProjectRow item={item} />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Photograph-Driven Discover Valencia & Sang-at Heritage Showcase -->
+  <!-- 4. Real Tourism Anchors: Santo Niño Church, Badiang Spring & Sang-at -->
   <section class="section section-forest" id="discover">
     <div class="container">
       <div class="section-heading">
         <div>
-          <p class="section-kicker light">Tourism, Culture & Heritage</p>
-          <h2>From Coastal Springs to the Sang-at Festival</h2>
+          <p class="section-kicker light">Heritage & Natural Wonders</p>
+          <h2>The Authentic Destinations of Valencia</h2>
           <p class="section-description">
-            Experience Badiang Spring where cold mountain water meets the Bohol Sea, walk across the 1882 tindalo-and-molave hardwood floor of Sr. Santo Niño Parish Church, and celebrate Valencia’s Panangatan boat-lifting heritage.
+            From the 1882 tindalo-and-molave hardwood floor of Sr. Santo Niño Parish Church to cold subterranean waters cascading into the Bohol Sea at Badiang Spring.
           </p>
         </div>
-        <a class="text-link light" href="/tourism">Explore all 14 destinations</a>
+        <a class="text-link light" href="/tourism">View destination catalog →</a>
       </div>
 
       <div class="showcase-feature-grid">
@@ -295,7 +363,7 @@ const featuredDestinations = DESTINATIONS.filter(
             <span class="showcase-pill">Foundation Day Cultural Signature · Late October</span>
             <h3>Sang-at Festival & Panangatan Heritage</h3>
             <p>
-              Rooted in the Cebuano verb <em>sang-at</em>—how early fishermen lifted their wooden outrigger boats onto the elevated, nipa-lined banks of the Panangatan River during the southwest monsoon. Featured at Bohol’s Sandugo showcase in July 2026.
+              Rooted in the Cebuano verb <em>sang-at</em>—how early coastal fishermen lifted their wooden outrigger boats onto the elevated, nipa-lined banks of the Panangatan River during the monsoon. Celebrated with street dancing every October.
             </p>
             <span class="showcase-cta">Read the Sang-at cultural profile →</span>
           </div>
@@ -322,14 +390,14 @@ const featuredDestinations = DESTINATIONS.filter(
     </div>
   </section>
 
-  <!-- Municipality & 35 Barangays Profile Band -->
+  <!-- 5. Municipality & 35 Barangays Profile Band -->
   <section class="section">
     <div class="container profile-grid">
       <div>
-        <p class="section-kicker">Know Your Municipality</p>
+        <p class="section-kicker">Municipal Geography</p>
         <h2>One Community Across 35 Barangays</h2>
         <p class="section-lead">
-          Valencia spans coastal fishing and resort villages along the Bohol Sea, the commercial and heritage district of Poblacion, and upland agricultural communities rising to 485 meters at Banderahan and Limocon.
+          From coastal fishing villages along the southern shoreline to the commercial heart in Poblacion and rolling upland farm ridges rising to 485 meters at Banderahan.
         </p>
         <div class="stats">
           <div class="stat">
@@ -338,16 +406,16 @@ const featuredDestinations = DESTINATIONS.filter(
           </div>
           <div class="stat">
             <strong>35</strong>
-            <span>Coastal & Upland Barangays</span>
+            <span>10 Coastal · 25 Upland & Interior</span>
           </div>
           <div class="stat">
-            <strong>1867 / 1869</strong>
-            <span>Historical Foundation from Panangatan</span>
+            <strong>116.67 km²</strong>
+            <span>Land Area (Agri-Coastal)</span>
           </div>
         </div>
         <div class="button-row" style="margin-top: 28px;">
           <a href="/municipality" class="btn btn-primary">Municipal Profile & History</a>
-          <a href="/municipality#barangays" class="btn btn-outline">Search 35 Barangays</a>
+          <a href="/municipality#barangays" class="btn btn-outline">Search 35 Barangays Directory</a>
         </div>
       </div>
 
@@ -375,8 +443,8 @@ const featuredDestinations = DESTINATIONS.filter(
               <dd>Dimiao (West), Garcia Hernandez (East), Carmen & Sierra Bullones (North)</dd>
             </div>
             <div>
-              <dt>Weekly Market Day</dt>
-              <dd>Sunday Tabu at Poblacion Public Market</dd>
+              <dt>Commercial Center</dt>
+              <dd>Valencia Business Center (Poblacion)</dd>
             </div>
           </dl>
         </div>
@@ -384,14 +452,14 @@ const featuredDestinations = DESTINATIONS.filter(
     </div>
   </section>
 
-  <!-- Practical Contact & Public Channels Strip -->
+  <!-- 6. Practical Contact & Public Channels Strip -->
   <section class="section section-stone">
     <div class="container contact-strip">
       <div>
         <p class="section-kicker">Official Communication Channels</p>
         <h2>Connect with the Municipality of Valencia</h2>
         <p class="section-description">
-          Reach municipal offices in Poblacion, follow official public advisories from the Local Government Unit, or plan your overland trip from Tagbilaran City.
+          Reach municipal offices at Valencia Municipal Hall in Poblacion, follow official public advisories from the Local Government Unit, or plan your overland travel along the southern Bohol coastal road.
         </p>
       </div>
       <div class="contact-actions">
