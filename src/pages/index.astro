@@ -27,46 +27,137 @@ const featuredDestinations = DESTINATIONS.filter(
   title="Municipality of Valencia, Bohol | BARUG VALENCIA"
   description="Municipality of Valencia, Province of Bohol (BARUG VALENCIA). Access municipal services, office directory, dated public announcements, infrastructure progress, and tourism guides."
 >
-  <!-- First Viewport: Full-Bleed Cinematic Video Hero with Overlaid Typography & Actions -->
-  <section class="hero hero-fullbleed">
+  <!-- First Viewport: Full-Bleed Cinematic Video Hero with Curated Chapters, Independent Anthem Audio & Architectural Overlay -->
+  <section class="hero hero-fullbleed" aria-label="Municipality of Valencia, Bohol Showcase">
     <div class="hero-video-bg">
       <video
         id="hero-video"
         autoplay
         muted
-        loop
         playsinline
         preload="auto"
         poster="/media/valencia/valencia-church-plaza.jpg"
-        aria-label="Cinematic video of Valencia, Bohol"
+        aria-label="Cinematic showcase of Valencia, Bohol: Sto. Niño devotion, Panangatan River, and Sang-at Festival"
       >
         <source src="/media/valencia/valencia-hero-cinematic.mp4" type="video/mp4" />
       </video>
+      <!-- Dedicated audio element synced to the festival song drop at 01:46 (106s) -->
+      <audio
+        id="hero-anthem-audio"
+        preload="metadata"
+        src="/media/valencia/valencia-hero-cinematic.mp4#t=106"
+      ></audio>
       <div class="hero-video-overlay" aria-hidden="true"></div>
     </div>
 
-    <div class="container hero-fullbleed-inner">
-      <div class="hero-content hero-content-overlay">
+    <div class="container hero-stage-shell">
+      <!-- Top Bar: Official Identity Pill + Media & Anthem Controls -->
+      <div class="hero-stage-top">
         <div class="hero-identity-pill hero-pill-glass">
           <span class="hero-catchphrase">BARUG VALENCIA</span>
           <span class="hero-divider" aria-hidden="true">·</span>
           <span>Municipality of Valencia, Province of Bohol</span>
         </div>
 
-        <h1 class="hero-title-light">Valencia, Bohol.</h1>
+        <div class="hero-media-bar" role="group" aria-label="Video and soundtrack controls">
+          <button
+            id="hero-audio-toggle"
+            type="button"
+            class="hero-ctrl-btn hero-ctrl-audio"
+            aria-pressed="false"
+            title="Play official festival soundtrack starting at 01:46"
+          >
+            <span class="audio-eq" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span id="hero-audio-label">Play Festival Anthem (01:46)</span>
+          </button>
 
-        <p class="hero-copy hero-copy-light">
-          Where the Panangatan River meets the Bohol Sea and 35 coastal and upland barangays stand together. Access municipal services, public announcements, community projects, and the natural and cultural landmarks of Valencia.
-        </p>
+          <button
+            id="hero-video-toggle"
+            type="button"
+            class="hero-ctrl-btn"
+            aria-label="Pause background video"
+            title="Pause or play background video"
+          >
+            <span id="hero-video-icon">⏸ Pause</span>
+          </button>
+        </div>
+      </div>
 
-        <div class="button-row">
-          <a class="btn btn-primary btn-gold" href="/services">Municipal Services</a>
-          <a class="btn btn-glass" href="/tourism">Explore Valencia</a>
+      <!-- Center Left: Clean Architectural Typography & Primary CTAs (Right 58% is open viewport) -->
+      <div class="hero-stage-main">
+        <div class="hero-content hero-content-overlay">
+          <p class="hero-scene-tag" id="hero-scene-indicator">
+            <span class="scene-dot" aria-hidden="true"></span>
+            <span id="hero-scene-label">Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)</span>
+          </p>
+
+          <h1 class="hero-title-light">Valencia, Bohol.</h1>
+
+          <p class="hero-copy hero-copy-light">
+            Where the Panangatan River meets the Bohol Sea and 35 coastal and upland barangays stand together. Access municipal services, public announcements, community projects, and the natural and cultural landmarks of Valencia.
+          </p>
+
+          <div class="button-row">
+            <a class="btn btn-primary btn-gold" href="/services">Municipal Services</a>
+            <a class="btn btn-glass" href="/tourism">Explore Valencia</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Architectural Bar: Interactive Chapter Scrubber + Municipal Census Ledger -->
+      <div class="hero-stage-bottom">
+        <div class="hero-chapters" role="tablist" aria-label="Video chapters">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            class="hero-chapter-btn is-active"
+            data-start="0"
+            data-end="19.5"
+            data-chapter="0"
+            data-label="Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)"
+          >
+            <span class="chapter-index">01 · 0:00–0:19</span>
+            <strong>Sto. Niño & Aerial Reveal</strong>
+            <span class="chapter-sub">Coastal devotion to Valencia valley</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="hero-chapter-btn"
+            data-start="19.5"
+            data-end="35"
+            data-chapter="1"
+            data-label="Chapter II · Panangatan River & Boat-Lifting Origins (0:20–0:35)"
+          >
+            <span class="chapter-index">02 · 0:20–0:35</span>
+            <strong>Panangatan River</strong>
+            <span class="chapter-sub">Outrigger sang-at & Bantay Dagat</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="hero-chapter-btn"
+            data-start="106"
+            data-end="262"
+            data-chapter="2"
+            data-label="Chapter III · Sang-at Festival Street Dancing & Finale (01:46–04:22)"
+          >
+            <span class="chapter-index">03 · 01:46+</span>
+            <strong>Sang–at Festival</strong>
+            <span class="chapter-sub">Anthem drop, street dance & finale</span>
+          </button>
         </div>
 
         <dl class="hero-facts hero-facts-glass" aria-label="Municipal key figures">
           <div>
-            <dt>Population (2024 Census)</dt>
+            <dt>Population (2024)</dt>
             <dd>{SITE_META.population2024}</dd>
           </div>
           <div>
@@ -74,39 +165,10 @@ const featuredDestinations = DESTINATIONS.filter(
             <dd>35 Coastal & Upland</dd>
           </div>
           <div>
-            <dt>District & Code</dt>
+            <dt>District & PSGC</dt>
             <dd>3rd District · 0701247000</dd>
           </div>
         </dl>
-      </div>
-
-      <div class="hero-overlay-controls">
-        <button
-          id="hero-video-toggle"
-          type="button"
-          class="hero-ctrl-btn"
-          aria-label="Pause background video"
-          title="Pause or play background video"
-        >
-          <span id="hero-video-icon">⏸ Pause Video</span>
-        </button>
-
-        <div class="hero-floating-badges">
-          <a href="/municipality" class="hero-badge-link" title="Welcome to Valencia Southern Gateway">
-            <img src="/media/valencia/valencia-town-view.jpg" alt="Welcome to Valencia arch" />
-            <div>
-              <strong>Southern Gateway</strong>
-              <span>Coastal Bohol South Road</span>
-            </div>
-          </a>
-          <a href="/stories/sunday-tabu-and-crafts" class="hero-badge-link" title="Valencia Public Market and Sunday Tabu">
-            <img src="/media/valencia/valencia-public-market.jpg" alt="Valencia Public Market" />
-            <div>
-              <strong>Valencia Public Market</strong>
-              <span>Sunday Tabu & Paleng-QR Ph</span>
-            </div>
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -347,19 +409,158 @@ const featuredDestinations = DESTINATIONS.filter(
 
   <script>
     const video = document.querySelector<HTMLVideoElement>('#hero-video');
+    const audio = document.querySelector<HTMLAudioElement>('#hero-anthem-audio');
     const toggle = document.querySelector<HTMLButtonElement>('#hero-video-toggle');
     const icon = document.querySelector<HTMLElement>('#hero-video-icon');
+    const audioToggle = document.querySelector<HTMLButtonElement>('#hero-audio-toggle');
+    const audioLabel = document.querySelector<HTMLElement>('#hero-audio-label');
+    const sceneLabel = document.querySelector<HTMLElement>('#hero-scene-label');
+    const chapterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.hero-chapter-btn'));
+
+    const CHAPTERS = [
+      {
+        index: 0,
+        start: 0,
+        end: 19.5,
+        label: 'Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)'
+      },
+      {
+        index: 1,
+        start: 19.5,
+        end: 35,
+        label: 'Chapter II · Panangatan River & Boat-Lifting Origins (0:20–0:35)'
+      },
+      {
+        index: 2,
+        start: 106,
+        end: 262,
+        label: 'Chapter III · Sang-at Festival Street Dancing & Finale (01:46–04:22)'
+      }
+    ];
+
+    let activeChapterIndex = -1;
+    let isSeeking = false;
+
+    function setActiveChapterUI(idx: number) {
+      if (activeChapterIndex === idx) return;
+      activeChapterIndex = idx;
+      const ch = CHAPTERS[idx] || CHAPTERS[0];
+      if (sceneLabel) {
+        sceneLabel.textContent = ch.label;
+      }
+      chapterBtns.forEach((btn, i) => {
+        const active = i === idx;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    if (video) {
+      // Curated video timeline:
+      // 0:00 -> 0:19.5 (Chapter I: Sto. Niño & Valencia Aerial Frame)
+      // 0:19.5 -> 0:35 (Chapter II: Panangatan River & Boat-Lifting)
+      // Skips slow 0:35–1:46 talk/intro directly to 1:46 (106s) for Chapter III: Sang-at Festival!
+      video.addEventListener('timeupdate', () => {
+        if (isSeeking) return;
+        const t = video.currentTime;
+
+        if (t >= 35 && t < 105.5) {
+          isSeeking = true;
+          video.currentTime = 106;
+          setActiveChapterUI(2);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 150);
+          return;
+        }
+
+        if (t >= 262) {
+          isSeeking = true;
+          video.currentTime = 0;
+          setActiveChapterUI(0);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 150);
+          return;
+        }
+
+        if (t < 19.5) {
+          setActiveChapterUI(0);
+        } else if (t >= 19.5 && t < 35) {
+          setActiveChapterUI(1);
+        } else if (t >= 105.5) {
+          setActiveChapterUI(2);
+        }
+      });
+
+      chapterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const start = parseFloat(btn.dataset.start || '0');
+          const idx = parseInt(btn.dataset.chapter || '0', 10);
+          isSeeking = true;
+          video.currentTime = start;
+          if (video.paused) {
+            video.play();
+            if (icon) icon.textContent = '⏸ Pause';
+          }
+          setActiveChapterUI(idx);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 200);
+        });
+      });
+    }
 
     if (video && toggle && icon) {
       toggle.addEventListener('click', () => {
         if (video.paused) {
           video.play();
-          icon.textContent = '⏸ Pause Video';
+          icon.textContent = '⏸ Pause';
           toggle.setAttribute('aria-label', 'Pause background video');
         } else {
           video.pause();
-          icon.textContent = '▶ Play Video';
+          icon.textContent = '▶ Play';
           toggle.setAttribute('aria-label', 'Play background video');
+        }
+      });
+    }
+
+    // Independent Festival Anthem Audio Player (Starts at 01:46 / 106s regardless of video frame)
+    if (audio && audioToggle && audioLabel) {
+      const SONG_START = 106;
+      const SONG_END = 268;
+
+      audio.addEventListener('loadedmetadata', () => {
+        if (audio.currentTime < SONG_START) {
+          audio.currentTime = SONG_START;
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.currentTime >= SONG_END) {
+          audio.currentTime = SONG_START;
+          audio.play();
+        }
+      });
+
+      audioToggle.addEventListener('click', async () => {
+        if (audio.paused) {
+          if (audio.currentTime < SONG_START || audio.currentTime >= SONG_END) {
+            audio.currentTime = SONG_START;
+          }
+          try {
+            await audio.play();
+            audioToggle.classList.add('is-playing');
+            audioToggle.setAttribute('aria-pressed', 'true');
+            audioLabel.textContent = 'Sound On · Festival Anthem';
+          } catch {
+            audioLabel.textContent = 'Play Festival Anthem (01:46)';
+          }
+        } else {
+          audio.pause();
+          audioToggle.classList.remove('is-playing');
+          audioToggle.setAttribute('aria-pressed', 'false');
+          audioLabel.textContent = 'Muted · Play Anthem (01:46)';
         }
       });
     }

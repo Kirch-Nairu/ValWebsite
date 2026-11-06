@@ -73,16 +73,16 @@ test('homepage renders real Valencia photography and routes to municipal destina
   const videoVisible = await page.locator('#hero-video').isVisible();
   expect(videoVisible).toBe(true);
 
-  const heroImagesLoaded = await page.locator('.hero-floating-badges img').evaluateAll((imgs: HTMLImageElement[]) =>
-    imgs.length >= 2 && imgs.every(img => img.complete && img.naturalWidth > 0)
-  );
-  expect(heroImagesLoaded).toBe(true);
+  const chapterCount = await page.locator('.hero-chapter-btn').count();
+  expect(chapterCount).toBe(3);
+
+  await expect(page.locator('#hero-audio-toggle')).toBeVisible();
 
   await page.getByRole('link', { name: /Municipal Services/i }).first().click();
   await expect(page).toHaveURL(/\/services\/?$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Municipal Services');
 
-  await page.goto('/');
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.getByRole('link', { name: /Explore Valencia/i }).first().click();
   await expect(page).toHaveURL(/\/tourism\/?$/);
 });
