@@ -260,7 +260,6 @@ const featuredDestinations = DESTINATIONS.filter(
     <div class="container">
       <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
         <div>
-          <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 6px; display: inline-block;">Frontline Resident Desks</span>
           <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">Municipal Hall Frontline Services</h2>
           <p style="margin: 4px 0 0; color: var(--muted); font-size: 0.9rem;">
             Official windows at Valencia Municipal Hall (Poblacion) · Weekdays 8:00 AM – 5:00 PM
@@ -332,10 +331,7 @@ const featuredDestinations = DESTINATIONS.filter(
   <section class="section" id="news" style="padding: 56px 0;">
     <div class="container">
       <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 12px;">
-        <div>
-          <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 4px; display: inline-block;">Official Dispatches</span>
-          <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">Public Information & Announcements</h2>
-        </div>
+        <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">Public Information & Announcements</h2>
         <a class="text-link" href="/news" style="font-weight: 600;">Browse All Municipal Bulletins →</a>
       </div>
 
@@ -346,7 +342,7 @@ const featuredDestinations = DESTINATIONS.filter(
           <article style="background: var(--mint); border: 1px solid var(--valencia-orange-border); border-radius: 8px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
             <div>
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-                <span class="badge badge-orange" style="font-size: 0.74rem;">Lead Announcement</span>
+                <span class="tag" style="font-size: 0.74rem;">{news[0].category}</span>
                 <time datetime={news[0].publishedDate} style="font-size: 0.82rem; color: var(--muted); font-weight: 600;">
                   {new Date(news[0].publishedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </time>
@@ -399,10 +395,7 @@ const featuredDestinations = DESTINATIONS.filter(
   <section class="section section-stone" id="projects" style="padding: 56px 0;">
     <div class="container">
       <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 12px;">
-        <div>
-          <span class="badge badge-orange" style="font-size: 0.72rem; margin-bottom: 4px; display: inline-block;">Accountable Delivery</span>
-          <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">BARUG VALENCIA in Action: Infrastructure & Development</h2>
-        </div>
+        <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">BARUG VALENCIA in Action: Infrastructure & Development</h2>
         <a class="text-link" href="/projects" style="font-weight: 600;">Open Complete Projects Register →</a>
       </div>
 
