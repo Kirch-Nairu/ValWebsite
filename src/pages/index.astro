@@ -65,12 +65,12 @@ const featuredDestinations = DESTINATIONS.filter(
             type="button"
             class="hero-ctrl-btn hero-ctrl-audio"
             aria-pressed="false"
-            title="Play official festival soundtrack starting at 01:46"
+            title="Listen to the official Sang-at Festival celebration anthem"
           >
             <span class="audio-eq" aria-hidden="true">
               <span></span><span></span><span></span>
             </span>
-            <span id="hero-audio-label">Play Festival Anthem (01:46)</span>
+            <span id="hero-audio-label">Festival Anthem</span>
           </button>
 
           <button
@@ -78,7 +78,7 @@ const featuredDestinations = DESTINATIONS.filter(
             type="button"
             class="hero-ctrl-btn"
             aria-label="Pause background video"
-            title="Pause or play background video"
+            title="Pause or play background video and soundtrack"
           >
             <span id="hero-video-icon">⏸ Pause</span>
           </button>
@@ -90,7 +90,7 @@ const featuredDestinations = DESTINATIONS.filter(
         <div class="hero-content hero-content-overlay">
           <p class="hero-scene-tag" id="hero-scene-indicator">
             <span class="scene-dot" aria-hidden="true"></span>
-            <span id="hero-scene-label">Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)</span>
+            <span id="hero-scene-label">Chapter I · Coastal Devotion & Aerial Panorama</span>
           </p>
 
           <h1 class="hero-title-light">Valencia, Bohol.</h1>
@@ -117,11 +117,11 @@ const featuredDestinations = DESTINATIONS.filter(
             data-start="0"
             data-end="19.5"
             data-chapter="0"
-            data-label="Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)"
+            data-label="Chapter I · Coastal Devotion & Aerial Panorama"
           >
-            <span class="chapter-index">01 · 0:00–0:19</span>
-            <strong>Sto. Niño & Aerial Reveal</strong>
-            <span class="chapter-sub">Coastal devotion to Valencia valley</span>
+            <span class="chapter-index">01 · Devotion & Landscape</span>
+            <strong>Coastal Devotion</strong>
+            <span class="chapter-sub">Sto. Niño sea procession & valley panorama</span>
           </button>
 
           <button
@@ -132,11 +132,11 @@ const featuredDestinations = DESTINATIONS.filter(
             data-start="19.5"
             data-end="35"
             data-chapter="1"
-            data-label="Chapter II · Panangatan River & Boat-Lifting Origins (0:20–0:35)"
+            data-label="Chapter II · Panangatan River & Boat-Lifting Origins"
           >
-            <span class="chapter-index">02 · 0:20–0:35</span>
+            <span class="chapter-index">02 · Maritime Heritage</span>
             <strong>Panangatan River</strong>
-            <span class="chapter-sub">Outrigger sang-at & Bantay Dagat</span>
+            <span class="chapter-sub">Traditional sang-at & riverbank landing</span>
           </button>
 
           <button
@@ -147,11 +147,11 @@ const featuredDestinations = DESTINATIONS.filter(
             data-start="106"
             data-end="262"
             data-chapter="2"
-            data-label="Chapter III · Sang-at Festival Street Dancing & Finale (01:46–04:22)"
+            data-label="Chapter III · Sang-at Festival & Community Celebration"
           >
-            <span class="chapter-index">03 · 01:46+</span>
+            <span class="chapter-index">03 · Cultural Celebration</span>
             <strong>Sang–at Festival</strong>
-            <span class="chapter-sub">Anthem drop, street dance & finale</span>
+            <span class="chapter-sub">Town street dancing, rhythm & finale</span>
           </button>
         </div>
 
@@ -422,19 +422,19 @@ const featuredDestinations = DESTINATIONS.filter(
         index: 0,
         start: 0,
         end: 19.5,
-        label: 'Chapter I · Sto. Niño Devotion & Valencia Aerial Reveal (0:00–0:19)'
+        label: 'Chapter I · Coastal Devotion & Aerial Panorama'
       },
       {
         index: 1,
         start: 19.5,
         end: 35,
-        label: 'Chapter II · Panangatan River & Boat-Lifting Origins (0:20–0:35)'
+        label: 'Chapter II · Panangatan River & Boat-Lifting Origins'
       },
       {
         index: 2,
         start: 106,
         end: 262,
-        label: 'Chapter III · Sang-at Festival Street Dancing & Finale (01:46–04:22)'
+        label: 'Chapter III · Sang-at Festival & Community Celebration'
       }
     ];
 
@@ -457,9 +457,9 @@ const featuredDestinations = DESTINATIONS.filter(
 
     if (video) {
       // Curated video timeline:
-      // 0:00 -> 0:19.5 (Chapter I: Sto. Niño & Valencia Aerial Frame)
+      // 0:00 -> 0:19.5 (Chapter I: Coastal Devotion & Aerial Panorama)
       // 0:19.5 -> 0:35 (Chapter II: Panangatan River & Boat-Lifting)
-      // Skips slow 0:35–1:46 talk/intro directly to 1:46 (106s) for Chapter III: Sang-at Festival!
+      // Skips slow 0:35–1:46 talk/intro directly to 1:46 (106s) for Chapter III: Sang-at Festival
       video.addEventListener('timeupdate', () => {
         if (isSeeking) return;
         const t = video.currentTime;
@@ -502,6 +502,9 @@ const featuredDestinations = DESTINATIONS.filter(
           if (video.paused) {
             video.play();
             if (icon) icon.textContent = '⏸ Pause';
+            if (audio && audio.paused) {
+              startAudio();
+            }
           }
           setActiveChapterUI(idx);
           setTimeout(() => {
@@ -511,25 +514,49 @@ const featuredDestinations = DESTINATIONS.filter(
       });
     }
 
-    if (video && toggle && icon) {
-      toggle.addEventListener('click', () => {
-        if (video.paused) {
-          video.play();
-          icon.textContent = '⏸ Pause';
-          toggle.setAttribute('aria-label', 'Pause background video');
-        } else {
-          video.pause();
-          icon.textContent = '▶ Play';
-          toggle.setAttribute('aria-label', 'Play background video');
+    // Audio Player State & Controls (Festival Anthem at 01:46 / 106s)
+    const SONG_START = 106;
+    const SONG_END = 268;
+
+    async function startAudio() {
+      if (!audio) return;
+      if (audio.currentTime < SONG_START || audio.currentTime >= SONG_END) {
+        audio.currentTime = SONG_START;
+      }
+      try {
+        await audio.play();
+        if (audioToggle) {
+          audioToggle.classList.add('is-playing');
+          audioToggle.setAttribute('aria-pressed', 'true');
         }
-      });
+        if (audioLabel) {
+          audioLabel.textContent = 'Sound On · Festival Anthem';
+        }
+      } catch {
+        // Browser autoplay policy might require first user gesture
+        if (audioToggle) {
+          audioToggle.classList.remove('is-playing');
+          audioToggle.setAttribute('aria-pressed', 'false');
+        }
+        if (audioLabel) {
+          audioLabel.textContent = 'Festival Anthem';
+        }
+      }
     }
 
-    // Independent Festival Anthem Audio Player (Starts at 01:46 / 106s regardless of video frame)
-    if (audio && audioToggle && audioLabel) {
-      const SONG_START = 106;
-      const SONG_END = 268;
+    function pauseAudio() {
+      if (!audio) return;
+      audio.pause();
+      if (audioToggle) {
+        audioToggle.classList.remove('is-playing');
+        audioToggle.setAttribute('aria-pressed', 'false');
+      }
+      if (audioLabel) {
+        audioLabel.textContent = 'Muted · Festival Anthem';
+      }
+    }
 
+    if (audio) {
       audio.addEventListener('loadedmetadata', () => {
         if (audio.currentTime < SONG_START) {
           audio.currentTime = SONG_START;
@@ -542,27 +569,68 @@ const featuredDestinations = DESTINATIONS.filter(
           audio.play();
         }
       });
+    }
 
-      audioToggle.addEventListener('click', async () => {
-        if (audio.paused) {
-          if (audio.currentTime < SONG_START || audio.currentTime >= SONG_END) {
-            audio.currentTime = SONG_START;
+    // Master Video + Audio Pause/Play Toggle
+    if (toggle && icon) {
+      toggle.addEventListener('click', () => {
+        if (video) {
+          if (video.paused) {
+            video.play();
+            icon.textContent = '⏸ Pause';
+            toggle.setAttribute('aria-label', 'Pause background video');
+            // Resume audio when resuming video if previously active or requested
+            startAudio();
+          } else {
+            video.pause();
+            icon.textContent = '▶ Play';
+            toggle.setAttribute('aria-label', 'Play background video');
+            // Stop audio when video is paused
+            pauseAudio();
           }
-          try {
-            await audio.play();
-            audioToggle.classList.add('is-playing');
-            audioToggle.setAttribute('aria-pressed', 'true');
-            audioLabel.textContent = 'Sound On · Festival Anthem';
-          } catch {
-            audioLabel.textContent = 'Play Festival Anthem (01:46)';
-          }
-        } else {
-          audio.pause();
-          audioToggle.classList.remove('is-playing');
-          audioToggle.setAttribute('aria-pressed', 'false');
-          audioLabel.textContent = 'Muted · Play Anthem (01:46)';
         }
       });
+    }
+
+    if (audioToggle) {
+      audioToggle.addEventListener('click', () => {
+        if (!audio) return;
+        if (audio.paused) {
+          startAudio();
+          if (video && video.paused) {
+            video.play();
+            if (icon) icon.textContent = '⏸ Pause';
+          }
+        } else {
+          pauseAudio();
+        }
+      });
+    }
+
+    // Auto-start music when page/tab opens
+    // (If modern browser blocks un-gestured autoplay with sound, gracefully attach to first click/touch/scroll)
+    async function attemptAutoplayAudio() {
+      try {
+        await startAudio();
+      } catch {
+        const unlock = () => {
+          startAudio();
+          window.removeEventListener('click', unlock);
+          window.removeEventListener('keydown', unlock);
+          window.removeEventListener('touchstart', unlock);
+          window.removeEventListener('scroll', unlock);
+        };
+        window.addEventListener('click', unlock, { once: true });
+        window.addEventListener('keydown', unlock, { once: true });
+        window.addEventListener('touchstart', unlock, { once: true });
+        window.addEventListener('scroll', unlock, { once: true });
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      attemptAutoplayAudio();
+    } else {
+      window.addEventListener('load', attemptAutoplayAudio);
     }
   </script>
 </BaseLayout>
