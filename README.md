@@ -1,70 +1,55 @@
-# BARUG VALENCIA — Municipality of Valencia, Bohol Website Prototype (`VAL-M01B`)
+# Valencia, Bohol — Municipal Website Prototype
 
-> **Independent Prototype Notice:** This repository contains an independent, static-first place-brand and municipal information prototype for the **Municipality of Valencia, Province of Bohol** (PSGC `0701247000`, 3rd Congressional District; 2024 PSA Census population: **28,535** across **35 barangays**). It is **not** an official live municipal service and does not claim formal LGU endorsement.
+**Mission:** `NOX-VALENCIA-MUNICIPAL-FRONTEND-TAKEOVER-R1` · [Issue #5](https://github.com/Kirch-Nairu/ValWebsite/issues/5)
 
-- **Municipal Catchphrase:** `BARUG VALENCIA` (user-confirmed; reported in October 2026 local press as *"Better, Affectionate, Responsive and Unifying Governance"* — official LGU style manual confirmation pending).
-- **Narrative Direction:** *"Behold Valencia"* describes the internal storytelling and visual-impact experience only, never a replacement slogan or brand title.
-- **Media & Insignia Governance:** **0** unlicensed third-party photographs or unauthorized municipal seals are embedded in this prototype. All visual slots are rendered through `src/components/ValenciaMediaSlot.astro` with custom Valencia-specific SVG art direction, explicit `"Valencia image awaiting approved original"` badges, candidate references (`R001`–`R021`), and drop-in replacement paths (`public/media/approved/*.jpg`).
+A source-backed, industrial-clean municipal information prototype built in **Astro 5 + TypeScript**. This is an independent project; **not an official municipal website or live service**. It never collects payments, documents, or applications.
 
----
+## Local Windows launch
 
-## Quick Start (Windows PowerShell)
-
-### 1. One-Command Persistent Local Launch
-From `C:\ValWebsite`, run:
+From the existing working checkout `C:\ValWebsite` (preserve any local changes before switching branches):
 
 ```powershell
+cd C:\ValWebsite
+git fetch origin
+git switch nox/valencia-municipal-frontend-r1
+npm ci
+npm run check
+npm run build
 powershell -ExecutionPolicy Bypass -File .\scripts\Start-Valencia.ps1 -OpenBrowser
 ```
 
-- Automatically verifies `node_modules`, checks if `127.0.0.1:4321` is available (or selects a free fallback port `4322–4335` if occupied), launches the Astro server as a persistent background process, verifies `HTTP 200`, writes process metadata to `.valencia-server.json`, and opens your default Windows browser.
+The start script first checks for a port, launches only this checkout's Astro process, validates HTTP 200, and writes `.valencia-server.json`. Default address `http://127.0.0.1:4321`. If 4321 is occupied, the script selects an available port between 4322–4335 and reports it. It **never kills or adopts** an unknown process.
 
-### 2. Stop the Local Server
+To stop only the recorded, verified process:
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\Stop-Valencia.ps1
 ```
-- Safely terminates only the recorded Valencia server process ID stored in `.valencia-server.json`.
 
-### 3. Standard NPM Commands
+If the checkout contains uncommitted work, **do not** switch branches without safeguarding it first. This repository update cannot act on your local Windows filesystem through the GitHub connector.
+
+## Run browser acceptance
+
 ```powershell
-npm install          # Install dependencies
-npm run check        # Run Astro + strict TypeScript validation (0 errors)
-npm run build        # Build static production output into dist/
-npm run dev          # Run interactive Astro dev server on http://127.0.0.1:4321
-npx playwright test  # Run E2E route, accessibility, responsive overflow, and screenshot suite
+npx playwright install chromium
+npx playwright test
 ```
 
----
+The suite checks top-level/detail URLs, CTA destinations, search, keyboard Escape and focus restoration, filters, 1440/768/390 width overflow, and captures desktop/mobile screenshots under `test-results/screenshots`. CI archives the evidence as a GitHub Actions artifact.
 
-## Implemented Routes & Architecture
+## Public-facing information architecture
 
-### Eight Top-Level Pages
-1. `/` — **Home (Flagship):** Immersive `BARUG VALENCIA` coastal/estuary hero, visual manifesto, *The Valencia Edit* asymmetric story grid, Sang-at Festival spotlight, PPDO destination preview, verified progress cards, dated updates, and public service gateway.
-2. `/discover` — **Discover Valencia:** Interactive filterable directory of all **14 Bohol PPDO CY2025 Tourism Profile attractions** (printed pages 192–195), separating *Established Landmarks* from *Potential Ecotourism Sites* with zero invented fees or hours.
-3. `/culture` — **Culture & Heritage:** Hub for the Sang-at Festival, the 1882 Sto. Niño Parish Church wooden floor (Important Cultural Property), Dr. Canuto Lim Ancestral House, and cultural sensitivity safeguards.
-4. `/valencia` — **Our Valencia:** Municipal profile, Panangatan etymology (`sang-at`), transparent disclosure of the 1867 vs. October 27, 1869 founding records, `BARUG VALENCIA` identity audit, and a filterable directory of all **35 PSA PSGC-verified barangays** (`071247001`–`071247035`).
-5. `/progress` — **Progress & Development:** Filterable institutional ledger separating verified completed turnovers (March 2026 Anoyon High School classroom building via Embassy of Japan GGP, `S003`) and launches (March 2026 Paleng-QR PH Plus, `S007`) from proposed concepts (October 2026 BARUG CARENav / Poverty Early Warning proposals, `S026`) and search leads (`S029`, `S030`).
-6. `/updates` — **Updates, News & Event Archive:** Filterable dated archive (2023–2026) clearly labeled as archival/source-referenced records so past events are never mistaken for live emergency advisories.
-7. `/government` — **Government & Services:** Core municipal service categories, RA 11032 Citizen’s Charter status disclosures (warning against using the obsolete 2015 Yumpu charter for current fees), DILG Full Disclosure Policy (FDP) portal gateway, and neutral leadership record.
-8. `/contact` — **Contact & Official Channels:** Direct links to the three user-supplied Facebook pages (`FB-001` LGU Valencia, `FB-002` Sang-at Festival, `FB-003` SK Federation), PIO brand/photo clearance checklist, and media slot replacement manifest.
+Home · Municipality & Barangays · Government & Municipal Offices · Services and detail guides · News & Advisories with source detail · Projects & Progress with project detail · Tourism & Culture with destination detail · Transparency & Documents · Contact & Public Channels · Search. Compatibility URLs `/valencia`, `/discover`, `/progress`, `/updates`, and legacy destination/story paths remain supported.
 
-### Ten Connected Detail Pages
-- `/culture/sang-at` — Full documentary feature on the Sang-at Festival (`ST02`).
-- `/stories/panangatan-origin` — Origin essay: From Barrio Panangatan to Valencia (`ST01`).
-- `/stories/sto-nino-wooden-floor` — 1882 Tindalo & Molave Hardwood Floor of Santo Niño Parish (`ST03`).
-- `/stories/sunday-tabu-and-crafts` — Sunday Tabu, Paleng-QR, and Rural Livelihoods (`ST09`/`ST10`).
-- `/discover/badiang-spring` — Badiang Spring Resort and Hotel (`Barangay Anas`).
-- `/discover/sto-nino-parish-church` — Sr. Santo Niño Parish Church & Convent (`Poblacion Occidental`).
-- `/discover/lim-ancestral-house` — Dr. Canuto Lim Ancestral House (`Poblacion Occidental`).
-- `/discover/kinawa-falls` — Kinawa Falls (`Barangay Tausi-on`).
-- `/discover/banderahan-ugjong-highlands` — Banderahan Peak, Ugjong Peak & Kabotbot Hills (`Banderahan & Limocon`).
-- `/discover/valencia-karst-caves` — Inland Karst Cave System: Cabjawan, Maubo, Taculing & Ughob Caves.
+## Code ownership
 
----
+- `src/data/{site,municipality,services,news,projects,destinations,culture,media,search}.ts`: domain sources and source IDs; `valenciaData.ts` only re-exports for compatibility.
+- `src/components`: accessible layout primitives, service cards, source-attributed lists, media and search.
+- `src/layouts/BaseLayout.astro`: prototype disclosure, noindex, shared UI.
+- `src/styles/global.css`: design tokens, 1280px grid, responsive typography and layout.
 
-## Media Replacement Guide (Swapping Approved Originals)
+## Publication gates, deliberately not claimed
 
-1. Obtain written publication permission and high-resolution originals (≥3000px) from the LGU PIO, parish office, or credited photographer (`research/photo-request-list.md`).
-2. Save the approved image file under `public/media/approved/<slot-id>.jpg` (see `/contact` or `src/data/valenciaData.ts` for exact paths).
-3. Update the corresponding entry in `MEDIA_SLOTS` inside `src/data/valenciaData.ts` with the verified photographer credit and license reference.
-4. Update `src/components/ValenciaMediaSlot.astro` to render the `<img>` when `approvalStatus === 'APPROVED'`.
+The source research included provisional barangay names/codes that must be reconciled with the PSA's canonical list. Online service requirements, office rosters, operating hours, current advisories, project budgets, municipal seal and image licensing await official authorization. The DILG Full Disclosure Policy portal is linked as an external authoritative gateway; this prototype does not fabricate municipal disclosure files.
+
+**No merge, DNS edit or production publication is authorized by this prototype.**

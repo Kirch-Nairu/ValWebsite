@@ -1,132 +1,97 @@
 import { test, expect } from '@playwright/test';
-import fs from 'node:fs';
-import path from 'node:path';
-
-const SCREENSHOT_DIR = path.resolve(process.cwd(), 'research-local', 'screenshots', 'm01b');
-
-test.beforeAll(() => {
-  fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
-});
-
-const REQUIRED_ROUTES = [
-  { path: '/', heading: 'BARUG VALENCIA' },
-  { path: '/discover', heading: 'From Coastal Cold Springs to Interior Limestone Ridges' },
-  { path: '/culture', heading: 'Riverbank Resilience, Hardwood Craft, and Living Tradition' },
-  { path: '/culture/sang-at', heading: 'Sang-at: How a Riverbank Shelter Became Valencia’s Cultural Signature' },
-  { path: '/valencia', heading: 'Municipality of Valencia, Province of Bohol' },
-  { path: '/progress', heading: 'Verified Milestones & Transparently Labeled Proposals' },
-  { path: '/updates', heading: 'Dated Milestones, News & Event Records' },
-  { path: '/government', heading: 'Public Service Guide, Transparency & Governance' },
-  { path: '/contact', heading: 'Verified Municipal Channels & Rights Provenance' },
-  { path: '/discover/badiang-spring', heading: 'Badiang Spring Resort and Hotel' },
-  { path: '/discover/sto-nino-parish-church', heading: 'Sr. Santo Niño Parish Church & Convent' },
-  { path: '/discover/kinawa-falls', heading: 'Kinawa Falls' },
-  { path: '/stories/panangatan-origin', heading: 'Where the Boats Were Lifted: From Barrio Panangatan to the Municipality of Valencia' },
-  { path: '/stories/sto-nino-wooden-floor', heading: 'Tindalo and Molave: Inside the 1882 Hardwood Floor of Santo Niño Parish' },
-  { path: '/stories/sunday-tabu-and-crafts', heading: 'Sunday Tabu, Paleng-QR, and the Living Economy of Valencia’s 35 Barangays' }
+import { mkdirSync } from 'node:fs';
+import { join } from 'node:path';
+const screenshots=join(process.cwd(),'test-results','screenshots');
+mkdirSync(screenshots,{recursive:true});
+const routes=[
+  '/', '/municipality','/government','/services','/news','/projects','/tourism','/transparency','/contact','/search',
+  '/services/civil-registry','/services/treasury-business-permits',
+  '/news/dap-ai-course-october-2026','/projects/anoyon-high-school-classrooms',
+  '/tourism/badiang-spring','/tourism/sto-nino-parish-church','/culture/sang-at',
+  '/valencia','/progress','/updates','/discover'
 ];
-
-test('All required top-level and detail routes render HTTP 200 with zero console/page errors and include prototype disclosures', async ({ page }) => {
-  const consoleErrors: string[] = [];
-  const pageErrors: string[] = [];
-
-  page.on('console', (msg) => {
-    if (msg.type() === 'error') consoleErrors.push(`${page.url()}: ${msg.text()}`);
-  });
-  page.on('pageerror', (err) => {
-    pageErrors.push(`${page.url()}: ${err.message}`);
-  });
-
-  for (const route of REQUIRED_ROUTES) {
-    const response = await page.goto(route.path, { waitUntil: 'domcontentloaded' });
-    expect(response?.status(), `HTTP status for ${route.path}`).toBe(200);
-    await expect(page.locator('main h1')).toContainText(route.heading);
-    await expect(page.locator('.prototype-banner')).toContainText('Not an official live municipal service');
-    await expect(page.locator('.site-header')).toContainText('BARUG VALENCIA');
-  }
-
-  expect(consoleErrors).toEqual([]);
-  expect(pageErrors).toEqual([]);
+test('all municipal routes and source-backed details render without runtime errors',async({page})=>{
+ const errors:string[]=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ page.on('console',message=>{if(message.type()==='error')errors.push(message.text())});
+ for(const route of routes){
+  const res=await page.goto(route,{waitUntil:'domcontentloaded'});
+  expect(res?.status(),route).toBe(200);
+  await expect(page.locator('main h1')).toBeVisible();
+  await expect(page.locator('.utility-bar')).toContainText('Independent municipal');
+ }
+ expect(errors).toEqual([]);
 });
-
-test('Responsive viewports (1440px, 768px, 390px) have zero horizontal overflow and capture full-page screenshots', async ({ page }) => {
-  // Desktop 1440x900 captures
-  await page.setViewportSize({ width: 1440, height: 900 });
-  const desktopCaptures = [
-    { path: '/', file: 'home-1440x900.png' },
-    { path: '/discover', file: 'discover-1440x900.png' },
-    { path: '/culture/sang-at', file: 'culture-sang-at-1440x900.png' },
-    { path: '/valencia', file: 'valencia-1440x900.png' },
-    { path: '/progress', file: 'progress-1440x900.png' },
-    { path: '/updates', file: 'updates-1440x900.png' },
-    { path: '/government', file: 'government-1440x900.png' },
-    { path: '/contact', file: 'contact-1440x900.png' }
-  ];
-
-  for (const item of desktopCaptures) {
-    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-    expect(overflow, `Desktop overflow on ${item.path}`).toBe(false);
-    await page.screenshot({ path: path.join(SCREENSHOT_DIR, item.file), fullPage: true });
-  }
-
-  // Tablet 768x1024 overflow check
-  await page.setViewportSize({ width: 768, height: 1024 });
-  for (const item of desktopCaptures.slice(0, 4)) {
-    await page.goto(item.path, { waitUntil: 'domcontentloaded' });
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-    expect(overflow, `Tablet overflow on ${item.path}`).toBe(false);
-  }
-
-  // Mobile 390x844 captures + mobile drawer open state
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/', { waitUntil: 'domcontentloaded' });
-  const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-  expect(mobileOverflow, 'Mobile 390px overflow on /').toBe(false);
-  await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'home-390x844.png'), fullPage: true });
-
-  // Open mobile drawer and capture screenshot
-  const menuBtn = page.locator('#open-mobile-menu-btn');
-  await expect(menuBtn).toBeVisible();
-  await menuBtn.click();
-  await expect(page.locator('#mobile-nav-drawer')).toBeVisible();
-  await expect(menuBtn).toHaveAttribute('aria-expanded', 'true');
-  await page.screenshot({ path: path.join(SCREENSHOT_DIR, 'mobile-menu-open-390x844.png'), fullPage: false });
-
-  // Close mobile drawer with Escape
-  await page.keyboard.press('Escape');
-  await expect(page.locator('#mobile-drawer-backdrop')).toBeHidden();
+test('homepage routes to real municipal destinations',async({page})=>{
+ await page.goto('/');
+ await expect(page.getByRole('heading',{level:1})).toContainText('Valencia, Bohol.');
+ await page.getByRole('link',{name:/Municipal Services/i}).first().click();
+ await expect(page).toHaveURL(/\/services\/?$/);
+ await expect(page.getByRole('heading',{level:1})).toContainText('Municipal Services');
+ await page.goto('/');
+ await page.getByRole('link',{name:/Explore Valencia/i}).click();
+ await expect(page).toHaveURL(/\/tourism\/?$/);
 });
-
-test('Interactive Search modal, Discover filter, Updates filter, and 35-Barangay filter work properly', async ({ page }) => {
-  await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto('/');
-
-  // Search Modal
-  await page.locator('#open-search-btn').click();
-  const searchModal = page.locator('#site-search-modal');
-  await expect(searchModal).toBeVisible();
-  const searchInput = page.locator('#global-search-input');
-  await searchInput.fill('Badiang');
-  await expect(page.locator('#global-search-results')).toContainText('Badiang Spring Resort and Hotel');
-  await page.keyboard.press('Escape');
-  await expect(searchModal).toBeHidden();
-
-  // Discover Filter
-  await page.goto('/discover');
-  await page.locator('[data-discover-filter="Karst Caves"]').click();
-  await expect(page.locator('#discover-count-label')).toContainText('Showing 1 documented entry for "Karst Caves"');
-
-  // Valencia 35 Barangays table & filter
-  await page.goto('/valencia');
-  const allBarangays = await page.locator('[data-barangay-row]').count();
-  expect(allBarangays).toBe(35);
-  await page.locator('#barangay-search').fill('Anoyon');
-  const visibleBarangays = await page.locator('[data-barangay-row]:not([hidden])').count();
-  expect(visibleBarangays).toBe(1);
-
-  // Updates Filter
-  await page.goto('/updates');
-  await page.locator('[data-update-filter="Cultural Milestone"]').click();
-  await expect(page.locator('#updates-count-status')).toContainText('Cultural Milestone');
+test('global search modal, Escape and focus restore',async({page})=>{
+ await page.goto('/');
+ const trigger=page.getByRole('button',{name:'Search the website'});
+ await trigger.click();
+ const dialog=page.getByRole('dialog',{name:'Site search'});
+ await expect(dialog).toBeVisible();
+ await page.locator('#global-search-input').fill('Badiang');
+ await expect(page.locator('#search-results')).toContainText('Badiang Spring');
+ await page.keyboard.press('Escape');
+ await expect(dialog).toBeHidden();
+ await expect(trigger).toBeFocused();
+});
+test('municipality, tourism, news and projects filters',async({page})=>{
+ await page.goto('/municipality');
+ await page.locator('#barangay-search').fill('Anoyon');
+ await expect(page.locator('[data-barangay-row]:visible')).toHaveCount(1);
+ await page.goto('/tourism');
+ await page.locator('#tourism-category').selectOption('Karst Caves');
+ expect(await page.locator('[data-destination-item]:visible').count()).toBeGreaterThan(0);
+ await page.goto('/news');
+ await page.locator('#news-query').fill('DAP');
+ expect(await page.locator('[data-news-item]:visible').count()).toBeGreaterThan(0);
+ await page.goto('/projects');
+ await page.locator('#project-state').selectOption('verified_completed');
+ expect(await page.locator('[data-project-item]:visible').count()).toBeGreaterThan(0);
+ await page.goto('/search?q=Anoyon');
+ await expect(page.locator('#page-search-results')).toContainText('Anoyon');
+});
+test('desktop tablet mobile no horizontal overflow and screenshots',async({page})=>{
+ for(const width of [1440,768,390]){
+  await page.setViewportSize({width,height:width===390?844:900});
+  for(const route of ['/','/municipality','/government','/services','/news','/projects','/tourism','/transparency','/contact','/search','/projects/anoyon-high-school-classrooms','/tourism/badiang-spring']){
+   const response=await page.goto(route);
+   expect(response?.status()).toBe(200);
+   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);
+   expect(overflow,`${route} at ${width}px`).toBe(false);
+   const key=route.replaceAll('/','_').replace(/^_$/,'home');
+   await page.screenshot({path:join(screenshots,`${key}-${width}.png`),fullPage:true,animations:'disabled'});
+  }
+ }
+});
+test('mobile navigation Escape, focus restore and navigation',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/');
+ const btn=page.getByRole('button',{name:'Open navigation'});
+ await expect(btn).toBeVisible();
+ await btn.click();
+ const menu=page.getByRole('dialog',{name:'Mobile navigation'});
+ await expect(menu).toBeVisible();
+ await expect(btn).toHaveAttribute('aria-expanded','true');
+ await page.screenshot({path:join(screenshots,'mobile-menu-open-390.png'),animations:'disabled'});
+ await page.keyboard.press('Escape');
+ await expect(menu).toBeHidden();
+ await expect(btn).toBeFocused();
+ await btn.click();
+ await menu.getByRole('link',{name:/Government/}).click();
+ await expect(page).toHaveURL(/\/government\/?$/);
+});
+test('all local homepage links go to valid pages',async({page,request})=>{
+ await page.goto('/');
+ const hrefs=await page.locator('main a[href^="/"]').evaluateAll(elements=>[...new Set(elements.map(el=>el.getAttribute('href')).filter(Boolean))] as string[]);
+ for(const href of hrefs){const response=await request.get(href);expect(response.status(),href).toBe(200);}
 });

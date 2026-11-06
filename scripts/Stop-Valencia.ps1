@@ -1,23 +1,20 @@
-$ErrorActionPreference = 'Continue'
-$RepoRoot = Split-Path -Parent $PSScriptRoot
-$StateFile = Join-Path $RepoRoot '.valencia-server.json'
-
-if (-not (Test-Path $StateFile)) {
-  Write-Host 'No .valencia-server.json state file found. Nothing to stop.' -ForegroundColor Yellow
-  exit 0
-}
-
+$ErrorActionPreference = 'Stop'
+$Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$State = Join-Path $Root '.valencia-server.json'
+if (-not (Test-Path $State)) { Write-Host 'No Valencia server state; nothing to stop.'; return }
 try {
-  $state = Get-Content $StateFile -Raw | ConvertFrom-Json
-  $pidsToStop = @($state.pid, $state.launcherPid) | Where-Object { $_ -ne $null } | Select-Object -Unique
-  foreach ($id in $pidsToStop) {
-    $proc = Get-Process -Id $id -ErrorAction SilentlyContinue
-    if ($proc -and $proc.ProcessName -match '^node$') {
-      Stop-Process -Id $id -Force -ErrorAction SilentlyContinue
-      Write-Host "Stopped Valencia node process PID $id" -ForegroundColor Green
-    }
+  $record = Get-Content $State -Raw | ConvertFrom-Json
+  $pidValue = [int]$record.pid
+  $Astro = Join-Path $Root 'node_modules\astro\astro.js'
+  $proc = Get-CimInstance Win32_Process -Filter "ProcessId = $pidValue" -ErrorAction SilentlyContinue
+  if (-not $proc) { Write-Host "Recorded PID $pidValue is no longer running."; return }
+  if ($proc.CommandLine -notlike "*$Astro*" -or $proc.ExecutablePath -ne [string]$record.executable) {
+    throw "PID $pidValue is not the recorded Valencia Astro process. Refusing to stop it."
   }
-  Start-Sleep -Milliseconds 1200
+  Stop-Process -Id $pidValue -ErrorAction Stop
+  Write-Host "Stopped verified Valencia Astro PID $pidValue" -ForegroundColor Green
 } finally {
-  Remove-Item $StateFile -Force -ErrorAction SilentlyContinue
+  if (-not $proc -or ($proc.CommandLine -like "*$Astro*" -and $proc.ExecutablePath -eq [string]$record.executable)) {
+    Remove-Item $State -Force -ErrorAction SilentlyContinue
+  }
 }

@@ -2,114 +2,51 @@ param(
   [int]$PreferredPort = 4321,
   [switch]$OpenBrowser
 )
-
 $ErrorActionPreference = 'Stop'
-$RepoRoot = Split-Path -Parent $PSScriptRoot
-Set-Location $RepoRoot
-
-$StateFile = Join-Path $RepoRoot '.valencia-server.json'
-$LogOut = Join-Path $RepoRoot 'valencia-server.out.log'
-$LogErr = Join-Path $RepoRoot 'valencia-server.err.log'
-
-if (-not (Test-Path (Join-Path $RepoRoot 'node_modules'))) {
-  Write-Host 'Installing npm dependencies...' -ForegroundColor Cyan
-  npm install --no-audit --no-fund
+$Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$State = Join-Path $Root '.valencia-server.json'
+$Node = (Get-Command node -ErrorAction Stop).Source
+$Astro = Join-Path $Root 'node_modules\astro\astro.js'
+function Test-OwnedProcess([int]$ProcessId) {
+  $p = Get-CimInstance Win32_Process -Filter "ProcessId = $ProcessId" -ErrorAction SilentlyContinue
+  return ($null -ne $p -and $p.CommandLine -like "*$Astro*" -and $p.ExecutablePath -eq $Node)
 }
-
-# Check if an existing Valencia server recorded in .valencia-server.json is still alive and responding
-if (Test-Path $StateFile) {
+function Test-Http([string]$Url) {
+  try { return (Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 2).StatusCode -eq 200 } catch { return $false }
+}
+if (-not (Test-Path $Astro)) {
+  Push-Location $Root
+  try { npm ci --no-audit --no-fund; if ($LASTEXITCODE -ne 0) { throw 'npm ci failed' } } finally { Pop-Location }
+}
+if (Test-Path $State) {
   try {
-    $existing = Get-Content $StateFile -Raw | ConvertFrom-Json
-    if ($existing.pid) {
-      $proc = Get-Process -Id $existing.pid -ErrorAction SilentlyContinue
-      if ($proc) {
-        $resp = Invoke-WebRequest -Uri $existing.url -UseBasicParsing -TimeoutSec 3 -ErrorAction SilentlyContinue
-        if ($resp -and $resp.StatusCode -eq 200) {
-          Write-Host "Valencia server is already running at $($existing.url) (PID $($existing.pid))" -ForegroundColor Green
-          if ($OpenBrowser) { Start-Process $existing.url }
-          exit 0
-        }
-      }
+    $prior = Get-Content $State -Raw | ConvertFrom-Json
+    if ($prior.pid -and (Test-OwnedProcess ([int]$prior.pid)) -and (Test-Http ([string]$prior.url))) {
+      Write-Host "Valencia prototype already running: $($prior.url) (PID $($prior.pid))"
+      if ($OpenBrowser) { Start-Process $prior.url }
+      return
     }
-  } catch {
-    # State file stale; continue to fresh launch
-  }
+  } catch { Write-Warning "Existing state is invalid; checking for a safe port." }
+  Remove-Item $State -Force
 }
-
-function Test-PortFree([int]$Port) {
-  $conn = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue
-  return ($null -eq $conn)
+$port = $PreferredPort
+$listener = Get-NetTCPConnection -State Listen -LocalPort $port -ErrorAction SilentlyContinue
+if ($listener) {
+  $port = (4322..4335 | Where-Object { -not (Get-NetTCPConnection -State Listen -LocalPort $_ -ErrorAction SilentlyContinue) } | Select-Object -First 1)
+  if (-not $port) { throw 'No available port in 4321-4335; no process was stopped.' }
 }
-
-$Port = $PreferredPort
-if (-not (Test-PortFree $Port)) {
-  # Check if the process on PreferredPort is already serving BARUG VALENCIA
-  try {
-    $probe = Invoke-WebRequest -Uri "http://127.0.0.1:$Port/" -UseBasicParsing -TimeoutSec 2 -ErrorAction Stop
-    if ($probe.Content -match 'BARUG VALENCIA') {
-      $ownerPid = (Get-NetTCPConnection -LocalPort $Port -State Listen | Select-Object -First 1).OwningProcess
-      $state = @{
-        pid = $ownerPid
-        port = $Port
-        url = "http://127.0.0.1:$Port"
-        startedAt = (Get-Date).ToString('o')
-      }
-      $state | ConvertTo-Json | Set-Content $StateFile -Encoding UTF8
-      Write-Host "Valencia server already active on http://127.0.0.1:$Port (PID $ownerPid)" -ForegroundColor Green
-      if ($OpenBrowser) { Start-Process "http://127.0.0.1:$Port" }
-      exit 0
-    }
-  } catch {}
-
-  for ($candidate = 4322; $candidate -le 4335; $candidate++) {
-    if (Test-PortFree $candidate) {
-      $Port = $candidate
-      break
-    }
-  }
+$out = Join-Path $Root 'valencia-server.out.log'
+$err = Join-Path $Root 'valencia-server.err.log'
+$process = Start-Process -FilePath $Node -ArgumentList @("`"$Astro`"",'dev','--host','127.0.0.1','--port',"$port") -WorkingDirectory $Root -PassThru -RedirectStandardOutput $out -RedirectStandardError $err -WindowStyle Hidden
+$url = "http://127.0.0.1:$port"
+$ready = $false
+for ($attempt = 0; $attempt -lt 45; $attempt++) {
+  Start-Sleep -Milliseconds 400
+  if ($process.HasExited) { throw "Astro exited with code $($process.ExitCode). See $err" }
+  if (Test-Http $url) { $ready = $true; break }
 }
-
-$AstroCli = Join-Path $RepoRoot 'node_modules\astro\astro.js'
-$NodeExe = (Get-Command node).Source
-$CmdLine = "`"$NodeExe`" `"$AstroCli`" dev --host 127.0.0.1 --port $Port"
-$WmiResult = Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{
-  CommandLine = $CmdLine
-  CurrentDirectory = $RepoRoot
-}
-$SpawnedPid = [int]$WmiResult.ProcessId
-
-$TargetUrl = "http://127.0.0.1:$Port"
-$Ready = $false
-for ($i = 0; $i -lt 40; $i++) {
-  Start-Sleep -Milliseconds 500
-  try {
-    $check = Invoke-WebRequest -Uri "$TargetUrl/" -UseBasicParsing -TimeoutSec 2 -ErrorAction Stop
-    if ($check.StatusCode -eq 200) {
-      $Ready = $true
-      break
-    }
-  } catch {}
-}
-
-if (-not $Ready) {
-  Write-Error "Valencia server failed to respond on $TargetUrl within 20 seconds."
-  exit 1
-}
-
-$ListenerConn = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
-$ActualPid = if ($ListenerConn) { $ListenerConn.OwningProcess } else { $SpawnedPid }
-
-$StateObj = @{
-  pid = $ActualPid
-  launcherPid = $SpawnedPid
-  port = $Port
-  url = $TargetUrl
-  startedAt = (Get-Date).ToString('o')
-}
-$StateObj | ConvertTo-Json | Set-Content $StateFile -Encoding UTF8
-
-Write-Host "BARUG VALENCIA server running at $TargetUrl (PID: $ActualPid)" -ForegroundColor Green
-
-if ($OpenBrowser) {
-  Start-Process $TargetUrl
-}
+if (-not $ready) { throw "Astro did not return HTTP 200 at $url. See $err" }
+if (-not (Test-OwnedProcess ([int]$process.Id))) { throw "Spawned PID $($process.Id) did not match the expected Valencia Astro command" }
+@{ pid=$process.Id; url=$url; port=$port; executable=$Node; astro=$Astro; launched=(Get-Date).ToString('o') } | ConvertTo-Json | Set-Content $State -Encoding UTF8
+Write-Host "Valencia prototype HTTP 200: $url | PID $($process.Id)" -ForegroundColor Green
+if ($OpenBrowser) { Start-Process $url }

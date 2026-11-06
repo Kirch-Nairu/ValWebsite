@@ -1,0 +1,41 @@
+name: Valencia municipal frontend validation
+on:
+  push:
+    branches:
+      - "nox/**"
+  pull_request:
+    branches:
+      - "research/val-m01a-opus-low-discovery"
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Astro check
+        run: npm run check
+      - name: Production static build
+        run: npm run build
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+      - name: Route, navigation, search, filters, responsive screenshots
+        run: npx playwright test
+      - name: Upload screenshot and Playwright report evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: valencia-municipal-frontend-evidence
+          path: |
+            test-results/screenshots/
+            test-results/html/
+            test-results/**/*.zip
+          if-no-files-found: warn
+          retention-days: 14
