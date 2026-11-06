@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ValenciaMediaSlot from '../../components/ValenciaMediaSlot.astro';
+import { STORIES } from '../../data/valenciaData';
+
+const sangAtStory = STORIES[0];
+const otherStories = STORIES.slice(1);
+---
+
+<BaseLayout
+  title="Culture & Heritage — Sang-at Festival, 1882 Church Floor & Living Traditions"
+  description="Cultural storytelling and heritage documentation for Valencia, Bohol: the Sang-at Festival, the 1882 tindalo-and-molave parquet floor of Sr. Santo Niño Parish Church, and Sunday Tabu traditions."
+>
+  <section class="section-block section-tindalo">
+    <div class="container">
+      <span class="eyebrow eyebrow-light">Culture &amp; Heritage · Municipality of Valencia, Bohol</span>
+      <h1 class="display-hero" style="font-size: clamp(2.1rem, 4.4vw, 3.5rem);">
+        Riverbank Resilience, Hardwood Craft, and Living Tradition
+      </h1>
+      <p class="lead-paragraph">
+        Valencia’s cultural identity connects pre-colonial maritime survival along the Panangatan River with 19th-century Recollect carpentry and contemporary youth street-dancing. Every narrative below is anchored in verified provincial and national records, with historical variances disclosed openly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Flagship Feature Card: Sang-at Festival -->
+  <section class="section-block">
+    <div class="container">
+      <div class="editorial-card" style="border-width: 2px; border-color: var(--accent-molave);">
+        <div class="grid-2" style="gap: 0; align-items: stretch;">
+          <div>
+            <ValenciaMediaSlot slotId={sangAtStory.mediaSlotId} />
+          </div>
+          <div class="editorial-card-body" style="padding: clamp(1.5rem, 3vw, 2.5rem);">
+            <span class="badge badge-established">{sangAtStory.kicker}</span>
+            <h2 class="section-title" style="font-size: clamp(1.55rem, 2.6vw, 2.15rem); margin-bottom: 0.35rem;">
+              <a href="/culture/sang-at" style="text-decoration: none;">{sangAtStory.title}</a>
+            </h2>
+            <p style="font-size: 1rem; color: var(--ink-secondary); margin: 0 0 0.75rem 0;">
+              {sangAtStory.subtitle}
+            </p>
+            {sangAtStory.conflictDisclosure && (
+              <div class="callout-box" style="font-size: 0.82rem; padding: 0.65rem 0.9rem;">
+                {sangAtStory.conflictDisclosure}
+              </div>
+            )}
+            <div class="btn-row" style="margin-top: auto; padding-top: 1rem;">
+              <a href="/culture/sang-at" class="btn btn-dark">Read Full Sang-at Feature →</a>
+              <a href="/discover/sto-nino-parish-church" class="btn btn-outline-dark">1882 Church Guide</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Editorial Essays -->
+  <section class="section-block section-sand">
+    <div class="container">
+      <span class="eyebrow">Long-Form Heritage &amp; Community Essays</span>
+      <h2 class="section-title" style="margin-bottom: 1.75rem;">Documented Valencia Stories</h2>
+
+      <div class="grid-3">
+        {otherStories.map((story) => (
+          <article class="editorial-card">
+            <ValenciaMediaSlot slotId={story.mediaSlotId} compact={true} showMetadata={false} />
+            <div class="editorial-card-body">
+              <span class="badge badge-potential">{story.kicker}</span>
+              <h3 style="font-size: 1.3rem; margin: 0.25rem 0;">
+                <a href={story.route} style="text-decoration: none;">{story.title}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.92rem; color: var(--ink-secondary);">{story.summary}</p>
+              <div style="margin-top: auto; padding-top: 0.85rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem;">
+                <span style="font-family: var(--font-mono); color: var(--ink-muted);">Refs: {story.sourceIds.join(', ')}</span>
+                <a href={story.route} style="font-weight: 700;">Read Essay →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Built Heritage & Intangible Culture Summary -->
+  <section class="section-block">
+    <div class="container grid-2">
+      <div class="editorial-card" style="padding: 1.65rem;">
+        <span class="eyebrow">Built Heritage · Poblacion Occidental</span>
+        <h3 style="font-size: 1.45rem; margin-bottom: 0.5rem;">Sr. Santo Niño Parish Church &amp; Dr. Canuto Lim Ancestral House</h3>
+        <p style="color: var(--ink-secondary); margin-bottom: 0.85rem;">
+          Valencia’s town center preserves two notable timber-floored landmarks listed in the Bohol PPDO CY2025 Tourism Profile (pp. 193, 195):
+        </p>
+        <ul style="padding-left: 1.2rem; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>
+            <strong>Sr. Santo Niño Parish Church (1871–1882):</strong> Features Fray Francisco Arraya’s alternating dark <em>tindalo</em> and light <em>molave</em> parquet floor with an eight-pointed flower at the crossing; recognized with National Museum Important Cultural Property (ICP) markers on September 12, 2023 (`S008`).
+          </li>
+          <li>
+            <strong>Dr. Canuto Lim Ancestral House:</strong> Family-preserved heritage residence in Poblacion Occidental retaining its historic wooden flooring above street-level commerce (`S024`).
+          </li>
+        </ul>
+        <div class="btn-row" style="margin-top: 1.25rem;">
+          <a href="/discover/sto-nino-parish-church" class="btn btn-outline-dark">Church Architecture Guide →</a>
+          <a href="/discover/lim-ancestral-house" class="btn btn-outline-dark">Ancestral House Profile →</a>
+        </div>
+      </div>
+
+      <div class="editorial-card" style="padding: 1.65rem;">
+        <span class="eyebrow">Annual Calendar &amp; Cultural Safeguards</span>
+        <h3 style="font-size: 1.45rem; margin-bottom: 0.5rem;">Fiesta, Foundation Day, and Respectful Documentation</h3>
+        <ul style="padding-left: 1.2rem; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 0.65rem;">
+          <li>
+            <strong>Town Fiesta (January):</strong> Celebrated in January in honor of the town’s titular patron, the Holy Child Sr. Santo Niño (Wikipedia cites the 3rd Saturday of January; secondary summaries cite the third week—confirm current parish schedule each year).
+          </li>
+          <li>
+            <strong>Foundation Day &amp; Sang-at Festival (October 27):</strong> Commemorates the municipality’s October 27 founding milestone with street dancing, school showdowns, and community trade fairs (`S024`, `S027`).
+          </li>
+          <li>
+            <strong>Intangible Folk Practices (Maubo Cave):</strong> The PPDO CY2025 profile (p. 194) notes Lenten <em>dangkoy-dangkoy</em> rituals by traditional healers (<em>tambalan</em>) at Maubo Cave. Out of respect for living beliefs, this site is held from tourist promotion pending community consultation.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

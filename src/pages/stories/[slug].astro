@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ValenciaMediaSlot from '../../components/ValenciaMediaSlot.astro';
+import { STORIES, type StoryItem } from '../../data/valenciaData';
+
+export function getStaticPaths() {
+  return STORIES.filter((s) => s.route.startsWith('/stories/')).map((story) => ({
+    params: { slug: story.slug },
+    props: { story }
+  }));
+}
+
+interface Props {
+  story: StoryItem;
+}
+
+const { story } = Astro.props;
+const relatedStories = STORIES.filter((s) => s.slug !== story.slug);
+---
+
+<BaseLayout title={`${story.title} — Valencia Heritage Story`} description={story.summary}>
+  <article class="section-block">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/culture">Culture &amp; Heritage</a></li>
+          <li aria-current="page">{story.title}</li>
+        </ol>
+      </nav>
+
+      <span class="eyebrow">{story.kicker}</span>
+      <h1 class="display-hero" style="font-size: clamp(1.95rem, 3.8vw, 3.15rem);">{story.title}</h1>
+      <p class="lead-paragraph">{story.subtitle}</p>
+
+      <div style="margin-block: 2rem;">
+        <ValenciaMediaSlot slotId={story.mediaSlotId} />
+      </div>
+
+      <div class="grid-2" style="align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 1.15rem; font-size: 1.05rem;">
+          {story.body.map((para) => (
+            <p style="margin: 0;">{para}</p>
+          ))}
+        </div>
+
+        <aside style="display: flex; flex-direction: column; gap: 1.15rem;">
+          <div class="editorial-card" style="padding: 1.35rem;">
+            <h2 style="font-size: 1.15rem; margin-bottom: 0.65rem;">Editorial &amp; Source Metadata</h2>
+            <dl style="margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem;">
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Place / Barangay
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0; font-weight: 700;">{story.barangayOrPlace}</dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Historical / Record Date
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0;">{story.eventOrRecordDate}</dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Editorial Verification Status
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0;">{story.editorialStatus}</dd>
+              </div>
+              <div>
+                <dt style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--ink-muted);">
+                  Source Citations
+                </dt>
+                <dd style="margin: 0.15rem 0 0 0; font-family: var(--font-mono);">{story.sourceIds.join(', ')}</dd>
+              </div>
+            </dl>
+          </div>
+
+          {story.conflictDisclosure && (
+            <div class="callout-box">
+              <strong>Source Variance Disclosure:</strong> {story.conflictDisclosure}
+            </div>
+          )}
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <section class="section-block section-sand">
+    <div class="container">
+      <h2 class="section-title" style="font-size: 1.65rem; margin-bottom: 1.5rem;">More Valencia Cultural &amp; Identity Stories</h2>
+      <div class="grid-3">
+        {relatedStories.map((rel) => (
+          <article class="editorial-card">
+            <ValenciaMediaSlot slotId={rel.mediaSlotId} compact={true} showMetadata={false} />
+            <div class="editorial-card-body">
+              <span class="badge badge-established">{rel.kicker}</span>
+              <h3 style="font-size: 1.2rem; margin: 0.2rem 0;">
+                <a href={rel.route} style="text-decoration: none;">{rel.title}</a>
+              </h3>
+              <p style="margin: 0; font-size: 0.88rem; color: var(--ink-secondary);">{rel.summary}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

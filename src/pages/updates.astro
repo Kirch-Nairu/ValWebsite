@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { UPDATES } from '../data/valenciaData';
+
+const updateCategories = ['All', 'Cultural Milestone', 'Education & Civic', 'Governance & Digital', 'Heritage Record'];
+---
+
+<BaseLayout
+  title="Updates, News & Historical Event Archive (2023–2026)"
+  description="Dated, filterable archive of verified articles, cultural milestones, and agency releases concerning Valencia, Bohol (2023–2026)."
+>
+  <section class="section-block section-deep">
+    <div class="container">
+      <span class="eyebrow eyebrow-light">Updates &amp; Source Archive · 2023–2026</span>
+      <h1 class="display-hero" style="font-size: clamp(2rem, 4.2vw, 3.4rem);">
+        Dated Milestones, News &amp; Event Records
+      </h1>
+      <p class="lead-paragraph">
+        Every record in this archive displays its exact publication date, event date, publisher, and source ID (`S002`–`S027`). Past events (such as the July 2026 Sandugo showcase or the November 2023 inaugural Sang-at report) are never presented as live advisories or upcoming schedules.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="container">
+      <div class="callout-box" style="margin-bottom: 1.5rem;">
+        <strong>Advisory &amp; Social Feed Status:</strong> Unauthenticated browser checks on 2026-11-06 confirmed page-level identity for the official LGU Valencia Facebook page (`FB-001`), Sang-at Festival (`FB-002`), and SK Federation (`FB-003`), while post-level timelines require login. Until the Municipal PIO connects an authorized feed, this page presents verified press and agency releases clearly marked as <strong>Archival / Source-Referenced Records</strong>.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+        <div class="filter-bar" role="toolbar" aria-label="Filter updates by category" style="margin-block: 0.5rem;">
+          {updateCategories.map((cat, idx) => (
+            <button
+              type="button"
+              class="filter-btn"
+              data-update-filter={cat}
+              aria-pressed={idx === 0 ? 'true' : 'false'}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <span id="updates-count-status" style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-muted);">
+          Showing all {UPDATES.length} verified records
+        </span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;" id="updates-archive-list">
+        {UPDATES.map((upd) => (
+          <article
+            class="editorial-card"
+            id={upd.slug}
+            data-update-card
+            data-category={upd.category}
+            style="padding: clamp(1.25rem, 2.5vw, 1.85rem);"
+          >
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+                <span class="badge badge-established">{upd.category}</span>
+                <span class="badge badge-pending">{upd.recordState}</span>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-muted);">
+                Published: <strong>{upd.publishedDate}</strong> · Event Period: {upd.eventDate}
+              </span>
+            </div>
+
+            <h2 style="font-size: 1.35rem; margin: 0.25rem 0 0.5rem 0;">{upd.title}</h2>
+            <p style="margin: 0 0 0.75rem 0; color: var(--ink-secondary);">{upd.summary}</p>
+
+            <ul style="margin: 0 0 0.85rem 0; padding-left: 1.2rem; font-size: 0.9rem; color: var(--ink-secondary);">
+              {upd.keyFacts.map((fact) => (
+                <li>{fact}</li>
+              ))}
+            </ul>
+
+            <div style="padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; font-size: 0.82rem;">
+              <div>
+                <strong>Publisher:</strong> {upd.publisher} (<code>{upd.sourceId}</code>) — <em>{upd.cautionNote}</em>
+              </div>
+              {upd.sourceUrl && (
+                <a href={upd.sourceUrl} target="_blank" rel="noopener noreferrer" style="font-weight: 700;">
+                  Open Original Source URL ↗
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const buttons = document.querySelectorAll('[data-update-filter]');
+      const cards = document.querySelectorAll('[data-update-card]');
+      const status = document.getElementById('updates-count-status');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-update-filter') || 'All';
+          buttons.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+
+          let count = 0;
+          cards.forEach((card) => {
+            const itemCat = card.getAttribute('data-category');
+            if (cat === 'All' || itemCat === cat) {
+              card.removeAttribute('hidden');
+              count++;
+            } else {
+              card.setAttribute('hidden', '');
+            }
+          });
+
+          if (status) {
+            status.textContent = `Showing ${count} verified ${count === 1 ? 'record' : 'records'} in "${cat}"`;
+          }
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
