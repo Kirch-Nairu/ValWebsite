@@ -35,7 +35,7 @@ const records=[...pages.map((p,i)=>({...p,id:`new-${i}`})),...SEARCH_INDEX.map(x
    const shown=(query?entries.filter(x=>[x.title,x.summary,x.section].join(' ').toLocaleLowerCase().includes(query)):entries.slice(0,10)).slice(0,60);
    count.textContent=query?`${shown.length} matching result${shown.length===1?'':'s'}`:'Suggested links';
    if(!shown.length){const empty=document.createElement('p');empty.textContent='No results found. Try a different term.';results.append(empty);}
-   for(const item of shown){const a=document.createElement('a');a.className='news-row';a.href=item.url;const cat=document.createElement('span');cat.className='item-category';cat.textContent=item.section;const block=document.createElement('div');const title=document.createElement('h3');title.textContent=item.title;const description=document.createElement('p');description.textContent=item.summary;block.append(title,description);const arrow=document.createElement('span');arrow.className='list-arrow';arrow.textContent='↗';a.append(cat,block,arrow);results.append(a);}
+   for(const item of shown){const a=document.createElement('a');a.className='news-row search-result-row';a.href=item.url;const cat=document.createElement('span');cat.className='item-category';cat.textContent=item.section;const block=document.createElement('div');const title=document.createElement('h3');title.textContent=item.title;const description=document.createElement('p');description.textContent=item.summary;block.append(title,description);const arrow=document.createElement('span');arrow.className='list-arrow';arrow.textContent='↗';a.append(cat,block,arrow);results.append(a);}
   };
   input.addEventListener('input',render);render();
  }

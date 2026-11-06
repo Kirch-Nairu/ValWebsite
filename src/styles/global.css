@@ -30,3 +30,8 @@
 .conflict-row{grid-template-columns:80px minmax(0,1fr)}
 .conflict-row>div{min-width:0;overflow-wrap:anywhere}
 @media(max-width:480px){.conflict-row{grid-template-columns:minmax(0,1fr)}.conflict-row>.item-category{grid-column:1}.conflict-row>div{grid-column:1}}
+
+/* Full search result row keeps its metadata and main content inside the responsive grid. */
+.search-result-row{grid-template-columns:130px minmax(0,1fr) 22px}
+.search-result-row>div{min-width:0;overflow-wrap:anywhere}
+@media(max-width:480px){.search-result-row{grid-template-columns:minmax(0,1fr) 20px}.search-result-row>.item-category{grid-column:1/-1}.search-result-row>div{grid-column:1}.search-result-row>.list-arrow{grid-column:2;grid-row:2}}
