@@ -9,7 +9,7 @@ export const BARANGAYS: BarangayItem[] = [
   { psgc: '071247035', name: 'Banderahan (Upper Ginopolan)', zone: 'Upland & Interior', notableFeatures: 'Home to Banderahan Peak panoramic lookout and Taculing Cave' },
   { psgc: '071247006', name: 'Botong', zone: 'Upland & Interior', notableFeatures: 'Location of Ughob Cave limestone formations' },
   { psgc: '071247007', name: 'Buyog', zone: 'Upland & Interior', notableFeatures: 'Interior agricultural barangay' },
-  { psgc: '071247008', name: 'Canduao Occidental', zone: 'Poblacion & Coastal', notableFeatures: 'Western Canduao coastal-corridor community' },
+  { psgc: '071247008', name: 'Canduao Occidental', zone: 'Poblacion & Coastal', notableFeatures: 'Pottery Capital of Valencia, home to centuries-old pottery heritage (paghumol, pagkugi, pagpikpik, pagpabâ), Kajanangan Festival (Banay sa Canuao Dako), and the Pasil Coral Reef Stones Tribe' },
   { psgc: '071247009', name: 'Canduao Oriental', zone: 'Poblacion & Coastal', notableFeatures: 'Eastern Canduao coastal-corridor community' },
   { psgc: '071247010', name: 'Canlusong', zone: 'Upland & Interior', notableFeatures: 'Upland farming community' },
   { psgc: '071247011', name: 'Canmanico', zone: 'Upland & Interior', notableFeatures: 'Interior highland barangay' },

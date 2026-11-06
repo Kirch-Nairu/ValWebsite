@@ -24,6 +24,8 @@ const routes = [
   '/tourism/sto-nino-parish-church',
   '/culture/sang-at',
   '/stories/panangatan-origin',
+  '/stories/canduao-occidental-pottery',
+  '/tourism/canduao-occidental-pottery',
   '/valencia',
   '/progress',
   '/updates',

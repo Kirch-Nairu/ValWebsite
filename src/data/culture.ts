@@ -89,5 +89,27 @@ export const STORIES: StoryItem[] = [
       'In March 2026, the Municipality of Valencia rolled out the Paleng-QR PH Plus program at the public market, enabling stallholders and local transport drivers to accept standardized QR Ph cashless payments alongside traditional cash trade.',
       'In upland communities such as Barangay Pangi-an, farmer organizations including the Barangay Pangi-an Small Farmers’ Association (BaPaSFA) partner with the Municipal Agriculture Office and the Department of Agriculture to strengthen rural livestock and crop production.'
     ]
+  },
+  {
+    slug: 'canduao-occidental-pottery',
+    route: '/stories/canduao-occidental-pottery',
+    kicker: 'Artisanal & Cultural Heritage',
+    title: 'Canduao Occidental: The Pottery Capital of Valencia and the Kajanangan Festival',
+    subtitle:
+      'From paghumol and pagkugi to pagpikpik and pagpabâ, honoring the centuries-old clay craftsmanship of Banay sa Canuao Dako and the coastal heritage of the Pasil Coral Reef Stones Tribe.',
+    barangayOrPlace: 'Barangay Canduao Occidental, Valencia, Bohol',
+    eventOrRecordDate: 'Celebrated through the Kajanangan Festival & Living Artisanal Traditions',
+    reviewDate: '2026',
+    sourceIds: ['Barangay Canduao Occidental Artisanal Record', 'Valencia Cultural Profile'],
+    mediaSlotId: 'hero-panangatan',
+    editorialStatus: 'Living Cultural & Artisanal Heritage Profile',
+    summary:
+      'Barangay Canduao Occidental is proudly known as the Pottery Capital of Valencia—preserving artisanal techniques from raw clay preparation to kiln firing, celebrated alongside the Kajanangan Festival and the Pasil Coral Reef Stones Tribe.',
+    body: [
+      'Along the coastal corridor of Valencia, Barangay Canduao Occidental stands proudly as the Pottery Capital of Valencia—a vibrant community renowned for its artistry, deep-rooted traditions, and generations of dedicated potters.',
+      'The community’s pottery craft is sustained through time-honored processes that require both physical endurance and refined skill: paghumol (soaking and tempering local clay deposits), pagkugi (diligent, labor-intensive kneading and clay refinement), pagpikpik (paddle-and-anvil rhythmic shaping and smoothing of vessel walls), and pagpabâ (open firing using firewood and coconut husks).',
+      'Local potters produce a diverse range of functional earthenware essential to Boholano households: from traditional wood-fired stoves (con and sug-ang) that furnish rural kitchens to water-cooling storage vessels (banga). For Canduao Occidental, pottery transcends mere craft—it represents an enduring livelihood, ancestral legacy, and cultural pillar of the community.',
+      'This heritage finds expression in the annual Kajanangan Festival, a vibrant community celebration uniting the Banay sa Canuao Dako in thanksgiving, honoring pagtuo (faith) and pagkugi (industrious work). Complementing its earthenware traditions, Canduao Occidental is also home to the Pasil Coral Reef Stones Tribe, embodying the community’s intimate bond with its coastal marine resources, reef ecosystems, and environmental resilience.'
+    ]
   }
 ];

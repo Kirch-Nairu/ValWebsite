@@ -65,6 +65,28 @@ export const DESTINATIONS: DestinationItem[] = [
     hasDedicatedDetail: true
   },
   {
+    slug: 'canduao-occidental-pottery',
+    name: 'Canduao Occidental Pottery Heritage & Kajanangan',
+    alternateName: 'Pottery Capital of Valencia · Banay sa Canuao Dako',
+    barangay: 'Barangay Canduao Occidental',
+    category: 'Living Traditions & Artisanal Craft',
+    readiness: 'established',
+    readinessLabel: 'Living Cultural & Livelihood Heritage',
+    ppdoPage: 'Valencia Municipal Cultural & Artisanal Heritage',
+    sourceIds: ['Barangay Canduao Occidental Artisanal Record'],
+    mediaSlotId: 'hero-panangatan',
+    summary:
+      'Known as the Pottery Capital of Valencia, preserving centuries-old craftsmanship from paghumol and pagkugi to pagpikpik and pagpabâ, celebrated through the Kajanangan Festival and the Pasil Coral Reef Stones Tribe.',
+    editorialBody: [
+      'Canduao Occidental stands proudly as the Pottery Capital of Valencia, Bohol, sustaining an enduring tradition of artisanal clay craft passed across generations.',
+      'The community’s pottery heritage is defined by traditional practices such as paghumol (clay soaking/tempering), pagkugi (dedicated kneading and preparation), pagpikpik (paddle-and-anvil shaping), and pagpabâ (open firing). From traditional cooking stoves (con and sug-ang) to water storage jars (banga), pottery in Canduao Occidental is both a livelihood and a foundational pillar of local identity.',
+      'The barangay celebrates this heritage through the Kajanangan Festival, honoring pagtuo (faith) and pagkugi (hard work) among the entire Banay sa Canuao Dako. Canduao Occidental is also home to the Pasil Coral Reef Stones Tribe, representing the community’s intimate bond with its coastal waters, marine resources, and environmental stewardship.'
+    ],
+    visitorNotice:
+      'Active artisanal and coastal community. Visitors wishing to observe traditional pottery making or coordinate cultural visits should inquire with Barangay Canduao Occidental officials or the Municipal Tourism Office.',
+    hasDedicatedDetail: true
+  },
+  {
     slug: 'kinawa-falls',
     name: 'Kinawa Falls',
     barangay: 'Barangay Tausi-on',

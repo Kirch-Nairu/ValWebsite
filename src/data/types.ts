@@ -12,7 +12,8 @@ export type VisualMotif =
   | 'anoyon-classroom'
   | 'pangian-livelihood'
   | 'ancestral-house'
-  | 'danao-lake';
+  | 'danao-lake'
+  | 'pottery-craft';
 
 export interface MediaSlotSpec {
   slotId: string;
@@ -39,7 +40,7 @@ export interface DestinationItem {
   name: string;
   alternateName?: string;
   barangay: string;
-  category: 'Spring & Coast' | 'Heritage & Architecture' | 'Highlands & Peaks' | 'Falls & Lakes' | 'Karst Caves';
+  category: 'Spring & Coast' | 'Heritage & Architecture' | 'Highlands & Peaks' | 'Falls & Lakes' | 'Karst Caves' | 'Living Traditions & Artisanal Craft';
   readiness: ReadinessStatus;
   readinessLabel: string;
   ppdoPage: string;
