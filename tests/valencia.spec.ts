@@ -67,11 +67,14 @@ test('all municipal routes render without runtime errors or internal prototype j
 });
 
 test('homepage renders real Valencia photography and routes to municipal destinations', async ({ page }) => {
-  await page.goto('/', { waitUntil: 'networkidle' });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Valencia, Bohol.');
 
-  const heroImagesLoaded = await page.locator('.hero-photo-stage img').evaluateAll((imgs: HTMLImageElement[]) =>
-    imgs.length >= 3 && imgs.every(img => img.complete && img.naturalWidth > 0)
+  const videoVisible = await page.locator('#hero-video').isVisible();
+  expect(videoVisible).toBe(true);
+
+  const heroImagesLoaded = await page.locator('.hero-floating-badges img').evaluateAll((imgs: HTMLImageElement[]) =>
+    imgs.length >= 2 && imgs.every(img => img.complete && img.naturalWidth > 0)
   );
   expect(heroImagesLoaded).toBe(true);
 

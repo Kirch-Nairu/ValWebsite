@@ -27,28 +27,44 @@ const featuredDestinations = DESTINATIONS.filter(
   title="Municipality of Valencia, Bohol | BARUG VALENCIA"
   description="Municipality of Valencia, Province of Bohol (BARUG VALENCIA). Access municipal services, office directory, dated public announcements, infrastructure progress, and tourism guides."
 >
-  <!-- First Viewport: Balanced Municipal Identity + Authentic Valencia Photography -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-identity-pill">
+  <!-- First Viewport: Full-Bleed Cinematic Video Hero with Overlaid Typography & Actions -->
+  <section class="hero hero-fullbleed">
+    <div class="hero-video-bg">
+      <video
+        id="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="/media/valencia/valencia-church-plaza.jpg"
+        aria-label="Cinematic video of Valencia, Bohol"
+      >
+        <source src="/media/valencia/valencia-hero-cinematic.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-overlay" aria-hidden="true"></div>
+    </div>
+
+    <div class="container hero-fullbleed-inner">
+      <div class="hero-content hero-content-overlay">
+        <div class="hero-identity-pill hero-pill-glass">
           <span class="hero-catchphrase">BARUG VALENCIA</span>
           <span class="hero-divider" aria-hidden="true">·</span>
           <span>Municipality of Valencia, Province of Bohol</span>
         </div>
 
-        <h1>Valencia, Bohol.</h1>
+        <h1 class="hero-title-light">Valencia, Bohol.</h1>
 
-        <p class="hero-copy">
+        <p class="hero-copy hero-copy-light">
           Where the Panangatan River meets the Bohol Sea and 35 coastal and upland barangays stand together. Access municipal services, public announcements, community projects, and the natural and cultural landmarks of Valencia.
         </p>
 
         <div class="button-row">
-          <a class="btn btn-primary" href="/services">Municipal Services</a>
-          <a class="btn btn-outline" href="/tourism">Explore Valencia</a>
+          <a class="btn btn-primary btn-gold" href="/services">Municipal Services</a>
+          <a class="btn btn-glass" href="/tourism">Explore Valencia</a>
         </div>
 
-        <dl class="hero-facts" aria-label="Municipal key figures">
+        <dl class="hero-facts hero-facts-glass" aria-label="Municipal key figures">
           <div>
             <dt>Population (2024 Census)</dt>
             <dd>{SITE_META.population2024}</dd>
@@ -64,44 +80,30 @@ const featuredDestinations = DESTINATIONS.filter(
         </dl>
       </div>
 
-      <div class="hero-photo-stage">
-        <figure class="hero-primary-photo">
-          <img
-            src="/media/valencia/valencia-church-plaza.jpg"
-            alt="Twin-tower stone facade of Sr. Santo Niño Parish Church and plaza palms in Poblacion Occidental, Valencia, Bohol"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <figcaption class="hero-photo-caption">
-            <div>
-              <strong>Sr. Santo Niño Parish Church & Civic Plaza</strong>
-              <span>Poblacion Occidental, Valencia, Bohol · Completed 1882 (Important Cultural Property)</span>
-            </div>
-            <span class="photo-credit-tag">Photo: Pinay06 · CC BY 2.5</span>
-          </figcaption>
-        </figure>
+      <div class="hero-overlay-controls">
+        <button
+          id="hero-video-toggle"
+          type="button"
+          class="hero-ctrl-btn"
+          aria-label="Pause background video"
+          title="Pause or play background video"
+        >
+          <span id="hero-video-icon">⏸ Pause Video</span>
+        </button>
 
-        <div class="hero-secondary-strip">
-          <a href="/municipality" class="hero-mini-card">
-            <img
-              src="/media/valencia/valencia-town-view.jpg"
-              alt="Welcome to Valencia arch along the Bohol South Road"
-              loading="eager"
-            />
+        <div class="hero-floating-badges">
+          <a href="/municipality" class="hero-badge-link" title="Welcome to Valencia Southern Gateway">
+            <img src="/media/valencia/valencia-town-view.jpg" alt="Welcome to Valencia arch" />
             <div>
-              <strong>Southern Coastal Gateway</strong>
-              <span>42 km east of Tagbilaran City along the Bohol South Road</span>
+              <strong>Southern Gateway</strong>
+              <span>Coastal Bohol South Road</span>
             </div>
           </a>
-          <a href="/stories/sunday-tabu-and-crafts" class="hero-mini-card">
-            <img
-              src="/media/valencia/valencia-public-market.jpg"
-              alt="Valencia Public Market and local motorcabs in Poblacion"
-              loading="eager"
-            />
+          <a href="/stories/sunday-tabu-and-crafts" class="hero-badge-link" title="Valencia Public Market and Sunday Tabu">
+            <img src="/media/valencia/valencia-public-market.jpg" alt="Valencia Public Market" />
             <div>
               <strong>Valencia Public Market</strong>
-              <span>Sunday Tabu trade & Paleng-QR PH Plus digital payments</span>
+              <span>Sunday Tabu & Paleng-QR Ph</span>
             </div>
           </a>
         </div>
@@ -342,4 +344,24 @@ const featuredDestinations = DESTINATIONS.filter(
       </div>
     </div>
   </section>
+
+  <script>
+    const video = document.querySelector<HTMLVideoElement>('#hero-video');
+    const toggle = document.querySelector<HTMLButtonElement>('#hero-video-toggle');
+    const icon = document.querySelector<HTMLElement>('#hero-video-icon');
+
+    if (video && toggle && icon) {
+      toggle.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          icon.textContent = '⏸ Pause Video';
+          toggle.setAttribute('aria-label', 'Pause background video');
+        } else {
+          video.pause();
+          icon.textContent = '▶ Play Video';
+          toggle.setAttribute('aria-label', 'Play background video');
+        }
+      });
+    }
+  </script>
 </BaseLayout>
