@@ -101,7 +101,7 @@ export const STORIES: StoryItem[] = [
     eventOrRecordDate: 'Celebrated through the Kajanangan Festival & Living Artisanal Traditions',
     reviewDate: '2026',
     sourceIds: ['Barangay Canduao Occidental Artisanal Record', 'Valencia Cultural Profile'],
-    mediaSlotId: 'hero-panangatan',
+    mediaSlotId: 'canduao-pottery-craft',
     editorialStatus: 'Living Cultural & Artisanal Heritage Profile',
     summary:
       'Barangay Canduao Occidental is proudly known as the Pottery Capital of Valencia—preserving artisanal techniques from raw clay preparation to kiln firing, celebrated alongside the Kajanangan Festival and the Pasil Coral Reef Stones Tribe.',

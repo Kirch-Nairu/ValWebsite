@@ -228,5 +228,23 @@ export const MEDIA_SLOTS: Record<string, MediaSlotSpec> = {
     photographer: 'Mike Gonzalez (TheCoffee)',
     license: 'CC BY-SA 3.0',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ph_locator_bohol_valencia.png'
+  },
+  'canduao-pottery-craft': {
+    slotId: 'canduao-pottery-craft',
+    candidateId: 'CANDUAO-POTTERY-01',
+    title: 'Traditional Pottery Shaping (Pagpikpik) in Canduao Occidental',
+    subject: 'Traditional pottery shaping and smoothing using paddle-and-anvil in Barangay Canduao Occidental, the Pottery Capital of Valencia',
+    barangay: 'Barangay Canduao Occidental, Valencia, Bohol',
+    motif: 'pottery-craft',
+    aspectRatio: '4:3',
+    approvalStatus: 'APPROVED_REDISTRIBUTABLE',
+    statusLabel: 'Canduao Occidental Pottery Craft',
+    creditLine: 'Field Documentation · Barangay Canduao Occidental',
+    approvedDropInPath: '/media/valencia/canduao-pottery-shaping.jpg',
+    acquisitionNote: 'Documentary photograph of local potter in Canduao Occidental practicing pagpikpik.',
+    imageSrc: '/media/valencia/canduao-pottery-shaping.jpg',
+    imageAlt: 'Local artisan shaping earthenware using traditional paddle in Barangay Canduao Occidental, Valencia, Bohol',
+    photographer: 'Local Community Documentation',
+    license: 'Community Field Record'
   }
 };

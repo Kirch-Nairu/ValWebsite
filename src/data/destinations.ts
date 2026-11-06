@@ -74,7 +74,7 @@ export const DESTINATIONS: DestinationItem[] = [
     readinessLabel: 'Living Cultural & Livelihood Heritage',
     ppdoPage: 'Valencia Municipal Cultural & Artisanal Heritage',
     sourceIds: ['Barangay Canduao Occidental Artisanal Record'],
-    mediaSlotId: 'hero-panangatan',
+    mediaSlotId: 'canduao-pottery-craft',
     summary:
       'Known as the Pottery Capital of Valencia, preserving centuries-old craftsmanship from paghumol and pagkugi to pagpikpik and pagpabâ, celebrated through the Kajanangan Festival and the Pasil Coral Reef Stones Tribe.',
     editorialBody: [
