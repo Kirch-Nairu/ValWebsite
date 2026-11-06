@@ -319,6 +319,24 @@ export const MEDIA_SLOTS: Record<string, MediaSlotSpec> = {
     imageAlt: 'Valencia Municipal Hall illuminated at night with warm architectural lighting, Jose Rizal monument, and landscaped civic grounds in Poblacion, Valencia, Bohol',
     photographer: 'Municipality of Valencia Civic Photography',
     license: 'Official Municipal Documentation'
+  },
+  'valencia-lgu-official-banner': {
+    slotId: 'valencia-lgu-official-banner',
+    candidateId: 'VALENCIA-BANNER-01',
+    title: 'Municipality of Valencia Civic Leadership & Municipal Hall',
+    subject: 'Official municipal civic banner featuring the municipal seal, Mayor Dionisio Neil A. Balite, Vice Mayor, and the Valencia Municipal Hall with the Jose Rizal obelisk',
+    barangay: 'Poblacion, Valencia, Bohol',
+    motif: 'lgu-banner',
+    aspectRatio: '16:9',
+    approvalStatus: 'APPROVED_REDISTRIBUTABLE',
+    statusLabel: 'Municipality of Valencia Official Identity',
+    creditLine: 'Official Municipal Administration · LGU Valencia',
+    approvedDropInPath: '/media/valencia/valencia-lgu-official-banner.png',
+    acquisitionNote: 'Official civic identification banner of the Municipality of Valencia, Bohol.',
+    imageSrc: '/media/valencia/valencia-lgu-official-banner.png',
+    imageAlt: 'Official banner of the Municipality of Valencia featuring the municipal seal, Mayor Dionisio Neil Balite, and Valencia Municipal Hall in Poblacion',
+    photographer: 'Municipality of Valencia Public Information',
+    license: 'Official Municipal Documentation'
   }
 };
 
