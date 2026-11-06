@@ -1,24 +1,26 @@
 /* BARUG VALENCIA — Industrial-Clean Municipal Design System (VAL-R2) */
 :root {
-  --forest: #0f352e;
-  --forest-2: #1b4d43;
-  --forest-3: #09221d;
+  /* Authentic Civic Base: Bohol Coastal Slate & Deep Charcoal (replaces heavy company green) */
+  --forest: #14201d;
+  --forest-2: #1e302b;
+  --forest-3: #0c1513;
   --gold: #b88428;
   --gold-light: #e5b44d;
   /* Authentic Valencia Civic Palette: Vibrant Municipal Orange & Warm Terracotta */
   --valencia-orange: #df5b1e;
   --valencia-orange-light: #f77a3f;
   --valencia-orange-dark: #b84410;
-  --valencia-orange-bg: #fff4ed;
+  --valencia-orange-bg: #fff5ef;
   --valencia-orange-border: #f8c9b2;
-  --mint: #e8f1ed;
+  /* Warm Ambient Canvas & Surface Tokens (clean sand & stone replaces cold green mint) */
+  --mint: #fdf2ec;
   --paper: #ffffff;
-  --stone: #f3f5f3;
-  --line: #d5dfda;
-  --line-dark: #2c5248;
-  --ink: #13201d;
-  --muted: #4a5a55;
-  --muted-light: #b6c9c1;
+  --stone: #f8f9f8;
+  --line: #dbe2df;
+  --line-dark: #273b35;
+  --ink: #111a18;
+  --muted: #4e5f59;
+  --muted-light: #c0cec7;
   --font: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --width: 1280px;
@@ -213,6 +215,22 @@ strong {
   flex-shrink: 0;
 }
 
+.identity-seal-img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+
+.footer-seal-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
 .identity-words {
   display: flex;
   flex-direction: column;
@@ -220,16 +238,16 @@ strong {
 }
 
 .identity-words strong {
-  font-size: 0.96rem;
+  font-size: 0.98rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .identity-words > span {
-  color: var(--forest-2);
-  font-size: 0.72rem;
-  font-weight: 700;
+  color: var(--valencia-orange-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
   letter-spacing: 0.04em;
   margin-top: 2px;
 }
@@ -245,21 +263,24 @@ strong {
 .desktop-nav a {
   font-size: 0.84rem;
   font-weight: 600;
-  padding: 9px 11px;
+  padding: 8px 12px;
   border-radius: 6px;
   white-space: nowrap;
   color: #364742;
   transition: background-color 0.15s ease, color 0.15s ease;
+  position: relative;
 }
 
-.desktop-nav a:hover,
-.desktop-nav a[aria-current='page'] {
-  color: var(--forest);
-  background: var(--mint);
+.desktop-nav a:hover {
+  color: var(--valencia-orange-dark);
+  background: var(--valencia-orange-bg);
 }
 
 .desktop-nav a[aria-current='page'] {
-  font-weight: 700;
+  color: var(--valencia-orange-dark);
+  background: var(--valencia-orange-bg);
+  font-weight: 800;
+  box-shadow: inset 0 -2px 0 var(--valencia-orange);
 }
 
 .header-actions {
@@ -2377,11 +2398,28 @@ strong {
 }
 
 @media (max-width: 560px) {
+  .identity {
+    gap: 8px;
+    min-width: 0;
+  }
+  .identity-seal-img {
+    width: 38px;
+    height: 38px;
+  }
+  .identity-words {
+    min-width: 0;
+  }
   .identity-words strong {
-    font-size: 0.84rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .identity-words > span {
-    font-size: 0.66rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .search-trigger-label {
     display: none;
