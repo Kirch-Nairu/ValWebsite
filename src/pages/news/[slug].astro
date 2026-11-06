@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentStatus from '../../components/ContentStatus.astro';
+import { UPDATES } from '../../data/news';
+import type { UpdateItem } from '../../data/types';
+export function getStaticPaths(){return UPDATES.map(item=>({params:{slug:item.slug},props:{item}}));}
+interface Props{item:UpdateItem}
+const {item}=Astro.props;
+---
+<BaseLayout title={item.title} description={item.summary}>
+<div class="container bread"><a href="/">Home</a><span>/</span><a href="/news">News & Advisories</a><span>/</span><span>Archival record</span></div>
+<section class="page-intro"><div class="container"><p class="eyebrow">News archive / {item.category}</p><h1>{item.title}</h1><p class="page-intro-description">{item.summary}</p></div></section>
+<section class="section"><div class="container detail-layout"><article class="detail-main"><ContentStatus label="Source-referenced archival record" detail={item.cautionNote}/><h2>Record summary</h2><p>{item.summary}</p><h2>Source-backed points</h2><ul>{item.keyFacts.map(f=><li>{f}</li>)}</ul><p class="tabs-note">This page summarizes an external source. It is not an official municipal announcement or a live service notice.</p><div class="button-row" style="margin-top:24px;"><a href="/news" class="btn btn-primary">News archive ↗</a>{item.sourceUrl&&<a href={item.sourceUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">Original source ↗</a>}</div></article><aside class="detail-sidebar"><h2>Publication metadata</h2><dl><dt>Publisher</dt><dd>{item.publisher}</dd><dt>Date published</dt><dd><time datetime={item.publishedDate}>{item.publishedDate}</time></dd><dt>Event / record date</dt><dd>{item.eventDate}</dd><dt>Record state</dt><dd>{item.recordState}</dd><dt>Source ID</dt><dd>{item.sourceId}</dd></dl></aside></div></section>
+</BaseLayout>

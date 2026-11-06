@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import ContentStatus from '../components/ContentStatus.astro';
+import { SITE_META } from '../data/site';
+import { BARANGAYS } from '../data/municipality';
+---
+<BaseLayout title="Municipality & Barangays" description="Valencia, Bohol municipal profile and research-compiled directory of 35 barangays, with validation disclosures.">
+<PageIntro eyebrow="01 / The municipality" title="Municipality & Barangays" description="A concise municipal profile, key public facts, and a searchable barangay directory." aside="Barangay spelling, aliases and PSGC codes are research-compiled and require a fresh official PSA reconciliation before public release."/>
+<section class="section"><div class="container">
+ <div class="count-grid"><div class="count-card"><strong>{SITE_META.population2024}</strong><span>Population · 2024 POPCEN attribution</span></div><div class="count-card"><strong>{SITE_META.barangayCount}</strong><span>Barangays · research directory</span></div><div class="count-card"><strong>{SITE_META.psgcCode}</strong><span>Municipality PSGC reference</span></div></div>
+ <div class="two-col" style="margin-top:30px;"><div><p class="eyebrow">Place profile</p><h2>Valencia, Bohol</h2><p class="section-lead">{SITE_META.province}. Valencia belongs to the third congressional district of Bohol. Its coastal communities and interior barangays connect public-market activity, agriculture, heritage and outdoor destinations.</p><p class="section-lead">The catchphrase <strong>BARUG VALENCIA</strong> is supplied by the project owner. Its reported acronym expansion varies between publications; this prototype does not present an unverified expansion as the municipality's approved style.</p></div><div class="info-card"><h3>About the records</h3><p>The research register identifies differences between founding-year accounts and alternate local place names. Published-facing statements remain conservative until reviewed against municipal ordinances and primary PSA records.</p><p><a href="/transparency">Review source provenance ↗</a></p><p><a href="/government">See municipal government guide ↗</a></p></div></div>
+</div></section>
+<section class="section section-mist" id="barangays"><div class="container"><div class="section-heading"><div><p class="eyebrow">Barangay directory</p><h2>Find a barangay.</h2><p class="section-description">Search by barangay name, local alias, or preliminary PSGC code. These codes are subject to authoritative re-verification.</p></div></div>
+<div class="filter-toolbar"><label>Search barangays <input id="barangay-search" type="search" placeholder="e.g. Anas, Poblacion, Anoyon"/></label><label>Area classification <select id="barangay-zone"><option value="all">All areas</option><option value="Poblacion & Coastal">Poblacion & Coastal</option><option value="Upland & Interior">Upland & Interior</option></select></label><span id="barangay-count" class="filter-count">{BARANGAYS.length} directory entries</span></div>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Barangay / name in research register</th><th>Area grouping</th><th>PSGC (preliminary)</th><th>Local reference</th></tr></thead><tbody>
+{BARANGAYS.map(b=><tr data-barangay-row data-name={`${b.name} ${b.psgc} ${b.notableFeatures}`.toLocaleLowerCase()} data-zone={b.zone}><td><strong>{b.name}</strong></td><td>{b.zone}</td><td><code>{b.psgc}</code></td><td>{b.notableFeatures}</td></tr>)}
+</tbody></table></div><p class="tabs-note" style="margin-top:15px;">Source: project research register, based on a provisional PSGC inventory. Canonical PSA list was not independently reconciled in this build.</p>
+</div></section>
+<section class="section"><div class="container"><ContentStatus label="Barangay data publication gate" detail="PSGC codes, spelling and aliases are displayed for prototype evaluation only. The source register used secondary parsing for part of the list. This is not certified as the current PSA barangay registry."/><div class="button-row" style="margin-top:23px;"><a class="btn btn-primary" href="https://psa.gov.ph/classification/psgc/barangays/0701247000" target="_blank" rel="noopener noreferrer">PSA PSGC source ↗</a><a class="btn btn-outline" href="/contact">Municipal channels ↗</a></div></div></section>
+<script>
+ const input=document.querySelector<HTMLInputElement>('#barangay-search');const select=document.querySelector<HTMLSelectElement>('#barangay-zone');const count=document.querySelector<HTMLElement>('#barangay-count');
+ const rows=[...document.querySelectorAll<HTMLTableRowElement>('[data-barangay-row]')];
+ function run(){const q=(input?.value||'').trim().toLocaleLowerCase(),zone=select?.value;let shown=0;for(const row of rows){const valid=(!q||(row.dataset.name||'').includes(q))&&(zone==='all'||zone===row.dataset.zone);row.hidden=!valid;if(valid)shown++;}if(count)count.textContent=`${shown} directory entr${shown===1?'y':'ies'}`;}
+ input?.addEventListener('input',run);select?.addEventListener('change',run);
+</script>
+</BaseLayout>

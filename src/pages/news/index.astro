@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ContentStatus from '../../components/ContentStatus.astro';
+import NewsRow from '../../components/NewsRow.astro';
+import { UPDATES } from '../../data/news';
+const entries=[...UPDATES].sort((a,b)=>b.publishedDate.localeCompare(a.publishedDate));
+const categories=[...new Set(entries.map(u=>u.category))];
+---
+<BaseLayout title="News & Advisories" description="Source-attributed archival news and community records about Valencia Bohol. This is not a live emergency advisory system.">
+<PageIntro eyebrow="04 / Public information" title="News & Advisories" description="Dated community reports and published-source records organized for browsing, with issuer attribution and archive status." aside="This prototype contains an archival news index. It is not a current emergency, weather, traffic or official advisory feed."/>
+<section class="section"><div class="container"><ContentStatus label="Archival records — not current notices" detail="All entries are attributed to published source material. Publication date does not imply a current municipal announcement or ongoing activity. For urgent developments, use a confirmed LGU communication channel."/>
+<div class="filter-toolbar"><label>Search headlines<input id="news-query" type="search" placeholder="Search records..."/></label><label>Category<select id="news-category"><option value="all">All categories</option>{categories.map(c=><option value={c}>{c}</option>)}</select></label><span class="filter-count" id="news-count">{entries.length} archival records</span></div>
+<div class="news-list">{entries.map(u=><div data-news-item data-category={u.category} data-search={`${u.title} ${u.summary} ${u.publisher} ${u.category}`.toLocaleLowerCase()}><NewsRow item={u}/></div>)}</div><p class="tabs-note" id="news-empty" hidden>No records match the filter.</p>
+</div></section>
+<script>
+ const q=document.querySelector<HTMLInputElement>('#news-query'),cat=document.querySelector<HTMLSelectElement>('#news-category'),count=document.querySelector<HTMLElement>('#news-count'),empty=document.querySelector<HTMLElement>('#news-empty');
+ const rows=[...document.querySelectorAll<HTMLElement>('[data-news-item]')];
+ function apply(){let shown=0;for(const row of rows){const yes=(!q?.value.trim()||(row.dataset.search||'').includes(q.value.trim().toLocaleLowerCase()))&&(cat?.value==='all'||cat?.value===row.dataset.category);row.hidden=!yes;if(yes)shown++;}if(count)count.textContent=`${shown} archival records`;if(empty)empty.hidden=shown!==0;}
+ q?.addEventListener('input',apply);cat?.addEventListener('change',apply);
+</script>
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import ContentStatus from '../../components/ContentStatus.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { SERVICE_CATEGORIES } from '../../data/services';
+---
+<BaseLayout title="Municipal Services" description="Valencia Bohol municipal services by category, corresponding offices and verification guidance. No online applications are accepted.">
+<PageIntro eyebrow="03 / Resident services" title="Municipal Services" description="Locate the office and service category relevant to your request. Guidance is explicit about what is verified and what requires current Charter confirmation." aside="No online applications, payment collection, appointment booking or document requests are operated by this prototype."/>
+<section class="section"><div class="container"><ContentStatus label="Requirements and fees must be verified" detail="Service descriptions are orientation guides, not an official Citizen’s Charter. Current requirements, processing time, fees, accessibility arrangements and service hours must be confirmed with the appropriate municipal office."/>
+<div class="section-heading" style="margin-top:36px;"><div><p class="eyebrow">Find the right office</p><h2>Service categories</h2><p class="section-description">Choose a category to see office details and the status of public requirements.</p></div></div><div class="service-grid two">{SERVICE_CATEGORIES.map((s,i)=><ServiceCard item={s} index={i+1}/>)}</div>
+</div></section>
+<section class="section section-mist"><div class="container"><p class="eyebrow">Before a municipal visit</p><h2>Verify before you transact.</h2><div class="two-col"><div class="info-card"><h3>Confirm the current procedure</h3><p>Contact the relevant office through the municipality's official communications. Ask for the latest approved Citizen’s Charter entry, requirements, applicable rates and processing period.</p><a href="/contact">Official communication channels ↗</a></div><div class="info-card"><h3>Protect your documents and payments</h3><p>Do not send personal documents or public fees through this prototype, unofficial social-media accounts, or private payment details. This site has no application submission system.</p><a href="/transparency">Transparency resources ↗</a></div></div></div></section>
+</BaseLayout>
