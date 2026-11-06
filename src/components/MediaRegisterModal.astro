@@ -1,0 +1,121 @@
+---
+import { MEDIA_SLOTS } from '../data/media';
+
+const mediaList = Object.values(MEDIA_SLOTS);
+---
+
+<dialog id="media-register-modal" class="media-modal" aria-labelledby="media-modal-title">
+  <div class="media-modal-card">
+    <div class="media-modal-header">
+      <div>
+        <span class="badge-orange">Public Transparency & Attribution</span>
+        <h2 id="media-modal-title">Media Credits & Licensing Register</h2>
+        <p>
+          Official municipal record of photographs, video footage, maps, and field documentation featured across the Municipality of Valencia, Bohol website.
+        </p>
+      </div>
+      <button type="button" id="close-media-modal" class="media-modal-close" aria-label="Close media credits modal">
+        ✕ Close
+      </button>
+    </div>
+
+    <div class="media-modal-body">
+      <div class="media-transparency-note">
+        <strong>Attribution & Copyright Notice:</strong>
+        All assets comply with Philippine government transparency guidelines and copyright laws. Documentary assets are credited to respective photographers, Wikimedia Commons contributors under Creative Commons / Public Domain, or official Local Government Unit archival footage.
+      </div>
+
+      <div class="media-items-table-wrapper">
+        <table class="media-table">
+          <thead>
+            <tr>
+              <th>Asset / Subject</th>
+              <th>Location in Valencia</th>
+              <th>Photographer / Author</th>
+              <th>License / Rights</th>
+              <th>Source / Registry Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Hero Video -->
+            <tr>
+              <td>
+                <strong>Valencia Cinematic Anthem & Aerial Video</strong>
+                <small class="media-sub">Santo Niño, Panangatan River, Sang-at Festival</small>
+              </td>
+              <td>Poblacion, Panangatan River</td>
+              <td>LGU Valencia / Official Festival Broadcast</td>
+              <td><span class="license-tag license-gov">Official LGU Broadcast</span></td>
+              <td><span class="media-source-text">Municipal Archives · Barug Valencia</span></td>
+            </tr>
+
+            <!-- Registered Media Slots -->
+            {mediaList.map((m) => (
+              <tr>
+                <td>
+                  <strong>{m.title}</strong>
+                  <small class="media-sub">{m.subject}</small>
+                </td>
+                <td>{m.barangay}</td>
+                <td>{m.photographer || 'Local Community Documentation'}</td>
+                <td>
+                  <span class={`license-tag ${(m.license || '').includes('Public Domain') ? 'license-pd' : 'license-cc'}`}>
+                    {m.license || 'LGU Archival Record'}
+                  </span>
+                </td>
+                <td>
+                  {m.sourceUrl ? (
+                    <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer" class="source-link">
+                      View Source ↗
+                    </a>
+                  ) : (
+                    <span class="media-source-text">{m.creditLine}</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="media-modal-footer">
+      <p>
+        To request permission, provide attribution corrections, or contribute historical photographs to the Municipal Cultural Archives, contact the <strong>Municipal Tourism & Information Office</strong> at Valencia Municipal Hall.
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const modal = document.querySelector<HTMLDialogElement>('#media-register-modal');
+  const openTriggers = document.querySelectorAll<HTMLElement>('[data-open-media-modal]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('#close-media-modal');
+
+  if (modal) {
+    openTriggers.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.showModal();
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal.close();
+      });
+    }
+
+    modal.addEventListener('click', (e) => {
+      const rect = modal.getBoundingClientRect();
+      const inDialog =
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width;
+      if (!inDialog) {
+        modal.close();
+      }
+    });
+  }
+</script>

@@ -5,6 +5,12 @@
   --forest-3: #09221d;
   --gold: #b88428;
   --gold-light: #e5b44d;
+  /* Authentic Valencia Civic Palette: Vibrant Municipal Orange & Warm Terracotta */
+  --valencia-orange: #df5b1e;
+  --valencia-orange-light: #f77a3f;
+  --valencia-orange-dark: #b84410;
+  --valencia-orange-bg: #fff4ed;
+  --valencia-orange-border: #f8c9b2;
   --mint: #e8f1ed;
   --paper: #ffffff;
   --stone: #f3f5f3;
@@ -498,6 +504,20 @@ strong {
   color: #ffffff;
 }
 
+.btn-orange {
+  background: var(--valencia-orange);
+  color: #ffffff;
+  border: 1px solid var(--valencia-orange-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(223, 91, 30, 0.28);
+}
+
+.btn-orange:hover {
+  background: var(--valencia-orange-light);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
 .btn-cream {
   background: #ffffff;
   color: var(--forest);
@@ -517,6 +537,19 @@ strong {
 .btn-outline-light {
   color: #ffffff;
   border-color: #7ca296;
+}
+
+.badge-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--valencia-orange-bg);
+  border: 1px solid var(--valencia-orange-border);
+  color: var(--valencia-orange-dark);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 .button-row {
@@ -2397,3 +2430,208 @@ strong {
     animation: none !important;
   }
 }
+
+/* Global Media Credits & Licensing Register Modal */
+.footer-modal-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ffffff;
+  text-decoration: underline;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.footer-modal-trigger:hover {
+  color: var(--gold-light);
+}
+
+.media-modal {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 960px;
+  width: min(94vw, 960px);
+  max-height: 88vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+.media-modal::backdrop {
+  background: rgba(9, 29, 24, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.media-modal-card {
+  background: #ffffff;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.media-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #fafcfb;
+}
+
+.media-modal-header h2 {
+  font-size: 1.45rem;
+  margin: 8px 0 6px;
+  color: var(--forest);
+}
+
+.media-modal-header p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+  max-width: 68ch;
+}
+
+.media-modal-close {
+  background: var(--stone);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--forest);
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.media-modal-close:hover {
+  background: var(--mint);
+  border-color: var(--forest);
+}
+
+.media-modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.media-transparency-note {
+  background: #fdfaf6;
+  border-left: 3px solid var(--valencia-orange);
+  padding: 12px 16px;
+  font-size: 0.84rem;
+  color: #634327;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+.media-transparency-note strong {
+  color: var(--valencia-orange-dark);
+}
+
+.media-items-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.media-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  text-align: left;
+}
+
+.media-table th {
+  background: var(--stone);
+  padding: 10px 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--forest);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.media-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.media-table tr:last-child td {
+  border-bottom: none;
+}
+
+.media-table td strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.media-sub {
+  display: block;
+  color: var(--muted);
+  font-size: 0.74rem;
+  margin-top: 3px;
+  max-width: 32ch;
+}
+
+.license-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.license-gov {
+  background: var(--valencia-orange-bg);
+  color: var(--valencia-orange-dark);
+  border: 1px solid var(--valencia-orange-border);
+}
+
+.license-pd {
+  background: #edf7f2;
+  color: var(--forest);
+  border: 1px solid #b5d8ca;
+}
+
+.license-cc {
+  background: #f0f4f8;
+  color: #2b4c6f;
+  border: 1px solid #c9d8e7;
+}
+
+.source-link {
+  color: var(--forest);
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.8rem;
+}
+
+.media-source-text {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.media-modal-footer {
+  padding: 14px 28px;
+  background: var(--stone);
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.media-modal-footer p {
+  margin: 0;
+}
+

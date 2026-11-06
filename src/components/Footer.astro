@@ -1,4 +1,6 @@
 ---
+import MediaRegisterModal from './MediaRegisterModal.astro';
+
 const civicLinks = [
   { title: 'Municipality & 35 Barangays', href: '/municipality' },
   { title: 'Government & Offices', href: '/government' },
@@ -78,8 +80,10 @@ const placeLinks = [
   <div class="container footer-bottom">
     <span>© {new Date().getFullYear()} Municipality of Valencia, Province of Bohol · BARUG VALENCIA</span>
     <span>
-      Photographs via Wikimedia Commons (<a href="/transparency#media-credits">View attributions & licenses</a>)
+      Official Media Archives (<button type="button" class="footer-modal-trigger" data-open-media-modal>Media Credits & Licensing Register</button>)
     </span>
     <a href="#top">Back to top ↑</a>
   </div>
+
+  <MediaRegisterModal />
 </footer>
