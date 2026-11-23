@@ -1,0 +1,11 @@
+id,url,municipality_verified,title,page_purpose,last_visible_update,authenticity,source_status
+LP01,https://www.facebook.com/lguvalofficialpage/,yes,"Municipal Government of Valencia, Bohol",Official LGU page (self-described),not_visible_logged_out,high_self_declared_official_21852_followers,page_metadata_verified
+LP02,https://www.facebook.com/p/SANG-AT-Festival-61595179684543/,yes,SANG - AT Festival,Festival promotion,not_visible_logged_out,medium_new_profile_admin_unknown,page_metadata_verified
+LP03,https://www.facebook.com/skfederationvalenciabohol/,yes,"SK Federation of Valencia, Bohol",Official SK municipal federation (self-described),not_visible_logged_out,high_self_declared,page_metadata_verified
+LP04,https://www.findglocal.com/PH/Valencia/1123356624198508/DILG-Valencia%2C-Bohol,yes,DILG Valencia Bohol (mirror),DILG MLGOO office updates,2026-10 (mirror),mirror_only,seed_S009
+LP05,https://www.findglocal.com/PH/Bohol/101911422997094/Municipal-Youth-Development-Office---Valencia%2C-Bohol,yes,Municipal Youth Development Office (mirror),Youth office updates,2026 (mirror),mirror_only,seed_S010
+LP06,,yes,Badiang Spring Resort and Hotel,Destination operator page - URL not resolved,,unknown,lead_only
+LP07,,yes,Valencia Technical Vocational High School,School page - URL not resolved,,unknown,lead_only
+LP08,,yes,Valencia Central Elementary School,School page - URL not resolved,,unknown,lead_only
+LP09,,yes,Sr. Sto. Nino Parish Valencia,Parish page - URL not resolved,,unknown,lead_only
+LP10,,yes,Barangay pages (35 barangays),Barangay councils - none resolved,,unknown,lead_only
