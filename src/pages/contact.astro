@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import MediaPanel from '../components/MediaPanel.astro';
+import { OFFICIAL_CHANNELS } from '../data/site';
+
+const channels = OFFICIAL_CHANNELS.filter((x) => x.id.startsWith('FB-'));
+---
+
+<BaseLayout
+  title="Contact & Directions | Municipality of Valencia, Bohol"
+  description="Official public communication channels, Municipal Hall location in Poblacion, and overland travel directions to Valencia, Bohol."
+>
+  <PageIntro
+    eyebrow="Public Communication & Visitor Directions"
+    title="Contact & Official Channels"
+    description="Connect with the Municipal Government of Valencia, the Sang-at Festival committee, and the Sangguniang Kabataan Municipal Federation, or plan your visit to Poblacion."
+    asideTitle="Municipal Hall"
+    aside="Poblacion, Valencia, Province of Bohol 6306 · Open Monday to Friday during regular government hours."
+    variant="forest"
+    bgImage="/media/valencia/valencia-lgu-official-banner.png"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Online Communication</p>
+          <h2>Official Public Channels</h2>
+          <p class="section-description">
+            Follow official municipal pages for executive announcements, community events, and youth programs.
+          </p>
+        </div>
+      </div>
+
+      <div class="source-grid">
+        {channels.map((c) => (
+          <a href={c.url} target="_blank" rel="noopener noreferrer">
+            <span class="tag">{c.verificationStatus}</span>
+            <strong>{c.name}</strong>
+            <small>{c.scope}</small>
+            <p class="text-link" style="margin: 15px 0 0; display: inline-block;">
+              Open official Facebook page ↗
+            </p>
+          </a>
+        ))}
+      </div>
+
+      <div class="municipality-story-grid" style="margin-top: 56px;">
+        <div>
+          <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Getting to Valencia, Bohol</p>
+          <h2>Overland Travel & Municipal Hall Location</h2>
+          <div class="two-col" style="margin-top: 20px;">
+            <div class="info-card">
+              <h3>From Tagbilaran City (42–46 km East)</h3>
+              <p>
+                Board a southern coastal bus or van at the Dao Integrated Bus Terminal in Tagbilaran City bound for Valencia, Garcia Hernandez, or Jagna along the Bohol South Road. Travel time is approximately 1 hour to 1 hour and 15 minutes along the scenic southern coastline through Baclayon, Alburquerque, Loay, Lila, and Dimiao.
+              </p>
+              <a href="/municipality">View municipal geography →</a>
+            </div>
+            <div class="info-card">
+              <h3>Town Center & Landmarks</h3>
+              <p>
+                The Valencia Municipal Hall, Sr. Santo Niño Parish Church, civic plaza, and Valencia Public Market are located along the main highway corridor in Poblacion Occidental and Poblacion Oriental. Badiang Spring Resort is located just east in Barangay Anas.
+              </p>
+              <a href="/tourism">Explore local destinations →</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <MediaPanel
+            slotId="hero-panangatan"
+            variant="main"
+            label="Welcome to Valencia Highway Gateway"
+            caption="Bohol South Road, Valencia · Photo: P199 (Public Domain)"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

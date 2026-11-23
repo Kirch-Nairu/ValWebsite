@@ -1,0 +1,18 @@
+---
+interface Props {
+  label?: string;
+  detail?: string;
+}
+const {
+  label = 'Public Service Note',
+  detail = 'For in-person transactions and scheduling, please coordinate with the relevant office at Valencia Municipal Hall.'
+} = Astro.props;
+---
+
+<div class="status-notice" role="note">
+  <span class="status-symbol" aria-hidden="true">i</span>
+  <div>
+    <strong>{label}</strong>
+    <p>{detail}</p>
+  </div>
+</div>
