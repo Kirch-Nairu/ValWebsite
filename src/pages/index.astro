@@ -1,65 +1,917 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
-import NewsRow from '../components/NewsRow.astro';
-import ProjectRow from '../components/ProjectRow.astro';
 import MediaPanel from '../components/MediaPanel.astro';
-import { SERVICE_CATEGORIES } from '../data/services';
 import { UPDATES } from '../data/news';
 import { PROGRESS_ITEMS } from '../data/projects';
 import { DESTINATIONS } from '../data/destinations';
 import { SITE_META } from '../data/site';
-const news=[...UPDATES].sort((a,b)=>b.publishedDate.localeCompare(a.publishedDate)).slice(0,3);
-const projects=PROGRESS_ITEMS.filter(p=>p.statusCategory==='verified_completed'||p.statusCategory==='verified_launched').slice(0,3);
-const destinations=DESTINATIONS.filter(d=>d.readiness==='established').slice(0,3);
+
+const news = [...UPDATES]
+  .sort((a, b) => b.publishedDate.localeCompare(a.publishedDate))
+  .slice(0, 4);
+
+const projects = PROGRESS_ITEMS.slice(0, 4);
+const destinationOrder = [
+  'sto-nino-parish-church',
+  'badiang-spring',
+  'anislag-spring',
+  'banderahan-ugjong-highlands'
+];
+const featuredDestinations = destinationOrder
+  .map((slug) => DESTINATIONS.find((d) => d.slug === slug))
+  .filter((d): d is typeof DESTINATIONS[0] => Boolean(d));
 ---
-<BaseLayout title="Municipality of Valencia, Bohol | BARUG VALENCIA" description="Independent municipal information prototype for Valencia, Bohol. Find services, government information, dated news, projects, destinations, and official public channels.">
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-content">
-      <p class="eyebrow">Municipality of Valencia / Province of Bohol</p>
-      <h1>Valencia, Bohol.<br/><span>Better connected.</span></h1>
-      <p class="hero-copy">A practical starting point for municipal services, government information, community news, and the places that make Valencia distinct. Clear information, useful directions, and source-attributed records.</p>
-      <div class="button-row"><a class="btn btn-primary" href="/services">Municipal Services <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="/tourism">Explore Valencia <span aria-hidden="true">↗</span></a></div>
-      <p style="font-size:11px;margin:21px 0 0;">Independent design prototype · Information is not an official LGU transaction or real-time advisory.</p>
+
+<BaseLayout
+  title="Municipality of Valencia, Bohol | BARUG VALENCIA"
+  description="Municipality of Valencia, Province of Bohol (BARUG VALENCIA). Access municipal services, office directory, dated public announcements, infrastructure progress, and tourism guides."
+>
+  <!-- First Viewport: Full-Bleed Cinematic Video Hero with Curated Chapters, Independent Anthem Audio & Architectural Overlay -->
+  <section class="hero hero-fullbleed" aria-label="Municipality of Valencia, Bohol Showcase">
+    <div class="hero-video-bg">
+      <video
+        id="hero-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        poster="/media/valencia/valencia-church-plaza.jpg"
+        aria-label="Cinematic showcase of Valencia, Bohol: Sto. Niño devotion, Panangatan River, and Sang-at Festival"
+      >
+        <source src="/media/valencia/valencia-hero-cinematic.mp4" type="video/mp4" />
+      </video>
+      <!-- Dedicated audio element synced to the festival song drop at 01:46 (106s) -->
+      <audio
+        id="hero-anthem-audio"
+        preload="metadata"
+        src="/media/valencia/valencia-hero-cinematic.mp4#t=106"
+      ></audio>
+      <div class="hero-video-overlay" aria-hidden="true"></div>
     </div>
-    <div class="hero-utility">
-      <div><span class="utility-module-label">Resident information desk</span><h2>What do you<br/>need today?</h2><p>Reach the correct section without searching through announcements.</p></div>
-      <div class="hero-feature-list">
-        <a href="/services"><span><span class="hero-number">01</span> Find a municipal service</span><span aria-hidden="true">↗</span></a>
-        <a href="/news"><span><span class="hero-number">02</span> Read dated news & notices</span><span aria-hidden="true">↗</span></a>
-        <a href="/municipality#barangays"><span><span class="hero-number">03</span> Locate a barangay</span><span aria-hidden="true">↗</span></a>
-        <a href="/contact"><span><span class="hero-number">04</span> Check official communication channels</span><span aria-hidden="true">↗</span></a>
+
+    <div class="container hero-stage-shell">
+      <!-- Top Bar: Official Identity Pill + Media & Anthem Controls -->
+      <div class="hero-stage-top">
+        <div class="hero-identity-pill hero-pill-glass">
+          <span class="hero-catchphrase">BARUG VALENCIA</span>
+          <span class="hero-divider" aria-hidden="true">·</span>
+          <span>Municipality of Valencia, Province of Bohol</span>
+        </div>
+
+        <div class="hero-media-bar" role="group" aria-label="Video and soundtrack controls">
+          <button
+            id="hero-audio-toggle"
+            type="button"
+            class="hero-ctrl-btn hero-ctrl-audio"
+            aria-pressed="false"
+            title="Listen to the official Sang-at Festival celebration anthem"
+          >
+            <span class="audio-eq" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span id="hero-audio-label">Festival Anthem</span>
+          </button>
+
+          <button
+            id="hero-video-toggle"
+            type="button"
+            class="hero-ctrl-btn"
+            aria-label="Pause background video"
+            title="Pause or play background video and soundtrack"
+          >
+            <span id="hero-video-icon">⏸ Pause</span>
+          </button>
+        </div>
       </div>
-      <p class="hero-meta">BARUG VALENCIA · Municipal information prototype</p>
+
+      <!-- Center Left: Clean Architectural Typography & Primary CTAs (Right 58% is open viewport) -->
+      <div class="hero-stage-main">
+        <div class="hero-content hero-content-overlay">
+          <p class="hero-scene-tag" id="hero-scene-indicator">
+            <span class="scene-dot" aria-hidden="true"></span>
+            <span id="hero-scene-label">Chapter I · Coastal Devotion & Aerial Panorama</span>
+          </p>
+
+          <h1 class="hero-title-light">Valencia, Bohol.</h1>
+
+          <p class="hero-copy hero-copy-light">
+            Where the Panangatan River meets the Bohol Sea and 35 coastal and upland barangays stand together. Access municipal services, public announcements, community projects, and the natural and cultural landmarks of Valencia.
+          </p>
+
+          <div class="button-row">
+            <a class="btn btn-primary btn-gold" href="/services">Municipal Services</a>
+            <a class="btn btn-glass" href="/tourism">Explore Valencia</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Architectural Bar: Interactive Chapter Scrubber + Municipal Census Ledger -->
+      <div class="hero-stage-bottom">
+        <div class="hero-chapters" role="tablist" aria-label="Video chapters">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            class="hero-chapter-btn is-active"
+            data-start="0"
+            data-end="19.5"
+            data-chapter="0"
+            data-label="Chapter I · Coastal Devotion & Aerial Panorama"
+          >
+            <span class="chapter-index">01 · Devotion & Landscape</span>
+            <strong>Coastal Devotion</strong>
+            <span class="chapter-sub">Sto. Niño sea procession & valley panorama</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="hero-chapter-btn"
+            data-start="19.5"
+            data-end="35"
+            data-chapter="1"
+            data-label="Chapter II · Panangatan River & Boat-Lifting Origins"
+          >
+            <span class="chapter-index">02 · Maritime Heritage</span>
+            <strong>Panangatan River</strong>
+            <span class="chapter-sub">Traditional sang-at & riverbank landing</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="hero-chapter-btn"
+            data-start="106"
+            data-end="262"
+            data-chapter="2"
+            data-label="Chapter III · Sang-at Festival & Community Celebration"
+          >
+            <span class="chapter-index">03 · Cultural Celebration</span>
+            <strong>Sang–at Festival</strong>
+            <span class="chapter-sub">Town street dancing, rhythm & finale</span>
+          </button>
+        </div>
+
+        <dl class="hero-facts hero-facts-glass" aria-label="Municipal key figures">
+          <div>
+            <dt>Population (2024)</dt>
+            <dd>{SITE_META.population2024}</dd>
+          </div>
+          <div>
+            <dt>Barangays</dt>
+            <dd>35 Coastal & Upland</dd>
+          </div>
+          <div>
+            <dt>District & PSGC</dt>
+            <dd>3rd District · 0701247000</dd>
+          </div>
+        </dl>
+      </div>
     </div>
-  </div>
-</section>
-<div class="quick-strip"><div class="container quick-grid">
-<a href="/services/civil-registry"><span>Birth & civil records</span><span aria-hidden="true">↗</span></a>
-<a href="/services/treasury-business-permits"><span>Permits & treasury</span><span aria-hidden="true">↗</span></a>
-<a href="/transparency"><span>Public disclosures</span><span aria-hidden="true">↗</span></a>
-<a href="/search"><span>Search this website</span><span aria-hidden="true">↗</span></a>
-</div></div>
-<section class="section section-mist" id="services"><div class="container">
-  <div class="section-heading"><div><p class="eyebrow">Public service directory</p><h2>Start with the service you need.</h2><p class="section-description">Service guides identify the relevant municipal office and explain which requirements must still be confirmed with the current Citizen’s Charter.</p></div><a class="text-link" href="/services">All service categories ↗</a></div>
-  <div class="service-grid">{SERVICE_CATEGORIES.slice(0,4).map((s,i)=><ServiceCard item={s} index={i+1}/>)}</div>
-</div></section>
-<section class="section" id="news"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">News & public information</p><h2>Community updates, with dates and sources.</h2><p class="section-description">A curated archive of identifiable public and press records. These are not presented as a live municipal advisory feed.</p></div><a class="text-link" href="/news">View news archive ↗</a></div>
- <div class="news-list">{news.map(item=><NewsRow item={item}/>)}</div>
-</div></section>
-<section class="section section-mint"><div class="container profile-grid">
-  <div><p class="eyebrow">Know your municipality</p><h2>One community.<br/>35 barangays.</h2><p class="section-lead">Valencia is a municipality in Bohol’s Third Congressional District. Explore its municipal profile, geography, and research-compiled barangay directory, with sources and verification notes attached.</p><div class="stats"><div class="stat"><strong>{SITE_META.population2024}</strong><span>2024 population<br/>PSA attribution</span></div><div class="stat"><strong>35</strong><span>Barangays<br/>research directory</span></div><div class="stat"><strong>VII</strong><span>Central Visayas<br/>Philippines</span></div></div><a href="/municipality" class="btn btn-primary" style="margin-top:27px;">Municipal profile <span aria-hidden="true">↗</span></a></div>
-  <div class="profile-panel"><p class="eyebrow">Municipal quick facts</p><h3>Valencia at a glance</h3><dl><div><dt>Province</dt><dd>Bohol</dd></div><div><dt>Congressional district</dt><dd>3rd District</dd></div><div><dt>PSGC municipality code</dt><dd>0701247000</dd></div><div><dt>Public identity</dt><dd>BARUG VALENCIA</dd></div><div><dt>Local directory</dt><dd><a href="/municipality#barangays" style="text-decoration:underline;">View barangays ↗</a></dd></div></dl><p class="tabs-note" style="margin-top:22px;">Figures and identifiers are attributed to the underlying research register; the current PSA barangay-code list requires canonical source recheck.</p></div>
-</div></section>
-<section class="section"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">Municipal development</p><h2>Projects and progress.</h2><p class="section-description">Completed and reported milestones are separated from proposals. Dates and implementing bodies are shown for accountability.</p></div><a href="/projects" class="text-link">View project register ↗</a></div>
- <div class="project-table"><div class="project-labels"><span>Project / location</span><span>Documented status</span><span>Implementing office / partner</span><span></span></div>{projects.map(item=><ProjectRow item={item}/>)}</div>
-</div></section>
-<section class="section section-mist"><div class="container">
- <div class="section-heading"><div><p class="eyebrow">Tourism & local culture</p><h2>Get to know Valencia beyond the town center.</h2><p class="section-description">Attractions recorded in the Bohol provincial tourism profile, alongside Valencia’s Sang-at tradition. Verify visitor access before travelling.</p></div><a class="text-link" href="/tourism">Explore destinations ↗</a></div>
- <div class="destination-grid">{destinations.map(d=><a class="destination-card" href={`/tourism/${d.slug}`}><MediaPanel label={d.name} caption="Approved destination photograph not yet supplied"/><div class="destination-card-body"><small>{d.barangay} · {d.category}</small><h3>{d.name}</h3><p>{d.summary}</p><strong style="font-size:12px;color:var(--forest)">Explore profile ↗</strong></div></a>)}</div>
-</div></section>
-<section class="section section-dark"><div class="container contact-strip"><div><p class="eyebrow light">Public communication</p><h2>Need an official answer? Start with the official channels.</h2><p>Use municipal communication sources for current schedules, fees, advisories, and document verification.</p></div><div class="contact-actions"><a href="/contact" class="btn btn-cream">Official channels ↗</a><a href="/transparency" class="btn btn-outline-light btn">Transparency ↗</a><p class="contact-note">This prototype does not accept payments, applications, or personal records.</p></div></div></section>
+  </section>
+
+  <!-- Primary Municipal Actions Band -->
+  <nav class="civic-action-band" aria-label="Primary municipal actions">
+    <div class="container civic-action-grid">
+      <a href="/services" class="civic-action-item">
+        <strong>Municipal Services</strong>
+        <span>Civil registry, permits, treasury, health & social welfare</span>
+      </a>
+      <a href="/government" class="civic-action-item">
+        <strong>Offices & Governance</strong>
+        <span>Executive, Sangguniang Bayan & Municipal Hall directory</span>
+      </a>
+      <a href="/municipality#barangays" class="civic-action-item">
+        <strong>35 Barangays Directory</strong>
+        <span>Search coastal and interior farming communities</span>
+      </a>
+      <a href="/transparency" class="civic-action-item">
+        <strong>Transparency & Records</strong>
+        <span>Full Disclosure portal, PSA census & development plans</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- 1. The Real Valencia: Agri-Coastal Landscape & Commercial Heart -->
+  <section class="section" id="landscape">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Municipal Profile · PSGC 0701247000</p>
+          <h2>An Agri-Coastal Economy Powered by Community Trade</h2>
+          <p class="section-description">
+            Stretching across 116.67 km² along southern Bohol, Valencia combines marine fisheries along the Bohol Sea with a productive interior agricultural heartland of 15 rice-growing barangays and copra plantations.
+          </p>
+        </div>
+        <a class="text-link" href="/municipality">Learn about Valencia's geography & history →</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 16px;">
+        <!-- Card 1: Valencia Business Center -->
+        <article style="background: #ffffff; border: 1px solid var(--valencia-orange-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          <div style="position: relative; height: 220px; overflow: hidden;">
+            <img
+              src="/media/valencia/valencia-business-center-day.jpg"
+              alt="Modernized Valencia Business Center commercial portico in Poblacion"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              loading="eager"
+            />
+            <span class="badge badge-orange" style="position: absolute; bottom: 12px; left: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+              Commercial Trading Center
+            </span>
+          </div>
+          <div style="padding: 22px; flex: 1; display: flex; flex-direction: column;">
+            <small style="color: var(--valencia-orange-dark); font-weight: 700; text-transform: uppercase; font-size: 0.76rem;">Poblacion Center</small>
+            <h3 style="margin: 6px 0 10px; font-size: 1.25rem; color: var(--forest);">Valencia Business Center & Sunday Tabu</h3>
+            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--muted); margin-bottom: 16px; flex: 1;">
+              The heart of municipal commerce. Every Sunday, interior farming households and coastal fishermen gather at the modernized two-storey commercial complex for the weekly Tabu trade, now upgraded with QR Ph digital payments.
+            </p>
+            <a href="/stories/sunday-tabu-and-crafts" class="text-link" style="font-weight: 600;">Explore Business Center & Tabu Trade →</a>
+          </div>
+        </article>
+
+        <!-- Card 2: Agricultural Heartland -->
+        <article style="background: #ffffff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+          <div style="position: relative; height: 220px; overflow: hidden; background: var(--forest-2);">
+            <img
+              src="/media/valencia/valencia-town-view.jpg"
+              alt="Coastal highway and interior farming corridor entering Valencia"
+              style="width: 100%; height: 100%; object-fit: cover; display: block;"
+              loading="eager"
+            />
+            <span class="tag" style="position: absolute; bottom: 12px; left: 14px; background: rgba(0,0,0,0.7); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">
+              15 Rice & Coconut Barangays
+            </span>
+          </div>
+          <div style="padding: 22px; flex: 1; display: flex; flex-direction: column;">
+            <small style="color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 0.76rem;">Interior & Highland Belt</small>
+            <h3 style="margin: 6px 0 10px; font-size: 1.25rem; color: var(--forest);">Agricultural Heartland & Rural Livelihoods</h3>
+            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--muted); margin-bottom: 16px; flex: 1;">
+              Over half of Valencia's territory is cultivated in rice, coconut copra, corn, and fruit trees across rural communities like Anonang, Anoyon, Adlawan, and Pangi-an, supported by regional DA and municipal livestock recovery programs.
+            </p>
+            <a href="/municipality#barangays" class="text-link" style="font-weight: 600;">Browse 25 Upland & Interior Barangays →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Frontline Resident Services & Requirements Hub (Overlay on Valencia Municipal Hall Night Panorama) -->
+  <section
+    class="section"
+    id="services"
+    style="position: relative; padding: 72px 0; background: #0a1f1b url('/media/valencia/valencia-municipal-hall-night.jpg') center center / cover no-repeat; overflow: hidden;"
+  >
+    <!-- Dark Forest Architectural Overlay Gradient for Contrast and Readability -->
+    <div
+      style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 31, 27, 0.92) 0%, rgba(15, 45, 38, 0.86) 50%, rgba(10, 31, 27, 0.94) 100%); pointer-events: none;"
+      aria-hidden="true"
+    ></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; border-bottom: 2px solid rgba(223, 91, 30, 0.5); padding-bottom: 14px;">
+        <div>
+          <h2 style="margin: 0; font-size: 1.75rem; color: #ffffff;">Municipal Hall Frontline Services</h2>
+          <p style="margin: 6px 0 0; color: #cbe0d8; font-size: 0.92rem;">
+            Official windows at Valencia Municipal Hall (Poblacion) · Operating Weekdays 8:00 AM – 5:00 PM
+          </p>
+        </div>
+        <a class="btn btn-orange" href="/services" style="font-size: 0.84rem; padding: 8px 16px;">
+          View Full Citizen's Charter Catalog →
+        </a>
+      </div>
+
+      <!-- Compact 4-Desk Visual Strip (Semi-translucent Frosted Cards) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+        <!-- Desk 1: Civil Registry -->
+        <a
+          href="/services/civil-registry"
+          style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4); border-top: 4px solid #df5b1e; border-radius: 8px; padding: 22px 20px; display: flex; flex-direction: column; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.18);"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 28px rgba(223,91,30,0.25)';"
+          onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';"
+        >
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: #df5b1e; text-transform: uppercase; letter-spacing: 0.04em;">Ground Floor · MCR</span>
+            <span class="tag" style="font-size: 0.68rem; padding: 2px 6px;">Vital Records</span>
+          </div>
+          <strong style="font-size: 1.08rem; color: var(--forest); display: block; margin-bottom: 6px;">Civil Registry & Records</strong>
+          <p style="font-size: 0.84rem; line-height: 1.5; color: #4b5563; margin: 0 0 14px; flex: 1;">
+            Birth, marriage, and death certificates, delayed registration, and PSA endorsements.
+          </p>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #df5b1e;">Requirements & Fees →</span>
+        </a>
+
+        <!-- Desk 2: Treasury & BPLO -->
+        <a
+          href="/services/treasury-business-permits"
+          style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4); border-top: 4px solid #b88428; border-radius: 8px; padding: 22px 20px; display: flex; flex-direction: column; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.18);"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 28px rgba(184,132,40,0.25)';"
+          onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';"
+        >
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: #b88428; text-transform: uppercase; letter-spacing: 0.04em;">Windows 1–4 · BPLO</span>
+            <span class="tag" style="font-size: 0.68rem; padding: 2px 6px;">Cashier & Permits</span>
+          </div>
+          <strong style="font-size: 1.08rem; color: var(--forest); display: block; margin-bottom: 6px;">Treasury, Permits & Cedula</strong>
+          <p style="font-size: 0.84rem; line-height: 1.5; color: #4b5563; margin: 0 0 14px; flex: 1;">
+            Mayor's Permits, Real Property Tax (RPT), Community Tax, and Business Center stalls.
+          </p>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #b88428;">Payment Windows →</span>
+        </a>
+
+        <!-- Desk 3: Social Welfare & Health -->
+        <a
+          href="/services/social-welfare-health"
+          style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4); border-top: 4px solid #14201d; border-radius: 8px; padding: 22px 20px; display: flex; flex-direction: column; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.18);"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 28px rgba(20,32,29,0.25)';"
+          onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';"
+        >
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: var(--forest); text-transform: uppercase; letter-spacing: 0.04em;">MSWDO & RHU Clinics</span>
+            <span class="tag" style="font-size: 0.68rem; padding: 2px 6px;">Community Aid</span>
+          </div>
+          <strong style="font-size: 1.08rem; color: var(--forest); display: block; margin-bottom: 6px;">Social Welfare & Health</strong>
+          <p style="font-size: 0.84rem; line-height: 1.5; color: #4b5563; margin: 0 0 14px; flex: 1;">
+            Duaw-Pamahaw outreach, AICS medical/burial assistance, Senior/PWD IDs, and RHU checkups.
+          </p>
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--forest);">Assistance Guidelines →</span>
+        </a>
+
+        <!-- Desk 4: Agriculture & Environment -->
+        <a
+          href="/services/agriculture-environment-tourism"
+          style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4); border-top: 4px solid #2d6a4f; border-radius: 8px; padding: 22px 20px; display: flex; flex-direction: column; text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease; box-shadow: 0 8px 24px rgba(0,0,0,0.18);"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 28px rgba(45,106,79,0.25)';"
+          onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.18)';"
+        >
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-size: 0.72rem; font-weight: 700; color: #2d6a4f; text-transform: uppercase; letter-spacing: 0.04em;">MAO & Field Stations</span>
+            <span class="tag" style="font-size: 0.68rem; padding: 2px 6px;">Farmers & Fishers</span>
+          </div>
+          <strong style="font-size: 1.08rem; color: var(--forest); display: block; margin-bottom: 6px;">Agriculture & Fisheries</strong>
+          <p style="font-size: 0.84rem; line-height: 1.5; color: #4b5563; margin: 0 0 14px; flex: 1;">
+            RSBSA farmer registration, rice seeds, livestock distribution, and coastal marine permits.
+          </p>
+          <span style="font-size: 0.8rem; font-weight: 700; color: #2d6a4f;">Farmer Programs →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Dedicated Section: Public Information, News & Municipal Bulletins -->
+  <section class="section" id="news" style="padding: 56px 0;">
+    <div class="container">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 12px;">
+        <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">Public Information & Announcements</h2>
+        <a class="text-link" href="/news" style="font-weight: 600;">Browse All Municipal Bulletins →</a>
+      </div>
+
+      <!-- Visual Magazine Headline Grid (1 Lead Hero News + 3 Editorial Cards) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Lead Feature Dispatch -->
+        {news.length > 0 && (
+          <article style="background: var(--mint); border: 1px solid var(--valencia-orange-border); border-radius: 8px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 14px rgba(0,0,0,0.03);">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <span class="tag" style="font-size: 0.74rem;">{news[0].category}</span>
+                <time datetime={news[0].publishedDate} style="font-size: 0.82rem; color: var(--muted); font-weight: 600;">
+                  {new Date(news[0].publishedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+              </div>
+              <h3 style="margin: 0 0 12px; font-size: 1.3rem; line-height: 1.35; color: var(--forest);">
+                <a href={`/news/${news[0].slug}`} style="color: inherit; text-decoration: none;">
+                  {news[0].title}
+                </a>
+              </h3>
+              <p style="font-size: 0.92rem; line-height: 1.6; color: var(--ink); margin-bottom: 18px;">
+                {news[0].summary}
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 14px;">
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Source: {news[0].publisher}</span>
+              <a href={`/news/${news[0].slug}`} class="btn btn-primary" style="font-size: 0.8rem; padding: 6px 14px;">
+                Read Full Dispatch →
+              </a>
+            </div>
+          </article>
+        )}
+
+        <!-- Stacked 3 Secondary News Rows -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          {news.slice(1, 4).map((item) => (
+            <article style="background: #ffffff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.15s ease;" onmouseover="this.style.borderColor='var(--valencia-orange-border)';" onmouseout="this.style.borderColor='var(--line)';">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <span class="tag" style="font-size: 0.7rem;">{item.category}</span>
+                <time datetime={item.publishedDate} style="font-size: 0.78rem; color: var(--muted);">
+                  {new Date(item.publishedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+              </div>
+              <h4 style="margin: 0; font-size: 1.02rem; line-height: 1.4;">
+                <a href={`/news/${item.slug}`} style="color: var(--forest); text-decoration: none;">
+                  {item.title}
+                </a>
+              </h4>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
+                <span style="font-size: 0.76rem; color: var(--muted);">{item.publisher}</span>
+                <a href={`/news/${item.slug}`} class="text-link" style="font-size: 0.8rem; font-weight: 600;">Read →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Dedicated Section: BARUG VALENCIA in Action (Visual Infrastructure Ledger) -->
+  <section class="section section-stone" id="projects" style="padding: 56px 0;">
+    <div class="container">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; border-bottom: 2px solid var(--valencia-orange); padding-bottom: 12px;">
+        <h2 style="margin: 0; font-size: 1.6rem; color: var(--forest);">BARUG VALENCIA in Action: Infrastructure & Development</h2>
+        <a class="text-link" href="/projects" style="font-weight: 600;">Open Complete Projects Register →</a>
+      </div>
+
+      <!-- 4-Card Visual Progress Grid with Distinct Milestones & Verification -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        {projects.map((p) => (
+          <article style="background: #ffffff; border: 1px solid var(--line); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: transform 0.15s ease, border-color 0.15s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='var(--valencia-orange-border)';" onmouseout="this.style.transform='none';this.style.borderColor='var(--line)';">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px;">
+                <span class={p.statusCategory === 'verified_completed' ? 'badge badge-orange' : 'tag'} style="font-size: 0.72rem;">
+                  {p.statusBadge}
+                </span>
+                <span style="font-size: 0.76rem; color: var(--muted);">{p.dateLabel}</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.15rem; line-height: 1.35; color: var(--forest);">
+                <a href={`/projects/${p.slug}`} style="color: inherit; text-decoration: none;">
+                  {p.title}
+                </a>
+              </h3>
+              <p style="font-size: 0.85rem; line-height: 1.55; color: var(--muted); margin: 0 0 16px;">
+                {p.summary}
+              </p>
+            </div>
+
+            <div style="border-top: 1px solid var(--line); padding-top: 12px; margin-top: auto; display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+                <span style="color: var(--ink); font-weight: 600;">{p.barangay}</span>
+                <a href={`/projects/${p.slug}`} class="text-link" style="font-weight: 700; color: #df5b1e;">
+                  Details & Record →
+                </a>
+              </div>
+              <span style="font-size: 0.72rem; color: var(--muted); line-height: 1.3;">
+                Partner: {p.partnerOrDonor}
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Real Tourism & Heritage Anchors: Santo Niño Church, Badiang Spring, Anislag & Banderahan -->
+  <section class="section section-forest" id="discover" style="padding: 64px 0;">
+    <div class="container">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; border-bottom: 2px solid rgba(229, 180, 77, 0.4); padding-bottom: 14px;">
+        <div>
+          <p class="section-kicker light" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; margin-bottom: 6px; font-weight: 700; text-transform: uppercase;">Tourism & Culture</p>
+          <h2 style="margin: 0; font-size: 1.85rem; color: #ffffff;">Destinations & Heritage in Valencia</h2>
+          <p style="margin: 6px 0 0; color: #cfe0d9; font-size: 0.95rem; max-width: 680px; line-height: 1.5;">
+            Historic Spanish-era monuments, coastal and rainforest springs, and upland mountain ridgelines across Valencia, Bohol.
+          </p>
+        </div>
+        <a class="text-link light" href="/tourism" style="font-weight: 600; white-space: nowrap;">View All Destinations →</a>
+      </div>
+
+      <!-- Lead Cultural Signature: Sang-at Festival & Panangatan Heritage -->
+      <a href="/culture/sang-at" class="showcase-lead-card" style="margin-bottom: 28px; background: #0c2b25; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 12px 28px rgba(0,0,0,0.2);">
+        <div class="showcase-lead-media">
+          <img
+            src="/media/valencia/santo-nino-parish-arch.jpg"
+            alt="Flame tree canopy and stone belfry of Sr. Santo Niño Parish Church in Poblacion Occidental, Valencia, Bohol"
+            loading="eager"
+            style="width: 100%; height: 100%; object-fit: cover; min-height: 280px;"
+          />
+        </div>
+        <div class="showcase-lead-body" style="padding: 32px 36px;">
+          <span style="font-size: 0.82rem; color: var(--gold-light); font-weight: 600; margin-bottom: 6px; display: block;">Annual Town Foundation Celebration · Late October</span>
+          <h3 style="font-size: 1.65rem; color: #ffffff; margin: 0 0 10px; line-height: 1.3;">Sang-at Festival & Panangatan Heritage</h3>
+          <p style="color: #d1e2db; font-size: 0.94rem; line-height: 1.6; margin: 0 0 18px;">
+            Rooted in the Cebuano verb <em>sang-at</em>—recalling how fishermen lifted their wooden outrigger boats onto the elevated banks of the Panangatan River for safety during rough monsoon seas. Celebrated across all 35 barangays with street dancing and cultural presentations.
+          </p>
+          <span class="showcase-cta" style="color: var(--gold-light); font-weight: 700; font-size: 0.88rem;">Read the cultural history of Panangatan →</span>
+        </div>
+      </a>
+
+      <!-- 4 Strategic Economic & Natural Anchors Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        {featuredDestinations.map((d) => {
+          const isChurch = d.slug === 'sto-nino-parish-church';
+          const isBadiang = d.slug === 'badiang-spring';
+          const isAnislag = d.slug === 'anislag-spring';
+
+          const featureHighlight = isChurch
+            ? '1882 tindalo and molave hardwood parquet floor'
+            : isBadiang
+            ? 'Cold subterranean freshwater cascading out to the Bohol Sea'
+            : isAnislag
+            ? 'Freshwater forest pool shaded by wild anislag trees'
+            : 'WWII historical vantage point and 360° panoramic ridges';
+
+          return (
+            <a
+              class="destination-card"
+              href={`/tourism/${d.slug}`}
+              style="display: flex; flex-direction: column; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #d1d5db; transition: transform 0.2s ease, box-shadow 0.2s ease;"
+            >
+              <MediaPanel
+                slotId={d.mediaSlotId}
+                label={d.name}
+                caption={d.barangay}
+              />
+
+              <div class="destination-card-body" style="padding: 18px 20px; display: flex; flex-direction: column; flex: 1;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                  <small style="font-size: 0.74rem; color: var(--valencia-orange-dark); font-weight: 700; text-transform: uppercase;">
+                    {d.barangay}
+                  </small>
+                  <span style="font-size: 0.72rem; color: var(--muted); font-weight: 600;">
+                    {d.category}
+                  </span>
+                </div>
+
+                <h3 style="font-size: 1.12rem; margin: 0 0 8px; color: var(--forest); line-height: 1.35;">
+                  {d.name}
+                </h3>
+
+                <p style="font-size: 0.85rem; color: #4b5563; line-height: 1.5; margin: 0 0 14px; flex: 1;">
+                  {d.summary}
+                </p>
+
+                <div style="background: var(--stone); border-radius: 4px; padding: 8px 12px; margin-bottom: 14px; border-left: 3px solid var(--valencia-orange);">
+                  <span style="display: block; font-size: 0.72rem; font-weight: 700; color: var(--forest); text-transform: uppercase; margin-bottom: 2px;">
+                    Key Feature
+                  </span>
+                  <span style="display: block; font-size: 0.78rem; color: #374151; line-height: 1.35;">
+                    {featureHighlight}
+                  </span>
+                </div>
+
+                <span class="destination-link-text" style="font-size: 0.82rem; font-weight: 700; color: var(--valencia-orange-dark); display: inline-flex; align-items: center; gap: 4px;">
+                  Explore destination guide →
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Municipality & 35 Barangays Profile Band (Elevated Industrial-Clean Municipal Map Card) -->
+  <section class="section" style="padding: 68px 0; background: linear-gradient(180deg, #ffffff 0%, #f7faf8 100%); border-bottom: 1px solid var(--line);">
+    <div class="container profile-grid">
+      <div>
+        <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Municipal Geography</p>
+        <h2 style="font-size: 1.85rem; color: var(--forest); margin: 0 0 10px; line-height: 1.3;">One Community Across 35 Barangays</h2>
+        <p class="section-lead" style="color: #4b5563; font-size: 0.96rem; line-height: 1.6; margin-bottom: 24px;">
+          From 10 coastal fishing villages along the southern Bohol Sea to 25 productive interior and upland farm communities rising to 485 meters at Banderahan Peak.
+        </p>
+
+        <!-- Dynamic Stat Metric Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-bottom: 28px;">
+          <div style="background: #ffffff; border: 1px solid var(--line); border-top: 3px solid var(--valencia-orange); border-radius: 8px; padding: 14px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <strong style="font-size: 1.6rem; color: var(--valencia-orange-dark); display: block; line-height: 1.1; margin-bottom: 4px;">{SITE_META.population2024}</strong>
+            <span style="font-size: 0.74rem; color: var(--muted); font-weight: 600; line-height: 1.3; display: block;">2024 PSA Population</span>
+          </div>
+          <div style="background: #ffffff; border: 1px solid var(--line); border-top: 3px solid var(--forest); border-radius: 8px; padding: 14px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <strong style="font-size: 1.6rem; color: var(--forest); display: block; line-height: 1.1; margin-bottom: 4px;">35</strong>
+            <span style="font-size: 0.74rem; color: var(--muted); font-weight: 600; line-height: 1.3; display: block;">10 Coastal · 25 Upland</span>
+          </div>
+          <div style="background: #ffffff; border: 1px solid var(--line); border-top: 3px solid #b88428; border-radius: 8px; padding: 14px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+            <strong style="font-size: 1.6rem; color: #b88428; display: block; line-height: 1.1; margin-bottom: 4px;">116.67</strong>
+            <span style="font-size: 0.74rem; color: var(--muted); font-weight: 600; line-height: 1.3; display: block;">km² Land Area</span>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <a href="/municipality" class="btn btn-primary" style="font-size: 0.88rem; padding: 9px 18px;">Municipal Profile & History</a>
+          <a href="/municipality#barangays" class="btn btn-outline" style="font-size: 0.88rem; padding: 9px 18px;">Search 35 Barangays Directory →</a>
+        </div>
+      </div>
+
+      <!-- Upgraded High-Glanceability Locator Map Card -->
+      <div class="profile-map-card" style="background: #ffffff; border: 1px solid var(--line); border-radius: 12px; padding: 24px; box-shadow: 0 6px 20px rgba(0,0,0,0.05); align-items: center;">
+        <div style="text-align: center;">
+          <img
+            src="/media/valencia/bohol-locator-valencia.png"
+            alt="Official map of the Province of Bohol highlighting the Municipality of Valencia along the southern coast"
+            loading="eager"
+            style="width: 100%; height: auto; max-width: 150px; border-radius: 8px; border: 1px solid var(--line); background: #fdfdfd; padding: 4px;"
+          />
+          <span style="display: block; font-size: 0.68rem; color: var(--muted); margin-top: 6px; font-weight: 600;">Southern Bohol Coastline</span>
+        </div>
+
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px;">
+            <h3 style="font-size: 1.1rem; color: var(--forest); margin: 0;">Geographic Profile</h3>
+            <span style="font-size: 0.72rem; color: var(--valencia-orange-dark); font-weight: 700; background: var(--valencia-orange-bg); padding: 2px 7px; border-radius: 4px;">PSGC 0701247000</span>
+          </div>
+
+          <dl style="margin: 0; display: grid; gap: 7px;">
+            <div>
+              <dt style="font-size: 0.72rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Province & Region</dt>
+              <dd style="margin: 1px 0 0; font-size: 0.84rem; font-weight: 600; color: var(--ink);">Bohol · Central Visayas (Region VII)</dd>
+            </div>
+            <div>
+              <dt style="font-size: 0.72rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Congressional District</dt>
+              <dd style="margin: 1px 0 0; font-size: 0.84rem; font-weight: 600; color: var(--ink);">3rd Congressional District of Bohol</dd>
+            </div>
+            <div>
+              <dt style="font-size: 0.72rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Adjacent Municipalities</dt>
+              <dd style="margin: 1px 0 0; font-size: 0.82rem; font-weight: 600; color: var(--ink);">Dimiao (West), Garcia Hernandez (East), Carmen & Sierra Bullones (North)</dd>
+            </div>
+            <div>
+              <dt style="font-size: 0.72rem; color: var(--muted); font-weight: 700; text-transform: uppercase;">Commercial Trade Center</dt>
+              <dd style="margin: 1px 0 0; font-size: 0.82rem; font-weight: 600; color: var(--ink);">Valencia Business Center (Poblacion)</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Official Communication Channels & Public Outreach (Overlay on Official LGU Leadership Banner) -->
+  <section
+    class="section"
+    id="contact-channels"
+    style="position: relative; padding: 76px 0; background: #081714 url('/media/valencia/valencia-lgu-official-banner.png') center center / cover no-repeat; overflow: hidden;"
+  >
+    <!-- Dark Architectural Overlay for Contrast, Hierarchy & Legibility -->
+    <div
+      style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8, 23, 20, 0.94) 0%, rgba(14, 40, 34, 0.88) 50%, rgba(8, 23, 20, 0.95) 100%); pointer-events: none;"
+      aria-hidden="true"
+    ></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="contact-strip" style="gap: 32px; align-items: center;">
+        <div>
+          <p class="section-kicker light" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Official Communication Channels</p>
+          <h2 style="font-size: 1.85rem; color: #ffffff; margin: 0 0 10px; line-height: 1.3;">Connect with the Municipality of Valencia</h2>
+          <p style="color: #cfe0d9; font-size: 0.96rem; line-height: 1.6; margin: 0; max-width: 620px;">
+            Reach municipal offices at Valencia Municipal Hall in Poblacion, follow official public advisories from the Local Government Unit, or plan your overland travel along the southern Bohol coastal road.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: flex-start;">
+          <a
+            href="/contact"
+            class="btn btn-orange"
+            style="width: 100%; max-width: 280px; text-align: center; justify-content: center; font-size: 0.88rem; padding: 11px 18px;"
+          >
+            Contact & Office Directions →
+          </a>
+          <a
+            href="https://www.facebook.com/lguvalofficialpage"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn"
+            style="width: 100%; max-width: 280px; text-align: center; justify-content: center; font-size: 0.88rem; padding: 11px 18px; background: rgba(255, 255, 255, 0.14); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(6px);"
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.25)';"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.14)';"
+          >
+            LGU Valencia Facebook Page ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const video = document.querySelector<HTMLVideoElement>('#hero-video');
+    const audio = document.querySelector<HTMLAudioElement>('#hero-anthem-audio');
+    const toggle = document.querySelector<HTMLButtonElement>('#hero-video-toggle');
+    const icon = document.querySelector<HTMLElement>('#hero-video-icon');
+    const audioToggle = document.querySelector<HTMLButtonElement>('#hero-audio-toggle');
+    const audioLabel = document.querySelector<HTMLElement>('#hero-audio-label');
+    const sceneLabel = document.querySelector<HTMLElement>('#hero-scene-label');
+    const chapterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.hero-chapter-btn'));
+
+    const CHAPTERS = [
+      {
+        index: 0,
+        start: 0,
+        end: 19.5,
+        label: 'Chapter I · Coastal Devotion & Aerial Panorama'
+      },
+      {
+        index: 1,
+        start: 19.5,
+        end: 35,
+        label: 'Chapter II · Panangatan River & Boat-Lifting Origins'
+      },
+      {
+        index: 2,
+        start: 106,
+        end: 262,
+        label: 'Chapter III · Sang-at Festival & Community Celebration'
+      }
+    ];
+
+    let activeChapterIndex = -1;
+    let isSeeking = false;
+
+    function setActiveChapterUI(idx: number) {
+      if (activeChapterIndex === idx) return;
+      activeChapterIndex = idx;
+      const ch = CHAPTERS[idx] || CHAPTERS[0];
+      if (sceneLabel) {
+        sceneLabel.textContent = ch.label;
+      }
+      chapterBtns.forEach((btn, i) => {
+        const active = i === idx;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    if (video) {
+      // Curated video timeline:
+      // 0:00 -> 0:19.5 (Chapter I: Coastal Devotion & Aerial Panorama)
+      // 0:19.5 -> 0:35 (Chapter II: Panangatan River & Boat-Lifting)
+      // Skips slow 0:35–1:46 talk/intro directly to 1:46 (106s) for Chapter III: Sang-at Festival
+      video.addEventListener('timeupdate', () => {
+        if (isSeeking) return;
+        const t = video.currentTime;
+
+        if (t >= 35 && t < 105.5) {
+          isSeeking = true;
+          video.currentTime = 106;
+          setActiveChapterUI(2);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 150);
+          return;
+        }
+
+        if (t >= 262) {
+          isSeeking = true;
+          video.currentTime = 0;
+          setActiveChapterUI(0);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 150);
+          return;
+        }
+
+        if (t < 19.5) {
+          setActiveChapterUI(0);
+        } else if (t >= 19.5 && t < 35) {
+          setActiveChapterUI(1);
+        } else if (t >= 105.5) {
+          setActiveChapterUI(2);
+        }
+      });
+
+      chapterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const start = parseFloat(btn.dataset.start || '0');
+          const idx = parseInt(btn.dataset.chapter || '0', 10);
+          isSeeking = true;
+          video.currentTime = start;
+          if (video.paused) {
+            video.play();
+            if (icon) icon.textContent = '⏸ Pause';
+            if (audio && audio.paused) {
+              startAudio();
+            }
+          }
+          setActiveChapterUI(idx);
+          setTimeout(() => {
+            isSeeking = false;
+          }, 200);
+        });
+      });
+    }
+
+    // Audio Player State & Controls (Festival Anthem at 01:46 / 106s)
+    const SONG_START = 106;
+    const SONG_END = 268;
+
+    async function startAudio() {
+      if (!audio) return;
+      if (audio.currentTime < SONG_START || audio.currentTime >= SONG_END) {
+        audio.currentTime = SONG_START;
+      }
+      try {
+        await audio.play();
+        if (audioToggle) {
+          audioToggle.classList.add('is-playing');
+          audioToggle.setAttribute('aria-pressed', 'true');
+        }
+        if (audioLabel) {
+          audioLabel.textContent = 'Sound On · Festival Anthem';
+        }
+      } catch {
+        // Browser autoplay policy might require first user gesture
+        if (audioToggle) {
+          audioToggle.classList.remove('is-playing');
+          audioToggle.setAttribute('aria-pressed', 'false');
+        }
+        if (audioLabel) {
+          audioLabel.textContent = 'Festival Anthem';
+        }
+      }
+    }
+
+    function pauseAudio() {
+      if (!audio) return;
+      audio.pause();
+      if (audioToggle) {
+        audioToggle.classList.remove('is-playing');
+        audioToggle.setAttribute('aria-pressed', 'false');
+      }
+      if (audioLabel) {
+        audioLabel.textContent = 'Muted · Festival Anthem';
+      }
+    }
+
+    if (audio) {
+      audio.addEventListener('loadedmetadata', () => {
+        if (audio.currentTime < SONG_START) {
+          audio.currentTime = SONG_START;
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.currentTime >= SONG_END) {
+          audio.currentTime = SONG_START;
+          audio.play();
+        }
+      });
+    }
+
+    // Master Video + Audio Pause/Play Toggle
+    if (toggle && icon) {
+      toggle.addEventListener('click', () => {
+        if (video) {
+          if (video.paused) {
+            video.play();
+            icon.textContent = '⏸ Pause';
+            toggle.setAttribute('aria-label', 'Pause background video');
+            // Resume audio when resuming video if previously active or requested
+            startAudio();
+          } else {
+            video.pause();
+            icon.textContent = '▶ Play';
+            toggle.setAttribute('aria-label', 'Play background video');
+            // Stop audio when video is paused
+            pauseAudio();
+          }
+        }
+      });
+    }
+
+    if (audioToggle) {
+      audioToggle.addEventListener('click', () => {
+        if (!audio) return;
+        if (audio.paused) {
+          startAudio();
+          if (video && video.paused) {
+            video.play();
+            if (icon) icon.textContent = '⏸ Pause';
+          }
+        } else {
+          pauseAudio();
+        }
+      });
+    }
+
+    // Auto-start music when page/tab opens
+    // (If modern browser blocks un-gestured autoplay with sound, gracefully attach to first click/touch/scroll)
+    async function attemptAutoplayAudio() {
+      try {
+        await startAudio();
+      } catch {
+        const unlock = () => {
+          startAudio();
+          window.removeEventListener('click', unlock);
+          window.removeEventListener('keydown', unlock);
+          window.removeEventListener('touchstart', unlock);
+          window.removeEventListener('scroll', unlock);
+        };
+        window.addEventListener('click', unlock, { once: true });
+        window.addEventListener('keydown', unlock, { once: true });
+        window.addEventListener('touchstart', unlock, { once: true });
+        window.addEventListener('scroll', unlock, { once: true });
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      attemptAutoplayAudio();
+    } else {
+      window.addEventListener('load', attemptAutoplayAudio);
+    }
+  </script>
 </BaseLayout>

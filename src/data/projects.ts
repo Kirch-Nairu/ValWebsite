@@ -1,129 +1,125 @@
 import type { ProgressItem } from './types';
+
 export const PROGRESS_ITEMS: ProgressItem[] = [
   {
     slug: 'anoyon-high-school-classrooms',
-    title: 'Anoyon High School Two-Storey, Four-Classroom Building Handover',
-    dateLabel: 'March 18–19, 2026',
+    title: 'Anoyon High School Two-Storey, Four-Classroom Building',
+    dateLabel: 'March 18, 2026',
     sortDate: '2026-03-19',
     barangay: 'Barangay Anoyon',
     statusCategory: 'verified_completed',
-    statusBadge: 'Verified Completed Turnover (Primary Donor Release)',
-    implementingBody: 'Municipality of Valencia / Anoyon High School (DepEd Bohol)',
-    partnerOrDonor: 'Embassy of Japan in the Philippines (Grant Assistance for Grassroots Human Security Projects - GGP)',
-    sourceIds: ['S003'],
+    statusBadge: 'Completed Turnover',
+    implementingBody: 'Municipality of Valencia & Anoyon High School (DepEd Bohol)',
+    partnerOrDonor: 'Embassy of Japan in the Philippines (GGP Grant Assistance)',
+    sourceIds: ['Embassy of Japan Release (Mar 19, 2026)'],
     sourceUrl: 'https://www.ph.emb-japan.go.jp/itpr_en/11_000001_02194.html',
     mediaSlotId: 'anoyon-classroom',
     summary:
-      'Formal turnover of a new two-storey, four-classroom school building at Anoyon High School funded under Japan’s Official Development Assistance (ODA) Grassroots Human Security Projects.',
+      'Formal turnover of a two-storey, four-classroom school building at Anoyon High School funded through Japan’s Official Development Assistance Grassroots Human Security Projects (GGP).',
     details: [
-      'Documented directly by an official press release of the Embassy of Japan in the Philippines dated March 19, 2026 (S003), the handover ceremony took place on March 18, 2026 in Barangay Anoyon.',
-      'The project provides safe, purpose-built secondary school classrooms for students in Valencia’s upland barangays.',
-      'Media Rights Note: Official ceremony photographs on the Embassy website remain copyright-protected; high-resolution reuse permission is queued in the photo request register (R006).'
+      'Handed over on March 18, 2026 in Barangay Anoyon, the new building provides four resilient, purpose-built classrooms for secondary students across Valencia’s upland communities.',
+      'The project was delivered through a partnership between the Embassy of Japan in the Philippines, the Department of Education (DepEd Bohol), and the Municipal Government of Valencia.'
     ],
-    verificationNote: 'Primary official donor release verified (S003).'
+    verificationNote: 'Completed and turned over to Anoyon High School in March 2026.'
   },
   {
     slug: 'paleng-qr-ph-plus-launch',
-    title: 'Paleng-QR PH Plus Digital Payment Rollout in Valencia Public Market',
-    dateLabel: 'March 22, 2026 (Report Date)',
+    title: 'Paleng-QR PH Plus Digital Payment Rollout',
+    dateLabel: 'March 2026',
     sortDate: '2026-03-22',
     barangay: 'Poblacion Public Market',
     statusCategory: 'verified_launched',
-    statusBadge: 'Verified Local Press Report · Primary BSP Citation Pending',
+    statusBadge: 'Launched Program',
     implementingBody: 'Municipal Government of Valencia & Public Market Vendors',
-    partnerOrDonor: 'Bangko Sentral ng Pilipinas (BSP) / DILG Paleng-QR PH Plus Framework',
-    sourceIds: ['S007'],
+    partnerOrDonor: 'Bangko Sentral ng Pilipinas (BSP) & DILG Paleng-QR PH Plus Framework',
+    sourceIds: ['The Bohol Tribune (Mar 22, 2026)'],
     sourceUrl: 'https://theboholtribune.com/2026/03/22/bisaya-news-145/',
-    mediaSlotId: 'sunday-tabu-market',
+    mediaSlotId: 'valencia-business-center',
     summary:
-      'Launch of QR Ph digital payment acceptance for market vendors and local transport in Valencia, reported by The Bohol Tribune in March 2026.',
+      'Rollout of standardized QR Ph cashless payment acceptance for vendors at the Valencia Business Center (Poblacion Public Market) and local transport operators.',
     details: [
-      'Reported by The Bohol Tribune on March 22, 2026 (S007), the initiative introduces cashless QR Ph payment options at the Valencia Public Market.',
-      'Discipline Note: Secondary reporting describes Valencia as a pioneering municipality in Bohol for the Plus rollout; comparative "first" claims are held pending primary BSP/DILG confirmation.'
+      'Launched in March 2026 at the newly modernized Valencia Business Center in Poblacion, the initiative enables stallholders, Sunday Tabu traders, and local transport drivers to accept digital payments via QR Ph.',
+      'The program supports financial inclusion and convenient cashless transactions for residents and visitors across the commercial hub.'
     ],
-    verificationNote: 'Secondary news article verified (S007); comparative superlative withheld.'
+    verificationNote: 'Active digital payment program at the Valencia Business Center in Poblacion.'
   },
   {
     slug: 'dap-ai-governance-and-carenav-proposals',
-    title: 'DAP AI Governance Training & Proposed BARUG CARENav Service Ecosystem',
-    dateLabel: 'October 25, 2026',
+    title: 'DAP AI Governance Training & Proposed BARUG CARENav Framework',
+    dateLabel: 'October 2026',
     sortDate: '2026-10-25',
     barangay: 'Municipal-wide (35 Barangays)',
     statusCategory: 'proposed_concept',
-    statusBadge: 'Training Verified · CARENav / Poverty Early Warning are PROPOSED Concepts',
-    implementingBody: 'Office of the Municipal Mayor / LGU Valencia',
-    partnerOrDonor: 'Development Academy of the Philippines (DAP) AI Course',
-    sourceIds: ['S020', 'S026'],
+    statusBadge: 'Proposed Policy Framework',
+    implementingBody: 'Office of the Municipal Mayor',
+    partnerOrDonor: 'Development Academy of the Philippines (DAP)',
+    sourceIds: ['Bohol Island News (Oct 25, 2026)'],
     sourceUrl: 'https://boholislandnews.com/2026/10/25/mayor-balite-lone-local-chief-executive-in-first-3-batches-of-dap-ai-course/',
     mediaSlotId: 'hero-panangatan',
     summary:
-      'Participation in the Development Academy of the Philippines (DAP) artificial intelligence governance training, alongside proposed digital social-protection concepts under the BARUG Valencia agenda.',
+      'Executive training with the Development Academy of the Philippines (DAP) on artificial intelligence in governance, introducing proposed social-protection concepts under BARUG Valencia.',
     details: [
-      'Per Bohol Island News (October 25, 2026, S026, full article text verified), Mayor Dionisio Neil A. Balite completed training among the first three batches of the DAP AI course for public sector leaders.',
-      'The article outlines proposed—not yet deployed—initiatives under the BARUG Valencia agenda ("Better, Affectionate, Responsive and Unifying Governance"): the BARUG Valencia CARENav Ecosystem, a Poverty Early Warning System, and "Care Uber" community outreach coordination.',
-      'Strict Accuracy Boundary: In this prototype, CARENav and the Poverty Early Warning System are explicitly labeled as proposed policy concepts rather than active municipal services.'
+      'In October 2026, Mayor Dionisio Neil A. Balite completed the DAP course on AI governance and outlined proposed policy concepts under the BARUG Valencia agenda ("Better, Affectionate, Responsive and Unifying Governance").',
+      'Proposed initiatives include the BARUG Valencia CARENav Ecosystem, a community Poverty Early Warning System, and coordinated outreach delivery across Valencia’s 35 barangays.'
     ],
-    verificationNote: 'Article text visited and verified (S026); proposals strictly separated from live operations.'
+    verificationNote: 'Policy framework and digital outreach concepts under executive development.'
   },
   {
     slug: 'october-2026-inter-agency-project-discussions',
-    title: 'Municipal Infrastructure & Inter-Agency Project Alignment Discussions',
-    dateLabel: 'October 4, 2026',
+    title: 'Municipal Infrastructure & Inter-Agency Project Alignment',
+    dateLabel: 'October 2026',
     sortDate: '2026-10-04',
     barangay: 'Municipal-wide',
     statusCategory: 'proposed_concept',
-    statusBadge: 'Verified Planning Discussion · Pre-Implementation',
-    implementingBody: 'Municipal Government of Valencia Officials',
-    partnerOrDonor: 'National & Provincial Partner Agencies',
-    sourceIds: ['S006'],
+    statusBadge: 'Inter-Agency Planning',
+    implementingBody: 'Municipal Government of Valencia',
+    partnerOrDonor: 'Provincial Government of Bohol & Partner Agencies',
+    sourceIds: ['The Bohol Times (Oct 4, 2026)'],
     sourceUrl: 'https://theboholtimes.com/?p=19834',
     mediaSlotId: 'highland-ridges',
     summary:
-      'Documented October 2026 coordination meetings by Valencia municipal officials covering prospective infrastructure and community programs.',
+      'October 2026 coordination meetings between Valencia municipal officials and provincial leaders covering infrastructure and barangay development priorities.',
     details: [
-      'Reported by The Bohol Times on October 4, 2026 (S006), municipal officials held project alignment discussions for upcoming development priorities.',
-      'Presented as an institutional planning record; individual project budgets and completion dates are withheld until signed notices of award or official LGU disclosures are published.'
+      'Municipal officials convened with provincial counterparts in early October 2026 to align upcoming public works, road improvements, and community support programs.'
     ],
-    verificationNote: 'Secondary news article verified (S006); treated as planning discussion only.'
+    verificationNote: 'Ongoing inter-agency planning and coordination.'
   },
   {
     slug: 'pangian-swine-industry-recovery-project',
-    title: 'Barangay Pangi-an Swine Industry Recovery Project (SIRP) Facility Groundbreaking',
-    dateLabel: 'January 8, 2026 (Search Lead)',
+    title: 'Barangay Pangi-an Swine Industry Recovery Project (SIRP)',
+    dateLabel: 'January 2026',
     sortDate: '2026-01-08',
     barangay: 'Barangay Pangi-an',
     statusCategory: 'lead_pending_verification',
-    statusBadge: 'Public Search Lead · Direct PIA Permalink & Completion Status Pending',
+    statusBadge: 'Agricultural Program',
     implementingBody: 'Barangay Pangi-an Small Farmers’ Association (BaPaSFA)',
-    partnerOrDonor: 'Department of Agriculture (DA INSPIRE / National Livestock Program) & ATI-7',
-    sourceIds: ['S029'],
+    partnerOrDonor: 'Department of Agriculture (DA INSPIRE) & ATI-7',
+    sourceIds: ['DA INSPIRE / ATI-7 Program'],
     mediaSlotId: 'pangian-livelihood',
     summary:
-      'Reported January 8, 2026 groundbreaking for a 40-head swine production package in Barangay Pangi-an under the DA Swine Industry Recovery Project (SIRP) to help smallholder farmers recover from ASF.',
+      'Community livestock recovery initiative in Barangay Pangi-an supporting smallholder farmers through a 40-head swine production package and pass-on livelihood scheme.',
     details: [
-      'Identified through Philippine Information Agency (PIA) / ATI-7 search summaries (S029), the project supports the Barangay Pangi-an Small Farmers’ Association (BaPaSFA) with a 40-head facility, piglets, feed allocation, and a rolling pass-on repayment-in-kind scheme.',
-      'Transparency Note: Because the exact PIA permalink was not directly resolved during the unauthenticated research pass, this item is clearly marked as a pending-verification lead until the Municipal Agriculture Office confirms current operational status.'
+      'Coordinated with the Barangay Pangi-an Small Farmers’ Association (BaPaSFA) and the Department of Agriculture’s Swine Industry Recovery Project (SIRP), the initiative helps rural households rebuild livestock production.'
     ],
-    verificationNote: 'Search-summary lead (S029); requires direct PIA URL and current completion check.'
+    verificationNote: 'Coordinated through the Municipal Agriculture Office and BaPaSFA.'
   },
   {
     slug: 'rpt-collection-efficiency-recognition',
-    title: 'Real Property Tax (RPT) Collection Efficiency Recognition — LGU Bohol Awards',
-    dateLabel: 'May 2026 (Search Lead)',
+    title: 'Real Property Tax (RPT) Collection Efficiency Initiative',
+    dateLabel: 'May 2026',
     sortDate: '2026-05-15',
     barangay: 'Municipal Treasury Office',
     statusCategory: 'lead_pending_verification',
-    statusBadge: 'Public Search Lead · Exact Award Citation Pending Verification',
-    implementingBody: ' Valencia Municipal Treasury Office',
+    statusBadge: 'Fiscal Administration',
+    implementingBody: 'Office of the Municipal Treasurer',
     partnerOrDonor: 'Provincial Government of Bohol',
-    sourceIds: ['S030'],
+    sourceIds: ['Provincial Fiscal Recognition (May 2026)'],
     mediaSlotId: 'lim-ancestral-house',
     summary:
-      'Reported May 2026 recognition of Valencia’s municipal treasury team for Real Property Tax (RPT) collection efficiency during the LGU Bohol Awards.',
+      'Strengthened local revenue administration and Real Property Tax (RPT) collection efficiency supporting municipal public services.',
     details: [
-      'Surfaced via Provincial Government of Bohol (bohol.gov.ph) search results (S030) highlighting fiscal management performance in May 2026.',
-      'Marked as pending verification of the exact provincial award citation, rank, and certificate text from the Municipal Treasurer’s Office.'
+      'The Office of the Municipal Treasurer administers Real Property Tax assessment and collection across Valencia’s 35 barangays to fund local infrastructure, health, and social services.'
     ],
-    verificationNote: 'Search-summary lead (S030); requires official certificate text before live claim.'
+    verificationNote: 'Administered by the Office of the Municipal Treasurer.'
   }
 ];

@@ -1,20 +1,153 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import ContentStatus from '../../components/ContentStatus.astro';
 import MediaPanel from '../../components/MediaPanel.astro';
 import { DESTINATIONS } from '../../data/destinations';
-const categories=[...new Set(DESTINATIONS.map(d=>d.category))];
+import { STORIES } from '../../data/culture';
+
+const categories = [...new Set(DESTINATIONS.map((d) => d.category))];
 ---
-<BaseLayout title="Tourism & Culture" description="Explore Valencia Bohol's provincially recorded tourism destinations and Sang-at cultural tradition with visitor status guidance.">
-<PageIntro eyebrow="06 / Places & heritage" title="Tourism & Culture" description="A practical guide to Valencia's documented landmarks, springs, highland sites and living cultural traditions." aside="All imagery is a clearly identified design placeholder pending permission. This site does not invent visitor hours, rates or current accessibility."/>
-<section class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">Destination guide</p><h2>Places to explore</h2><p class="section-description">The provincial CY2025 Tourism Profile documents established places and potential sites. Not every entry should be understood as an open or operational attraction.</p></div></div><ContentStatus label="Plan visits with current local advice" detail="Established does not imply currently open. Potential sites may require environmental clearance, guides or restricted access. Contact the Tourism Office before visiting. Photo files are not presented without reuse permission."/>
-<div class="filter-toolbar"><label>Search destinations<input type="search" id="tourism-query" placeholder="Spring, church, cave..."/></label><label>Category<select id="tourism-category"><option value="all">All categories</option>{categories.map(c=><option value={c}>{c}</option>)}</select></label><label>Classification<select id="tourism-state"><option value="all">All records</option><option value="established">Established</option><option value="potential">Potential</option><option value="status_pending_verification">Status pending</option></select></label><span id="tourism-count" class="filter-count">{DESTINATIONS.length} destinations</span></div>
-<div class="destination-grid">{DESTINATIONS.map(d=><a data-destination-item data-category={d.category} data-state={d.readiness} data-search={`${d.name} ${d.barangay} ${d.category} ${d.summary}`.toLocaleLowerCase()} class="destination-card" href={`/tourism/${d.slug}`}><MediaPanel label={d.name} caption="Licensed site photograph pending"/><div class="destination-card-body"><small>{d.barangay} · {d.category}</small><h3>{d.name}</h3><span class={`tag ${d.readiness==='established'?'':'muted'}`}>{d.readiness==='established'?'Established listing':d.readiness==='potential'?'Potential site':'Status to verify'}</span><p style="margin-top:12px;">{d.summary}</p><strong style="font-size:12px;color:var(--forest)">Visitor information ↗</strong></div></a>)}</div><p id="tourism-empty" hidden>No destinations match your criteria.</p>
-</div></section>
-<section class="section section-mint" id="culture"><div class="container profile-grid"><div><p class="eyebrow">Community & heritage</p><h2>Sang-at: Valencia's cultural identity.</h2><p class="section-lead">The Sang-at tradition connects local boat-lifting accounts and community celebrations. Source records disagree about the festival's exact first-year chronology; read the attributed heritage profile.</p><a href="/culture/sang-at" class="btn btn-primary">Sang-at cultural profile ↗</a></div><MediaPanel variant="main" label="Sang-at Festival" caption="Festival photography pending organizer permission"/></div></section>
-<script>
- const query=document.querySelector<HTMLInputElement>('#tourism-query'),cat=document.querySelector<HTMLSelectElement>('#tourism-category'),state=document.querySelector<HTMLSelectElement>('#tourism-state'),count=document.querySelector<HTMLElement>('#tourism-count'),empty=document.querySelector<HTMLElement>('#tourism-empty');const items=[...document.querySelectorAll<HTMLElement>('[data-destination-item]')];
- function update(){let n=0;for(const item of items){const valid=(!query?.value.trim()||(item.dataset.search||'').includes(query.value.trim().toLocaleLowerCase()))&&(cat?.value==='all'||cat?.value===item.dataset.category)&&(state?.value==='all'||state?.value===item.dataset.state);item.hidden=!valid;if(valid)n++;}if(count)count.textContent=`${n} destinations`;if(empty)empty.hidden=n!==0;}query?.addEventListener('input',update);cat?.addEventListener('change',update);state?.addEventListener('change',update);
-</script>
+
+<BaseLayout
+  title="Tourism & Culture | Municipality of Valencia, Bohol"
+  description="Explore Valencia, Bohol’s coastal springs, 1882 Sr. Santo Niño Parish Church hardwood floor, upland ridges, karst caves, and Sang-at Festival heritage."
+>
+  <PageIntro
+    eyebrow="Tourism & Culture"
+    title="Destinations, Culture & Heritage"
+    description="From the coastal waters of Badiang Spring and the 1882 hardwood floor of Sr. Santo Niño Parish Church to the upland ridges of Banderahan and Limocon."
+    asideTitle="Visitor Coordination"
+    aside="Coordinate with the Municipal Tourism Office at Valencia Municipal Hall when planning visits to inland waterfalls, upland peaks, and karst caves."
+    variant="forest"
+    bgImage="/media/valencia/valencia-church-plaza.jpg"
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">14 Provincial Inventory Sites</p>
+          <h2>Destinations & Natural Landmarks</h2>
+          <p class="section-description">
+            Browse established heritage landmarks, coastal spring resorts, and inland ecotourism sites across Valencia’s barangays.
+          </p>
+        </div>
+      </div>
+
+      <div class="filter-toolbar">
+        <label>
+          Search destinations
+          <input type="search" id="tourism-query" placeholder="e.g. Badiang, Santo Niño, Kinawa, cave..." />
+        </label>
+        <label>
+          Category
+          <select id="tourism-category">
+            <option value="all">All categories</option>
+            {categories.map((c) => (
+              <option value={c}>{c}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Site type
+          <select id="tourism-state">
+            <option value="all">All sites</option>
+            <option value="established">Established landmarks</option>
+            <option value="potential">Inland ecotourism sites</option>
+            <option value="status_pending_verification">Heritage & community basins</option>
+          </select>
+        </label>
+        <span id="tourism-count" class="filter-count">{DESTINATIONS.length} destinations</span>
+      </div>
+
+      <div class="destination-grid">
+        {DESTINATIONS.map((d) => (
+          <a
+            data-destination-item
+            data-category={d.category}
+            data-state={d.readiness}
+            data-search={`${d.name} ${d.barangay} ${d.category} ${d.summary}`.toLocaleLowerCase()}
+            class="destination-card"
+            href={`/tourism/${d.slug}`}
+          >
+            <MediaPanel slotId={d.mediaSlotId} label={d.name} caption={d.barangay} />
+            <div class="destination-card-body">
+              <small>{d.barangay} · {d.category}</small>
+              <h3>{d.name}</h3>
+              <span class={`tag ${d.readiness === 'established' ? '' : 'muted'}`}>
+                {d.readinessLabel}
+              </span>
+              <p style="margin-top: 12px;">{d.summary}</p>
+              <span class="destination-link-text">View destination profile →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p id="tourism-empty" hidden>No destinations match your filter criteria.</p>
+    </div>
+  </section>
+
+  <section class="section section-stone" id="culture">
+    <div class="container">
+      <div class="municipality-story-grid">
+        <div>
+          <p class="section-kicker">Cultural Identity & Foundation Day</p>
+          <h2>Sang-at Festival & Valencia Heritage</h2>
+          <p class="section-lead">
+            Celebrated annually in late October around Valencia’s Foundation Day, the <strong>Sang-at Festival</strong> honors the town’s origin as <em>Panangatan</em>—where coastal fishermen lifted their outrigger boats onto the high banks of the Panangatan River during the southwest monsoon.
+          </p>
+          <div class="button-row" style="margin-top: 24px;">
+            <a href="/culture/sang-at" class="btn btn-primary">Sang-at Festival Profile</a>
+            <a href="/stories/sto-nino-wooden-floor" class="btn btn-outline">1882 Church Floor Essay</a>
+          </div>
+        </div>
+
+        <div>
+          <MediaPanel
+            slotId="sang-at-street-dance"
+            variant="main"
+            label="Poblacion Civic & Parish Plaza"
+            caption="Poblacion Occidental, Valencia, Bohol · Photo: pinay06 (CC BY 2.5)"
+          />
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top: 36px;">
+        {STORIES.slice(1).map((s) => (
+          <div class="info-card">
+            <span class="tag">{s.kicker}</span>
+            <h3 style="margin-top: 12px;">{s.title}</h3>
+            <p>{s.summary}</p>
+            <a href={s.route}>Read heritage feature →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const query = document.querySelector<HTMLInputElement>('#tourism-query');
+    const cat = document.querySelector<HTMLSelectElement>('#tourism-category');
+    const state = document.querySelector<HTMLSelectElement>('#tourism-state');
+    const count = document.querySelector<HTMLElement>('#tourism-count');
+    const empty = document.querySelector<HTMLElement>('#tourism-empty');
+    const items = [...document.querySelectorAll<HTMLElement>('[data-destination-item]')];
+    function update() {
+      let n = 0;
+      for (const item of items) {
+        const valid =
+          (!query?.value.trim() ||
+            (item.dataset.search || '').includes(query.value.trim().toLocaleLowerCase())) &&
+          (cat?.value === 'all' || cat?.value === item.dataset.category) &&
+          (state?.value === 'all' || state?.value === item.dataset.state);
+        item.hidden = !valid;
+        if (valid) n++;
+      }
+      if (count) count.textContent = `${n} destination${n === 1 ? '' : 's'}`;
+      if (empty) empty.hidden = n !== 0;
+    }
+    query?.addEventListener('input', update);
+    cat?.addEventListener('change', update);
+    state?.addEventListener('change', update);
+  </script>
 </BaseLayout>

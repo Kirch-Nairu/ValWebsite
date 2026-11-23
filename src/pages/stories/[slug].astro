@@ -1,14 +1,179 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContentStatus from '../../components/ContentStatus.astro';
+import MediaPanel from '../../components/MediaPanel.astro';
 import { STORIES } from '../../data/culture';
 import type { StoryItem } from '../../data/types';
-export function getStaticPaths(){return STORIES.filter(s=>s.route.startsWith('/stories/')).map(item=>({params:{slug:item.slug},props:{item}}));}
-interface Props{item:StoryItem}
-const {item}=Astro.props;
+
+export function getStaticPaths() {
+  return STORIES.filter((s) => s.route.startsWith('/stories/')).map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+interface Props {
+  item: StoryItem;
+}
+
+const { item } = Astro.props;
 ---
+
 <BaseLayout title={item.title} description={item.summary}>
-<div class="container bread"><a href="/">Home</a><span>/</span><a href="/tourism">Tourism & Culture</a><span>/</span><span>Heritage record</span></div>
-<section class="page-intro"><div class="container"><p class="eyebrow">Heritage archive / {item.kicker}</p><h1>{item.title}</h1><p class="page-intro-description">{item.summary}</p></div></section>
-<section class="section"><div class="container detail-layout"><article class="detail-main"><ContentStatus label="Research-context heritage page" detail={item.conflictDisclosure||'This record is based on attributed research rather than an officially approved municipal historical publication.'}/><h2>Context & source record</h2>{item.body.map(p=><p>{p}</p>)}<a href="/tourism" class="btn btn-primary" style="margin-top:22px;">Tourism & Culture ↗</a></article><aside class="detail-sidebar"><h2>Publication context</h2><dl><dt>Location</dt><dd>{item.barangayOrPlace}</dd><dt>Record date</dt><dd>{item.eventOrRecordDate}</dd><dt>Review date</dt><dd>{item.reviewDate}</dd><dt>Source IDs</dt><dd>{item.sourceIds.join(', ')}</dd><dt>Editorial status</dt><dd>{item.editorialStatus}</dd></dl></aside></div></section>
+  <div class="container bread">
+    <a href="/">Home</a>
+    <span>/</span>
+    <a href="/tourism">Tourism & Culture</a>
+    <span>/</span>
+    <span>{item.kicker}</span>
+  </div>
+
+  <section class="page-intro" style="position: relative; background: #0a1f1b url('/media/valencia/valencia-church-plaza.jpg') center center / cover no-repeat; overflow: hidden; padding: 48px 0;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 31, 27, 0.92) 0%, rgba(15, 45, 38, 0.86) 50%, rgba(10, 31, 27, 0.94) 100%); pointer-events: none;" aria-hidden="true"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+      <p class="section-kicker" style="color: var(--valencia-orange); letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">{item.kicker}</p>
+      <h1 style="color: #ffffff;">{item.title}</h1>
+      <p class="page-intro-description" style="color: #d1e2db;">{item.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <article class="detail-main">
+        <div style="margin-bottom: 24px;">
+          <MediaPanel
+            slotId={item.mediaSlotId}
+            variant="main"
+            label={item.title}
+            caption={item.barangayOrPlace}
+          />
+        </div>
+
+        {item.conflictDisclosure && (
+          <ContentStatus label="Historical Note" detail={item.conflictDisclosure} />
+        )}
+
+        <h2>Feature Narrative</h2>
+        {item.body.map((p) => (
+          <p>{p}</p>
+        ))}
+
+        {item.slug === 'canduao-occidental-pottery' && (
+          <section style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line);">
+            <h2>Field Documentation: The Potters of Canduao Occidental</h2>
+            <p class="section-lead" style="margin-bottom: 20px;">
+              Photographic field documentation from Barangay Canduao Occidental capturing raw clay preparation, traditional open-air workshops, and finished earthenware stoves.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/canduao-pottery-shaping.jpg"
+                  alt="Local artisan shaping earthenware using traditional paddle in Barangay Canduao Occidental"
+                  style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 10px 14px; font-size: 0.8rem; line-height: 1.4; color: var(--ink);">
+                  <strong>Pagpikpik (Shaping)</strong><br />
+                  <span style="color: var(--muted); font-size: 0.76rem;">Paddle-and-anvil shaping and wall-thinning in traditional workshop</span>
+                </figcaption>
+              </figure>
+
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/canduao-pottery-stove.png"
+                  alt="Father and daughter potters examining traditional clay stove (con and sug-ang) in Canduao Occidental"
+                  style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 10px 14px; font-size: 0.8rem; line-height: 1.4; color: var(--ink);">
+                  <strong>Intergenerational Craft</strong><br />
+                  <span style="color: var(--muted); font-size: 0.76rem;">Inspecting a completed traditional clay stove (con / sug-ang)</span>
+                </figcaption>
+              </figure>
+
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/canduao-clay-drying.jpg"
+                  alt="Artisan preparing and sun-drying local clay deposits (paghumol and pagkugi) in Canduao Occidental"
+                  style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 10px 14px; font-size: 0.8rem; line-height: 1.4; color: var(--ink);">
+                  <strong>Paghumol & Pagkugi (Clay Preparation)</strong><br />
+                  <span style="color: var(--muted); font-size: 0.76rem;">Sun-drying, tempering, and kneading raw clay deposits</span>
+                </figcaption>
+              </figure>
+
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/canduao-pottery-documentation.jpg"
+                  alt="Field documentation of local potter at work in Barangay Canduao Occidental"
+                  style="width: 100%; height: 220px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 10px 14px; font-size: 0.8rem; line-height: 1.4; color: var(--ink);">
+                  <strong>Living Tradition Documentation</strong><br />
+                  <span style="color: var(--muted); font-size: 0.76rem;">Documenting community clay craft and Banay sa Canuao Dako heritage</span>
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+        )}
+
+        {item.slug === 'sunday-tabu-and-crafts' && (
+          <section style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line);">
+            <h2>Field Documentation: Valencia Business Center</h2>
+            <p class="section-lead" style="margin-bottom: 20px;">
+              Documentary photography of the newly modernized Valencia Business Center in Poblacion, serving as the commercial trade center for Sunday Tabu and daily municipal market vendors.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/valencia-business-center-day.jpg"
+                  alt="Valencia Business Center showing the modern two-storey commercial facility with orange columns in daytime"
+                  style="width: 100%; height: 240px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 12px 14px; font-size: 0.85rem; line-height: 1.4; color: var(--ink);">
+                  <strong style="color: var(--valencia-orange-dark);">Daytime Trade & Portico Facade</strong><br />
+                  <span style="color: var(--muted); font-size: 0.8rem;">Modernized two-storey commercial market facility with signature civic orange columns and fiesta banners.</span>
+                </figcaption>
+              </figure>
+
+              <figure style="margin: 0; background: var(--stone); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;">
+                <img
+                  src="/media/valencia/valencia-business-center-night.jpg"
+                  alt="Valencia Business Center illuminated night facade with backlit signage"
+                  style="width: 100%; height: 240px; object-fit: cover; display: block;"
+                  loading="eager"
+                />
+                <figcaption style="padding: 12px 14px; font-size: 0.85rem; line-height: 1.4; color: var(--ink);">
+                  <strong style="color: var(--valencia-orange-dark);">Illuminated Night Facade</strong><br />
+                  <span style="color: var(--muted); font-size: 0.8rem;">Evening view highlighting the backlit municipal sign and architectural lighting along the Poblacion thoroughfare.</span>
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+        )}
+
+
+        <div class="button-row" style="margin-top: 26px;">
+          <a href="/tourism" class="btn btn-primary">Tourism & Culture Guide</a>
+          <a href="/municipality" class="btn btn-outline">Municipality & 35 Barangays</a>
+        </div>
+      </article>
+
+      <aside class="detail-sidebar">
+        <h2>Feature Reference</h2>
+        <dl>
+          <dt>Location</dt>
+          <dd>{item.barangayOrPlace}</dd>
+          <dt>Historical Period</dt>
+          <dd>{item.eventOrRecordDate}</dd>
+          <dt>Primary References</dt>
+          <dd>{item.sourceIds.join(' · ')}</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
 </BaseLayout>

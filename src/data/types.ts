@@ -12,7 +12,14 @@ export type VisualMotif =
   | 'anoyon-classroom'
   | 'pangian-livelihood'
   | 'ancestral-house'
-  | 'danao-lake';
+  | 'danao-lake'
+  | 'pottery-craft'
+  | 'market-commercial'
+  | 'market-night'
+  | 'anislag-spring'
+  | 'banderahan-locator'
+  | 'municipal-hall-night'
+  | 'lgu-banner';
 
 export interface MediaSlotSpec {
   slotId: string;
@@ -22,11 +29,16 @@ export interface MediaSlotSpec {
   barangay: string;
   motif: VisualMotif;
   aspectRatio: '16:9' | '4:3' | '3:2' | '4:5';
-  approvalStatus: 'NOT_APPROVED';
+  approvalStatus: 'APPROVED_REDISTRIBUTABLE' | 'LOCAL_PREVIEW_ONLY' | 'NOT_APPROVED';
   statusLabel: string;
   creditLine: string;
   approvedDropInPath: string;
   acquisitionNote: string;
+  imageSrc: string;
+  imageAlt: string;
+  photographer?: string;
+  license?: string;
+  sourceUrl?: string;
 }
 
 export interface DestinationItem {
@@ -34,7 +46,7 @@ export interface DestinationItem {
   name: string;
   alternateName?: string;
   barangay: string;
-  category: 'Spring & Coast' | 'Heritage & Architecture' | 'Highlands & Peaks' | 'Falls & Lakes' | 'Karst Caves';
+  category: 'Spring & Coast' | 'Heritage & Architecture' | 'Highlands & Peaks' | 'Falls & Lakes' | 'Karst Caves' | 'Living Traditions & Artisanal Craft';
   readiness: ReadinessStatus;
   readinessLabel: string;
   ppdoPage: string;
@@ -88,7 +100,7 @@ export interface UpdateItem {
   publishedDate: string;
   eventDate: string;
   category: 'Cultural Milestone' | 'Education & Civic' | 'Governance & Digital' | 'Heritage Record';
-  recordState: 'Archival / Source-Referenced Record' | 'Verified Historical Milestone';
+  recordState: string;
   publisher: string;
   sourceId: string;
   sourceUrl?: string;
@@ -101,7 +113,12 @@ export interface BarangayItem {
   psgc: string;
   name: string;
   zone: 'Poblacion & Coastal' | 'Upland & Interior';
+  categoryTag?: 'Coastal Waters' | 'Poblacion Center' | 'Highland & Peaks' | 'Springs & Waterways' | 'Pottery & Crafts' | 'Agricultural Heart';
   notableFeatures: string;
+  quickLink?: {
+    label: string;
+    href: string;
+  };
 }
 
 export interface ServiceCategoryItem {
